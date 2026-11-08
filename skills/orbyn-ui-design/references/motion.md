@@ -38,6 +38,39 @@ against measured geometry. Project release only when that matches the task, sele
 an admissible snap and issue one end/threshold commit. A cancelled destructive
 interaction does not commit. Swipe/haptics are not exclusive feedback.
 
+### Gesture feel
+
+A gesture has two phases, and most wrong-feeling gestures mix them up:
+
+- **While the pointer is down, the element follows it exactly.** Write the position
+  straight to the dragged element's transform each move. No easing, duration or
+  spring while tracking, no state re-render per move, and no parent custom property
+  that restyles every child.
+- **On release, physics finishes the motion.** Start a spring from the release
+  velocity rather than a fixed-duration curve, so a fling and a slow drag land
+  differently. Anything a gesture can catch mid-flight uses springs or transitions,
+  never keyframes, which restart from zero.
+- **Decide on distance or speed.** Commit when the drag passes its distance
+  threshold or the release is a fast flick; a distance-only rule ignores flicks.
+  Below both, snap back quickly.
+- **Resist at the edges.** Past a boundary, move a fraction of the pointer's
+  distance instead of stopping dead.
+- **Bounce only after force.** A small overshoot fits the end of a drag; the same
+  element closed by a button settles with none.
+- **One value drives the rest.** Derive linked effects (overlay opacity, the page
+  scaling behind a sheet) from the drag value, so they stay matched when the user
+  reverses mid-gesture.
+- **Leave the way it came.** Dismiss along the axis the element entered on, which
+  users find without being told.
+- **Holds are asymmetric.** Show hold-to-confirm progress linearly, since it
+  measures time, and cancel fast on early release.
+
+Prefer the project's established sheet or drawer component over a hand-built drag;
+build one only when nothing covers the interaction. Reduced motion keeps tracking,
+since the user produces it, and drops fling momentum, bounce and decoration. Check
+gestures on a real touch device: trackpads and 60 Hz screens hide problems a phone
+shows. Distances, speeds and spring values are starting points to tune, not rules.
+
 ## Accessibility and review
 
 Reduced motion may select an immediate final state; preserve task completion,

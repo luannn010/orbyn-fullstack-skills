@@ -1724,6 +1724,13 @@
           "source": "https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049",
           "revision": "2776ddd2355d6d6c8747d3964600f28daf62f049",
           "relationship": "reviewed; pstack tree unchanged since c742dd6, later commits outside pstack; no source text or code imported; not an advance of original import pins"
+        },
+        {
+          "credit": "emilkowalski/skills",
+          "source": "https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e",
+          "revision": "5206a950b715e0cabe7043ea0b2304332b91494e",
+          "license": "MIT",
+          "relationship": "reviewed 2026-11-09; only new upstream skill since the c8a7962 pin is gestures; its ideas were rewritten in Orbyn's words in references/motion.md (Gesture feel); no text imported; pin not advanced"
         }
       ],
       "palette_reference": {
@@ -1861,6 +1868,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Route Astryx projects to orbyn-astryx"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Gesture feel: track and release phases, distance-or-speed commit, edge resistance, linked values, entry-axis dismissal, asymmetric holds"
         }
       ]
     },

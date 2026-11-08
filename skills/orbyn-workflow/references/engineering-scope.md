@@ -72,8 +72,10 @@ round and code nobody needed. Review to finish, not to find one more thing:
   the author fixes every instance in one round.
 - **After the first full pass, review only the new diff** and the findings still open.
   Never repeat a finding already raised or resolved with a reason.
-- **As the author, decline nits** and out-of-scope suggestions with a one-line reason
-  instead of fixing them. Watch the diff size: a fix that grows the PR well past its
+- **As the author, answer every finding with a fix or a contest.** A contest cites
+  evidence the reviewer can read: a file and symbol, a test, or a decision the
+  document records. "I think it's fine" is not a contest. Decline nits and
+  out-of-scope suggestions with a one-line reason instead of fixing them. Watch the diff size: a fix that grows the PR well past its
   purpose is the wrong fix.
 - **Cap the rounds** at three; then step back and reconsider the approach, or stop as
   [opening a PR](../playbooks/opening-a-pr.md#when-three-rounds-do-not-resolve-it)
@@ -92,6 +94,8 @@ Useful lasting rationale belongs in clearer code or a
 Reviewed inspiration, 27 October 2026:
 [Google review comments](https://github.com/google/eng-practices/blob/3bb3ec25b3b0199f4940b1aa75f0ac5c5753301c/review/reviewer/comments.md).
 This independently authored contract imports no upstream text or tooling.
+Reviewed inspiration for the fix-or-contest rule, observed 9 November 2026:
+[Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9) (Apache-2.0); no upstream text imported.
 
 Background, reviewed 25 October 2026:
 [GitLab associate](https://handbook.gitlab.com/job-description-library/engineering/development/backend/associate/),

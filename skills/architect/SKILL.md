@@ -19,6 +19,7 @@ and trace the current design with [how](../how/SKILL.md). Use
 4. **Choose the smallest coherent design** and explain its trade-off. Keep domain ownership separate from platform rendering: a task editor can share the update contract while web and mobile keep their own focus and navigation behavior. If escape hatches or duplicated state interpretation keep recurring, reconsider the owner/type design and fix that source of complexity instead of adding wrappers.
 5. **Check the interface** against a stale write, revoked access and a retry after an unknown result, where those cases apply.
 6. **Return** an owner/interface table, a representative call, state transitions, the rejected alternative and a migration order. Use [orbyn-plan](../orbyn-plan/SKILL.md) when the design needs a delivery sequence. Record a durable rationale only when future maintainers need the decision.
+7. **Review a written design before code** when it will drive a substantial build: fresh reviewer children read only the document and its linked files, through zoom-out, comprehension and implementation-readiness lenses ([design review](references/design-review.md)).
 
 For a proposal-approval feature, specify the durable proposal state, authenticated apply operation, stale-version behavior and shared result shape before designing the buttons. Return a contract the API, web and mobile owners can implement without inventing their own lifecycle. A model sketch is enough only when it answers those ownership questions.
 

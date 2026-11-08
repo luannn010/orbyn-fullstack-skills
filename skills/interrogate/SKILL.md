@@ -19,6 +19,14 @@ Follow the consuming project's instructions and requested scope; use the
 
 For an approval change, ask whether a revoked user or stale client can still apply it and whether a retry duplicates the effect. Return a concrete reproducing state and the affected owner. Keep missing runtime evidence separate from a proven code defect: missing native evidence is an evidence gap, and it is not automatically a source-code defect.
 
+## Paraphrase a document first
+
+When the candidate is a design, spec or plan, restate in your own words what it
+proposes and how the current system works, as the document describes it, before
+listing findings. A section you cannot restate is a blocker: its terms may all be
+defined while its parts still do not connect, which a list of undefined terms never
+finds. Keep the paraphrase in the report so the author sees what a reader took away.
+
 ## Review-only limits
 
 A review-only assignment edits no code; do not auto-apply changes. If a fix is authorized later, recheck the exact changed candidate rather than carrying the previous verdict forward.

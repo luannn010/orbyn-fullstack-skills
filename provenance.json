@@ -36,6 +36,12 @@
           "revision": "fcc0ad462172522aaf5c93a7b2e01f6b9f0b0159",
           "license": "MIT",
           "relationship": "reviewed-inspiration; capability-family layout, package conventions and design rules adapted in our words; no text or code copied"
+        },
+        {
+          "credit": "Google LLC (Elephant-Goldfish Model)",
+          "source": "https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "revision": "e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text, prompts or tooling imported"
         }
       ],
       "incorporated_material": [
@@ -270,6 +276,13 @@
           "effort": "medium",
           "date": "2026-11-06",
           "scope": "Capability-family package layout, package conventions and operation rules in architect references"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Design review before code: fresh reviewer children on the document only, zoom-out, comprehension and implementation-readiness lenses"
         }
       ]
     },
@@ -511,6 +524,12 @@
           "source": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering",
           "revision": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
           "relationship": "reviewed-inspiration; no upstream workflow text imported"
+        },
+        {
+          "credit": "Google LLC (Elephant-Goldfish Model)",
+          "source": "https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "revision": "e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text, prompts or tooling imported"
         }
       ],
       "reviewed_sources": [
@@ -540,6 +559,13 @@
           "effort": "medium",
           "date": "2026-11-03",
           "scope": "ECC adoption: dual independent review with 3-round cap"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Paraphrase a design document before listing findings; an unrestatable section is a blocker"
         }
       ],
       "incorporated_material": [
@@ -1782,6 +1808,12 @@
           "revision": "1b02972adb20c08535e5aa959f2505cbf738a0c7",
           "license": "Apache-2.0",
           "relationship": "reviewed-inspiration; loop guard and repeated-failure facts reworked as manual, consented rules; no text or code imported"
+        },
+        {
+          "credit": "Google LLC (Elephant-Goldfish Model)",
+          "source": "https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "revision": "e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text, prompts or tooling imported"
         }
       ],
       "incorporated_material": [
@@ -2204,6 +2236,13 @@
           "effort": "medium",
           "date": "2026-11-07",
           "scope": "Designer role: routing key designer (Claude worker, Codex lead), get a design draft before inventing product UI, copy or behavior"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Review convergence: answer every finding with a fix or a contest backed by reader-checkable evidence"
         }
       ]
     },

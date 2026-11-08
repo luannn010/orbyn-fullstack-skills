@@ -27,8 +27,20 @@ DEFAULT_IGNORE = 'target/\nnode_modules/\n.venv/\ndist/\nbuild/\nvenv/\n*.log\n.
 APP_FILES = {'Cargo.lock': 'x', 'REBUILD.txt': 'cargo build', 'src.txt': 'src\n'}
 
 
+# After a commit or, in the remote, after a push, Git can start auto-gc or maintenance in the
+# background. Even with no work to do it touches objects/ (a lock file appears and goes), so a
+# later "changes nothing" snapshot failed at random on CI. Fixtures never gc: the flags cover commands run here, and
+# quiet_remote() covers receive-pack, which ignores a client's -c.
+NO_GC = ('-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-c', 'receive.autogc=false')
+
+
+def quiet_remote(bare):
+    for key, value in (('gc.auto', '0'), ('maintenance.auto', 'false'), ('receive.autogc', 'false')):
+        sh(bare, 'config', key, value)
+
+
 def sh(path, *args):
-    return subprocess.run(['git', '-C', str(path), *args], check=True, capture_output=True, text=True).stdout
+    return subprocess.run(['git', *NO_GC, '-C', str(path), *args], check=True, capture_output=True, text=True).stdout
 
 
 def commit(path, message):
@@ -57,6 +69,7 @@ def make_clone(base, lib, name, files, gitignore=DEFAULT_IGNORE):
     sh(path, 'add', '-f', '.gitignore', *files)
     commit(path, 'base')
     sh(base, 'clone', '-q', '--bare', str(path), str(bare))
+    quiet_remote(bare)
     with open(path/'.git/config', 'a') as config:
         config.write(f'[remote "origin"]\n\turl = {bare}\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n'
                      '[branch "main"]\n\tremote = origin\n\tmerge = refs/heads/main\n')
@@ -70,6 +83,7 @@ def build_template(base):
     """The library, its origin and the `app` clone with remotes, built once and copied for each test."""
     origin = base/'orbyn-fullstack-skills.git'
     sh(base, 'init', '-q', '--bare', '-b', 'main', str(origin))
+    quiet_remote(origin)
     lib = base/'lib'
     lib.mkdir()
     sh(lib, 'init', '-q', '-b', 'main')
@@ -1146,6 +1160,7 @@ class SecondReviewTests(CleanupCase):
     def test_git_never_fetches_a_missing_object_in_a_partial_clone(self):
         origin = self.base/'partial-origin.git'
         self.sh(self.base, 'clone', '-q', '--bare', str(self.app), str(origin))
+        quiet_remote(origin)
         self.sh(origin, 'config', 'uploadpack.allowFilter', 'true')
         partial = self.base/'partial'
         self.sh(self.base, 'clone', '-q', '--filter=blob:none', '--no-checkout', f'file://{origin}', str(partial))

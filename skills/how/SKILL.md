@@ -1,6 +1,6 @@
 ---
 name: how
-description: "Trace source behavior, data flow and dependency impact across code, build and runtime boundaries; reproduce and reduce defects before explaining or changing an unfamiliar subsystem."
+description: "Trace source behavior, data flow and dependency impact across code, build and runtime boundaries; reproduce and reduce defects before explaining or changing an unfamiliar subsystem; bootstrap source-anchored docs for an undocumented codebase."
 ---
 
 # How
@@ -36,6 +36,8 @@ After implementing a mapped change, [reconcile the diff](references/impact-map.m
 The owning lead delegates bounded source questions to named native Orbyn Investigators under the [workflow](../orbyn-workflow/SKILL.md). Pass file pointers and ask for a compact source-cited result. Stay within the resolved harness limits (`max_children`, `max_depth`) and use a scout for purely mechanical lookups; no recursive delegation; a child traces its assigned path directly. Narrow explanations stay direct. The lead inspects the evidence, reconciles contradictions and owns the final explanation.
 
 ## Read when needed
+
+- A requested set of durable docs for a codebase with little or stale documentation: [bootstrap docs](references/bootstrap-docs.md). Overview, module map, key flows and how to run it, each claim anchored to source.
 
 - Unfamiliar or cross-package work: the [impact map](references/impact-map.md). Include build/generator/configuration and runtime registration edges, existing review/operational owners and deployed consumers only where relevant. Stop when the decision is supported; a local caller search does not prove deployment coverage.
 - Bounded searches and root causes: the [root-cause method](references/principles/fix-root-causes.md) and [context method](references/principles/guard-the-context-window.md) have concrete checks. Keep searches bounded, retain only decision-relevant anchors and record unresolved edges.

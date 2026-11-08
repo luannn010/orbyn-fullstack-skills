@@ -33,9 +33,9 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 
 ## Engineering practice
 
-- [architect](architect/SKILL.md) — Design data shapes, interfaces, ownership, statecharts and module boundaries for substantive features or refactors; use for lifecycle rules, code organization, vertical modules and shared-code extraction.
+- [architect](architect/SKILL.md) — Design data shapes, interfaces, ownership, statecharts and module boundaries for substantive features or refactors; use for lifecycle rules, code organization, vertical modules, shared-code extraction, design review before code and design-versus-code drift checks.
 - [arena](arena/SKILL.md) — Build and compare competing design or implementation sketches when a consequential choice cannot be resolved cheaply from existing evidence. Use architect for a single design.
-- [how](how/SKILL.md) — Trace source behavior, data flow and dependency impact across code, build and runtime boundaries; reproduce and reduce defects before explaining or changing an unfamiliar subsystem.
+- [how](how/SKILL.md) — Trace source behavior, data flow and dependency impact across code, build and runtime boundaries; reproduce and reduce defects before explaining or changing an unfamiliar subsystem; bootstrap source-anchored docs for an undocumented codebase.
 - [interrogate](interrogate/SKILL.md) — Challenge a specified design, patch or claim for concrete correctness, ownership and evidence gaps. Use for adversarial review, not every routine edit.
 - [language-best-practices](language-best-practices/SKILL.md) — Implement or review TypeScript, JavaScript, Python, Go, Rust, Java, Kotlin, C#, Swift, C, C++, SQL or shell code using its actual runtime, ownership and error contracts. Select only the affected local guide, including TypeScript schemas and lifecycle contracts.
 - [orbyn-stack-selection](orbyn-stack-selection/SKILL.md) — Choose or reassess a language, framework, database, runtime, hosting or build-versus-buy option from project constraints and current primary evidence. Produce a decision with operating and migration costs; ordinary implementation keeps the established stack.

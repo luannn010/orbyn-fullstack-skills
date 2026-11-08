@@ -1,6 +1,6 @@
 ---
 name: architect
-description: "Design data shapes, interfaces, ownership, statecharts and module boundaries for substantive features or refactors; use for lifecycle rules, code organization, vertical modules and shared-code extraction."
+description: "Design data shapes, interfaces, ownership, statecharts and module boundaries for substantive features or refactors; use for lifecycle rules, code organization, vertical modules, shared-code extraction, design review before code and design-versus-code drift checks."
 ---
 
 # Architect
@@ -38,6 +38,8 @@ When [comparative research](../orbyn-research/references/comparable-implementati
 For durable transitions, put the migration owner's concrete writer/admission contract in the design, including stale-writer rejection and current-writer controls. A link to migration guidance alone is not the deliverable.
 
 ## Read when needed
+
+- Checked-in designs or READMEs that may no longer match the code or the built app: [design drift](references/design-drift.md). Report each difference with anchors on both sides; change nothing without the user. This is document-versus-code drift; drift between a verification model and code belongs to [tdd](../tdd/SKILL.md).
 
 - Where code belongs, cross-feature imports or shared-code extraction: [vertical code organization](references/vertical-codebase.md). Group code by the functionality it owns within existing stack boundaries, and specify public entry points, private internals and allowed dependency directions before moving files. Return the proposed owner map, import contract, trade-off and scoped migration/verification plan. Explaining an existing import path belongs to `how`.
 

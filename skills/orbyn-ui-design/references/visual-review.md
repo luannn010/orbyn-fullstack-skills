@@ -27,6 +27,8 @@ app name) above the app's own toolbar, so the window had two title bars. Every
 browser review passed, because the preview has no OS chrome; only a screenshot of
 the built window showed it. A change to window chrome, title bar or app shell is
 therefore checked on the built window, and the window config gets a test.
+To compare a whole set of designs with the built product, run a
+[design drift check](../../architect/references/design-drift.md#designs-against-the-built-product).
 
 ## Brief an independent inspector
 

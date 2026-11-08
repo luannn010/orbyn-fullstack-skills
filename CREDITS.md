@@ -39,7 +39,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [enmerasoftware/ai-design-check](https://github.com/enmerasoftware/ai-design-check) | Enmera (ai-design-check) | See source | orbyn-ui-design |
 | [getsentry/skills](https://github.com/getsentry/skills) | Sentry (getsentry/skills) | Apache-2.0 | orbyn-workflow |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | GitHub awesome-copilot contributors; bug-reproduction-brief credits skyestrela/ai-agent-skill-preview | MIT | how, orbyn-workflow |
-| [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) | Google LLC (Elephant-Goldfish Model) | See source | architect, interrogate, orbyn-workflow |
+| [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) | Google LLC (Elephant-Goldfish Model) | See source | architect, how, interrogate, orbyn-ui-design, orbyn-workflow |
 | [google/eng-practices](https://github.com/google/eng-practices) | Google Engineering Practices contributors | See source | orbyn-workflow, unslop |
 | https://aclanthology.org/2024.eacl-demo.16/ | RAGAs, EACL 2024 | See source | orbyn-ai-application |
 | https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage | MDN Web Docs and Playwright documentation | See source | orbyn-ui-design |

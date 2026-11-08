@@ -32,6 +32,31 @@ because a reader who already checked the code is no longer naive.
 | Comprehension | Can a new reader restate what this proposes and how the current system works? Use the [paraphrase test](../../interrogate/SKILL.md#paraphrase-a-document-first). | A section the reader cannot restate |
 | Implementation readiness | Could a worker build this without making a design decision? Are the contract, files in order, the failing test first, risks, rollback and stopping condition named? | A step that forces the builder to choose an owner, data shape or failure behavior |
 
+## Run it in stages
+
+Run the lenses in order, because each one changes what the next should read:
+zoom out on the whole document, then comprehension, then implementation readiness on
+the build plan. The lead asks the user once which way to run it:
+
+| Mode | Runs | Use when |
+| --- | --- | --- |
+| Step by step (default) | Each stage, then a checkpoint | The design is still moving |
+| One report | All three stages without stopping, then one combined report | The author is away or wants one pass |
+| Design only | Zoom out and comprehension; no readiness | There is no build plan yet |
+| Readiness only | The build-plan section alone | The design was already approved |
+
+Write each stage's findings to a file in the task's ignored output folder
+(`output/<task>/design-review/zoom-out.md`, `comprehension.md`, `readiness.md`).
+In chat, give the path and the count of blockers, majors and nits, never the whole
+report. One report mode adds `summary.md`: findings merged and deduplicated, ranked
+blocker, major, nit, each linked to the raw findings it came from.
+
+After each stage, ask one question with these choices: continue to the next stage;
+resolve the findings now; pause while the author edits the document; stop. After
+edits, re-run that stage once. If blockers remain, put them to the user, who accepts
+each as a trade-off (recorded in the document) or sends it back; never accept one
+silently. The three-round cap below still bounds the whole review.
+
 ## Resolve, then build
 
 Reply to every finding with a fix or a contest backed by evidence the reviewer can

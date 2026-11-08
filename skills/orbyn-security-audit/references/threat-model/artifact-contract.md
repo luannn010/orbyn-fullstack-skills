@@ -7,7 +7,7 @@ One run writes these files to its [run folder](../threat-model.md#run-folder), a
 | `SYSTEM_UNDER_REVIEW.md` | evidence step | Evidence and gaps, per the [evidence guide](evidence-guide.md) |
 | `selection.md` | selection steps | Architecture and method choices and the omitted alternatives |
 | `threat-model.json` | analysis | The model. The authoritative record |
-| `report.md` | report step | A readable view derived from the JSON. Say first that it is a quick or a deep run, and what was not done |
+| `report.md` | report step | A readable view derived from the JSON, with coverage taken from `SYSTEM_UNDER_REVIEW.md`. Say first that it is a quick or a deep run and what was not done, then an **Inspection coverage** section before the threats: what was read and how far, consequential omissions with reasons, unmapped boundaries, and whether evidence was read in this run or carried from an earlier one |
 | `challenge.md` | challenge step | What the fresh pass tried and found |
 | `change-review.md` | change mode | Changed scenarios against a baseline |
 
@@ -87,7 +87,7 @@ The script reads only. It checks structure, id references, the evidence rules be
 - Every actor states its `capability`: what it can already do or reach.
 - Locators are `path:start-end` (or `path:line`), repository-relative, with `start` no greater than `end`, and never absolute or containing `..`, with or without `--root`. A `caller_claim` uses `session:<label>`. Under `--root`, an `execution` locator may instead name a file in the run folder, the folder holding the model. An optional `excerpt` must appear in the cited lines.
 - A secret-looking file, such as `.env`, a private key or a credentials file, is never opened. Its line range goes unchecked, and an excerpt on it is refused whatever the excerpt says or whether the file exists, so the checker cannot be used to test a guess at a value.
-- `basis` is `observed_weakness`, `design_hypothesis` or `protected`. Missing evidence is a record in `gaps`, never a threat.
+- `basis` is `observed_weakness`, `design_hypothesis` or `protected`. Missing evidence is a record in `gaps`, never a threat. An unmapped trust boundary is also a gap: its `text` names the suspected crossing and the evidence for it, `smallest_observation` names the trace that would settle it, and it has no `limits`, since no boundary record exists yet. Missing earlier inspection history is a gap too, never reconstructed from citations.
   - `observed_weakness` cites at least one `implementation` or `configuration` evidence record, and its `handoff.to` is never `none`. Documentation, a caller claim or a design is not enough.
   - `protected` names a control that cites evidence, and stays in the file as a counterexample.
   - `gap_refs` on a threat link the gaps that limit it.

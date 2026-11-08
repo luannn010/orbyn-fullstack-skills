@@ -2,7 +2,7 @@
 
 This is an inactive provenance record, not an agent entrypoint. Part of the threat-model
 mode of this skill derives from Grim Prompter by Jim Manico (MIT) at
-<https://github.com/jmanico/grim-prompter/tree/14d7292ad60434f5bf96f1792412f07e1b7531ed>.
+<https://github.com/jmanico/grim-prompter/tree/3642a31aa67efdc22ae2bd30444537ceefb7424a>.
 `LICENSE` is the upstream notice, unchanged. `LICENSE-Orbyn.txt` covers Orbyn adaptations
 and additions. Use the maintained `orbyn-security-audit` skill. `source-manifest.json` lists
 each maintained file with its upstream path and its original and maintained hashes.

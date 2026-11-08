@@ -29,7 +29,7 @@ RECORDS = REFS/'upstream/grim-prompter'
 AUDIT_RECORDS = REFS/'upstream/audit-records'
 CONVERTER = AUDIT/'scripts/threats_to_ledger.py'
 NODE = shutil.which('node')
-REVISION = '14d7292ad60434f5bf96f1792412f07e1b7531ed'
+REVISION = '3642a31aa67efdc22ae2bd30444537ceefb7424a'
 PINNED = ROOT/'orbyn-references/grim-prompter'/REVISION
 ARCHITECTURES = ['web', 'api', 'multi-tenant-saas', 'agentic-ai', 'rag', 'cicd-supply-chain',
                  'cli-developer-tools', 'desktop', 'mobile', 'serverless', 'microservices', 'data-platform']

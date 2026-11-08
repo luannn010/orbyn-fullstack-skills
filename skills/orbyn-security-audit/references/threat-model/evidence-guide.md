@@ -29,7 +29,10 @@ Locator: <repo-relative path:start-end>
 
 G1 Unknown: <what the evidence does not show, which boundary it limits, and the smallest observation that would settle it>
 
-Inspection log: <what you read, what you skipped and why, budget limits>
+Inspection coverage: <discovery scope, listing or search limits, source revision>
+Files inspected: <one locator per file actually read, full or the exact ranges read>
+Not inspected: <file or bounded area, skipped or unavailable, and why; out-of-scope exclusions labeled apart>
+Unmapped boundaries: <gap id, suspected crossing, evidence for it, missing trace, what would settle it>
 Redactions: <placeholder, kind, location; or "none found after inspection">
 ```
 
@@ -38,6 +41,8 @@ Redactions: <placeholder, kind, location; or "none found after inspection">
 - Cite a repository-relative `path:start-end` for every observation. For a person's statement, record a caller claim with a session label and no invented path.
 - Keep observations, documentation claims, caller claims and proposed designs apart. A document says what the authors intend; code says what runs. Keep conflicting sources separate, and do not prefer the newer one.
 - A path or URL is a locator, not proof you read it. Repeated summaries of one source are one observation.
+- Keep the inspection ledger as you go, including files that gave no finding. A listing, search hit or citation is not a read: mark excerpts and search-only matches partial, with the unread part stated or unknown. Group skipped trees by directory without claiming every member was seen. Never open a secret, or reopen files when only supplied evidence is authorized, just to complete the ledger. Reading this library's own guidance is not project coverage, and a coverage percentage needs a known total.
+- A boundary you suspect but cannot trace is a gap, not a finding and not a fact. Say what suggests it and what would settle it; do not invent endpoints.
 - Never fill a gap with a plausible fact. Missing evidence is not a defect.
 - Write placeholders such as `[REDACTED:api-key]` for any secret that appears, and record each one. Do not echo it.
 - If the person supplied a bundle, read and sanitize it, then write the sanitized result to the run folder.

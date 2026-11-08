@@ -51,7 +51,7 @@ Quick is one pass and must say that no separate challenge ran. Choose depth by t
 5. **Analyse.** For each supported scenario fill the record in the [artifact contract](threat-model/artifact-contract.md): objective, actor capability, reachable path, prerequisites, existing control, counterevidence, the observation that decides it, and the proposed outcome. Derive trust boundaries and assets from the code, not from the architecture's name, and give each boundary the `guide` row it belongs to.
 6. **Challenge.** Follow the [model challenger](threat-model/model-challenger.md). In quick mode the same agent may do a short self-check; say so. In deep mode a fresh context does it.
 7. **Treat and plan checks.** For each open threat propose an outcome, with alternatives and trade-offs, that removes exposure, limits authority, detects misuse or supports recovery. Write `not_run` checks with separate pass, fail and inconclusive text. Do not restate framework settings or version rules.
-8. **Check and report.** Run the checker from the contract, fix its errors, then derive `report.md`. Return the run folder, the files written, the most consequential threats, the gaps, what did not run, and the handoff list.
+8. **Check and report.** Run the checker from the contract, fix its errors, then derive `report.md`. Check that the inspection ledger from `SYSTEM_UNDER_REVIEW.md` reached the report's coverage section, and that carried evidence is labeled as carried. Coverage says how much was read, never that the analysis is complete. Return the run folder, the files written, the most consequential threats, the gaps, what did not run, and the handoff list.
 
 ## Baseline questions
 

@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/jmanico/grim-prompter",
-  "revision": "14d7292ad60434f5bf96f1792412f07e1b7531ed",
+  "revision": "3642a31aa67efdc22ae2bd30444537ceefb7424a",
   "source_path": ".",
   "license": "MIT",
   "credit": "Jim Manico; maintained Orbyn adaptations by Anh Dang and contributors",
   "files": {
     "references/threat-model.md": {
-      "sha256": "5cc56db0c17c38e24cb761dbf1cfb83c45e8ceee8a932c7f6beec8e6e0074246",
+      "sha256": "a6d11e6d7adee38ae2fefcf32194987b4d8cacbf24cce9bce21fe6e60b147a7a",
       "source_path": "runbook.md",
-      "original_sha256": "a2642db8fdef5e0a7ab973f9e2dd48bc34d40b1106f62b17898f65609a4d415b",
+      "original_sha256": "bd7d9ac71dcb8a2e2802a3ff195a55462dc822bbc9915330c1c5792d38f37a57",
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/architecture-selector.md": {
@@ -97,9 +97,9 @@
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/artifact-contract.md": {
-      "sha256": "12decccb1aefd2d639468f7376cc4ad0afb74af8da74851b953736a18c3e3a22",
+      "sha256": "1f0a1b473eb7486abb04128b691ed57c5e87713b49cc4c1303f91f9f7b3400cd",
       "source_path": "reference/artifact-contract.md",
-      "original_sha256": "2da882285b69aaeaa4c87c0aeecd1478648cb6401738b6cd24d80e2adc7c0c6b",
+      "original_sha256": "5d8a8a051e5c182b042ab8559629f7c276c21abdbf861ed422a614e5dc86d8c5",
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/change-reviewer.md": {
@@ -109,15 +109,15 @@
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/evidence-guide.md": {
-      "sha256": "f788dbf1277694d6f3ca55f4fd33f2bf655af5c103fa076a8adeaf3e40ce77fe",
+      "sha256": "cf7005ceda51a37cd67aca818e0f31329a5d371cdbc1ad15587b1409fd557f17",
       "source_path": "helpers/evidence-guide.md",
-      "original_sha256": "7c65cb1bd3b7c3b53a73b11ed90e68e0603f8b137cb436638e60e40632666656",
+      "original_sha256": "8315bc3963273856dfbc672653fd157c97d8c7dc10705196f1a38f886ee934a9",
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/method-notes.md": {
       "sha256": "2fec7809f1728442cd1f9d15f946c54b7f4eba60c806334df925c154cf99b40c",
       "source_path": "README.md",
-      "original_sha256": "7e603a8f6eea6f88bad5c24a439be2f882a88271655f9ede199751f5bbd9ccb5",
+      "original_sha256": "64c149754774f6e4a88a53cfa31a0029c66823caed3cb37719442ed3382b8533",
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/method-selector.md": {

@@ -226,6 +226,13 @@
           "source": "https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049",
           "revision": "2776ddd2355d6d6c8747d3964600f28daf62f049",
           "relationship": "reviewed; pstack tree unchanged since c742dd6, later commits outside pstack; no source text or code imported; not an advance of original import pins"
+        },
+        {
+          "credit": "Cursor plugin contributors",
+          "source": "https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack",
+          "revision": "6b0300214a09fd6029cfb7077043125758cd1fd2",
+          "relationship": "reviewed 2026-11-09; all 27 bundled files (26 compiler sources and the MIT notice) byte-identical to the 1ba91fc pin; later commits outside the bundle; pin not advanced",
+          "license": "MIT"
         }
       ],
       "bundled_compiler": {
@@ -297,6 +304,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Design review: design critic lens with cost and quota, migration and code spot-check in readiness, a design-doc template, unslop for shared designs"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Record cursor/plugins 6b03002 as reviewed: bundled compiler files unchanged"
         }
       ]
     },
@@ -2573,6 +2587,13 @@
           "model": "unrecorded",
           "date": "2026-11-02",
           "scope": "Work before this record existed"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Refresh the unmodified marketingskills social snapshot from e85f3cb to 96798cf after reviewing its diff"
         }
       ],
       "reviewed_sources": [
@@ -2932,8 +2953,8 @@
       "changes": "Orbyn-owned audit workflow, protocol and threat-boundary guide. Only the licensed record schema, validators and synthetic fixtures are retained as support files from the Cloudflare source. Threat-model mode adapts selected MIT Grim Prompter material: the read-only operating boundary, evidence guide, architecture and method selection, challenger, change reviewer, artifact contract, tool and shared-credential boundaries, and twelve architecture checks, condensed into references/threat-model with per-file original and maintained hashes under references/upstream/grim-prompter. The 36 deep chains, 24 other quick prompts, 29 method prompts and all install or host-specific steps are excluded. Original additions: the threat-model checker, the threat-to-ledger converter, the join with the boundary guide, status words, run-folder and no-publication rules, the threat model, audit, remediation and verification workflow, and the verification protocol section.",
       "incorporated_material": [
         {
-          "source": "https://github.com/jmanico/grim-prompter/tree/14d7292ad60434f5bf96f1792412f07e1b7531ed",
-          "revision": "14d7292ad60434f5bf96f1792412f07e1b7531ed",
+          "source": "https://github.com/jmanico/grim-prompter/tree/3642a31aa67efdc22ae2bd30444537ceefb7424a",
+          "revision": "3642a31aa67efdc22ae2bd30444537ceefb7424a",
           "license": "MIT",
           "local_path": "skills/orbyn-security-audit/references/upstream/grim-prompter/SOURCE.md",
           "license_file": "skills/orbyn-security-audit/references/upstream/grim-prompter/LICENSE",
@@ -2974,6 +2995,13 @@
           "effort": "medium",
           "date": "2026-11-03",
           "scope": "ECC adoption: static dependency selector classification"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Port Grim Prompter 3642a31 inspection-coverage ledger into the threat-model evidence guide, report contract and steps; advance the pin"
         }
       ]
     },
@@ -3573,6 +3601,13 @@
           "effort": "medium",
           "date": "2026-11-06",
           "scope": "Render timeout 90s per Chrome reply, configurable with STACK_DIAGRAM_RENDER_TIMEOUT; cold starts were timing out"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Note 1ed53e3 recheck: tile radius and gallery sharing not adopted"
         }
       ],
       "reviewed_sources": [
@@ -3581,7 +3616,7 @@
           "source": "https://github.com/caru-ini/stack-diagram/tree/1ed53e3e9525364ae5d82e0430f2bb3f7ef4c838/skills/stack-diagram",
           "revision": "1ed53e3e9525364ae5d82e0430f2bb3f7ef4c838",
           "license": "MIT",
-          "relationship": "reviewed; public gallery share step not adopted (publishing option excluded); Google Cloud and Azure icon support adapted in Orbyn (see incorporated_material); not an advance of the pin"
+          "relationship": "reviewed; public gallery share step not adopted (publishing option excluded); Google Cloud and Azure icon support adapted in Orbyn (see incorporated_material); not an advance of the pin; rechecked 2026-11-09: tile radius change and public gallery sharing (share.py) not adopted"
         }
       ]
     },

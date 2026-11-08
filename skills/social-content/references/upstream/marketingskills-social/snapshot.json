@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/coreyhaines31/marketingskills",
-  "revision": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b",
-  "retrieved_on": "2026-10-24",
+  "revision": "96798cf38736ecdba015a1d2b0521b0c8f8f41dd",
+  "retrieved_on": "2026-11-09",
   "license": "MIT",
   "scope": "Unmodified skill text, Markdown references and license/notice text; binary assets and optional external runtimes are excluded. Source material only; portable Orbyn instructions retain authority. The upstream entrypoint is stored as SOURCE.md to prevent active skill discovery; source_path and source bytes are unchanged.",
   "files": {
@@ -28,7 +28,7 @@
     },
     "references/platforms.md": {
       "source_path": "skills/social/references/platforms.md",
-      "sha256": "a070eda1f54bdba103a9c89613d83331fc5c53c9e8a48543e0198f1a2995cb0c"
+      "sha256": "bb8c2f466184518a1290edbea99eef6b7dcad8e1f8091453d4dc5a21831b66b9"
     },
     "references/post-templates.md": {
       "source_path": "skills/social/references/post-templates.md",
@@ -40,7 +40,7 @@
     },
     "references/short-form-video.md": {
       "source_path": "skills/social/references/short-form-video.md",
-      "sha256": "ed0976bd7ac1f85b7b8c162087e346118f2cf0ef46b3ccafc6a7a329118987d1"
+      "sha256": "04b567900eaac90833f3abf370a3e1c4d650f83a0672108e07a7f01bde3a64ad"
     },
     "references/x-algorithm.md": {
       "source_path": "skills/social/references/x-algorithm.md",
@@ -48,7 +48,7 @@
     },
     "SOURCE.md": {
       "source_path": "skills/social/SKILL.md",
-      "sha256": "dd4c01d0925f571562d4e8dea4af6b60bd9d491149187d94927e65280fad1bee"
+      "sha256": "e34e66ad425840acf728fd64866ab8c8da01049408b5c814fa5d90aca7861071"
     }
   },
   "license_files": [

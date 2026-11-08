@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/jmanico/grim-prompter",
-  "revision": "14d7292ad60434f5bf96f1792412f07e1b7531ed",
+  "revision": "3642a31aa67efdc22ae2bd30444537ceefb7424a",
   "license": "MIT",
   "license_files": [
     "LICENSE",
@@ -16,10 +16,10 @@
       "sha256": "b960a8c01d83aa48ed709780a5c9940f8e2861f2fdcdc8f931fbe3ece90a5e04"
     },
     "SOURCE.md": {
-      "sha256": "c8bb750f6f6e630c51de41ae18e39829bcff9e60fa406b5a254d31ac1a5cbcc8"
+      "sha256": "eb380e901d0ce0c0aa71f3caf586bd0fca1a0dad2db12b46474e8de472a46232"
     },
     "source-manifest.json": {
-      "sha256": "60e9e8ca3b8b9deda26ae03e8051d361a8a9ab02a3b4e9d21da62a6b1043ad9b"
+      "sha256": "9c99bec99b29170419428f67544fb5191b0708e4d57f4750abec215f4d1e0143"
     }
   }
 }

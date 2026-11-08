@@ -19,34 +19,40 @@ Never pass the chat, your own verdict or the alternatives you already rejected
 unless the document records them. A review in the author's own context is a
 self-check, not a fresh review; say so if no child can run.
 
-## Three lenses
+## Four lenses
 
-Run each lens as a read-only reviewer child at the resolved `reviewer` tier, within
+Run the lenses as read-only reviewer children at the resolved `reviewer` tier, within
 the [delegation limits](../../orbyn-workflow/references/lead-contract.md#review-before-the-pr).
-When the limit is tight, one child may hold two lenses; keep comprehension separate,
+With the default 2 + 1 slots, use three children: zoom out with design critic,
+comprehension alone, and implementation readiness. Keep comprehension separate,
 because a reader who already checked the code is no longer naive.
 
 | Lens | Asks | A blocker is |
 | --- | --- | --- |
 | Zoom out | Do we need this now? Does an existing owner, library or service already solve most of it? Is this a dead end? Is the document lost in implementation detail? | Building something an existing owner already provides, or a design that blocks the obvious next requirement |
-| Comprehension | Can a new reader restate what this proposes and how the current system works? Use the [paraphrase test](../../interrogate/SKILL.md#paraphrase-a-document-first). | A section the reader cannot restate |
-| Implementation readiness | Could a worker build this without making a design decision? Are the contract, files in order, the failing test first, risks, rollback and stopping condition named? | A step that forces the builder to choose an owner, data shape or failure behavior |
+| Design critic | Which assumptions lack evidence? What fails, and how does it recover? What happens at expected scale, with revoked access or a retry? What does it cost to run: model tokens, API quotas and rate limits, storage, hosting? Write each risk as an [interrogate](../../interrogate/SKILL.md) scenario. | A failure with no recovery path, or a paid or rate-limited path with no estimate or limit |
+| Comprehension | Can a new reader restate what this proposes and how the current system works? Use the [paraphrase test](../../interrogate/SKILL.md#paraphrase-a-document-first). Are the [template](design-doc-template.md) sections present, or their absence explained? | A section the reader cannot restate, or a missing failure, cost or migration section |
+| Implementation readiness | Could a worker build this without making a design decision? Are the contract, files in order, the failing test first, risks, rollback and stopping condition named? Does it say how stored data and released callers move ([migration](../../orbyn-data-migration/SKILL.md))? Spot-check that the files and symbols it names exist and behave as described. | A step that forces the builder to choose an owner, data shape or failure behavior, or a format change with no migration |
+
+For a design read beyond the team, the lead also runs [unslop](../../unslop/SKILL.md)
+on it: plain words, and every claim about current or tested behavior matching its
+evidence.
 
 ## Run it in stages
 
 Run the lenses in order, because each one changes what the next should read:
-zoom out on the whole document, then comprehension, then implementation readiness on
-the build plan. The lead asks the user once which way to run it:
+zoom out and design critic on the whole document, then comprehension, then
+implementation readiness on the build plan. The lead asks the user once which way to run it:
 
 | Mode | Runs | Use when |
 | --- | --- | --- |
 | Step by step (default) | Each stage, then a checkpoint | The design is still moving |
 | One report | All three stages without stopping, then one combined report | The author is away or wants one pass |
-| Design only | Zoom out and comprehension; no readiness | There is no build plan yet |
+| Design only | Zoom out, design critic and comprehension; no readiness | There is no build plan yet |
 | Readiness only | The build-plan section alone | The design was already approved |
 
 Write each stage's findings to a file in the task's ignored output folder
-(`output/<task>/design-review/zoom-out.md`, `comprehension.md`, `readiness.md`).
+(`output/<task>/design-review/zoom-out-critic.md`, `comprehension.md`, `readiness.md`).
 In chat, give the path and the count of blockers, majors and nits, never the whole
 report. One report mode adds `summary.md`: findings merged and deduplicated, ranked
 blocker, major, nit, each linked to the raw findings it came from.

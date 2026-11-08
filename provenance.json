@@ -290,6 +290,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Staged design review (modes, checkpoints, report files) and a design-versus-code drift check"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Design review: design critic lens with cost and quota, migration and code spot-check in readiness, a design-doc template, unslop for shared designs"
         }
       ]
     },

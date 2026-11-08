@@ -405,6 +405,7 @@ to their owner instead of duplicating a complete workflow.
 | [orbyn-documents](../skills/orbyn-documents/SKILL.md) | New; bundled pinned Anthropic sources | Office or PDF file and the requested change → New file, rendered check and named path | Missing packages, no bundled OOXML schemas, no live host trial |
 | [orbyn-webapp-testing](../skills/orbyn-webapp-testing/SKILL.md) | New; bundled pinned Anthropic source | Local app, servers and the check to run → Playwright script, screenshots and console evidence | Playwright install and server start need scope; no live host trial |
 | [orbyn-mcp-builder](../skills/orbyn-mcp-builder/SKILL.md) | New; bundled pinned Anthropic source | Service, tools and language → MCP server, tool contracts and evaluation questions | Paid evaluations need approval; no live host trial |
+| [orbyn-astryx](../skills/orbyn-astryx/SKILL.md) | New; bundled pinned Astryx agent docs | Astryx project, page or theme request → Template-based page, token theme and render check | Live CLI runs need an installed project; no host trial |
 
 The consumer integration check also caught two new links to a public-only root
 synchronization guide. Move the essential release procedure into the managed

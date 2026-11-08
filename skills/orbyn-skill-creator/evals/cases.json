@@ -13721,6 +13721,120 @@
         "message"
       ],
       "excluded": "Do not build an MCP server unless one is asked for."
+    },
+    {
+      "id": "astryx-settings-page",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our app uses @astryxdesign/core; add a settings page with a form and a save bar.",
+      "expected_skills": [
+        "orbyn-astryx"
+      ],
+      "forbidden_skills": [
+        "orbyn-content-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not write raw div layouts or inline styles."
+    },
+    {
+      "id": "astryx-house-theme",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Turn our brand colours and fonts into an Astryx theme for the dashboard.",
+      "expected_skills": [
+        "orbyn-astryx"
+      ],
+      "forbidden_skills": [
+        "social-preview",
+        "product-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not fork component source to restyle it."
+    },
+    {
+      "id": "astryx-review",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Review whether this Astryx page uses the design system well.",
+      "expected_skills": [
+        "orbyn-astryx"
+      ],
+      "forbidden_skills": [
+        "orbyn-security-audit"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not run astryx init or edit AGENTS.md during a review."
+    },
+    {
+      "id": "plain-react-form",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add a validated signup form to our plain React app that uses Tailwind.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-astryx"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not introduce Astryx unless asked."
+    },
+    {
+      "id": "adopt-astryx-existing-app",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Should we move our existing React 18 app with Material UI over to Astryx?",
+      "expected_skills": [
+        "orbyn-stack-selection"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not start migrating components before the decision."
+    },
+    {
+      "id": "astryx-doctor-says-upgrade",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "astryx doctor says our Astryx packages are a release behind; fix it while you add the new filter bar.",
+      "expected_skills": [
+        "orbyn-astryx"
+      ],
+      "forbidden_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message",
+        "write"
+      ],
+      "excluded": "Do not run astryx upgrade or bump packages; point to the Dependabot PR and build the filter bar on the installed version."
     }
   ]
 }

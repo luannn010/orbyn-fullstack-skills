@@ -88,6 +88,7 @@ inspector or handing a preview to a person.
 
 ## Read when the task needs it
 
+- A project that uses or adopts Meta's Astryx design system (`@astryxdesign/*`): [orbyn-astryx](../orbyn-astryx/SKILL.md) for its templates, components, theming and agent setup.
 - Interactive sketch to resolve a design question: [prototyping](references/prototypes.md).
 - Unknown platform or accessibility requirements: `orbyn-research`.
 - Page titles, descriptions, canonical, social cards, icons or structured data:

@@ -452,6 +452,16 @@
         "orbyn-backend-design",
         "orbyn-stack-selection"
       ]
+    },
+    {
+      "name": "orbyn-astryx",
+      "category": "Product design",
+      "related": [
+        "orbyn-ui-design",
+        "orbyn-stack-selection",
+        "language-best-practices",
+        "orbyn-webapp-testing"
+      ]
     }
   ],
   "retired_skills": {

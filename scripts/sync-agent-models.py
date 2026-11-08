@@ -146,6 +146,22 @@ def agent_body(name):
     return SHARED_HEAD + BODIES[name] + UNTRUSTED_DATA + SHARED_TAIL
 
 
+MODEL_LINE = 'Use the model and effort declared in this definition, synchronized from docs/agents/models.json.'
+SESSION_MODEL_LINE = ("This host's model names are not in docs/agents/models.json, so you run on the session's model; "
+                      'name that model in your report, and stop and report when the work needs a stronger tier.')
+# Hosts that read skills from .agents/skills but take subagents from their own folder (docs observed 2026-11-09).
+# Their model names are not in the registry, so these definitions inherit the session model.
+PORTABLE_AGENTS = {
+    '.cursor/agents/{name}.md': '---\nname: {name}\ndescription: {purpose}\nmodel: inherit\n---\n\n',
+    '.github/agents/{name}.agent.md': '---\nname: {name}\ndescription: {purpose}\n---\n\n',
+    '.opencode/agents/{name}.md': '---\ndescription: {purpose}\nmode: subagent\n---\n\n',
+    '.gemini/agents/{name}.md': '---\nname: {name}\ndescription: {purpose}\n---\n\n',
+}
+AGENT_FOLDERS = ('.claude/agents', '.codex/agents') + tuple(path.rsplit('/', 1)[0] for path in PORTABLE_AGENTS)
+# Users and other tools keep their own agents in the portable hosts' folders; only orbyn-* files there are ours.
+SHARED_AGENT_FOLDERS = {path.rsplit('/', 1)[0] for path in PORTABLE_AGENTS}
+
+
 def agent_files(data):
     """Every generated agent definition, as relative path to full text."""
     files = {}
@@ -161,14 +177,20 @@ def agent_files(data):
                                                f'model = {json.dumps(agent["codex"]["model"])}\n'
                                                f'model_reasoning_effort = {json.dumps(agent["codex"]["effort"])}\n'
                                                f'developer_instructions = """\n{body}\n"""\n')
+        require(MODEL_LINE in body, f'Agent {name} must state the model rule the portable hosts replace')
+        portable = body.replace(MODEL_LINE, SESSION_MODEL_LINE)
+        for path, head in PORTABLE_AGENTS.items():
+            files[path.format(name=name)] = head.format(name=name, purpose=purpose) + portable + '\n'
     return files
 
 
 def stray_agents(root, data):
     """Files in the agent directories that the generator does not own (for example a retired or human-only definition)."""
     owned = set(agent_files(data))
-    return [f'{folder}/{path.name}' for folder in ('.claude/agents', '.codex/agents')
-            if (root / folder).is_dir() for path in sorted((root / folder).iterdir()) if f'{folder}/{path.name}' not in owned]
+    return [f'{folder}/{path.name}' for folder in AGENT_FOLDERS
+            if (root / folder).is_dir() for path in sorted((root / folder).iterdir())
+            if f'{folder}/{path.name}' not in owned
+            and (folder not in SHARED_AGENT_FOLDERS or path.name.startswith('orbyn-'))]
 
 
 def agent_problems(root, data):
@@ -284,6 +306,7 @@ def main():
     owned = [ROOT / '.codex/config.toml', ROOT / '.claude/settings.json', ROOT / 'docs/agents/model-policy.md', DEFAULTS]
     for name in agents:
         owned += [ROOT / f'.codex/agents/{name}.toml', ROOT / f'.claude/agents/{name}.md']
+        owned += [ROOT / path.format(name=name) for path in PORTABLE_AGENTS]
     stray = stray_agents(ROOT, data)
     require(not stray, 'Unexpected agent definitions (only the three generated ones may exist): ' + ', '.join(stray))
     originals = {path: (path.read_text() if path.exists() else '') for path in owned}
@@ -331,8 +354,9 @@ def main():
         return 1
     if args.write:
         for path in changed:
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(outputs[path])
-    print(f"OK: model registry {'synchronized' if args.write else 'matches'} both hosts ({len(changed)} changed files).")
+    print(f"OK: model registry {'synchronized' if args.write else 'matches'} every host ({len(changed)} changed files).")
     return 0
 
 

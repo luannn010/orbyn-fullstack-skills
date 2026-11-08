@@ -82,7 +82,9 @@ Cursor and more) can run children too. On every host, take these steps in order:
    [review before the PR](#review-before-the-pr)). Otherwise
    delegate a slice only when it does not block your next step. A small clear task
    needs none. State the choice in one line and move on.
-2. **Pick the model.** Use the resolved tier where the host offers that model. Where
+2. **Pick the model.** Use the resolved tier where the host offers that model. On
+   Cursor, Copilot, OpenCode and Gemini CLI, the generated `orbyn-*` subagents run on
+   the session's model (the library's `docs/installation.md` lists each host's folder). Where
    the host cannot choose a model, or the tier's models are not on it, the child runs
    on the session's own model. That is allowed, because the name and announcement say
    so; it is a silent substitution only when nobody is told. Set a model parameter only

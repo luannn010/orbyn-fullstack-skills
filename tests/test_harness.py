@@ -632,7 +632,10 @@ class DriftAndPortableDefaults(HarnessCase):
                          'skills/orbyn-workflow/references/harness-defaults.json',
                          'skills/orbyn-workflow/scripts/harness.py', 'scripts/sync-agent-models.py',
                          *(f'.claude/agents/orbyn-{n}.md' for n in ('lead', 'worker', 'scout')),
-                         *(f'.codex/agents/orbyn-{n}.toml' for n in ('lead', 'worker', 'scout'))]:
+                         *(f'.codex/agents/orbyn-{n}.toml' for n in ('lead', 'worker', 'scout')),
+                         *(f'{folder}/orbyn-{n}{suffix}' for n in ('lead', 'worker', 'scout')
+                           for folder, suffix in (('.cursor/agents', '.md'), ('.github/agents', '.agent.md'),
+                                                  ('.opencode/agents', '.md'), ('.gemini/agents', '.md')))]:
             (self.library / relative).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / relative, self.library / relative)
         self.tool = self.library / 'skills/orbyn-workflow/scripts/harness.py'

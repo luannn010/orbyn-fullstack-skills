@@ -11,6 +11,10 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 
 
+PORTABLE = [f'{folder}/orbyn-{name}{suffix}' for folder, suffix in
+            [('.cursor/agents', '.md'), ('.github/agents', '.agent.md'), ('.opencode/agents', '.md'), ('.gemini/agents', '.md')]
+            for name in ('lead', 'worker', 'scout')]
+
 class ModelRegistryTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -23,7 +27,7 @@ class ModelRegistryTests(unittest.TestCase):
                          '.claude/agents/orbyn-lead.md', '.claude/agents/orbyn-scout.md',
                          '.claude/agents/orbyn-worker.md',
                          'skills/orbyn-workflow/scripts/harness.py',
-                         'skills/orbyn-workflow/references/harness-defaults.json']:
+                         'skills/orbyn-workflow/references/harness-defaults.json'] + PORTABLE:
             dest = self.root/relative
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/relative, dest)
@@ -254,8 +258,38 @@ class ModelRegistryTests(unittest.TestCase):
                 self.run_sync('--write')
                 self.assertEqual(path.read_text(), original)
 
+    def test_portable_hosts_get_subagents_on_the_session_model(self):
+        for relative, head in [('.cursor/agents/orbyn-scout.md', 'model: inherit\n'),
+                               ('.github/agents/orbyn-scout.agent.md', 'name: orbyn-scout\n'),
+                               ('.opencode/agents/orbyn-scout.md', 'mode: subagent\n'),
+                               ('.gemini/agents/orbyn-scout.md', 'name: orbyn-scout\n')]:
+            with self.subTest(relative=relative):
+                path = self.root/relative
+                path.unlink()
+                self.assertIn(relative, self.run_sync('--check', ok=False).stderr)
+                self.run_sync('--write')
+                text = path.read_text()
+                self.assertIn(head, text)
+                self.assertIn("session's model", text)
+                self.assertNotIn('Use the model and effort declared', text)
+                self.assertNotIn('model: haiku', text)
+        self.run_sync('--check')
+
+    def test_a_users_own_agents_in_shared_host_folders_are_left_alone(self):
+        for relative in ['.github/agents/release.agent.md', '.cursor/agents/docs.md',
+                         '.opencode/agents/review.md', '.gemini/agents/notes.md']:
+            with self.subTest(relative=relative):
+                (self.root/relative).write_text('---\nname: mine\n---\n')
+                self.run_sync('--check')
+                self.run_sync('--write')
+                self.assertTrue((self.root/relative).is_file())
+        stray = self.root/'.github/agents/orbyn-extra.agent.md'
+        stray.write_text('model: fable\n')
+        self.assertIn('orbyn-extra.agent.md', self.run_sync('--check', ok=False).stderr)
+
     def test_unexpected_agent_definitions_are_refused_before_any_write(self):
-        for relative in ['.claude/agents/orbyn-agent.md', '.codex/agents/orbyn-astra.toml']:
+        for relative in ['.claude/agents/orbyn-agent.md', '.codex/agents/orbyn-astra.toml',
+                         '.gemini/agents/orbyn-astra.md', '.github/agents/orbyn-agent.agent.md']:
             with self.subTest(relative=relative):
                 stray = self.root/relative
                 stray.write_text('model: fable\n')

@@ -73,6 +73,32 @@ made by `python3 scripts/sync-agent-skills.py --write`.
 | Aider | `.aider.conf.yml` (`read: AGENTS.md`) | none | none |
 | Continue | `.continue/rules/agents.md`, a pointer | none | none |
 
+### Orbyn subagents per host
+
+`python3 scripts/sync-agent-models.py --write` generates `orbyn-lead`, `orbyn-worker`
+and `orbyn-scout` from `docs/agents/models.json` for every host with a project
+subagent folder. Claude and Codex get the registry's tier models. The other hosts'
+model names are not in the registry, so their definitions inherit the session's
+model and say so, as [delegate on any host](../skills/orbyn-workflow/references/lead-contract.md#delegate-on-any-host) requires.
+
+| Host | Subagent definitions | Model | Checked |
+| --- | --- | --- | --- |
+| Claude Code | `.claude/agents/*.md` | registry tier | in use |
+| Codex | `.codex/agents/*.toml` | registry tier | in use |
+| Cursor | `.cursor/agents/*.md` | `inherit` | docs only |
+| GitHub Copilot (CLI, VS Code, coding agent) | `.github/agents/orbyn-*.agent.md` | session model | docs only |
+| OpenCode | `.opencode/agents/*.md` (`mode: subagent`) | session model | OpenCode 2.2.5 lists all three |
+| Gemini CLI | `.gemini/agents/*.md` | session model (`inherit` default) | docs only |
+| Antigravity | none; its subagent format is unconfirmed | n/a | n/a |
+
+Concurrency and depth limits are enforced only on Claude and Codex; elsewhere the
+lead follows them as policy (Cursor's and Gemini CLI's docs say a subagent cannot
+start another). On these hosts a scout runs on the session's model, so it no longer
+saves cost; it still keeps a bounded brief. Cursor also reads `.claude/agents`, where
+the same names carry Claude tier models; which copy Cursor prefers is unverified.
+Only `orbyn-*` files in these folders belong to the library; the drift check leaves
+your own agents there alone.
+
 The library deliberately has no `.rules`, `.cursorrules`, `.windsurfrules`,
 `.clinerules` or `.junie/AGENTS.md`, which would shadow `AGENTS.md` in Zed and Junie.
 A workspace set up from this library is a checkout of it, so these files and links

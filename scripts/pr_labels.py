@@ -61,7 +61,7 @@ TOOLS = (
 )
 NO_AGENT = re.compile(r'\b(no (?:ai|agents?|tools?)|human[- ]only|without (?:an? )?(?:ai|agents?)|none|not used|n/a)\b', re.I)
 
-HARNESS = re.compile(r'(^|/)(harness\.py|sync-agent-models\.py)$|^docs/agents/models\.json$|^\.(claude|codex)/agents/')
+HARNESS = re.compile(r'(^|/)(harness\.py|sync-agent-models\.py)$|^docs/agents/models\.json$|^\.(claude|codex|cursor|opencode|gemini)/agents/|^\.github/agents/orbyn-')
 EVALS = re.compile(r'^skills/orbyn-skill-creator/evals/|(^|/)(eval_[^/]*\.py|evaluate\.py)$')
 SECURITY = re.compile(r'^skills/orbyn-security-[^/]+/')
 HOSTS = re.compile(r'^(AGENTS?\.md|CLAUDE\.md|GEMINI\.md|\.github/copilot-instructions\.md|\.aider\.conf\.yml|'

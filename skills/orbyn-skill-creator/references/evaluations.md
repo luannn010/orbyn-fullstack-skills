@@ -232,6 +232,25 @@ Report prepared or incomplete trials as unverified. Helper fixtures test the too
 use only captured, reviewed host trials as evidence of skill behavior. Record baseline
 and candidate results separately before claiming an improvement.
 
+## Test a skill description
+
+A description decides whether a skill loads at all, so test it apart from the body.
+
+1. Write 16 to 20 realistic user requests, half that should trigger the skill and half
+   near misses that share keywords but belong to another skill or no skill. Vary phrasing,
+   length and detail; obvious negatives prove nothing.
+2. Split them before editing: about 60% to tune on, the rest held out. Never read the
+   held-out results while rewriting the description.
+3. Run each request a few times and record the share that loaded the skill per request.
+   Judge by the fraction right on each side, not by one run.
+4. Rewrite the description from the tune-split misses (usually the task trigger, not more
+   keywords), rerun the tune split, and score the held-out split once at the end.
+
+This is paid model use: run it only within `evals.max_runs_per_pr` from the harness or with the
+user's OK. Without either, write the queries and report them as untried.
+
+Reviewed inspiration, observed 2026-11-09: [Anthropic skill-creator](https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/skill-creator) (Apache-2.0). Independently written; no upstream text imported.
+
 ## CI and contributions
 
 Ordinary PR CI runs static case validation and fixture tests without model calls or
@@ -281,7 +300,7 @@ seeing a held-out answer. The callback-count assessment illustrates why a sympto
 label alone is not a supplied expected-behavior contract.
 
 This workflow is independently authored. Design references are
-[Anthropic's skill creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md),
+[Anthropic's skill creator](https://github.com/anthropics/skills/blob/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/skill-creator/SKILL.md),
 [agent evaluation guidance](https://www.anthropic.com/research/demystifying-evals-for-ai-agents)
 and [SkillsBench](https://arxiv.org/abs/2602.12670v4). No evaluator code was imported.
 

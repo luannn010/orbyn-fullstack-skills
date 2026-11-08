@@ -1317,6 +1317,21 @@
           "effort": "medium",
           "date": "2026-11-07",
           "scope": "Repository moved to the orbyn-dev organization: repository links updated"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Description-trigger testing method; re-pin Anthropic skill-creator link"
+        }
+      ],
+      "reviewed_inspiration": [
+        {
+          "credit": "Anthropic",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/skill-creator",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text imported"
         }
       ]
     },
@@ -1714,6 +1729,18 @@
           "source": "https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
           "revision": "e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
           "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text, prompts or tooling imported"
+        },
+        {
+          "credit": "Anthropic",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/frontend-design",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text imported"
+        },
+        {
+          "credit": "Anthropic",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/theme-factory",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text imported"
         }
       ],
       "authoring": [
@@ -1792,6 +1819,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Link visual review to the design-versus-build drift check"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Commit-to-a-direction guidance and named cross-artefact themes"
         }
       ]
     },

@@ -99,6 +99,23 @@ Never redesign a brand mark unasked. When a logo or mark is in scope, study the 
 references, confirm the direction on a sheet of options before building, and keep 3D
 for hero visuals, not marks.
 
+## Commit to a direction, not a default
+
+For a new screen or site with no established look, name the direction in a phrase before
+styling (for example "quiet editorial", "dense instrument panel", "warm and tactile") and let
+type, colour, spacing and motion all serve it. A bold or a restrained direction both work;
+what fails is a mix chosen by habit. Spend the effort on one or two memorable details (a
+headline treatment, a dominant colour, one orchestrated entrance) over many small effects.
+Match code complexity to the look: restraint needs precise spacing and type, richness needs
+the matching motion and layering.
+
+Treat the unexamined defaults as signals to revisit: a purple gradient on white, the stock
+sans at stock sizes, evenly weighted cards in a grid, an accent applied everywhere. Pick
+differently from your last design for similar content. An established product keeps its
+own direction and the house style stays the starting point for a new app without one.
+
+Reviewed inspiration, observed 2026-11-09: [Anthropic frontend-design](https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/frontend-design) (Apache-2.0). Independently written; no upstream text imported.
+
 ## Typefaces and loading
 
 Choose type for the content, not from a favourite list. Shortlist two or three faces

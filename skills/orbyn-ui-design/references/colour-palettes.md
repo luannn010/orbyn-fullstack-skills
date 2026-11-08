@@ -97,6 +97,17 @@ through the existing UI/runtime owners instead of declaring parity from this HTM
 Return the chosen rationale, values/origins, checked pairs and context, interaction
 observations and unverified surfaces. Do not claim a palette is “WCAG compliant”.
 
+## Named themes across artefacts
+
+When slides, documents and pages ship together, define a small set of named, complete
+themes (for example four to ten): each is a palette with roles plus one heading and one body
+face, previewed once on a sample. Apply a chosen theme to every artefact in the set from the
+same tokens, so the deck, the report and the landing page look related. Add a theme only
+for a distinct audience or tone, and check the contrast pairs of each. A project's own
+tokens remain the single theme; the three house-style themes are modes of one system.
+
+Reviewed inspiration, observed 2026-11-09: [Anthropic theme-factory](https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/theme-factory) (Apache-2.0). Independently written; no upstream text imported.
+
 ## Primary standards and provenance
 
 Reviewed 30 October 2026: W3C WCAG 2.2 Understanding

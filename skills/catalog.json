@@ -6,7 +6,8 @@
     "Fullstack contracts and delivery",
     "Product design",
     "Social content and visuals",
-    "Artifact investigation and REA maintenance"
+    "Artifact investigation and REA maintenance",
+    "Documents and files"
   ],
   "skills": [
     {
@@ -423,6 +424,33 @@
       "related": [
         "how",
         "architect"
+      ]
+    },
+    {
+      "name": "orbyn-documents",
+      "category": "Documents and files",
+      "related": [
+        "unslop",
+        "orbyn-content-design",
+        "social-preview"
+      ]
+    },
+    {
+      "name": "orbyn-webapp-testing",
+      "category": "Engineering practice",
+      "related": [
+        "orbyn-ui-design",
+        "tdd",
+        "how"
+      ]
+    },
+    {
+      "name": "orbyn-mcp-builder",
+      "category": "Fullstack contracts and delivery",
+      "related": [
+        "orbyn-ai-application",
+        "orbyn-backend-design",
+        "orbyn-stack-selection"
       ]
     }
   ],

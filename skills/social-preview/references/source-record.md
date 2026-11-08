@@ -6,12 +6,12 @@ optional design background, the local unmodified
 read without network access.
 
 Source: Anthropic, `anthropics/skills`, revision
-`dbd4588f9e1033efb41dad4bef2f7947c8993d44`, retrieved 24 October 2026.
+`2c5958ecac7cee2b583967a2c4981d0f4a75c579`, verified byte-identical on 9 November 2026 (first retrieved 24 October 2026 at `dbd4588`).
 The [snapshot metadata](upstream/anthropic-canvas-design/snapshot.json) records
 the two original paths and SHA-256 hashes, including the original
 [Apache-2.0 license](upstream/anthropic-canvas-design/LICENSE.txt).
 The source/update pointer is
-[the pinned upstream directory](https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/canvas-design).
+[the pinned upstream directory](https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/canvas-design).
 
 This snapshot includes the skill text and license only. Its font folder, font
 binaries and runtime are excluded. Use fonts/tools already available locally;

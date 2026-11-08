@@ -13492,6 +13492,235 @@
         "stop": "Says that if the new approach also fails, it stops and reports what failed, what it tried and what it needs.",
         "fact": "Offers 'use python -m pytest here' as a project memory lesson, saved only if the user approves."
       }
+    },
+    {
+      "id": "docx-redline",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "On a host without its own document skills: add tracked-change edits to contract.docx where the payment terms change.",
+      "expected_skills": [
+        "orbyn-documents"
+      ],
+      "forbidden_skills": [
+        "unslop"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not rewrite the contract as Markdown."
+    },
+    {
+      "id": "xlsx-formulas",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "On a host without its own document skills: build a budget spreadsheet with working totals and save it as budget.xlsx.",
+      "expected_skills": [
+        "orbyn-documents"
+      ],
+      "forbidden_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not install packages without asking."
+    },
+    {
+      "id": "pdf-form-fill",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "On a host without its own document skills: fill in the fields of this application form PDF from my notes.",
+      "expected_skills": [
+        "orbyn-documents"
+      ],
+      "forbidden_skills": [
+        "orbyn-content-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not upload the form anywhere."
+    },
+    {
+      "id": "playwright-console",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Script a Playwright check that our local signup page loads with no console errors.",
+      "expected_skills": [
+        "orbyn-webapp-testing"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not test third-party sites."
+    },
+    {
+      "id": "scripted-screenshots",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Without a browser tool, start the dev server and capture screenshots of the dashboard at three widths.",
+      "expected_skills": [
+        "orbyn-webapp-testing"
+      ],
+      "forbidden_skills": [
+        "product-illustration",
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not redesign the dashboard."
+    },
+    {
+      "id": "local-app-smoke",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Run a repeatable scripted smoke test against our local web app using its dev server.",
+      "expected_skills": [
+        "orbyn-webapp-testing"
+      ],
+      "forbidden_skills": [
+        "product-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not install Playwright without asking."
+    },
+    {
+      "id": "mcp-issue-tracker-tools",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Build an MCP server that exposes our issue tracker's search and create tools.",
+      "expected_skills": [
+        "orbyn-mcp-builder"
+      ],
+      "forbidden_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not hard-code credentials."
+    },
+    {
+      "id": "mcp-eval",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Write evaluation questions for our existing MCP server's tools.",
+      "expected_skills": [
+        "orbyn-mcp-builder"
+      ],
+      "forbidden_skills": [
+        "social-content"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not run paid evaluations without approval."
+    },
+    {
+      "id": "mcp-python-server",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Create a Python MCP server for our internal docs search.",
+      "expected_skills": [
+        "orbyn-mcp-builder"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not add packages without asking."
+    },
+    {
+      "id": "proposal-as-markdown",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Tighten this proposal draft in docs/proposal.md before I share it.",
+      "expected_skills": [
+        "unslop"
+      ],
+      "forbidden_skills": [
+        "orbyn-documents"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not convert the Markdown into a Word file."
+    },
+    {
+      "id": "parser-unit-test",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add a failing unit test for the date parser bug, then fix it.",
+      "expected_skills": [
+        "tdd"
+      ],
+      "forbidden_skills": [
+        "orbyn-webapp-testing"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not drive a browser for a pure function."
+    },
+    {
+      "id": "assistant-tool-calls",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Design the retrieval and tool calls for our support assistant's answers.",
+      "expected_skills": [
+        "orbyn-ai-application"
+      ],
+      "forbidden_skills": [
+        "orbyn-mcp-builder"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not build an MCP server unless one is asked for."
     }
   ]
 }

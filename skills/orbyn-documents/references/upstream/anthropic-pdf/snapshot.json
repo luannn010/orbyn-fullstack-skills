@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/anthropics/skills",
+  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+  "retrieved_on": "2026-11-09",
+  "license": "Apache-2.0",
+  "scope": "Unmodified anthropics/skills pdf files with its Apache-2.0 license. The upstream SKILL.md is stored as SOURCE.md so it is not discovered as a second active skill; bytes are unchanged.",
+  "files": {
+    "LICENSE.txt": {
+      "source_path": "skills/pdf/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    "SOURCE.md": {
+      "source_path": "skills/pdf/SKILL.md",
+      "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee"
+    },
+    "forms.md": {
+      "source_path": "skills/pdf/forms.md",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44"
+    },
+    "reference.md": {
+      "source_path": "skills/pdf/reference.md",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95"
+    },
+    "scripts/check_bounding_boxes.py": {
+      "source_path": "skills/pdf/scripts/check_bounding_boxes.py",
+      "sha256": "0ced522402dd7b3c82a0be9518cf4e485fa9cc0467d7beab6ddb04cb36fcc3e1"
+    },
+    "scripts/check_fillable_fields.py": {
+      "source_path": "skills/pdf/scripts/check_fillable_fields.py",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8"
+    },
+    "scripts/convert_pdf_to_images.py": {
+      "source_path": "skills/pdf/scripts/convert_pdf_to_images.py",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d"
+    },
+    "scripts/create_validation_image.py": {
+      "source_path": "skills/pdf/scripts/create_validation_image.py",
+      "sha256": "8fa9fd7962c9f940045b81cf6b991e7c1057c1838e3f9cc6d305007a222ffebf"
+    },
+    "scripts/extract_form_field_info.py": {
+      "source_path": "skills/pdf/scripts/extract_form_field_info.py",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109"
+    },
+    "scripts/extract_form_structure.py": {
+      "source_path": "skills/pdf/scripts/extract_form_structure.py",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5"
+    },
+    "scripts/fill_fillable_fields.py": {
+      "source_path": "skills/pdf/scripts/fill_fillable_fields.py",
+      "sha256": "d140872c2e92e41b1e05370ae8d270c5b7f5ebdf55d9905f03bc974a9c708ff5"
+    },
+    "scripts/fill_pdf_form_with_annotations.py": {
+      "source_path": "skills/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "sha256": "8a56e063a49ed53c0b0e1d312ecf8023af76816ed139486ec3b539873de202fd"
+    }
+  },
+  "license_files": [
+    "LICENSE.txt"
+  ]
+}

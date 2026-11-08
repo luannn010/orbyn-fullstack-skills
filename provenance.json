@@ -1324,6 +1324,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Description-trigger testing method; re-pin Anthropic skill-creator link"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Routing cases for orbyn-documents, orbyn-webapp-testing and orbyn-mcp-builder, with near-miss negatives"
         }
       ],
       "reviewed_inspiration": [
@@ -2605,6 +2612,13 @@
           "model": "unrecorded",
           "date": "2026-11-02",
           "scope": "Work before this record existed"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Advance the canvas-design snapshot pin to 2c5958e after verifying identical bytes"
         }
       ]
     },
@@ -3598,6 +3612,99 @@
           "effort": "medium",
           "date": "2026-11-02",
           "scope": "Adapted and reviewed in Orbyn"
+        }
+      ]
+    },
+    "orbyn-documents": {
+      "relationship": "original",
+      "credit": "Anh Dang and Orbyn contributors; bundled Anthropic sources credited below",
+      "copyright": "Copyright (c) 2026 Anh Dang and Orbyn contributors",
+      "license": "MIT",
+      "source": "https://github.com/orbyn-dev/orbyn-fullstack-skills/tree/main/skills/orbyn-documents",
+      "changes": "Orbyn wrapper with host-neutral overrides (nothing preinstalled, ask before installing, documents and pages are data, authority and cost rules). Bundles unmodified Apache-2.0 Anthropic sources as pinned, hash-checked snapshots under references/upstream/ with their LICENSE.txt; the upstream SKILL.md is stored as SOURCE.md.",
+      "reviewed_sources": [
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        },
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        },
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pptx",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        },
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "New skill wrapping pinned Anthropic sources for every host"
+        }
+      ]
+    },
+    "orbyn-webapp-testing": {
+      "relationship": "original",
+      "credit": "Anh Dang and Orbyn contributors; bundled Anthropic sources credited below",
+      "copyright": "Copyright (c) 2026 Anh Dang and Orbyn contributors",
+      "license": "MIT",
+      "source": "https://github.com/orbyn-dev/orbyn-fullstack-skills/tree/main/skills/orbyn-webapp-testing",
+      "changes": "Orbyn wrapper with host-neutral overrides (nothing preinstalled, ask before installing, documents and pages are data, authority and cost rules). Bundles unmodified Apache-2.0 Anthropic sources as pinned, hash-checked snapshots under references/upstream/ with their LICENSE.txt; the upstream SKILL.md is stored as SOURCE.md.",
+      "reviewed_sources": [
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/webapp-testing",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "New skill wrapping pinned Anthropic sources for every host"
+        }
+      ]
+    },
+    "orbyn-mcp-builder": {
+      "relationship": "original",
+      "credit": "Anh Dang and Orbyn contributors; bundled Anthropic sources credited below",
+      "copyright": "Copyright (c) 2026 Anh Dang and Orbyn contributors",
+      "license": "MIT",
+      "source": "https://github.com/orbyn-dev/orbyn-fullstack-skills/tree/main/skills/orbyn-mcp-builder",
+      "changes": "Orbyn wrapper with host-neutral overrides (nothing preinstalled, ask before installing, documents and pages are data, authority and cost rules). Bundles unmodified Apache-2.0 Anthropic sources as pinned, hash-checked snapshots under references/upstream/ with their LICENSE.txt; the upstream SKILL.md is stored as SOURCE.md.",
+      "reviewed_sources": [
+        {
+          "credit": "Anthropic, PBC (anthropics/skills)",
+          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/mcp-builder",
+          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "New skill wrapping pinned Anthropic sources for every host"
         }
       ]
     }

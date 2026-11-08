@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/anthropics/skills",
+  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+  "retrieved_on": "2026-11-09",
+  "license": "Apache-2.0",
+  "scope": "Unmodified anthropics/skills docx files with its Apache-2.0 license. The upstream SKILL.md is stored as SOURCE.md so it is not discovered as a second active skill; bytes are unchanged. The 39 OOXML schema files under scripts/office/schemas/ are not bundled because they carry no license notice; schema validation needs them from the pinned upstream.",
+  "files": {
+    "LICENSE.txt": {
+      "source_path": "skills/docx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    "SOURCE.md": {
+      "source_path": "skills/docx/SKILL.md",
+      "sha256": "9e8202e2524a9ed87da67a5b3eaa76e8e6038f4171f8251ad6aaefd34e82a3df"
+    },
+    "scripts/__init__.py": {
+      "source_path": "skills/docx/scripts/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    "scripts/accept_changes.py": {
+      "source_path": "skills/docx/scripts/accept_changes.py",
+      "sha256": "0c991d2bc7304a1248e9f3bf9b1498f0b6e76641fc457e7cbd73c99b4eef3a74"
+    },
+    "scripts/comment.py": {
+      "source_path": "skills/docx/scripts/comment.py",
+      "sha256": "37d116e5f56bb142b208c6c6a4bbcf960495abf470ddb7c6675ccfac864ba3d7"
+    },
+    "scripts/merge_runs.py": {
+      "source_path": "skills/docx/scripts/merge_runs.py",
+      "sha256": "3ab367fd7fba4647943d0aa5e65203b15458551410f5ffc821d902616a4b9f40"
+    },
+    "scripts/office/helpers/__init__.py": {
+      "source_path": "skills/docx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5"
+    },
+    "scripts/office/helpers/pptx_chart.py": {
+      "source_path": "skills/docx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964"
+    },
+    "scripts/office/helpers/pptx_slide.py": {
+      "source_path": "skills/docx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0"
+    },
+    "scripts/office/helpers/pptx_theme.py": {
+      "source_path": "skills/docx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03"
+    },
+    "scripts/office/soffice.py": {
+      "source_path": "skills/docx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c"
+    },
+    "scripts/office/validate.py": {
+      "source_path": "skills/docx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e"
+    },
+    "scripts/office/validators/__init__.py": {
+      "source_path": "skills/docx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987"
+    },
+    "scripts/office/validators/base.py": {
+      "source_path": "skills/docx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea"
+    },
+    "scripts/office/validators/docx.py": {
+      "source_path": "skills/docx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5"
+    },
+    "scripts/office/validators/pptx.py": {
+      "source_path": "skills/docx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299"
+    },
+    "scripts/office/validators/redlining.py": {
+      "source_path": "skills/docx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123"
+    },
+    "scripts/templates/comments.xml": {
+      "source_path": "skills/docx/scripts/templates/comments.xml",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d"
+    },
+    "scripts/templates/commentsExtended.xml": {
+      "source_path": "skills/docx/scripts/templates/commentsExtended.xml",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8"
+    },
+    "scripts/templates/commentsExtensible.xml": {
+      "source_path": "skills/docx/scripts/templates/commentsExtensible.xml",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631"
+    },
+    "scripts/templates/commentsIds.xml": {
+      "source_path": "skills/docx/scripts/templates/commentsIds.xml",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420"
+    },
+    "scripts/templates/people.xml": {
+      "source_path": "skills/docx/scripts/templates/people.xml",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37"
+    }
+  },
+  "license_files": [
+    "LICENSE.txt"
+  ]
+}

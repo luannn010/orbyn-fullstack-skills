@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/anthropics/skills",
+  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+  "retrieved_on": "2026-11-09",
+  "license": "Apache-2.0",
+  "scope": "Unmodified anthropics/skills xlsx files with its Apache-2.0 license. The upstream SKILL.md is stored as SOURCE.md so it is not discovered as a second active skill; bytes are unchanged. The 39 OOXML schema files under scripts/office/schemas/ are not bundled because they carry no license notice; schema validation needs them from the pinned upstream.",
+  "files": {
+    "LICENSE.txt": {
+      "source_path": "skills/xlsx/LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    "SOURCE.md": {
+      "source_path": "skills/xlsx/SKILL.md",
+      "sha256": "caa1e1c29cf974c8d874bf3d0a70838445e7342b570f856ddb3e4a21ef7c7e8b"
+    },
+    "scripts/office/helpers/__init__.py": {
+      "source_path": "skills/xlsx/scripts/office/helpers/__init__.py",
+      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5"
+    },
+    "scripts/office/helpers/pptx_chart.py": {
+      "source_path": "skills/xlsx/scripts/office/helpers/pptx_chart.py",
+      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964"
+    },
+    "scripts/office/helpers/pptx_slide.py": {
+      "source_path": "skills/xlsx/scripts/office/helpers/pptx_slide.py",
+      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0"
+    },
+    "scripts/office/helpers/pptx_theme.py": {
+      "source_path": "skills/xlsx/scripts/office/helpers/pptx_theme.py",
+      "sha256": "ebb54c56e9c13807f5f98f0cae22d47cdd0162da8525eaa664e3f2c8c8d6bb03"
+    },
+    "scripts/office/soffice.py": {
+      "source_path": "skills/xlsx/scripts/office/soffice.py",
+      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c"
+    },
+    "scripts/office/validate.py": {
+      "source_path": "skills/xlsx/scripts/office/validate.py",
+      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e"
+    },
+    "scripts/office/validators/__init__.py": {
+      "source_path": "skills/xlsx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987"
+    },
+    "scripts/office/validators/base.py": {
+      "source_path": "skills/xlsx/scripts/office/validators/base.py",
+      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea"
+    },
+    "scripts/office/validators/docx.py": {
+      "source_path": "skills/xlsx/scripts/office/validators/docx.py",
+      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5"
+    },
+    "scripts/office/validators/pptx.py": {
+      "source_path": "skills/xlsx/scripts/office/validators/pptx.py",
+      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299"
+    },
+    "scripts/office/validators/redlining.py": {
+      "source_path": "skills/xlsx/scripts/office/validators/redlining.py",
+      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123"
+    },
+    "scripts/recalc.py": {
+      "source_path": "skills/xlsx/scripts/recalc.py",
+      "sha256": "66f6e726d5a53cfabea0b6471d6669deb95e54e96cb7913b687e4388da1bb3d9"
+    }
+  },
+  "license_files": [
+    "LICENSE.txt"
+  ]
+}

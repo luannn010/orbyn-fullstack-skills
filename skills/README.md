@@ -42,6 +42,7 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 - [tdd](tdd/SKILL.md) — Design focused contract tests, failing-before regressions or verification of critical properties; use for requested TDD, model checking and verification drift, with practical boundaries and explicit evidence limits.
 - [unslop](unslop/SKILL.md) — Edit agent prose, chat replies, PR and issue text and documentation for short, clear factual communication while preserving the requested voice and evidence. Use orbyn-content-design for interface copy and social-content for posts.
 - [why](why/SKILL.md) — Investigate design rationale, regressions and trade-offs using Git history and relevant authorized records; distinguish documented intent from inference.
+- [orbyn-webapp-testing](orbyn-webapp-testing/SKILL.md) — Drive a local web app with Playwright scripts to check behavior, capture screenshots and read console logs, using Anthropic's bundled helper. Use on hosts without a built-in browser, or for a repeatable scripted check; product UI design and review rules stay with orbyn-ui-design.
 
 ## Fullstack contracts and delivery
 
@@ -51,6 +52,7 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 - [orbyn-data-migration](orbyn-data-migration/SKILL.md) — Plan and implement stored-data, schema and writer migrations with compatibility, cutover, retry and recovery evidence. Use for durable format changes; not a routine in-memory type refactor or permission to run production migrations.
 - [orbyn-security-audit](orbyn-security-audit/SKILL.md) — Threat-model a design or sensitive feature, or run an explicitly requested local source audit, read-only, with path:line evidence and independent validation; also verify a patched finding. Use orbyn-security-remediation to fix saved findings, architect for non-security design.
 - [orbyn-security-remediation](orbyn-security-remediation/SKILL.md) — Resolve existing security findings from a threat model, audit or scanner record: classify, fix at the owning boundary, add a preventive check and hand back for verification, without starting a scan. Use orbyn-security-audit to find new ones.
+- [orbyn-mcp-builder](orbyn-mcp-builder/SKILL.md) — Design, build and evaluate a Model Context Protocol (MCP) server in TypeScript or Python with Anthropic's bundled guide and evaluation harness. Use when creating or reworking an MCP server or its tools; for model-powered app behavior use orbyn-ai-application.
 
 ## Product design
 
@@ -73,6 +75,10 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 - [rea-ci-tests-audit](rea-ci-tests-audit/SKILL.md) — Audit REA test and CI quality when specifically requested; does not run REA qualification for unrelated Orbyn changes.
 - [rea-tool-design](rea-tool-design/SKILL.md) — Design REA tools or CLI/MCP contracts when modifying the REA project; not ordinary Orbyn API work.
 - [reverse-engineer-anything](reverse-engineer-anything/SKILL.md) — Investigate shipped binaries, packages and captured application artifacts with available local tools or a REA engine; preserve evidence and hand off deeper analysis. Ordinary source questions use how.
+
+## Documents and files
+
+- [orbyn-documents](orbyn-documents/SKILL.md) — Read, create or edit Word, PowerPoint, Excel and PDF files with Anthropic's bundled document methods and scripts, on hosts without their own document skills. Not for Markdown, HTML pages or Google Docs.
 
 ## Scope and attribution
 

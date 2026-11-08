@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/anthropics/skills",
-  "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
-  "retrieved_on": "2026-10-24",
+  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+  "retrieved_on": "2026-11-09",
   "license": "Apache-2.0",
-  "scope": "Unmodified canvas-design SKILL.md and Apache-2.0 license text only. Fonts, font licenses, binaries and runtimes are not bundled; use the portable Orbyn preview method and locally available fonts. The upstream entrypoint is stored as SOURCE.md to prevent active skill discovery; source_path and source bytes are unchanged.",
+  "scope": "Unmodified canvas-design SKILL.md and Apache-2.0 license text only. Fonts, font licenses, binaries and runtimes are not bundled; use the portable Orbyn preview method and locally available fonts. The upstream entrypoint is stored as SOURCE.md to prevent active skill discovery; source_path and source bytes are unchanged. Advanced from dbd4588 on 2026-11-09 after verifying both files are byte-identical at 2c5958e.",
   "files": {
     "LICENSE.txt": {
       "source_path": "skills/canvas-design/LICENSE.txt",

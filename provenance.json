@@ -1719,6 +1719,13 @@
           "effort": "medium",
           "date": "2026-11-07",
           "scope": "Desktop window chrome (unified title bar), browser-style side-panel tabs and tool activity in a conversation, from owner review of the Orbyn product designs"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-08",
+          "scope": "Desktop window chrome measures (52 pt toolbar, centred traffic lights, hidden title, one surface, platform controls) and a required built-window check, from a shipped double title bar"
         }
       ]
     },

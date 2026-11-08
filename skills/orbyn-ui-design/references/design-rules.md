@@ -140,8 +140,22 @@ act, cancel/return, fail/recover outcomes; the matrix below selects relevant che
 - Draw the window controls at their platform size and position, and leave them
   clear of search fields and buttons. A browser rendering keeps the browser's own
   chrome and adds none of its own.
+- macOS measures, as in Chrome or Finder: a 52 pt toolbar (38 pt when compact).
+  The traffic lights and every toolbar control share one vertical centre, so an
+  overlay title bar also needs the traffic-light position set; the default leaves
+  them near the top edge. Hide the native title text; the content says where the
+  user is. Leading controls start after the traffic lights' inset, never under them.
+- One surface from the window edge to a single bottom separator, with no hairline
+  between title and toolbar. Empty toolbar space drags the window, and
+  double-clicking it zooms.
+- Windows and Linux: the window controls go on the right, through the platform's
+  window-controls overlay where it exists; the same single-row rule applies.
 - Check every desktop design and build against this before review; a separate
-  grey strip with the app name is a defect, not a style.
+  grey strip with the app name is a defect, not a style. Verify window chrome on
+  the built app's window (a screenshot of the running desktop build), because a
+  browser preview has no OS title bar. Add a cheap config test as the regression,
+  for example macOS overlay title bar, hidden title and traffic-light position in
+  the window config.
 
 ## Content and actions
 
@@ -206,7 +220,7 @@ scope; keep unperformed cases unverified.
 | Content       | Empty/populated, long/localized labels, large catalogs, selected/manual values                                           |
 | Network/state | Loading, offline/error, retry, success, disabled, stale/revoked where relevant                                           |
 | Interaction   | Pointer, Tab/Shift+Tab, Escape, focus return, scroll-to-last-item, keyboard visible                                      |
-| Platforms     | Browser checks; installed desktop/iOS/Android only when requested; native gaps stay explicit                             |
+| Platforms     | Browser checks; installed desktop/iOS/Android only when requested, except desktop window chrome (always the built window); native gaps stay explicit |
 
 At 320 CSS px, ordinary horizontal prose must not need horizontal scrolling;
 if an accessibility resizing audit is requested, include its agreed zoom/text

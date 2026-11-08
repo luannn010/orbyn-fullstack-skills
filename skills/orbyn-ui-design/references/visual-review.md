@@ -22,6 +22,12 @@ well as containment, because passing builds, DOM dimensions and screenshot metad
 miss these. Check installed-native behavior on the native surface; browser review
 does not cover it.
 
+Example: a desktop build showed the native macOS title bar (traffic lights and the
+app name) above the app's own toolbar, so the window had two title bars. Every
+browser review passed, because the preview has no OS chrome; only a screenshot of
+the built window showed it. A change to window chrome, title bar or app shell is
+therefore checked on the built window, and the window config gets a test.
+
 ## Brief an independent inspector
 
 If an independent visual role is requested, use the session/subagent topology in

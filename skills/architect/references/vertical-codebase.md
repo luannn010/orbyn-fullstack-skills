@@ -40,7 +40,8 @@ distribution or build isolation justifies the cost. Do not add a monorepo tool,
 workspace or blanket barrel file solely to implement this guidance. Check actual
 resolver and bundler behavior before claiming that an interface is enforced.
 Import restrictions support maintainability; they are not an authorization or
-security isolation boundary.
+security isolation boundary. To restructure a whole app in stages, follow the
+[folder refactor playbook](folder-refactor.md).
 
 ## Extract a capability, not a miscellaneous bucket
 

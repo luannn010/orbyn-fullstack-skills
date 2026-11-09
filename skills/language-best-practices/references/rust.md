@@ -12,6 +12,25 @@ Inspect Cargo.toml edition/rust-version, rust-toolchain, Cargo.lock, enabled fea
 - Do not hold a blocking mutex guard across await, and move blocking work to the runtime's blocking pool.
 - Keep unsafe/FFI small with explicit allocation, aliasing, alignment and lifetime invariants. Safe wrappers must uphold them for every caller.
 
+## Module structure
+
+- **One module per capability**, with sub-modules per topic. A file of hundreds of
+  types or thousands of lines becomes a folder: `mod.rs` (or `name.rs` beside
+  `name/`; pick one layout per crate) declares the sub-modules and re-exports the
+  public items by name with `pub use` at the old path's visibility, so existing `use`
+  paths keep working.
+- **Enforce, don't just group.** A folder of modules is not a boundary: make items
+  `pub(crate)` or `pub(super)` unless another module must use them, and give each
+  module a small public surface. When boundaries must hold across teams or builds,
+  a workspace crate enforces them; split only when that need is real.
+- **Thin transport.** Tauri commands, HTTP handlers and IPC adapters parse, call the
+  owning module and map errors. Business rules live in the owner, where they can be
+  tested without the transport.
+- **One wrapper per effect.** Spawning git or another process, reading the home
+  directory or formatting durations goes through one helper, not several hand-rolled
+  copies. A whole-app move follows the
+  [folder refactor playbook](../../architect/references/folder-refactor.md).
+
 ## Worked failure and correction
 
 Return a borrow tied to its real input instead of allocating only to satisfy a signature:

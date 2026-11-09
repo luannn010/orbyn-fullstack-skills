@@ -10,6 +10,9 @@ domain owners. Use [how](../how/SKILL.md) to trace the existing request, and
 [architect](../architect/SKILL.md) when ownership or lifecycle is undecided.
 Use the project's own stack: do not introduce Fastify, PostgreSQL, Zod or any other
 Orbyn stack component merely because it appears in an example.
+Keep the transport thin: a route handler, IPC command or RPC method validates input,
+calls the owning module and maps its result and errors. Business rules belong to the
+owner, testable without the transport.
 
 ## Method
 

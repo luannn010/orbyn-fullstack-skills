@@ -14,6 +14,10 @@ which information changes the next decision and which can wait. Repeated metadat
 large completed-history groups and full authored briefs need not dominate active
 work; keep the complete material reachable without rewriting it.
 
+Give each structural word one meaning across the product and its code, for example
+Page for a route, Panel for a side-panel tab and Dialog for a modal, so a name says
+where the thing lives.
+
 Keep a coherent shell across related routes: stable navigation, recognizable page
 identity, search/create entry points where useful, and a clear return path. Primary
 labels should be discoverable; a compact icon rail can be an explicit preference,

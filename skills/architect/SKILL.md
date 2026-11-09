@@ -39,6 +39,8 @@ For durable transitions, put the migration owner's concrete writer/admission con
 
 ## Read when needed
 
+- A whole-app folder refactor (giant files, feature cycles, deep imports, duplicated helpers, logic in the transport layer): [folder refactor](references/folder-refactor.md). Map with the compiler first, agree target rules, move in behaviour-neutral units, then enforce the rules.
+
 - Checked-in designs or READMEs that may no longer match the code or the built app: [design drift](references/design-drift.md). Report each difference with anchors on both sides; change nothing without the user. This is document-versus-code drift; drift between a verification model and code belongs to [tdd](../tdd/SKILL.md).
 
 - Where code belongs, cross-feature imports or shared-code extraction: [vertical code organization](references/vertical-codebase.md). Group code by the functionality it owns within existing stack boundaries, and specify public entry points, private internals and allowed dependency directions before moving files. Return the proposed owner map, import contract, trade-off and scoped migration/verification plan. Explaining an existing import path belongs to `how`.

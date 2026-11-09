@@ -47,6 +47,7 @@ Continue authorized reversible work while waiting on a genuinely blocking decisi
 
 ## Read when needed
 
+- Sequencing a whole-app folder refactor: the [folder refactor playbook](../architect/references/folder-refactor.md) orders units leaf-first, locks areas and separates moves from edits.
 - Worked checks: [autonomy](references/principles/never-block-on-the-human.md) and [verifiable units](references/principles/sequence-verifiable-units.md).
 - Cross-team direction, platform investment or a technical roadmap: [technical strategy](references/technical-strategy.md) connects decision owners, trade-offs, adoption/support and outcome measures. Measure organizational adoption separately from shipped code, and skip the governance layer for a bounded task.
 - Uncertain product opportunities or post-delivery outcome decisions: [product discovery](references/product-discovery.md) covers evidence versus assumptions, manual/no-build alternatives, smallest useful experiment and outcome measures. Skip the discovery program for a known bounded fix.

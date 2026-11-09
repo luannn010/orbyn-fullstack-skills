@@ -311,6 +311,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Record cursor/plugins 6b03002 as reviewed: bundled compiler files unchanged"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Folder refactor playbook: map with the compiler, target rules, behaviour-neutral unit order, lock by area, blame-ignore moves, warning-then-error enforcement"
         }
       ]
     },
@@ -713,6 +720,13 @@
           "effort": "medium",
           "date": "2026-11-02",
           "scope": "Pointer to replay verification of client-submitted results"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Thin transport: handlers validate, call the owner and map results"
         }
       ]
     },
@@ -971,6 +985,13 @@
           "model": "unrecorded",
           "date": "2026-11-02",
           "scope": "Work before this record existed"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Link to the folder refactor playbook for sequencing"
         }
       ]
     },
@@ -1875,6 +1896,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Advance emilkowalski/skills pin c8a7962 -> 5206a95: adapted files unchanged, LICENSE unchanged, the only new skill (gestures) reviewed and written into motion.md"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "One meaning per structural word (Page, Panel, Dialog)"
         }
       ]
     },
@@ -3322,6 +3350,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Advance emilkowalski/skills pin c8a7962 -> 5206a95: adapted files unchanged, LICENSE unchanged, the only new skill (gestures) reviewed and written into motion.md"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "TypeScript folder structure (front door, one-way imports, co-location, size cap) and Rust module structure (enforced visibility, thin transport, one wrapper per effect)"
         }
       ]
     },

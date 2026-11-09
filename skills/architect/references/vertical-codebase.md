@@ -20,6 +20,17 @@ they share that owner. A local `components/` subfolder can still be useful; the
 problem is unrelated capabilities sharing an unrestricted global bucket. A small
 existing layout may need no new directory. Choose names that explain the work.
 
+Three basics hold at any size:
+
+- **Keep the root small.** Configuration, scripts, docs and sources each get a folder;
+  the root keeps what tools require there (manifest, lockfile, README, licence,
+  ignore files).
+- **Follow the ecosystem's conventions.** Use the language's own layout and case
+  (Cargo, Go modules, Java packages, lowercase or kebab-case folders in web projects)
+  and plain, consistent names such as `config` or `scripts`, never `misc` or `stuff`.
+- **Write the layout down.** Keep a short "where things live" section in the README or
+  a structure note, and update it in the same change that moves a folder.
+
 Preserve runtime, deployment and platform boundaries. A fullstack capability may
 have corresponding API, web and mobile modules connected by a shared contract;
 it does not require moving all implementations into one package. Shared domain

@@ -81,7 +81,10 @@ Measure first: the slowest step, and how long a PR waits to turn green. Then:
   nothing after it is useful.
 - **Keep a time budget.** Give the PR lane a target, such as five minutes. A run that
   goes over it is a defect: find and fix the slowest step instead of accepting drift.
-- **Never retry a failure into green.** A proven flaky test is quarantined, with an
+- **Never retry a failure into green.** A rerun is only for a named infrastructure
+  failure outside the code (a download or registry 5xx, a network timeout), after the
+  run finishes, with the cause in the PR. A crash or timeout inside a real test is a
+  flaky test, not infrastructure. A proven flaky test is quarantined, with an
   issue and an owner, so it neither blocks PRs nor hides real failures; fix it or
   delete it. See the [bulk method](bulk-failures.md) for many failures at once.
 - **Use a merge queue** when several PRs land a day and main breaks from combinations

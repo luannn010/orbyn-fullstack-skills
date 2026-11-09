@@ -58,17 +58,37 @@ Split the move into behaviour-neutral units, each its own PR:
 4. Lock by area: one unit owns a folder while it is open, and parallel work avoids it
    or waits. The lead creates one worktree per unit and gives it to that unit's
    worker; workers do not make their own. Rebase each unit on the latest base before
-   review.
+   review. Shared registry files (the blame-ignore list, the refactor log, check
+   baselines) conflict between units: merge units one at a time and merge the base
+   branch right before each push.
 
 Keep pure moves and renames apart from edits, and list the moves in
-`.git-blame-ignore-revs` so blame still finds the real author. A squash merge folds
+`.git-blame-ignore-revs`. List only commits that are renames with no edit at all,
+checked with `git diff -M --stat` (a rename that also edits a `mod` line or an import
+is not pure) so blame still finds the real author. A squash merge folds
 both into one commit, so land a pure move as its own PR (or merge without squashing),
 and record the SHA as it exists on the base branch after the merge. Blame-ignore only
 follows lines within one path, so after splitting a file into new files, point readers
 to `git blame -C -C -C` as well. Keep generated names, public API names and persisted keys unchanged unless
 a migration owns the change. Each unit passes the existing build and tests with no
 behavior change, and generated outputs (bindings, schemas, types) come out identical,
-which is the strongest proof of a neutral move. A local test failure that passes on the
+which is the strongest proof of a neutral move. Pin observable surfaces before a move
+that touches them (a route-table test of every path, method and auth result; the set
+of string literals in a split file) and show they match afterwards.
+
+Watch for moves that are not neutral:
+
+- **Component identity.** Moving an early-return branch (loading, error, empty) into a
+  new component type changes what renders there, so the page remounts and drops focus
+  and state. Extract such branches as plain functions, and add a test that fails on
+  the component version first.
+- **Paths read across languages.** A test or script in one language may read a file
+  of another by path, and path-filtered CI skips its job when only the other side
+  changed, so it breaks only after merge. Search the whole repository for the old
+  path before moving a file.
+- **Security alerts.** Moving code can re-fingerprint existing code-scanning alerts so
+  they show as new on the PR. Confirm each is the same finding, record it in an issue
+  and dismiss it with that reason, with the owner's approval. A local test failure that passes on the
 main branch's CI is a local-environment problem: say so in the PR rather than calling
 main broken. Where tests are thin, add characterization tests for the area first
 ([tdd](../../tdd/SKILL.md)); a fix found along the way gets its own PR.
@@ -93,7 +113,11 @@ and locks, the enforcement plan, and what each finished unit changed in the coun
 
 In one real refactor of a desktop app, a 4,310-line shared contracts file of 336 types
 became a 50-line front door over 21 domain modules (largest 554 lines), with the same
-342 tests passing and the generated TypeScript bindings byte-identical. Of eight
+342 tests passing and the generated TypeScript bindings byte-identical. Later units
+took import cycles from 8 to 0 and deep cross-feature imports from 69 to 0, then made
+both hard errors; split a server's routes into 28 area modules under a test pinning
+all 274 routes; and cut files over the size cap from 14 to 3 (TypeScript) and 6 to 3
+(Rust). Of eight
 duration formatters, none agreed on every input, so they were renamed rather than
 merged, and none of about 16 Escape-key listeners could be replaced safely by one
 shared helper.

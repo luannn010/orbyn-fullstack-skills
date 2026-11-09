@@ -344,6 +344,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Three tiers for shared code: local, product and generic tests, upward imports, rule-of-three hoisting, shared tiers grow only by hoisting, no sideways helper imports, periodic copy search, one-line brief rule"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Three tiers: cycle-breaking hoists at the second caller, what counts as a front door's public API, keep an existing generic tier name"
         }
       ]
     },

@@ -318,6 +318,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Folder refactor playbook: map with the compiler, target rules, behaviour-neutral unit order, lock by area, blame-ignore moves, warning-then-error enforcement"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Folder refactor playbook: lessons and numbers from the first real refactor units (shrink-only baselines, stale CI after guardrails, blame -C, dead-style proof, non-duplicate helpers, identical generated output, lead-made worktrees)"
         }
       ]
     },

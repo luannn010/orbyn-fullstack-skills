@@ -45,21 +45,31 @@ Split the move into behaviour-neutral units, each its own PR:
 
 1. Delete unused exports and dead files first; they only add work to every later unit.
    Keep anything with external consumers: a published package or crate's exports are
-   public API even with no callers in this repository.
+   public API even with no callers in this repository. Dead styles need an independent
+   reviewer who proves each class unused across source, tests, mocks, docs and
+   dynamically built class names; that proof is the gate, not the first search.
 2. Extract shared pieces that break cycles (the shared feature, single helpers for
-   each duplicated behavior), then move features from the leaves of the import graph
+   each duplicated behavior; helpers that disagree on any input are not duplicates, so
+   rename them to say how they differ instead of merging), then move features from the leaves of the import graph
    inward, so each unit's dependencies are already in place. A giant shared leaf,
    such as a contracts file, can be split early behind re-exports that keep its paths.
 3. Split giant files within each feature last, by the sections the map found.
 4. Lock by area: one unit owns a folder while it is open, and parallel work avoids it
-   or waits. Rebase each unit on the latest base before review.
+   or waits. The lead creates one worktree per unit and gives it to that unit's
+   worker; workers do not make their own. Rebase each unit on the latest base before
+   review.
 
 Keep pure moves and renames apart from edits, and list the moves in
 `.git-blame-ignore-revs` so blame still finds the real author. A squash merge folds
 both into one commit, so land a pure move as its own PR (or merge without squashing),
-and record the SHA as it exists on the base branch after the merge. Keep generated names, public API names and persisted keys unchanged unless
+and record the SHA as it exists on the base branch after the merge. Blame-ignore only
+follows lines within one path, so after splitting a file into new files, point readers
+to `git blame -C -C -C` as well. Keep generated names, public API names and persisted keys unchanged unless
 a migration owns the change. Each unit passes the existing build and tests with no
-behavior change. Where tests are thin, add characterization tests for the area first
+behavior change, and generated outputs (bindings, schemas, types) come out identical,
+which is the strongest proof of a neutral move. A local test failure that passes on the
+main branch's CI is a local-environment problem: say so in the PR rather than calling
+main broken. Where tests are thin, add characterization tests for the area first
 ([tdd](../../tdd/SKILL.md)); a fix found along the way gets its own PR.
 
 ## 4. Enforce the rules
@@ -69,10 +79,23 @@ unused exports. Start each as a warning across the codebase, and turn it into an
 for a unit once that unit is done, so finished areas cannot regress while the rest is
 still moving. Report counts per unit against the map's baseline.
 
+- **A baseline may only shrink.** When a known violation is fixed, the check must fail
+  until its baseline entry is removed. A check that only prints a notice lets the fixed
+  problem come back unseen.
+- **A new guardrail makes every open PR's green check stale.** After it lands, merge
+  the base branch into each open PR and rerun its checks before merging.
+
 ## Return
 
 The map with its base revision, the target rules, the ordered unit list with owners
 and locks, the enforcement plan, and what each finished unit changed in the counts.
+
+In one real refactor of a desktop app, a 4,310-line shared contracts file of 336 types
+became a 50-line front door over 21 domain modules (largest 554 lines), with the same
+342 tests passing and the generated TypeScript bindings byte-identical. Of eight
+duration formatters, none agreed on every input, so they were renamed rather than
+merged, and none of about 16 Escape-key listeners could be replaced safely by one
+shared helper.
 
 Synthetic example: a web app's shared types file holds hundreds of types in thousands
 of lines, an orders feature and a billing feature import each other through a shared

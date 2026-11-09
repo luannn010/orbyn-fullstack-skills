@@ -2462,6 +2462,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "pr_watch reports agent-requested PRs ready=no until human-reviewed; the limit of a shared token stated"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Scope the agent-requested guardrail to the skill library; other repositories keep their own merge rules"
         }
       ]
     },

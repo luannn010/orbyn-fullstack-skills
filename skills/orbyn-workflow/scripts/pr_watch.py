@@ -19,7 +19,8 @@ With no known names every check counts as required.
 Readiness (`ready=` on every event line, plus a `ready` event once per head and value):
 yes = mergeStateStatus CLEAN (or HAS_HOOKS/UNSTABLE with every required check passed) and the person may merge;
 owner = BLOCKED only by the approval GitHub will not let an admin give their own PR (required checks passed, no
-conflict, REVIEW_REQUIRED, no unresolved threads, role admin, author is the person); no = anything else.
+conflict, REVIEW_REQUIRED, no unresolved threads, role admin, author is the person); no = anything else, and always
+for a PR labelled agent-requested without human-reviewed.
 The helper never merges. `owner` is a decision for the person, never an automatic admin merge.
 
 Event line: `<kind> #<n> <sha> <detail> authority=yes|no ready=yes|owner|no state=<mergeStateStatus>`. Kinds:
@@ -51,6 +52,7 @@ query($owner: String!, $name: String!, $cursor: String) {
       nodes {
         number title url isDraft headRefOid baseRefName mergeable mergeStateStatus reviewDecision
         author { login }
+        labels(first: 30) { nodes { name } }
         reviewThreads(first: 100) { nodes { id isResolved } }
         latestReviews(first: 30) { nodes { author { login } state submittedAt } }
         closingIssuesReferences(first: 10) { nodes { number assignees(first: 20) { nodes { login } } } }
@@ -202,7 +204,8 @@ def owned_records(nodes, login):
             'base': node.get('baseRefName') or '', 'mergeable': node.get('mergeable'),
             'merge_state': node.get('mergeStateStatus') or 'UNKNOWN', 'review_decision': node.get('reviewDecision'),
             'unresolved': sum(1 for t in nodes_of(node.get('reviewThreads')) if not t.get('isResolved')),
-            'change_requests': sorted(reviews), 'checks': read_checks(node)})
+            'change_requests': sorted(reviews), 'checks': read_checks(node),
+            'labels': sorted(label.get('name') or '' for label in nodes_of(node.get('labels')))})
     return sorted(records, key=lambda r: r['number'])
 
 
@@ -246,6 +249,9 @@ def ci_status(record, required):
 
 def readiness(record, ci, ctx):
     """yes, owner or no. See the module docstring; the helper only reports, it never merges."""
+    labels = set(record.get('labels', []))
+    if 'agent-requested' in labels and 'human-reviewed' not in labels:
+        return 'no'  # an agent asked for it: only a human reviews and merges it
     authority = ctx['authority']
     if authority['can_merge'] and (record['merge_state'] == 'CLEAN' or (
             record['merge_state'] in ('HAS_HOOKS', 'UNSTABLE') and ci['verdict'] == 'passed')):

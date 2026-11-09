@@ -15,8 +15,12 @@ import subprocess
 import sys
 
 READY, NEEDS = 'ready-for-review', 'needs-disclosure'
+# A change an agent or bot asked for needs a human's review and a human's merge.
+AGENT, REVIEWED = 'agent-requested', 'human-reviewed'
+REQUESTER = re.compile(r'^(human\b|agent:)', re.I)
+RELAYED = re.compile(r'\b(agent|session|subagent|bot|relayed|on behalf)\b', re.I)
 REQUIRED_CHECKS = ('Validate (Python 3.11)',)  # 3.13 runs on main and nightly, not on PRs
-DISCLOSURE_FIELDS = ('Tools', 'Models', 'Effort', 'Human role')
+DISCLOSURE_FIELDS = ('Tools', 'Models', 'Effort', 'Human role', 'Requested by')
 EVIDENCE_FIELDS = ('Static/helper checks', 'Recorded host trials')
 EMPTY = {'', 'none', 'n/a', 'na', 'tbd', 'todo', 'unknown', '-', '?'}
 COMMENT = re.compile(r'<!--.*?-->', re.S)
@@ -88,6 +92,10 @@ def check(body):
         for name in DISCLOSURE_FIELDS:
             if blank(field(disclosure, name)):
                 problems.append(f'Fill in "{name}" under Agent disclosure.')
+        requested = field(disclosure, 'Requested by')
+        if not blank(requested) and not REQUESTER.match(requested.strip('`*_ ')):
+            problems.append('Start "Requested by" with "human" (a person asked in chat) or "agent:" '
+                            '(another session, subagent, bot or automated comment asked).')
         problems += source_problems(field(disclosure, 'External sources'))
         models = field(disclosure, 'Models')
         if not blank(models) and not SPECIFIC_MODEL.search(models):
@@ -126,6 +134,17 @@ def config_warnings(changes):
             for status, path in changes]
 
 
+def agent_requested(pr, bot, labels):
+    """A bot author, an agent-requested label already set, or a disclosure naming an agent.
+
+    Once set, the label wins over the body, so editing the line to "human" later changes nothing.
+    A "human" line that mentions an agent, session, bot or relaying still counts as an agent request."""
+    disclosure = section(COMMENT.sub('', (pr.get('body') or '').replace('\r\n', '\n')), 'Agent disclosure') or ''
+    requested = (field(disclosure, 'Requested by') or '').strip('`*_ ')
+    return (bot or AGENT in labels or requested.lower().startswith('agent')
+            or (requested.lower().startswith('human') and bool(RELAYED.search(requested))))
+
+
 def decide(pr):
     """Pure decision for one PR record: labels to set, and whether to request review."""
     author = pr.get('author', {}).get('login', '')
@@ -135,14 +154,23 @@ def decide(pr):
     problems = [] if bot else check(pr.get('body'))
     if problems:
         return {'state': 'incomplete', 'problems': problems, 'add': [NEEDS], 'remove': [READY], 'request': False}
+    labels = {label.get('name') for label in pr.get('labels', [])}
+    agent = agent_requested(pr, bot, labels)
+    marks = [AGENT] if agent else []
+    held = agent and REVIEWED not in labels  # the gate stays red, whatever CI says
     results = {c.get('name'): c.get('conclusion') for c in pr.get('statusCheckRollup', [])}
     failed = [name for name in REQUIRED_CHECKS if results.get(name) in {'FAILURE', 'CANCELLED', 'TIMED_OUT'}]
     if failed:
         return {'state': 'failing', 'problems': [f'{name} did not pass.' for name in failed],
-                'add': [], 'remove': [NEEDS, READY], 'request': False}
+                'add': marks, 'remove': [NEEDS, READY], 'request': False, 'held': held}
     if not all(results.get(name) == 'SUCCESS' for name in REQUIRED_CHECKS):
-        return {'state': 'waiting', 'problems': [], 'add': [], 'remove': [NEEDS, READY], 'request': False}
-    return {'state': 'ready', 'problems': [], 'add': [READY], 'remove': [NEEDS], 'request': True}
+        return {'state': 'waiting', 'problems': [], 'add': marks, 'remove': [NEEDS, READY], 'request': False,
+                'held': held}
+    if held:
+        return {'state': 'needs-human', 'add': marks, 'remove': [READY], 'request': True, 'held': True,
+                'problems': [f'An agent or bot requested this change. A human must review it and add the '
+                             f'"{REVIEWED}" label; agents never add that label or merge this PR.']}
+    return {'state': 'ready', 'problems': [], 'add': [READY] + marks, 'remove': [NEEDS], 'request': True}
 
 
 def gh(*args):
@@ -156,13 +184,18 @@ def find_number(sha):
     return str(found[0]['number']) if found else None
 
 
-def apply(number, maintainer):
+def apply(number, maintainer, action=''):
     repo = os.environ['GH_REPO']
     pr = json.loads(gh('pr', 'view', number, '--repo', repo, '--json',
                        'author,body,isDraft,statusCheckRollup,reviewRequests,reviews,labels'))
-    result = decide(pr)
     labels = {label['name'] for label in pr.get('labels', [])}
-    for name, colour in ((READY, '0e8a16'), (NEEDS, 'd93f0b')):
+    if action == 'synchronize' and REVIEWED in labels:
+        # New commits after a human review need a new human review.
+        gh('pr', 'edit', number, '--repo', repo, '--remove-label', REVIEWED)
+        labels.discard(REVIEWED)
+        pr['labels'] = [label for label in pr.get('labels', []) if label['name'] != REVIEWED]
+    result = decide(pr)
+    for name, colour in ((READY, '0e8a16'), (NEEDS, 'd93f0b'), (AGENT, 'b60205'), (REVIEWED, '5319e7')):
         gh('label', 'create', name, '--repo', repo, '--color', colour, '--force')
     for name in result['add']:
         gh('pr', 'edit', number, '--repo', repo, '--add-label', name)
@@ -174,7 +207,7 @@ def apply(number, maintainer):
     if result['request'] and pr['author']['login'] != maintainer and maintainer not in requested | reviewed:
         gh('pr', 'edit', number, '--repo', repo, '--add-reviewer', maintainer)
     print(json.dumps(result, indent=2))
-    return 1 if result['state'] == 'incomplete' else 0
+    return 1 if result['state'] == 'incomplete' or result.get('held') else 0
 
 
 def main():
@@ -188,6 +221,7 @@ def main():
     applying.add_argument('--pr', default='')
     applying.add_argument('--sha', default='')
     applying.add_argument('--maintainer', required=True)
+    applying.add_argument('--action', default='', help='The pull_request event action, such as synchronize')
     options = parser.parse_args()
     try:
         if options.command == 'check':
@@ -209,7 +243,7 @@ def main():
         if not number:
             print('No open pull request for this commit.')
             return 0
-        return apply(number, options.maintainer)
+        return apply(number, options.maintainer, options.action)
     except (OSError, KeyError, ValueError, subprocess.SubprocessError) as error:
         print(f'pr_gate: {error}', file=sys.stderr)
         return 2

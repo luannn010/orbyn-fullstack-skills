@@ -296,6 +296,13 @@ class ReadinessTests(unittest.TestCase):
         record = pw.owned_records([n], LOGIN)[0]
         return record, pw.ci_status(record, c['required']['main']), c
 
+    def test_an_agent_requested_pr_is_never_ready_until_a_human_reviews_it(self):
+        clean = node(merge_state='CLEAN', checks=self.CHECKS)
+        clean['labels'] = {'nodes': [{'name': 'agent-requested'}]}
+        self.assertEqual(self.ready(clean), 'no')
+        clean['labels']['nodes'].append({'name': 'human-reviewed'})
+        self.assertEqual(self.ready(clean), 'yes')
+
     def owner_node(self, **kw):
         args = dict(merge_state='BLOCKED', decision='REVIEW_REQUIRED', checks=self.CHECKS)
         args.update(kw)

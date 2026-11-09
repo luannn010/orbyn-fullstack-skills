@@ -3,7 +3,7 @@ name: PR gate
 # and never checks out or runs PR code, which is what makes pull_request_target safe.
 on:
   pull_request_target:
-    types: [opened, edited, synchronize, reopened, ready_for_review]
+    types: [opened, edited, synchronize, reopened, ready_for_review, labeled, unlabeled]
   workflow_run:
     workflows: [Validate skills]
     types: [completed]
@@ -33,7 +33,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
           MAINTAINER: ${{ vars.PR_REVIEWER || 'kinqsradio' }}
-        run: python3 scripts/pr_gate.py apply --pr "$PR_NUMBER" --sha "$HEAD_SHA" --maintainer "$MAINTAINER"
+          EVENT_ACTION: ${{ github.event.action }}
+        run: python3 scripts/pr_gate.py apply --pr "$PR_NUMBER" --sha "$HEAD_SHA" --maintainer "$MAINTAINER" --action "$EVENT_ACTION"
       - name: Label the PR by area, contributor, tooling and size
         if: github.event_name == 'pull_request_target'
         env:

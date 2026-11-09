@@ -42,6 +42,11 @@
           "source": "https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
           "revision": "e9e1f06aa4e26e95cd4ed37210a0632202c429e9",
           "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text, prompts or tooling imported"
+        },
+        {
+          "credit": "Adam Lewis (Three-Tier Hoisting)",
+          "source": "https://dev.to/nark3d/a-three-tier-folder-structure-for-long-lived-codebases-3a3l",
+          "relationship": "reviewed-inspiration observed 2026-11-09; independently written, no text imported"
         }
       ],
       "incorporated_material": [
@@ -332,6 +337,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Layout basics: small root, ecosystem naming conventions, a documented layout kept current"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "Three tiers for shared code: local, product and generic tests, upward imports, rule-of-three hoisting, shared tiers grow only by hoisting, no sideways helper imports, periodic copy search, one-line brief rule"
         }
       ]
     },
@@ -3371,6 +3383,20 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "TypeScript folder structure (front door, one-way imports, co-location, size cap) and Rust module structure (enforced visibility, thin transport, one wrapper per effect)"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-09",
+          "scope": "TypeScript one-way imports through product and generic tiers, enforced by lint"
+        }
+      ],
+      "reviewed_inspiration": [
+        {
+          "credit": "Adam Lewis (Three-Tier Hoisting)",
+          "source": "https://dev.to/nark3d/a-three-tier-folder-structure-for-long-lived-codebases-3a3l",
+          "relationship": "reviewed-inspiration observed 2026-11-09; independently written, no text imported"
         }
       ]
     },

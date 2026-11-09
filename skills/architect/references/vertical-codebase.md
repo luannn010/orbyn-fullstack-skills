@@ -66,6 +66,35 @@ Explain the cost: local implementations may duplicate work, shared interfaces
 require coordination, and package boundaries add build/configuration work. Choose
 the smallest boundary that makes likely changes easier to reason about.
 
+### Three tiers for shared code
+
+Shared code has two homes, and each piece of code has exactly one owner:
+
+| Tier | Holds | Test |
+| --- | --- | --- |
+| Local | Code one feature or component uses | Exactly one place uses it: leave it beside that place |
+| Product (for example `product/` or a shared domain package) | This product's own helpers used across features: data access, mappers, domain formatting | Its name or types carry a word from the product's language, and two or more features use it |
+| Generic (for example `generic/` or `lib/`) | Code that would work in any repository: a debounce, an array helper | It imports no product type, constant or vocabulary, and would make sense dropped into another repo |
+
+- **Imports point up only:** feature code may import product and generic code,
+  product code may import generic code, and generic code imports neither. A lint or
+  dependency-graph rule makes a reversed import a build error.
+- **Hoist on the third caller.** Every helper starts local. A second caller may copy
+  it; the third triggers a hoist to the lowest tier that serves all three. Callers
+  that use a similar helper for visibly different reasons keep separate copies one
+  round longer, since a wrong shared abstraction costs more than duplication.
+- **Shared tiers grow only by hoisting.** Never create a file in a shared tier as a
+  convenient place for new code; it appears because a third caller lifted it there.
+  A tiny shared tier in a large codebase usually means duplication is hiding locally.
+- **No sideways helper imports.** One feature never imports another feature's
+  helpers or internals. A feature's front door is for its real public API (opening
+  its view, reading its state); a helper two features need gets hoisted instead.
+- **Look for copies.** Every few weeks, or when a task touches a helper, search for
+  copies of it in other features and hoist on the third.
+
+For an agent brief, one line carries the rule: default to local, hoist on the third
+caller, imports point up only, and features never import each other's helpers.
+
 ## Group packages by capability family
 
 Applies when a repository already has, or needs, several packages: more than one

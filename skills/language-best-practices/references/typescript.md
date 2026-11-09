@@ -71,9 +71,12 @@ import. Do not import application code into shared types to repair a cycle.
   feature's public surface by name, and other features import only that. It never
   `export *`s the folder: a wide barrel hides cycles and can defeat tree-shaking, so
   keep it to what other features actually use.
-- **One-way imports.** For example app → features → shared ui/lib/state → api. Two
-  features that need each other share their common piece through a shared feature.
-  Enforce the direction with the project's lint or a dependency-graph check.
+- **One-way imports.** app → features → product → generic: a helper starts local,
+  moves to `product/` (domain words, used across features) or `generic/` (would work
+  in any repo) on its third caller, and features never import each other's helpers.
+  Enforce the direction with a lint rule such as `import/no-restricted-paths` or a
+  dependency-graph check in CI. Details: the
+  [three tiers](../../architect/references/vertical-codebase.md#three-tiers-for-shared-code).
 - **Co-locate.** A component's styles, tests and data hooks sit beside it. A global
   stylesheet holds tokens and resets, not one feature's selectors.
 - **Size.** Past the project's soft cap (a few hundred lines is a common choice),

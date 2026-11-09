@@ -15,7 +15,7 @@ revision so later units can show progress.
 | --- | --- | --- |
 | Largest files and sections | Line counts per file; count of top-level types, functions or rules in each | Files that hold several capabilities |
 | Import graph | The compiler's or bundler's resolved imports (for example a dependency-graph tool), per feature | Cycles and deep imports into another feature's internals |
-| Duplicate helpers | Search by behavior (formatters, key handlers, path lookups, process spawns), then confirm with the call sites | Logic that wants one owner |
+| Duplicate helpers | Search by behavior (formatters, key handlers, path lookups, process spawns), then confirm with the call sites; count callers to apply the rule of three | Logic that wants one owner, and its tier |
 | Unused exports | The compiler or a dead-export tool that resolves imports; never a text search. Exclude anything a published package or crate exposes | Code that can go before it is moved |
 | Layer leaks | Business rules found in route handlers, IPC or transport adapters | Logic to move behind its owner |
 | Global styles | Selectors in shared stylesheets that target one feature | Styles to co-locate |
@@ -29,9 +29,10 @@ tune to the project, not fixed numbers. A typical set:
 - One front door per feature (`features/<x>/index.ts`, a Rust module's `mod.rs` or
   `lib.rs`) exporting only its public surface. It is the only import other features
   may use, and it never re-exports everything.
-- Dependencies point one way, for example app → features → shared ui/lib/state → api.
-  Shared rendering two features both need moves to a shared feature, which breaks
-  the cycle instead of hiding it.
+- Dependencies point one way: app → features → product → generic, with the
+  [three tiers](vertical-codebase.md#three-tiers-for-shared-code) deciding where shared
+  code lives. Shared rendering two features both need is hoisted, which breaks the
+  cycle instead of hiding it; features never import each other's helpers.
 - Styles, tests and data hooks live beside the component they serve.
 - A soft size cap (for example about 600 lines): past it, a file becomes a folder.
 - One name, one meaning across the app (for example Page = a route, Panel = a side-

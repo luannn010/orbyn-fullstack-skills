@@ -43,6 +43,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [google/elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) | Google LLC (Elephant-Goldfish Model) | See source | architect, how, interrogate, orbyn-ui-design, orbyn-workflow |
 | [google/eng-practices](https://github.com/google/eng-practices) | Google Engineering Practices contributors | See source | orbyn-workflow, unslop |
 | https://aclanthology.org/2024.eacl-demo.16/ | RAGAs, EACL 2024 | See source | orbyn-ai-application |
+| https://dev.to/nark3d/a-three-tier-folder-structure-for-long-lived-codebases-3a3l | Adam Lewis (Three-Tier Hoisting) | See source | architect, language-best-practices |
 | https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage | MDN Web Docs and Playwright documentation | See source | orbyn-ui-design |
 | https://doi.org/10.6028/NIST.AI.600-1 | NIST AI 600-1, July 2024 | See source | orbyn-ai-application |
 | https://genai.owasp.org/llmrisk/llm01-prompt-injection/ | OWASP LLM01:2025 | See source | orbyn-ai-application |

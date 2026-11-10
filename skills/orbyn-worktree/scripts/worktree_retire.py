@@ -23,6 +23,12 @@ import subprocess
 import sys
 import time
 import unicodedata
+
+_platform_spec = importlib.util.spec_from_file_location(
+    '_orbyn_retirement_platform', Path(__file__).with_name('retirement_platform.py'))
+native = importlib.util.module_from_spec(_platform_spec)
+sys.modules[_platform_spec.name] = native
+_platform_spec.loader.exec_module(native)
 try:
     import fcntl
 except ImportError:  # no advisory locks on this platform
@@ -129,6 +135,26 @@ def open_paths():
 
 def opened(path, held):
     return any(name == str(path) or name.startswith(str(path) + os.sep) for name in held)
+
+
+def host_managed(path):
+    return native.host_managed(path)
+
+
+def linked(path):
+    """Windows junctions and other reparse points need the same protection as symlinks."""
+    return Path(path).is_symlink() or (native.is_windows() and native.is_reparse(path))
+
+
+def usage_reason(path, held):
+    """Windows probes the candidate, not a fictitious global lsof snapshot."""
+    if native.is_windows():
+        try:
+            held = native.usage(path)
+        except (native.PlatformRefused, OSError):
+            held = None
+        return 'cannot check open files' if held is None else 'a process has files open here' if held else None
+    return 'cannot check open files' if held is None else 'a process has files open here' if opened(path, held) else None
 
 
 def open_prs(path, branch):
@@ -288,6 +314,8 @@ def scan(path, top=(), skip_top_git=False, caches=False):
     except OSError:
         return {**found, 'unreadable': True}
     see(top_info)
+    if native.is_windows() and linked(path):
+        return {**found, 'unreadable': True}
     if not stat.S_ISDIR(top_info.st_mode):
         return found
     tracked = tracked_files(path) if skip_top_git else frozenset()
@@ -309,7 +337,11 @@ def scan(path, top=(), skip_top_git=False, caches=False):
                     and not ((top or (caches and dirs and dirs[0].casefold() in CACHE_DIRS)) and package_tree(dirs))
                     and not (caches and not top and nested_package(path, dirs))):
                 found['secrets'].append(relative)
-        folders[:] = [f for f in folders if f.casefold() != '.git']
+        # os.walk(followlinks=False) is insufficient for Windows junctions.
+        reparses = {name for name in folders + files if native.is_windows() and linked(Path(here)/name)}
+        if reparses:
+            found['unreadable'] = True  # unknown ownership outside the candidate remains held
+        folders[:] = [f for f in folders if f.casefold() != '.git' and f not in reparses]
     return found
 
 
@@ -330,7 +362,7 @@ def read_json(path):
         return 'absent', None
     except OSError as error:
         return 'bad', f'cannot inspect: {error.strerror}'
-    if not stat.S_ISREG(info.st_mode):
+    if not stat.S_ISREG(info.st_mode) or linked(path):
         return 'bad', 'not a regular file'
     if info.st_size > MAX_BYTES:
         return 'bad', 'larger than 64 KiB'
@@ -379,7 +411,7 @@ def read_keep(path):
     if 'KEEP.txt' not in names:
         return None
     state = os.lstat(root/'KEEP.txt')
-    if not stat.S_ISREG(state.st_mode) or state.st_size > MAX_BYTES:
+    if not stat.S_ISREG(state.st_mode) or linked(root/'KEEP.txt') or state.st_size > MAX_BYTES:
         return {'fault': 'is not a regular file under 64 KiB'}
     try:
         lines = (root/'KEEP.txt').read_text(encoding='utf-8-sig').splitlines()
@@ -390,7 +422,7 @@ def read_keep(path):
         if not line or line == '#' or line.startswith('# '):
             continue
         entry = PurePosixPath(line)
-        if entry.is_absolute() or '..' in entry.parts or entry.as_posix() == '.' or any(c in line for c in '*?[]\\\0'):
+        if entry.is_absolute() or Path(line).drive or '..' in entry.parts or entry.as_posix() == '.' or any(c in line for c in '*?[]\\\0'):
             return {'fault': f'lists a glob or a path outside the task folder: {clean(line)}'}
         here = root
         for index, part in enumerate(entry.parts):
@@ -400,7 +432,7 @@ def read_keep(path):
             except OSError:
                 return {'fault': f'lists a path that matches nothing: {clean(line)}'}
             if index < len(entry.parts) - 1:
-                if stat.S_ISLNK(info.st_mode):
+                if linked(here):
                     return {'fault': f'lists a path through a link: {clean(line)}'}
                 ancestors.add((info.st_dev, info.st_ino))
         keep.add((info.st_dev, info.st_ino))
@@ -415,7 +447,7 @@ def outside_keep(root, keep):
     def walk(folder):
         for child in sorted(folder.iterdir()):
             who = ident(child)
-            if child.is_symlink() or who in keep['keep']:
+            if linked(child) or who in keep['keep']:
                 continue  # a link is never touched
             if child.is_dir() and who in keep['ancestors']:
                 walk(child)
@@ -438,7 +470,7 @@ def confined(path, root):
     here = root
     for part in parts:
         here = here/part
-        if here.is_symlink():
+        if linked(here):
             return False
     return Path(canon(path)) == path
 
@@ -478,7 +510,7 @@ def verify_workspace(path):
     """The real library root, or Refused: no link, the library's own markers and content, and its origin when it has one."""
     given = Path(path)
     root = Path(canon(given))
-    if given.is_symlink() or not root.is_dir():
+    if linked(given) or not root.is_dir():
         raise Refused(f'Workspace must be a real folder: {given}')
     state, catalog = read_json(root/'skills'/'catalog.json')
     ok = (state == 'ok' and catalog.get('schema_version') and isinstance(catalog.get('skills'), (dict, list)) and catalog['skills']
@@ -502,6 +534,12 @@ def system_tool(tool):
 
 def trash(paths):
     """Send folders to the system Trash (a fixed, root-owned tool, not PATH). Whether anything moved is judged by the path."""
+    if native.is_windows():
+        try:
+            native.recycle(paths)
+        except native.PlatformRefused as error:
+            raise Refused(str(error)) from error
+        return
     command = next(([tool, *args] for tool, args in TRASH_TOOLS if system_tool(tool)), None)
     if paths and not command:
         raise Refused('No root-owned system Trash tool at a fixed path; nothing was moved')
@@ -517,6 +555,13 @@ def trash(paths):
 def locked(folder):
     """An exclusive lock at <folder>/.cleanup.lock so two runs cannot act together. A linked folder, a linked lock
     file or anything but a regular file is refused, and opening never blocks."""
+    if native.is_windows():
+        try:
+            with native.cleanup_lock(folder):
+                yield
+        except native.PlatformRefused as error:
+            raise Refused(str(error)) from error
+        return
     if fcntl is None:
         raise Refused('This platform has no file locks; cleanup will not run')
     folder = Path(folder)
@@ -687,7 +732,7 @@ class Context:
         out = {'path': path, 'branch': branch or None, 'head': head, 'why': [], 'proof': None}
         why = out['why']
         self.memo['judged'][(repo, path)] = out
-        if any(mark in path + os.sep for mark in HOST_MANAGED):
+        if host_managed(path):
             why.append("host-managed; use the host's own cleanup")
         if 'locked' in tree:
             why.append('locked')
@@ -717,10 +762,9 @@ class Context:
             why.append('cannot find the Git directory')
         elif any(os.path.lexists(os.path.join(gitdir.stdout.strip(), name)) for name in GIT_BUSY):
             why.append('a rebase, bisect, merge, cherry-pick or revert is in progress')
-        if self.held is None:
-            why.append('cannot check open files')
-        elif opened(path, self.held):
-            why.append('a process has files open here')
+        usage = usage_reason(path, self.held)
+        if usage:
+            why.append(usage)
         if not primary:
             sha, base_branch = self.pin(repo)
             if sha is None:
@@ -753,19 +797,19 @@ def clones(workspace, unreadable=None):
     found, bad = [], [] if unreadable is None else unreadable
     base = Path(workspace)/'repo'
     try:
-        entries = sorted(base.iterdir()) if base.is_dir() and not base.is_symlink() else []
+        entries = sorted(base.iterdir()) if base.is_dir() and not linked(base) else []
     except OSError:
         return found
     for entry in entries:
         try:
-            if entry.is_symlink() or not entry.is_dir():
+            if linked(entry) or not entry.is_dir():
                 continue
             if (entry/'.git').is_dir():
                 found.append(entry)
             elif not (entry/'.git').exists():
                 for kid in sorted(entry.iterdir()):
                     try:
-                        if not kid.is_symlink() and (kid/'.git').is_dir():
+                        if not linked(kid) and (kid/'.git').is_dir():
                             found.append(kid)
                     except OSError:
                         bad.append(kid)
@@ -793,10 +837,9 @@ def guard(ctx, path, top=(), skip_top_git=False):
         if any(n != 'HOLD.json' and n.casefold() == 'hold.json' for n in os.listdir(path)):
             reasons.append('a hold.json spelled differently from HOLD.json')
             extra['fault'] = f'{path}: hold.json is not HOLD.json'
-    if ctx.held is None:
-        reasons.append('cannot check open files')
-    elif opened(path, ctx.held):
-        reasons.append('a process has files open here')
+    usage = usage_reason(path, ctx.held)
+    if usage:
+        reasons.append(usage)
     seen = ctx.scanned(path) if skip_top_git else scan(path, top)
     if seen['unreadable']:
         reasons.append('part of it cannot be read')
@@ -848,7 +891,7 @@ def eval_worktree(spec, ctx):
     if tree is None:
         return done('held', 'no longer a registered worktree')
     judged = ctx.judge(spec['repo'], tree, False)
-    if any(mark in path + os.sep for mark in HOST_MANAGED):
+    if host_managed(path):
         return done('held', "host-managed; use the host's own cleanup")
     if not ctx.allowed_tree(path, False):
         return done('report-only', 'outside repo/ and the library worktree root; report only')
@@ -1007,7 +1050,7 @@ def eval_archive(spec, ctx):
         return done('held', '; '.join(reasons), kb=seen['kb'], tool_made=True, **extra)
     days = idle_days(ctx, datetime.datetime.combine(datetime.date.fromisoformat(record['retired_on']), datetime.time()).timestamp())
     kept = ident(path/'RETIRED.json')
-    paths = [p for p in sorted(path.iterdir()) if ident(p) != kept and not p.is_symlink()]
+    paths = [p for p in sorted(path.iterdir()) if ident(p) != kept and not linked(p)]
     more = {'kb': seen['kb'], 'age_days': days, 'tool_made': True, **extra}
     if not paths:
         return done('waiting', 'only RETIRED.json is left', trimmed=True, **more)
@@ -1074,7 +1117,7 @@ def unclaimed(entry, claimed, depth=2):
     if path in claimed:
         return []
     try:
-        if entry.is_dir() and not entry.is_symlink() and depth and any(c.startswith(path + os.sep) for c in claimed):
+        if entry.is_dir() and not linked(entry) and depth and any(c.startswith(path + os.sep) for c in claimed):
             return [rest for kid in sorted(entry.iterdir()) for rest in unclaimed(kid, claimed, depth - 1)]
     except OSError:
         pass
@@ -1085,7 +1128,7 @@ def real_children(folder):
     """Entries of a real folder as spelled on disk; a link or missing folder lists nothing."""
     folder = Path(folder)
     try:
-        return sorted(folder.iterdir()) if folder.is_dir() and not folder.is_symlink() else []
+        return sorted(folder.iterdir()) if folder.is_dir() and not linked(folder) else []
     except OSError:
         return []
 
@@ -1118,13 +1161,13 @@ def discover(ctx, finish=None):
     for entry in real_children(ws/'output'):
         if entry.name == ARCHIVE:
             continue
-        specs.append({'class': 'output', 'path': str(entry), 'finish': entry.name == finish} if entry.is_dir() and not entry.is_symlink()
+        specs.append({'class': 'output', 'path': str(entry), 'finish': entry.name == finish} if entry.is_dir() and not linked(entry)
                      else {'class': 'other', 'path': str(entry), 'why': 'not a task folder; report only'})
     for entry in real_children(ws/'output'/ARCHIVE):
-        specs.append({'class': 'archive', 'path': str(entry)} if entry.is_dir() and not entry.is_symlink()
+        specs.append({'class': 'archive', 'path': str(entry)} if entry.is_dir() and not linked(entry)
                      else {'class': 'other', 'path': str(entry), 'why': 'not an archive entry; report only'})
     for slug in real_children(ws/'orbyn-references'):
-        specs += [{'class': 'references', 'path': str(kid)} for kid in real_children(slug) if kid.is_dir() and not kid.is_symlink()]
+        specs += [{'class': 'references', 'path': str(kid)} for kid in real_children(slug) if kid.is_dir() and not linked(kid)]
     for entry in real_children(ws/'repo'):
         specs += [{'class': 'other', 'path': str(rest), 'why': 'in repo/ but not a clone worktree; report only'}
                   for rest in unclaimed(entry, claimed)]

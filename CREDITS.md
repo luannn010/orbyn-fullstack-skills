@@ -50,6 +50,10 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | OWASP LLM06:2025 | See source | orbyn-ai-application |
 | https://githubnext.com/projects/pdd-kit/ | GitHub Next and Microsoft Research | See source | tdd |
 | https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search | Microsoft — Azure search security-filter limitations | See source | orbyn-ai-application |
+| https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfileex | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
+| https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperation-setoperationflags | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
+| https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-predeleteitem | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
+| https://learn.microsoft.com/en-us/windows/win32/fileio/creating-and-opening-files | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://pair.withgoogle.com/chapter/feedback-controls/ | Google PAIR feedback/control | See source | orbyn-ai-application |
 | https://pair.withgoogle.com/chapter/user-needs/ | Google PAIR user needs | See source | orbyn-ai-application |
 | https://research.google/pubs/how-developers-search-for-code-a-case-study/ | Google Research, Caitlin Sadowski, Kathryn T. Stolee and Sebastian Elbaum | See source | orbyn-research |

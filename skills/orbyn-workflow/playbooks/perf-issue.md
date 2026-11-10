@@ -57,6 +57,27 @@ no arbitrary minimum iteration count, relaxed target or unlimited hillclimb.
 
 For code that runs every frame or tick, read [real-time loops](../references/real-time-loops.md). For ordinary UI or RN motion, read the [motion performance method](../../orbyn-ui-design/references/animation-performance.md). Compare the same completed interaction under the same workload, preserving input/layout and runtime identity; screenshots alone cannot establish speed.
 
+## Ticks that carry nothing
+
+A timer that refetches every few seconds costs the same whether or not anything
+changed, when the answer is written into state as fresh objects: every subscriber
+below it sees new data. Ask what the tick did before optimizing the view. An
+unchanged payload should cause no state write, no object identity change and no DOM
+mutation. Fix the write rather than the render: compare the payload, keep the
+objects that did not change, replace only the entries that did, and reserve
+`loading` for a first read rather than every refresh.
+
+Measure the tick, not the screen. Hold one poll interval unchanged and record script
+time per tick at two or three data sizes, then count mutations inside the affected
+subtree over a window where nothing should change. Zero is the target for an
+unchanged tick. A nonzero count is either the poll or another clock, so name which:
+an elapsed-time readout changing once a second looks exactly like a poll that
+rebuilds rows, and optimizing the wrong one shows no gain.
+
+Keep a changed payload working. A test that changes one field and waits for the view
+to show it is as necessary as the identity test, because a cache that never updates
+passes the second one alone.
+
 ## Build budgets are constraints, not latency results
 
 Use for a changed startup/build/deployment boundary with an actual workload or

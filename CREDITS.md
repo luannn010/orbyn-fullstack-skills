@@ -51,7 +51,9 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://githubnext.com/projects/pdd-kit/ | GitHub Next and Microsoft Research | See source | tdd |
 | https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search | Microsoft — Azure search security-filter limitations | See source | orbyn-ai-application |
 | https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfileex | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
+| https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/ne-shobjidl_core-_transfer_source_flags | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperation-setoperationflags | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
+| https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-postdeleteitem | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-predeleteitem | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://learn.microsoft.com/en-us/windows/win32/fileio/creating-and-opening-files | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://pair.withgoogle.com/chapter/feedback-controls/ | Google PAIR feedback/control | See source | orbyn-ai-application |

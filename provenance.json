@@ -3259,6 +3259,18 @@
           "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
           "credit": "Microsoft Learn (Windows API documentation)",
           "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-postdeleteitem",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/ne-shobjidl_core-_transfer_source_flags",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
         }
       ]
     },

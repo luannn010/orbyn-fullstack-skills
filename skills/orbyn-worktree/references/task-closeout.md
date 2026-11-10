@@ -107,8 +107,12 @@ An open file or a process using a directory can hold a candidate. Usage checks a
 snapshots, repeated before retirement; they do not grant ownership of another
 session's checkout. The native Shell must confirm recycling, not permanent
 deletion, and cancellation or an uncertain/partial result preserves the Git
-registration and reports the actual source-path state. There is no permanent
-delete fallback, process termination or Recycle Bin emptying.
+registration and reports the actual source-path state. The volume's Recycle Bin
+is queried before anything moves, so a volume without a working Bin is refused
+with the folder untouched, and its item count must grow by one for each retired
+folder before a registration is cleared; a Bin that does not record the item
+leaves the registration in place. There is no permanent delete fallback, process
+termination or Recycle Bin emptying.
 
 The retirement record is written before moving the directory. Registration is
 cleared only after confirmed recycling and source disappearance. Restore from the

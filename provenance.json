@@ -3233,6 +3233,13 @@
           "effort": "medium",
           "date": "2026-11-10",
           "scope": "Issue #171: native Windows retirement platform operations, path safety, helper integration, regression tests and Windows CI; Claude planning blocked by account usage limit"
+        },
+        {
+          "tool": "Freebuff desktop (Codebuff agent) 0.0.201",
+          "model": "not reported by the harness",
+          "effort": "not reported by the harness",
+          "date": "2026-11-10",
+          "scope": "Review fix on PR #172 with Luan Nguyen: query the volume's Recycle Bin before any move and require its item count to grow before a registration is cleared; remove an unrelated .gitignore entry"
         }
       ],
       "reviewed_inspiration": [

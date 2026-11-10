@@ -379,6 +379,23 @@ def _shell_recycle(path, guard=None):
         ole.CoUninitialize()
 
 
+def _bin_state(api, volume_root):
+    """Items the volume's Recycle Bin holds, or PlatformRefused when it has no working Bin."""
+    c = api[0]
+    from ctypes import wintypes as w
+
+    class BinInfo(c.Structure):
+        _fields_ = [('size', w.DWORD), ('bytes', c.c_int64), ('items', c.c_int64)]
+
+    shell = c.WinDLL('shell32.dll', winmode=0x800)
+    shell.SHQueryRecycleBinW.argtypes = [w.LPCWSTR, c.POINTER(BinInfo)]
+    shell.SHQueryRecycleBinW.restype = c.c_long
+    info = BinInfo(c.sizeof(BinInfo), 0, 0)
+    if shell.SHQueryRecycleBinW(volume_root, c.byref(info)) < 0:
+        raise PlatformRefused('the Recycle Bin is unavailable on this volume')
+    return info.items
+
+
 def recycle(paths):
     """Recycle local fixed-volume entries, refusing missing or partial proof."""
     try:
@@ -391,6 +408,7 @@ def _recycle(paths):
     api = _win32()
     c, _, kernel, _, _ = api
     checked = []
+    bins = {}
 
     def key(info):
         return info.volume, info.index_high, info.index_low, bool(info.attributes & 0x10)
@@ -408,8 +426,12 @@ def _recycle(paths):
             volume = c.create_unicode_buffer(32768)
             if not kernel.GetVolumePathNameW(path, volume, len(volume)) or kernel.GetDriveTypeW(volume.value) != 3:
                 raise PlatformRefused('recycling requires a local fixed volume')
-        checked.append((path, expected))
-    for path, expected in checked:
+            if volume.value not in bins:
+                # Asked before anything moves: a volume whose Bin cannot answer may delete
+                # permanently, so it is refused while the folder is still there.
+                bins[volume.value] = _bin_state(api, volume.value)
+        checked.append((path, expected, volume.value))
+    for path, expected, volume_root in checked:
         with _pinned_ancestors(api, path):
             held = usage(path)
             if held is None or held:
@@ -433,6 +455,12 @@ def _recycle(paths):
                     or proof.get('reason') or not proof.get('pre_count')
                     or proof.get('pre_count') != proof.get('post_count')):
                 raise PlatformRefused('Shell did not prove complete recycling')
+            # The Bin's own count is the proof that does not rest on a callback: a permanent
+            # delete leaves it unchanged, so the folder must appear there exactly once.
+            recorded = _bin_state(api, volume_root)
+            if recorded != bins[volume_root] + 1:
+                raise PlatformRefused('the Recycle Bin did not record the recycled item')
+            bins[volume_root] = recorded
             try:
                 os.lstat(path)
             except FileNotFoundError:

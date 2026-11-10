@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
-.collab/tasks/
 .venv/
 .DS_Store
 output/

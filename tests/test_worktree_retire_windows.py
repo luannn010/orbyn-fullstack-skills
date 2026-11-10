@@ -168,6 +168,44 @@ class NativeWindowsContracts(unittest.TestCase):
                     tool.native.recycle([target])
                 self.assertTrue(target.is_dir())
 
+    def test_unusable_bin_refuses_before_anything_moves(self):
+        target = self.root/'candidate'
+        target.mkdir()
+        with mock.patch.object(tool.native, 'usage', return_value=set()), mock.patch.object(
+                tool.native, '_bin_state', side_effect=tool.native.PlatformRefused('no usable bin')), mock.patch.object(
+                tool.native, '_shell_recycle') as shell:
+            with self.assertRaises(tool.native.PlatformRefused):
+                tool.native.recycle([target])
+            shell.assert_not_called()
+        self.assertTrue(target.is_dir())
+
+    def test_bin_that_does_not_record_the_item_is_not_reported_as_recycled(self):
+        target = self.root/'candidate'
+        target.mkdir()
+        proof = {'result': 0, 'aborted': False, 'reason': None, 'pre_count': 1, 'post_count': 1}
+        with mock.patch.object(tool.native, 'usage', return_value=set()), mock.patch.object(
+                tool.native, '_bin_state', side_effect=[4, 4]), mock.patch.object(
+                tool.native, '_shell_recycle', return_value=proof):
+            with self.assertRaises(tool.native.PlatformRefused):
+                tool.native.recycle([target])
+        self.assertTrue(target.is_dir())
+
+    def test_bin_growth_with_an_absent_source_reports_success(self):
+        target = self.root/'candidate'
+        target.mkdir()
+        (target/'fixture.txt').write_text('synthetic', encoding='utf-8')
+        proof = {'result': 0, 'aborted': False, 'reason': None, 'pre_count': 1, 'post_count': 1}
+        def moved(path, guard=None):
+            if guard:
+                guard(path)
+            shutil.rmtree(target)
+            return proof
+        with mock.patch.object(tool.native, 'usage', return_value=set()), mock.patch.object(
+                tool.native, '_bin_state', side_effect=[4, 5]), mock.patch.object(
+                tool.native, '_shell_recycle', side_effect=moved):
+            tool.native.recycle([target])
+        self.assertFalse(target.exists())
+
     def test_candidate_becoming_busy_stops_before_shell(self):
         target = self.root/'candidate'
         target.mkdir()

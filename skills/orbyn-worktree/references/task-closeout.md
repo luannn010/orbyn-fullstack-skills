@@ -95,6 +95,32 @@ expired hold is never a licence: the item turns report-only and a person decides
 trees, so it stays small. Entries from the earlier layout that still hold files are
 trimmed by age, then largest first only while the archive is over its budget.
 
+## Windows retirement
+
+On native Windows 10/11, the helper uses built-in Windows APIs for its nonblocking
+cleanup lock, candidate-scoped file/directory usage probes and Recycle Bin move.
+Local fixed volumes with working Recycle Bin support are the initial supported
+surface. UNC/network paths, reparse points (including junctions), inaccessible
+entries and ambiguous usage stay held; no tool installation or elevation follows.
+
+An open file or a process using a directory can hold a candidate. Usage checks are
+snapshots, repeated before retirement; they do not grant ownership of another
+session's checkout. The native Shell must confirm recycling, not permanent
+deletion, and cancellation or an uncertain/partial result preserves the Git
+registration and reports the actual source-path state. The volume's Recycle Bin
+is queried before anything moves, so a volume without a working Bin is refused
+with the folder untouched, and its item count must grow by one for each retired
+folder before a registration is cleared; a Bin that does not record the item
+leaves the registration in place. There is no permanent delete fallback, process
+termination or Recycle Bin emptying.
+
+The retirement record is written before moving the directory. Registration is
+cleared only after confirmed recycling and source disappearance. Restore from the
+Recycle Bin returns files only after registration was cleared; Git's former index
+and reflog are not restored by that action. Recycling does not reclaim the
+volume's space until its contents are removed from the Recycle Bin by the user
+or their existing retention settings; never empty it for them.
+
 ## One identity, independently verified states
 
 Reuse the existing task/issue note and later PR alias with an issue backlink where

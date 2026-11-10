@@ -122,10 +122,11 @@ brief. A new worktree adds no entire-app suite, hosted CI or deployment.
 
 ## Preserve before cleanup
 
-At a meaningful handoff or terminal delivery result, apply the single
-[task closeout method](references/task-closeout.md): reconcile source, commit,
-push, PR and resource states, decide retention with a reason/review trigger,
-and assess exact-path retirement separately from permission to remove it.
+For Windows paths and capabilities, read [native retirement](references/task-closeout.md#windows-retirement).
+
+At delivery, follow [task closeout](references/task-closeout.md): reconcile source,
+commit, push, PR and resources; record retention reasons/review triggers and assess
+exact-path retirement separately from permission to remove it.
 
 Never delete another owner's work; unknown ownership means hold. A squash merge or
 clean status alone does not clear a tree for removal. Retire a tree only through

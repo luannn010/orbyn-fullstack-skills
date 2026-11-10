@@ -3233,6 +3233,58 @@
           "effort": "medium",
           "date": "2026-11-07",
           "scope": "Package files in a lockfile-proved nested node_modules or virtualenv no longer hold a worktree as secret-looking"
+        },
+        {
+          "tool": "Codex",
+          "model": "gpt-6.1-sol (lead and native backend), gpt-6.1-terra (read-only investigation)",
+          "effort": "medium",
+          "date": "2026-11-10",
+          "scope": "Issue #171: native Windows retirement platform operations, path safety, helper integration, regression tests and Windows CI; Claude planning blocked by account usage limit"
+        },
+        {
+          "tool": "Freebuff desktop (Codebuff agent) 0.0.201",
+          "model": "not reported by the harness",
+          "effort": "not reported by the harness",
+          "date": "2026-11-10",
+          "scope": "Review fix on PR #172 with Luan Nguyen: query the volume's Recycle Bin before any move and require its item count to grow before a registration is cleared; remove an unrelated .gitignore entry"
+        }
+      ],
+      "reviewed_inspiration": [
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-lockfileex",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/fileio/creating-and-opening-files",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperation-setoperationflags",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-predeleteitem",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileoperationprogresssink-postdeleteitem",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
+        },
+        {
+          "source": "https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/ne-shobjidl_core-_transfer_source_flags",
+          "relationship": "reviewed-inspiration observed 2026-11-10; independently written API integration; no implementation or documentation text copied",
+          "credit": "Microsoft Learn (Windows API documentation)",
+          "license": "CC-BY-4.0"
         }
       ]
     },

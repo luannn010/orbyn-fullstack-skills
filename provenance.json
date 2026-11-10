@@ -2469,6 +2469,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Scope the agent-requested guardrail to the skill library; other repositories keep their own merge rules"
+        },
+        {
+          "tool": "Freebuff desktop (Codebuff agent)",
+          "model": "not exposed by the harness",
+          "effort": "not exposed by the harness",
+          "date": "2026-11-10",
+          "scope": "Add the tick-driven section to the performance playbook: an unchanged payload must not write state, measure per-tick script time and idle mutations, and keep a changed-payload test"
         }
       ]
     },

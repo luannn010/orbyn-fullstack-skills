@@ -57,6 +57,41 @@ no arbitrary minimum iteration count, relaxed target or unlimited hillclimb.
 
 For code that runs every frame or tick, read [real-time loops](../references/real-time-loops.md). For ordinary UI or RN motion, read the [motion performance method](../../orbyn-ui-design/references/animation-performance.md). Compare the same completed interaction under the same workload, preserving input/layout and runtime identity; screenshots alone cannot establish speed.
 
+## Slow screen over a local or HTTP/1.1 service
+
+Use when a screen feels slow but the service answers fast, or many calls take
+seconds together. Measure the running system before reading code or building a mock.
+
+1. **Time each call directly** from outside the app (for example `curl`), two
+   rounds (cold, then warm), and read the service's own request trace (name,
+   duration, end time).
+2. **Compare server time with arrival time.** A call that takes 1-2 ms in the
+   handler but arrives 0.3-2.4 s after its siblings is queueing before the handler.
+   Use the client's request timing (DevTools *Queueing*/*Stalled*) or the server's
+   accept time to tell client queueing from a full server worker pool.
+3. **Count connections.** A browser or webview holds about 6 HTTP/1.1 connections
+   per host and port, often shared across all the app's windows, and browsers need
+   TLS for HTTP/2. List the server's established sockets, one side only (for
+   example `lsof -a -p <server pid> -iTCP:<port> -sTCP:ESTABLISHED`), and name what
+   holds each: event streams, slow reads, polls. Events carried over a WebSocket or
+   the host's IPC do not use these connections.
+4. **Fix both sides.** Server: [cache slow reads](../../orbyn-backend-design/references/slow-read-caching.md).
+   Client: [lane the slow reads](../../orbyn-ui-design/references/async-state.md#keep-slow-reads-from-starving-the-screen).
+   Each owner lists its traps.
+5. **Re-measure the shipped build** from the app's own trace, the same way as
+   steps 1-2. Cold first reads stay slow; keep them off the interactive path
+   rather than claiming they got faster.
+
+Two traps cross both sides: a poll queued behind slow reads shows state that is no
+longer true, and capping slow reads can slow another screen that needs them, so
+re-measure every screen that uses a laned call. Give an independent reviewer the
+diff with the owners' check lists.
+
+Example receipt (warm repeat visit, same machine, baseline build vs candidate
+build; one run each, so preliminary): list read 1.8 s to 1 ms; settings read
+0.44 s to 2 ms; spread of sibling arrival times 0.3-2.4 s to 6-160 ms. Cold reads
+(3-7 s) unchanged, moved off the interactive path.
+
 ## Ticks that carry nothing
 
 A timer that refetches every few seconds costs the same whether or not anything

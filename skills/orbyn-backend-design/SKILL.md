@@ -41,6 +41,7 @@ For example, moving a task between projects requires source/destination scope, s
 - Actual service/runtime: [language guidance](../language-best-practices/SKILL.md). Database syntax and isolation need the engine's SQL reference; language types alone do not prove transaction or authorization behavior.
 - Bounded input/work, error semantics, concurrency and stable pagination: [production service contracts](references/service-contracts.md).
 - An operation needing diagnosable phases and privacy-aware records: [observability](references/observability.md). Installing telemetry or a provider is a separate decision.
+- A measured slow read that can be a little stale: [caching slow reads](references/slow-read-caching.md).
 - Critical retry, lease or worker lifecycle rules, when justified: connect current effect boundaries to [statecharts](../architect/references/statecharts.md) and [property verification](../tdd/references/formal-verification.md).
 - Worked examples: the [boundary method](references/principles/boundary-discipline.md) and [idempotency method](references/principles/make-operations-idempotent.md).
 - Supported Expo Router server endpoints: [API route authority](references/expo-api-routes.md). Native/browser route state cannot establish server resource access.

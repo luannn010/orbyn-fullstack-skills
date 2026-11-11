@@ -917,6 +917,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Reruns only for named infrastructure failures; a crash inside a real test is a flaky test"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-11",
+          "scope": "Making CI faster reference: step timing, build once, duration sharding, required aggregates, cache warming and keys, CI-only profiles, path filters, merge watchers"
         }
       ]
     },

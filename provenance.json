@@ -1420,6 +1420,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Routing cases for orbyn-astryx"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-11",
+          "scope": "Routing cases for orbyn-affectui"
         }
       ],
       "reviewed_inspiration": [
@@ -1837,6 +1844,12 @@
           "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/theme-factory",
           "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
           "relationship": "reviewed-inspiration; Apache-2.0; independently written, no upstream text imported"
+        },
+        {
+          "credit": "affectUI",
+          "source": "https://github.com/flohoeller/affectui/tree/3c5df43893d870ee42d81fad4a4ba3ad72ba1b99",
+          "revision": "3c5df43893d870ee42d81fad4a4ba3ad72ba1b99",
+          "relationship": "reviewed-inspiration; MIT; independently written agent-run views, no upstream text imported"
         }
       ],
       "authoring": [
@@ -1950,6 +1963,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "One meaning per structural word (Page, Panel, Dialog)"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-11",
+          "scope": "Agent-run views: run tree, trace timeline, handoff, background inbox, context usage, decision inbox, working indicator, change summary; generative UI and protocol-versus-presentation rules"
         }
       ]
     },
@@ -3985,6 +4005,33 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "New skill bringing Astryx to every host, compatible with Orbyn authority and design rules"
+        }
+      ]
+    },
+    "orbyn-affectui": {
+      "relationship": "original",
+      "credit": "Anh Dang and Orbyn contributors; bundled affectUI items credited below",
+      "copyright": "Copyright (c) 2026 Anh Dang and Orbyn contributors",
+      "license": "MIT",
+      "source": "https://github.com/orbyn-dev/orbyn-fullstack-skills/tree/main/skills/orbyn-affectui",
+      "changes": "Orbyn skill for using affectUI's free React components: copy the reviewed pinned file, restyle through its CSS variables, drive it from real state, verify; updates only through upstream review. Bundles the unmodified free items as a pinned, hash-checked snapshot under references/upstream/affectui/.",
+      "reviewed_sources": [
+        {
+          "credit": "Florian H\u00f6ller (adfects), affectUI",
+          "copyright": "Copyright (c) 2026 Florian H\u00f6ller (adfects)",
+          "source": "https://github.com/flohoeller/affectui/tree/3c5df43893d870ee42d81fad4a4ba3ad72ba1b99",
+          "revision": "3c5df43893d870ee42d81fad4a4ba3ad72ba1b99",
+          "license": "MIT",
+          "relationship": "bundled unmodified snapshot of the free items; see snapshot.json"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-11",
+          "scope": "New skill bringing affectUI's free components to every host, pinned for upstream review"
         }
       ]
     }

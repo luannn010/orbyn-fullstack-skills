@@ -462,6 +462,16 @@
         "language-best-practices",
         "orbyn-webapp-testing"
       ]
+    },
+    {
+      "name": "orbyn-affectui",
+      "category": "Product design",
+      "related": [
+        "orbyn-ui-design",
+        "orbyn-ai-application",
+        "orbyn-astryx",
+        "language-best-practices"
+      ]
     }
   ],
   "retired_skills": {

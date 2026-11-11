@@ -63,6 +63,7 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 - [stack-diagram](stack-diagram/SKILL.md) — Turn a described stack into an architecture diagram as self-contained HTML, PNG or TSX, with grouped nodes and three edge kinds. Use architect for system design and state or lifecycle diagrams, technical-illustration for model-driven figures and motion, product-illustration for faux product UI.
 - [technical-illustration](technical-illustration/SKILL.md) — Create or repair deterministic code-only motion films, music and lyric videos, character animation, 3D worlds and model-driven technical illustrations, with accessible interaction and inspected SVG, React, print or conditional WebGL/beta3D outputs.
 - [orbyn-astryx](orbyn-astryx/SKILL.md) — Build, theme and review React UI with Meta's Astryx design system (@astryxdesign): pages from its templates, its components and tokens, a house style as an Astryx theme. Versions change only via Dependabot, never by hand. Use when a project uses or adopts Astryx.
+- [orbyn-affectui](orbyn-affectui/SKILL.md) — Build agent UI in React from affectUI's free one-file components: tool-call cards, a decision inbox, a thinking loader, change summaries, message actions, comment threads, inputs and motion. Bundled and pinned; restyle to project tokens. Use when a React 19 app needs these pieces.
 
 ## Social content and visuals
 

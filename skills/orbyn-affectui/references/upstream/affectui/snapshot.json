@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/flohoeller/affectui",
+  "revision": "3c5df43893d870ee42d81fad4a4ba3ad72ba1b99",
+  "retrieved_on": "2026-11-11",
+  "license": "MIT",
+  "scope": "Unmodified free affectUI items (components, blocks, illustrations and motion, in both the clean and classic styles) with the MIT license. Showcase images and the README are not bundled. The upstream repository is generated from the affectUI source; Pro items are not in it and are not bundled.",
+  "files": {
+    "components/button-clean.tsx": {
+      "source_path": "components/button-clean.tsx",
+      "sha256": "686046d5fbe47b1d2234980c05d4fc56d2ad69ee3a084de8583c82759a7d4acb"
+    },
+    "components/button.tsx": {
+      "source_path": "components/button.tsx",
+      "sha256": "7c04dbc5edbe5153c522eb0b564430b32208ec86ab88ee2aa3843362f653e38b"
+    },
+    "components/change-summary-clean.tsx": {
+      "source_path": "components/change-summary-clean.tsx",
+      "sha256": "27d22c7ae835395ff68079b8eeb40ccb44ae5702f6ae7c3ce34c6c676ac3591a"
+    },
+    "components/change-summary.tsx": {
+      "source_path": "components/change-summary.tsx",
+      "sha256": "e80df257ef6db0c2e109f2c2a53efdf221f3f54e95d505021912e4fb631afdc3"
+    },
+    "components/checkbox-clean.tsx": {
+      "source_path": "components/checkbox-clean.tsx",
+      "sha256": "a148a739581a76055d45a231dcfa46daa8cd9abac541ce033e9498f10e9ade30"
+    },
+    "components/checkbox.tsx": {
+      "source_path": "components/checkbox.tsx",
+      "sha256": "697d838a4b4b6dbf7466949e5066670dbfd78157fbba61c789fa3876bb20addf"
+    },
+    "components/comment-thread-clean.tsx": {
+      "source_path": "components/comment-thread-clean.tsx",
+      "sha256": "10f429e65f9f8fd5e619d935f39057d07e4bfd393bf8b52949b40601180be04f"
+    },
+    "components/comment-thread.tsx": {
+      "source_path": "components/comment-thread.tsx",
+      "sha256": "2139cf7b163913921527329fccfa66ec091df0beb68a15d38cc6e3c1c95da4c2"
+    },
+    "components/decision-inbox-clean.tsx": {
+      "source_path": "components/decision-inbox-clean.tsx",
+      "sha256": "0ed6b48c68376d491919ed41577d0dd6c59f795263f320c620a2988db933f186"
+    },
+    "components/decision-inbox.tsx": {
+      "source_path": "components/decision-inbox.tsx",
+      "sha256": "2ace7c51a22611b4ef581a8d5598973e75ee25b616a1f83a8900aa410a2d32fe"
+    },
+    "components/email-draft-clean.tsx": {
+      "source_path": "components/email-draft-clean.tsx",
+      "sha256": "bf848bf365f39702642b6100b77567c14e5e5c3c19452fb96318a7e8f92a78c9"
+    },
+    "components/email-draft.tsx": {
+      "source_path": "components/email-draft.tsx",
+      "sha256": "2af6ae588ff51be42a34f0c5bb7362397f6143e0765723370820273a3c467099"
+    },
+    "components/filter-menu-clean.tsx": {
+      "source_path": "components/filter-menu-clean.tsx",
+      "sha256": "fe0a4ce7152cd6c884f783b73fc77ae87eb5f3fc086a98a6fb58097ba5c1a618"
+    },
+    "components/filter-menu.tsx": {
+      "source_path": "components/filter-menu.tsx",
+      "sha256": "e84e29eab1cd3e46a6a3ce61a1bd77798cef536ac2d5aaf641a2cf7c82d9ce6e"
+    },
+    "components/message-actions-clean.tsx": {
+      "source_path": "components/message-actions-clean.tsx",
+      "sha256": "5aa7807be975f21192e3c6ff65933594bc5ce235a16740f71a3e36879e5d6dfb"
+    },
+    "components/message-actions.tsx": {
+      "source_path": "components/message-actions.tsx",
+      "sha256": "efd39eca5e1b1ec32c8bc584892318954d3ad65411f63385173382ec6e5dc2d4"
+    },
+    "components/notification-stack-clean.tsx": {
+      "source_path": "components/notification-stack-clean.tsx",
+      "sha256": "8fcbdc7e9bb9840c83feb85bd61d09ba9833927effff80fdcbee8e2baeed0d6d"
+    },
+    "components/notification-stack.tsx": {
+      "source_path": "components/notification-stack.tsx",
+      "sha256": "b5136de9b6a800d534ba5d0f9e928273bf9a230d4b358f484f8c4e71ed250551"
+    },
+    "components/otp-input-clean.tsx": {
+      "source_path": "components/otp-input-clean.tsx",
+      "sha256": "b060151a2634e8a54bdf1bcacf2082238c1a19ee4ef8e06caf2cf393c7642aaf"
+    },
+    "components/otp-input.tsx": {
+      "source_path": "components/otp-input.tsx",
+      "sha256": "d62f27fce502e7c5ab826ac5f9739dcef714483edf8fda74751fffc2f4b97123"
+    },
+    "components/profile-menu-clean.tsx": {
+      "source_path": "components/profile-menu-clean.tsx",
+      "sha256": "fb632b336ce6061151d5a329acc04f6b569bdf20bfb8d339fb27d59755a09270"
+    },
+    "components/profile-menu.tsx": {
+      "source_path": "components/profile-menu.tsx",
+      "sha256": "c78c375eed2c4a5d50e94195a3817ff370547ff2ea0967a42af82ad2e49fa173"
+    },
+    "components/progress-tracker-clean.tsx": {
+      "source_path": "components/progress-tracker-clean.tsx",
+      "sha256": "31c2172b973342f19ba98ac0caa5950bd846385032eef724a6cef59ebe1bfe60"
+    },
+    "components/progress-tracker.tsx": {
+      "source_path": "components/progress-tracker.tsx",
+      "sha256": "d2f2d32c2ef7f08834de472162f2c4a4ab04c94b26e54b8491fd516ffdf406df"
+    },
+    "components/reaction-bar-clean.tsx": {
+      "source_path": "components/reaction-bar-clean.tsx",
+      "sha256": "84146a19d25034c40c70b71add8b8987c94b9ef2d5df452afbf8f9e5cf6d65b3"
+    },
+    "components/reaction-bar.tsx": {
+      "source_path": "components/reaction-bar.tsx",
+      "sha256": "25d9529292d06c78d9289e7bca13383a852e5515e26a75ef52f40755e3d4d9b7"
+    },
+    "components/segmented-control-clean.tsx": {
+      "source_path": "components/segmented-control-clean.tsx",
+      "sha256": "8547e6335fc70ec9aa8e5a89dec96deb95bb46de5894c3c0e2b26e1763abd506"
+    },
+    "components/segmented-control.tsx": {
+      "source_path": "components/segmented-control.tsx",
+      "sha256": "6e4303382350f70b232e451816113855311512e7197410984bac4a764064f730"
+    },
+    "components/select-clean.tsx": {
+      "source_path": "components/select-clean.tsx",
+      "sha256": "086f8e8b71a40f9b221afdd61c3fe337fe2e1640a0e0e148a260db987e94440d"
+    },
+    "components/select.tsx": {
+      "source_path": "components/select.tsx",
+      "sha256": "9caad90bfa8e9f6d6ef1f544d81486cef0f9ef427c48c1e3da34295ce5faca09"
+    },
+    "components/smart-recommendation-clean.tsx": {
+      "source_path": "components/smart-recommendation-clean.tsx",
+      "sha256": "0c7ed0fabf8c2d069e1b66ca36111d666221dc5bc0d9609497d6fd4573a15952"
+    },
+    "components/smart-recommendation.tsx": {
+      "source_path": "components/smart-recommendation.tsx",
+      "sha256": "2157333436989e22378528877f0db4311f802f76d75d30f2628fdbd42b7a4593"
+    },
+    "components/switch-clean.tsx": {
+      "source_path": "components/switch-clean.tsx",
+      "sha256": "b6926841451b1a944fb966a8f5a4904ffe7f56cd788ca672ba3db6986a45c5e7"
+    },
+    "components/switch.tsx": {
+      "source_path": "components/switch.tsx",
+      "sha256": "f6c54a7808dff4d7bd1dc7c4379242a590d2386de24465c8616796f44c5b910d"
+    },
+    "components/tag-input-clean.tsx": {
+      "source_path": "components/tag-input-clean.tsx",
+      "sha256": "883405026fb70a66e3b71ba8cd60dc7ab9618bc14cf2377a5b5916d1268b164c"
+    },
+    "components/tag-input.tsx": {
+      "source_path": "components/tag-input.tsx",
+      "sha256": "4ca64c55fe71710a7bae24772fa656b17f7fc1a92639fdb40fec4638787d3922"
+    },
+    "components/text-area-clean.tsx": {
+      "source_path": "components/text-area-clean.tsx",
+      "sha256": "8079d596daf5411293eab516e7d9432eac0db3a812548b158241e3aaad84fd52"
+    },
+    "components/text-area.tsx": {
+      "source_path": "components/text-area.tsx",
+      "sha256": "1ad809803815e0b6908e07f81b1db18a4b3c3b3ecbfb9d8bf09b70bcce8dd50e"
+    },
+    "components/text-field-clean.tsx": {
+      "source_path": "components/text-field-clean.tsx",
+      "sha256": "87a72ec504b23ff046d2b45944415c41f72f8ce99bcf9741918d96f5868717c4"
+    },
+    "components/text-field.tsx": {
+      "source_path": "components/text-field.tsx",
+      "sha256": "466dc0c3d4eaf6bcfb7a0eca035b6d4affd26dc254f6f5a0ff985d660cbfb1b6"
+    },
+    "components/thinking-loader-clean.tsx": {
+      "source_path": "components/thinking-loader-clean.tsx",
+      "sha256": "9bec35e124c8bc11db671b0bddabf2d2b05a20e8b557435589e8599d18fee38f"
+    },
+    "components/thinking-loader.tsx": {
+      "source_path": "components/thinking-loader.tsx",
+      "sha256": "a595ac6e92946c6c8d70406ec59318504ad0b0df30a2906a7ce0a8d380828da1"
+    },
+    "components/tips-panel-clean.tsx": {
+      "source_path": "components/tips-panel-clean.tsx",
+      "sha256": "33300ded0a76984ceba882cd6b045c865c0a997199196074faedc725bdeb6f75"
+    },
+    "components/tips-panel.tsx": {
+      "source_path": "components/tips-panel.tsx",
+      "sha256": "f5ec5654adde1a2ca68887407915687949a0175e447c59b996df59b39bf68846"
+    },
+    "components/tool-call-card-clean.tsx": {
+      "source_path": "components/tool-call-card-clean.tsx",
+      "sha256": "cc8f4c7a581e0c7fd7d05faa63122d06d01542e71c4df75dd0a88f1365c839ff"
+    },
+    "components/tool-call-card.tsx": {
+      "source_path": "components/tool-call-card.tsx",
+      "sha256": "91ab651c72b613be544e2b2e83b557e2f522c9a6c458d05ade85365086865766"
+    },
+    "blocks/logo-marquee-clean.tsx": {
+      "source_path": "blocks/logo-marquee-clean.tsx",
+      "sha256": "74d0750675ec3ceba387660a7b6acbe6ad77dfa9d7c0a3ad1d55b3d35be21d30"
+    },
+    "blocks/logo-marquee.tsx": {
+      "source_path": "blocks/logo-marquee.tsx",
+      "sha256": "65b4862d3fb7bf17134c761aa3b70b0ec39205770bef6e61e5af3fabae369f3a"
+    },
+    "blocks/testimonial-wall-clean.tsx": {
+      "source_path": "blocks/testimonial-wall-clean.tsx",
+      "sha256": "4c42c9a202918c4064cb96b9ed72fd90cb281847189512cd44fc35cdf2f4de61"
+    },
+    "blocks/testimonial-wall.tsx": {
+      "source_path": "blocks/testimonial-wall.tsx",
+      "sha256": "c8ee81d6d2cf67e49f509470e2151fd19e2187748672e95f8314e292eb6e5961"
+    },
+    "illustrations/agent-team.tsx": {
+      "source_path": "illustrations/agent-team.tsx",
+      "sha256": "dbacf19316166c429e79f33c18d98b49be8505fbd75f1fe68047180b10b726b2"
+    },
+    "illustrations/cover-flow.tsx": {
+      "source_path": "illustrations/cover-flow.tsx",
+      "sha256": "27f4573b7d67bc5355f5de3cee2ce6fe328e04144e6771135ae1c1a261f784f0"
+    },
+    "illustrations/empty-calendar.tsx": {
+      "source_path": "illustrations/empty-calendar.tsx",
+      "sha256": "e3de6f44d69d5ad484fa588cf202f7ead07a5ba6c4b0b3100d33fdaaa7503ec3"
+    },
+    "illustrations/enrichment-orbit.tsx": {
+      "source_path": "illustrations/enrichment-orbit.tsx",
+      "sha256": "300cd510c1ded928ce02a20225684e47e4c80709b7b4fad861e648420320664d"
+    },
+    "illustrations/frost-cloud.tsx": {
+      "source_path": "illustrations/frost-cloud.tsx",
+      "sha256": "b09e8919442f7bc90ff3770fc9abc76b269482826bf6216bde3d976e4eeef4d8"
+    },
+    "illustrations/ghosted-chat.tsx": {
+      "source_path": "illustrations/ghosted-chat.tsx",
+      "sha256": "5ff7bf6384f11a4c970676ba525950bf5d71f5e4a3063669b6d7c7fefc44f71b"
+    },
+    "illustrations/glow-cloud.tsx": {
+      "source_path": "illustrations/glow-cloud.tsx",
+      "sha256": "7d27f943b890c72e204b0274c9810bf257bd40e7869d54d58ee28984b953023f"
+    },
+    "illustrations/integration-beam.tsx": {
+      "source_path": "illustrations/integration-beam.tsx",
+      "sha256": "533cfff48bfc8b2d03a1968292d79e2229b8156e690c587fc4b0dbc965445fe6"
+    },
+    "illustrations/integration-grid.tsx": {
+      "source_path": "illustrations/integration-grid.tsx",
+      "sha256": "807483dc182de27dc3ad5e4046cdd1e1454323904219c93d0c979d065d41c9d5"
+    },
+    "illustrations/layer-stack.tsx": {
+      "source_path": "illustrations/layer-stack.tsx",
+      "sha256": "4f8ea82ab8bca0c3a0a8f802eeaaa733fd2fac09b829f671519adbbaa8466cd6"
+    },
+    "illustrations/lead-sourcing.tsx": {
+      "source_path": "illustrations/lead-sourcing.tsx",
+      "sha256": "baec1acba55f713644bf5e3fb8ed9fdd5a2d7c989d3a385d8fd89b674c13050f"
+    },
+    "illustrations/logo-cluster.tsx": {
+      "source_path": "illustrations/logo-cluster.tsx",
+      "sha256": "53e8bed208038a76406e85d2eb426f6029f4c110437fa94aa2bb2e2b2a5a83e9"
+    },
+    "illustrations/model-wheel.tsx": {
+      "source_path": "illustrations/model-wheel.tsx",
+      "sha256": "9cc3cf09cd956558ffb6c00652e7212f9421e26d66a231a8a521289a48038d15"
+    },
+    "illustrations/region-dach.tsx": {
+      "source_path": "illustrations/region-dach.tsx",
+      "sha256": "aefdfae0c301623075ae8b990549d984a6ddade362eaea5929c91ba15ca4036f"
+    },
+    "illustrations/side-folder.tsx": {
+      "source_path": "illustrations/side-folder.tsx",
+      "sha256": "22b497c8ea13638d17daed55e779a0f87d869429133a2b9f05e9f46b6da65f05"
+    },
+    "illustrations/tab-overload.tsx": {
+      "source_path": "illustrations/tab-overload.tsx",
+      "sha256": "327924948676db859ee3c72e8cafbdb68f304bace3dc9c423cda803c6460bf3f"
+    },
+    "illustrations/team-invite.tsx": {
+      "source_path": "illustrations/team-invite.tsx",
+      "sha256": "975e8e7f198a43a310dbedf97d81244965232dcc68a0f53f5b90b0c7a5254906"
+    },
+    "motion/grid-background.tsx": {
+      "source_path": "motion/grid-background.tsx",
+      "sha256": "c9c7936cffc22cf08f3c786ad2f09509ada9f2901aed0a89ceaa0037f43ae394"
+    },
+    "motion/number-ticker.tsx": {
+      "source_path": "motion/number-ticker.tsx",
+      "sha256": "c56e7605203d19041fa33c6f177bccd4a02bf75b7923ba037461fd64f8440a6d"
+    },
+    "motion/shimmer-loader.tsx": {
+      "source_path": "motion/shimmer-loader.tsx",
+      "sha256": "2e78e807573cdf1f382400fba4c04f1828ebc847562ac8296683f6ac9fd370f3"
+    },
+    "motion/text-reveal.tsx": {
+      "source_path": "motion/text-reveal.tsx",
+      "sha256": "f8a66fc005cbd29f5441b204857c6a1c727911bcae8833993978df199e09938f"
+    },
+    "LICENSE": {
+      "source_path": "LICENSE",
+      "sha256": "3b02a57acfb985557a9a8244a0e84d8765c10ad4892ab6345c66fd688d998a14"
+    }
+  },
+  "license_files": [
+    "LICENSE"
+  ]
+}

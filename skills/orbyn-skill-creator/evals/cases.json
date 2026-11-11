@@ -13835,6 +13835,101 @@
         "write"
       ],
       "excluded": "Do not run astryx upgrade or bump packages; point to the Dependabot PR and build the filter bar on the installed version."
+    },
+    {
+      "id": "affectui-tool-call-card",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add affectUI's tool call card to our React agent console and match our colours.",
+      "expected_skills": [
+        "orbyn-affectui"
+      ],
+      "forbidden_skills": [
+        "product-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not re-run shadcn add to fetch a newer version."
+    },
+    {
+      "id": "affectui-decision-inbox",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Use the affectUI decision inbox for approvals our agents are waiting on.",
+      "expected_skills": [
+        "orbyn-affectui"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not let the button itself authorize the effect."
+    },
+    {
+      "id": "affectui-thinking-loader",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Wire affectUI's thinking loader to our real stream phases.",
+      "expected_skills": [
+        "orbyn-affectui"
+      ],
+      "forbidden_skills": [
+        "technical-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not keep the demo timer."
+    },
+    {
+      "id": "agent-trace-view",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Design a view showing where an agent run spent its time and money, step by step.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-affectui"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not copy affectUI's Pro trace waterfall."
+    },
+    {
+      "id": "affectui-pro-agent-tree",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Build an agent tree like affectUI's showing which sub-agents each agent started.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "product-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not recreate affectUI's Pro agent tree from its website; design our own from a draft."
     }
   ]
 }

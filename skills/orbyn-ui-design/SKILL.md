@@ -88,6 +88,7 @@ inspector or handing a preview to a person.
 
 ## Read when the task needs it
 
+- Views of agent runs beyond one chat (sub-agent tree, trace with time and cost, handoffs, background inbox, context usage, decision inbox, generative UI): [agent-run views](references/agent-run-views.md); ready React pieces in [orbyn-affectui](../orbyn-affectui/SKILL.md).
 - A project that uses or adopts Meta's Astryx design system (`@astryxdesign/*`): [orbyn-astryx](../orbyn-astryx/SKILL.md) for its templates, components, theming and agent setup.
 - Interactive sketch to resolve a design question: [prototyping](references/prototypes.md).
 - Unknown platform or accessibility requirements: `orbyn-research`.

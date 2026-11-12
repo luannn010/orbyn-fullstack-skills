@@ -32,6 +32,9 @@ retirement the last closeout step, in the task that merged it:
    `hold` reason.
 2. Retire that exact path:
    `python3 skills/orbyn-worktree/scripts/worktree_retire.py retire <path> --archive output/worktree-archive`.
+   The tool reads the repository from the worktree itself, so a nested target's tree
+   (`repo/<target>-wt/...`) needs no extra option. A `--repo <primary checkout>`, when
+   given, goes before the subcommand and must be that tree's own repository.
    `RETIRED.json` is written first (the tree is untouched if that fails) with the path,
    head, branch, ignored files and a copy of the tree's HEAD reflog. Then the whole
    folder, ignored files and caches included, moves to the system Trash, and only
@@ -77,8 +80,12 @@ worktree, and when `harness.py resolve` prints `LOW DISK` (free space under
 4. Report what went to the Trash and how much. Cleanup only moves files to the Trash,
    so it frees no space until the user empties it; the tool never does, and
    Finder's 30-day removal option is the user's own setting and can remove Trash items
-with nobody emptying it, so do not promise recovery for long. If `apply` cannot free
-   enough on a low disk, tell the user. Do not remove files by hand, force anything
+with nobody emptying it, so do not promise recovery for long. The Trash sits on the
+   same volume, so on a low disk the space comes back only when those items leave it:
+   ask the user, list the retired items and their size, and say that deleting them is
+   permanent and ends their recovery. Suggest deleting only those items, not emptying
+   the whole Trash, which also removes the user's own files. If `apply` cannot free
+   enough even then, tell the user. Do not remove files by hand, force anything
    or empty the Trash.
 
 `apply` recomputes the report and rechecks every guard for each item just before

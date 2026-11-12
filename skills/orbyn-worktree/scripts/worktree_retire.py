@@ -1296,6 +1296,13 @@ def discard(repo, path, archive, why):
 def retire(repo, target, base, archive, workspace=None):
     """Retire one exact worktree at closeout: every check and root limit of apply, under its lock, except the idle age."""
     ws = verify_workspace(workspace or HOME)
+    if repo is None:
+        # No --repo: the target's own registration names its primary checkout, so a nested
+        # target's worktree (repo/<target>-wt/...) retires without naming the target clone.
+        try:
+            repo = worktrees(canon(target))[0]['worktree']
+        except Refused:
+            raise Refused(f'Not a linked worktree of any repository: {clean(target)}') from None
     repo = canon(repo)
     with locked(ws/'output'):
         ctx = Context(ws, base, [repo])
@@ -1386,7 +1393,8 @@ def render_apply(data):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--repo', default='.')
+    parser.add_argument('--repo', default=None,
+                        help="Primary checkout (default: for retire, the target worktree's own; otherwise this directory)")
     parser.add_argument('--base', default='origin/main', help='Remote-tracking branch that proves landing (refs/remotes/<this>)')
     commands = parser.add_subparsers(dest='command', required=True)
     commands.add_parser('inventory', help='Report each worktree; changes nothing')
@@ -1410,7 +1418,7 @@ def main(argv=None):
         if not re.fullmatch(r'[A-Za-z0-9._-]+/[A-Za-z0-9._/-]+', args.base) or '..' in args.base:
             raise Refused(f'--base must be a remote-tracking branch such as origin/main, not {args.base!r}')
         if args.command == 'inventory':
-            result = inventory(args.repo, args.base)
+            result = inventory(args.repo or '.', args.base)
         elif args.command == 'retire':
             result = retire(args.repo, args.path, args.base, args.archive, args.workspace)
         elif args.command == 'report':

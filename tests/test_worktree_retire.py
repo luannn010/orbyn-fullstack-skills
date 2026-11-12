@@ -1106,6 +1106,31 @@ class ClassTests(CleanupCase):
         with self.assertRaisesRegex(tool.Refused, 'Not a linked worktree'):
             tool.retire(self.app, self.app, BASE, self.base/'rec')
 
+    def test_retire_finds_a_nested_targets_repository_from_the_worktree_itself(self):
+        done = self.done()
+        with mock.patch('builtins.print'):
+            self.assertEqual(tool.main(['--base', BASE, '--repo', str(self.lib), 'retire', str(done),
+                                        '--archive', str(self.lib/'output/worktree-archive'),
+                                        '--workspace', str(self.lib)]), 1)
+        self.assertTrue(done.exists())
+        with mock.patch('builtins.print'):
+            self.assertEqual(tool.main(['--base', BASE, 'retire', str(done),
+                                        '--archive', str(self.lib/'output/worktree-archive'),
+                                        '--workspace', str(self.lib)]), 0)
+        self.assertFalse(done.exists())
+        self.assertEqual(self.trashed[-1].name, done.name)
+
+    def test_retire_without_repo_still_refuses_a_primary_or_a_subfolder(self):
+        done = self.done()
+        (done/'sub').mkdir()
+        for path in (self.app, done/'sub'):
+            with mock.patch('builtins.print'):
+                self.assertEqual(tool.main(['--base', BASE, 'retire', str(path),
+                                            '--archive', str(self.lib/'output/worktree-archive'),
+                                            '--workspace', str(self.lib)]), 1)
+        self.assertTrue(self.app.exists() and done.exists())
+        self.assertEqual(self.trashed, [])
+
 class SecondReviewTests(CleanupCase):
     # --- second review: N1 to N16 and the low list
 

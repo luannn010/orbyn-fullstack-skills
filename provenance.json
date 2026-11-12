@@ -1490,6 +1490,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Routing cases for orbyn-seo: three development, one holdout"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Routing cases for building while a PR waits: three development, one holdout, including an adjacent case where orbyn-ci-design wins"
         }
       ],
       "reviewed_inspiration": [
@@ -2623,6 +2630,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Build-while-waiting playbook: next independent item in its own tree while a PR waits, stacks on the base PR head, depth and open-PR defaults, slot use, overlap stops; pointers from SKILL, lead contract, PR iteration and waiting"
         }
       ]
     },

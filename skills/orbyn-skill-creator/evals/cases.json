@@ -14098,6 +14098,80 @@
         "message"
       ],
       "excluded": "Do not start a site-wide SEO audit for a head-tag change."
+    },
+    {
+      "id": "overlap-while-ci-runs",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "PR 41 is reviewed, open and waiting on CI. Start on the next assigned item in the queue while it runs.",
+      "expected_skills": [
+        "orbyn-workflow",
+        "orbyn-worktree"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not build the next item in PR 41's worktree or poll CI."
+    },
+    {
+      "id": "stack-on-waiting-pr",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "The next feature needs the endpoint from PR 41, which is still in review. Can we start it now?",
+      "expected_skills": [
+        "orbyn-workflow",
+        "orbyn-worktree"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not cut it from main and copy PR 41's changes; stack it on PR 41's head and name it as the base."
+    },
+    {
+      "id": "overlap-shared-migration",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "While PR 52 waits for review, start the next task, which edits the same database migration.",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [
+        "orbyn-data-migration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not start overlapping work on a migration the waiting PR also changes."
+    },
+    {
+      "id": "waiting-pr-ci-too-slow",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "CI on PR 41 takes 40 minutes. Make the required checks faster.",
+      "expected_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-worktree"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not start a parallel build to hide a slow pipeline; shorten the required checks."
     }
   ]
 }

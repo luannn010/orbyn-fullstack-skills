@@ -17,7 +17,8 @@ polling, because it costs no model turns while it waits.
 
 Poll only external state the host cannot report, such as a CI run or a deploy, at
 the pace that state actually changes: one check near the expected finish time,
-not one a minute. The [PR iteration playbook](../playbooks/pr-iteration.md) covers CI watches.
+not one a minute. The [PR iteration playbook](../playbooks/pr-iteration.md) covers CI watches;
+what to build while a PR waits is in [build while waiting](../playbooks/build-while-waiting.md).
 
 ## Commands that run long
 

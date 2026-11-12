@@ -61,6 +61,7 @@ decisions explicit.
 | PR delivery requested | [Opening a PR](playbooks/opening-a-pr.md) |
 | Upstream contribution | [Contribution intake](playbooks/contribution-intake.md) |
 | PR feedback or CI | [Bounded PR iteration](playbooks/pr-iteration.md) |
+| Keep building while a PR waits on CI or review | [Build while waiting](playbooks/build-while-waiting.md) |
 | Bulk CI failures, release evidence | [Pipeline failures](playbooks/pipeline-failures.md) |
 | Rollout or incident recovery | [Health and recovery](../orbyn-ci-design/references/rollout-recovery.md) |
 

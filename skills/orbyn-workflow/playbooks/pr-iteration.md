@@ -182,7 +182,8 @@ trunk. Independent work may be separated only after checking its new context.
 After a parent squash/merge, reconcile child content and actual ancestry, retarget
 only within authority and repeat affected checks against the new base/callers.
 Record head/base, relevant dependency versions, environment and tested surface;
-patch-id equality alone cannot carry a verdict across a changed context.
+patch-id equality alone cannot carry a verdict across a changed context. Respect the
+stack and open-PR limits in [build while waiting](build-while-waiting.md#stack-only-what-depends-on-n).
 
 Read back terminal merged state, landing base and commit. Merged into a feature
 branch is not trunk delivery; queued/auto-enabled is pending. A no-merge handoff

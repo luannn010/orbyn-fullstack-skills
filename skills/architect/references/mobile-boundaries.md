@@ -4,6 +4,7 @@ Apply to demonstrated Expo/RN or an explicit native integration. Inspect the
 actual runtime, native tree and host contract before generation. Existing
 [vertical ownership](vertical-codebase.md) still applies: route files adapt URLs
 and layout; capability modules own behavior/data; native hosts own native lifecycle.
+Preserve target-native ownership; no automatic scaffolding or macro migration.
 
 ## Route, DOM and native UI boundary
 

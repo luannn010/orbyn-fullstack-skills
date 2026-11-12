@@ -2,6 +2,12 @@
 
 Synthetic design exercise; no application or deployment is represented.
 
+For a proposal-approval feature, specify the durable proposal state, authenticated
+apply operation, stale-version behavior and shared result shape before designing the
+buttons. Return a contract the API, web and mobile owners can implement without
+inventing their own lifecycle. A model sketch is enough only when it answers those
+ownership questions.
+
 **Request.** A member reviews a proposal, then clicks Apply. Another member may
 edit the proposal or revoke that member's access before Apply arrives.
 

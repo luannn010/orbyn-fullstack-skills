@@ -3,7 +3,11 @@
 Use when lifecycle rules, independently changing actors or a requested statechart
 need a shared explanation. Start with the decision, actual owner and one plain
 sentence per rule. A design sketch, a bounded checked model and a code reproduction
-are different evidence. Label which one each artifact represents.
+are different evidence. Label which one each artifact represents: keep the agreed
+design apart from current-code behavior, expose forbidden states and connect important
+rules to source and preview scenarios. A chart alone does not verify a property: use
+[tdd](../../tdd/SKILL.md) for model checking and drift, and
+[orbyn-ui-design](../../orbyn-ui-design/SKILL.md) for the human preview.
 
 ## Choose proportional rigor
 

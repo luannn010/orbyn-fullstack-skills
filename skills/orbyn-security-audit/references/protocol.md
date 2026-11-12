@@ -138,6 +138,12 @@ node references/upstream/audit-records/validate-findings.cjs /path/to/owned-audi
 node references/upstream/audit-records/validate-coverage-ledger.cjs /path/to/owned-audit/coverage-ledger.json
 ```
 
+With a threat model, confirm no threat id was lost between model, ledger and findings:
+
+```sh
+python3 scripts/check_threat_model.py /path/to/owned-audit/threat-model.json --ledger /path/to/owned-audit/coverage-ledger.json --findings /path/to/owned-audit/findings.json
+```
+
 Node and the record helpers must be available locally; no download is implied.
 Helper success proves structure/consistency only, never source truth, runtime
 consequence or independence. Preserve required helper license/provenance metadata.

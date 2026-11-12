@@ -365,6 +365,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Design rule: land the API slice and generated types before its UI; display-only UI uses sample data, no guessed client"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ]
     },
@@ -3259,6 +3266,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Tool credential boundaries: pointer to text-matching deny list guidance"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ]
     },

@@ -3,7 +3,9 @@
 Use this reference when designing repository structure, reducing cross-feature
 coupling or deciding whether code should stay local or become shared. Start with
 the consuming project's actual stack, import graph and constraints. A request to
-explain the current layout needs source findings, not a reorganization.
+explain the current layout needs source findings, not a reorganization. Return the
+proposed owner map, import contract, trade-off and a scoped migration and
+verification plan.
 
 ## Find the owner before choosing the folder
 

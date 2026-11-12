@@ -3,7 +3,8 @@
 A design or README that no longer matches the code misleads every later reader and
 agent. A drift check compares the checked-in documents with the current source (or,
 for product UI, with the built app) and reports each difference with an anchor on
-both sides. It changes nothing; the user decides what to fix.
+both sides. It changes nothing; the user decides what to fix. Drift between a
+verification model and code belongs to [tdd](../../tdd/SKILL.md).
 
 ## Run it
 

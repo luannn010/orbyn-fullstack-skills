@@ -16,6 +16,9 @@ reviews and verifies the result under the parent [workflow](../SKILL.md).
    diff changes. Do not assign a whole-repository suite to every delegate.
 3. Delegate implementation with the chosen data shape, file scope, authorized
    checks and completion condition. Preserve permission and recovery behavior.
+   Order an API and its UI so the routes come first; a UI child working before
+   then uses fixture or sample data and writes no guessed client
+   ([architect design rules](../../architect/SKILL.md#design-rules)).
 4. Inspect the diff and affected callers. If the design remains contested, use
    `interrogate` for a bounded challenge within the same model/child limits. Route corrections to the same child.
 5. Perform authorized checks proportional to the changed contract and inspect

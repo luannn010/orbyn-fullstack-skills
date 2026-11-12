@@ -24,6 +24,17 @@ output validation and secret isolation outside the model. Delimiters, an instruc
 to ignore injections, or a model guard alone do not enforce the boundary. Preserve
 useful denial evidence without exposing private text or executing source commands.
 
+## Text-matching deny lists are not a boundary
+
+A check that blocks an agent's command when its text names a forbidden route or
+command is defence in depth only. Quote splitting, `./` and `../` segments,
+variables, string building, a script the agent writes first and another HTTP client
+all get past it: a rule that blocks `/admin/reset` misses
+`curl "$HOST"/admin/./reset`. Normalize what is cheap (parse unquoted words, squash
+dot segments, decode once), test those spellings, and say in the design that the real
+boundary is a sandbox or credential split that keeps the service token away from
+the agent.
+
 ## Bound the loop and reconcile uncertain outcomes
 
 Establish the upfront goal, permitted effects/resources, result destination and

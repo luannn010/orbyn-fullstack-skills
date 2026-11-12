@@ -35,6 +35,8 @@ Choose authoritative data, ownership and lifecycle before adding logic. Simplify
 
 When [comparative research](../orbyn-research/references/comparable-implementations.md) informs the design, translate its assumptions and local mismatches into concrete owners, interfaces, lifecycle/failure rules and regression checks. A similar upstream diagram or implementation does not establish this project's contract.
 
+When a feature needs both an API and a UI, build the API slice first. A display-only UI built before the routes exist uses fixture or sample data and no guessed client; once they exist, the client follows the real contract, and uses the generated types when the project generates them.
+
 For durable transitions, put the migration owner's concrete writer/admission contract in the design, including stale-writer rejection and current-writer controls. A link to migration guidance alone is not the deliverable.
 
 ## Read when needed

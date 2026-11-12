@@ -40,6 +40,10 @@ enough; no new tracker or configuration file is mandatory. Record:
 - Explicit exclusions and coverage limits, plus conditions that broaden the set.
 - Actual results for the tested revision; required, selected, intentionally
   unselected, blocked and not-run are distinct states.
+- Every end-to-end spec against a real service that the change edits. Where running
+  it is authorized and a non-production instance exists, run it before the PR;
+  otherwise record it as not run, with the reason. A spec checked only by reading
+  counts as not run.
 
 | Stage | Designated checks |
 | --- | --- |

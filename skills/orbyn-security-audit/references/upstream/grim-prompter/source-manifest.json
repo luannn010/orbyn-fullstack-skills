@@ -133,7 +133,7 @@
       "relationship": "maintained-adaptation"
     },
     "references/threat-model/tool-credential-boundaries.md": {
-      "sha256": "53a55b3ccdec2702d0da379c85cfacaaeb79b08ec237fae0ff9aba2f2055d313",
+      "sha256": "b7d9c8e180d5584a2742ac13db5f8a025ce1af26d57de2500b96595bf01779c2",
       "source_path": "reference/tool-credential-boundaries.md",
       "original_sha256": "95d1e058fcaa5cbec4769c1498654716ec2d9e086ee792fd5a97bd08994421ee",
       "relationship": "maintained-adaptation"

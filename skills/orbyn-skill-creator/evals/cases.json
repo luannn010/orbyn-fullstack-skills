@@ -13930,6 +13930,41 @@
         "message"
       ],
       "excluded": "Do not recreate affectUI's Pro agent tree from its website; design our own from a draft."
+    },
+    {
+      "id": "spawn-batch-partly-failed",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Two of my three worker spawns errored at the concurrency limit. Relaunch the failed workers on the same worktrees.",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not relaunch a worker that already started or put a second copy of a writer in its worktree."
+    },
+    {
+      "id": "ui-before-api-routes",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "How should we sequence the API and the screens for the new billing feature? Its HTTP routes do not exist yet.",
+      "expected_skills": [
+        "architect",
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not have the UI write a guessed client before the routes exist; use fixture or sample data until then."
     }
   ]
 }

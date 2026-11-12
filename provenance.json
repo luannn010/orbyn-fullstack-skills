@@ -358,6 +358,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Folder refactor playbook: second batch of real lessons (registry-file conflicts, pure-rename check, pinned surfaces, component-identity remounts, cross-language path reads, re-fingerprinted alerts) and results"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Design rule: land the API slice and generated types before its UI; display-only UI uses sample data, no guessed client"
         }
       ]
     },
@@ -924,6 +931,13 @@
           "effort": "medium",
           "date": "2026-11-11",
           "scope": "Making CI faster reference: step timing, build once, duration sharding, required aggregates, cache warming and keys, CI-only profiles, path filters, merge watchers"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Change scope: real-service end-to-end specs a change touches are gates run before the PR"
         }
       ]
     },
@@ -1441,6 +1455,13 @@
           "effort": "medium",
           "date": "2026-11-11",
           "scope": "Routing cases for orbyn-affectui"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Two development routing cases: partly failed spawn batch, UI before its API routes"
         }
       ],
       "reviewed_inspiration": [
@@ -2524,6 +2545,13 @@
           "effort": "medium",
           "date": "2026-11-11",
           "scope": "Performance playbook: measure-first method for a slow screen over a local HTTP/1.1 service (arrival vs server time, connection count, traps, re-measure); trimmed cross-side traps and a preliminary receipt"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Lead contract: check which spawns started before relaunching, one writer per worktree, per-child scratchpad names; feature playbook orders API before UI"
         }
       ]
     },
@@ -3188,6 +3216,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Port Grim Prompter 3642a31 inspection-coverage ledger into the threat-model evidence guide, report contract and steps; advance the pin"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Tool credential boundaries: pointer to text-matching deny list guidance"
         }
       ]
     },
@@ -3703,6 +3738,13 @@
           "effort": "medium",
           "date": "2026-11-03",
           "scope": "ECC adoption: prompt caching operation rules"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Tool effects: text-matching deny lists are defence in depth, not a boundary"
         }
       ],
       "incorporated_material": [

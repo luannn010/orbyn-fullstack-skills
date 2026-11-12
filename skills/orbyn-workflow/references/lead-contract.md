@@ -64,6 +64,16 @@ in its brief. Split independent outputs
 only; serialize shared generated files and fixtures. Children return evidence to
 the lead, who owns integration and review.
 
+When a batch of spawns partly fails (for example at the host's concurrency limit),
+an early call can start while a later one fails. Before relaunching anything, check
+which children actually started, from the host's agent list or activity in their
+worktrees, and relaunch only the ones that did not. Never relaunch a writer into a
+worktree where its first copy may still be running.
+
+On a shared scratchpad, each child prefixes its file names with a short slug of its
+role and number (for example `worker-2-pr-body.md`), so another child or session
+cannot overwrite its draft.
+
 ## Delegate on any host
 
 The harness names tiers for Claude and Codex, but other hosts (OpenCode, Gemini CLI,

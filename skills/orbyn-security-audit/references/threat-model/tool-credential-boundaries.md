@@ -13,6 +13,9 @@ Trace attacker-controlled metadata to model context, to the selected tool and ar
 
 Pinning gates changes but does not make a malicious first definition safe. A signature shows provenance, not intent. Scanning, labels, model resistance and confirmation prompts do not by themselves prevent anything; read what the prompt displays. Credential separation limits authority but not steering of another authorized tool.
 
+A filter that matches command or URL text is not a boundary; see
+[text-matching deny lists](../../../orbyn-ai-application/references/tool-effects.md#text-matching-deny-lists-are-not-a-boundary).
+
 ## Effective authority per tool
 
 Build a per-tool map in the model, with `path:start-end` evidence:

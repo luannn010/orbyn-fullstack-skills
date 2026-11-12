@@ -472,6 +472,17 @@
         "orbyn-astryx",
         "language-best-practices"
       ]
+    },
+    {
+      "name": "orbyn-seo",
+      "category": "Fullstack contracts and delivery",
+      "related": [
+        "orbyn-ui-design",
+        "orbyn-content-design",
+        "orbyn-research",
+        "orbyn-ci-design",
+        "social-content"
+      ]
     }
   ],
   "retired_skills": {

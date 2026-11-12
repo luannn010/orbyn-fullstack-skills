@@ -23,8 +23,19 @@ neutral. Keep the diff to metadata.
 
 **Title and description**
 - Every page has a title, in one site-wide format. Short, readable, no stuffing.
+- Lead with the words people search for. Results pages cut long titles by display
+  width, so keep the part that matters short (roughly 50 to 60 characters is a
+  common guide). A page's title, heading, description and address should all point at one topic.
+- Titles are unique and say what the page is: never "Home", "Products" or a bare
+  category. Do not change a slug only to chase a year or number.
 - Shareable or searchable pages have a plain-text description. No markdown, no
   quote spam.
+
+**Images**
+- Descriptive `alt` for meaningful images, empty `alt` for decoration; explicit
+  `width` and `height`; a modern compressed format; lazy-load below the first
+  screen, never the main image above it. Search visibility beyond this:
+  [orbyn-seo](../../orbyn-seo/SKILL.md).
 
 **Canonical and indexing**
 - Canonical is the preferred URL of that page; paginated pages get their own.

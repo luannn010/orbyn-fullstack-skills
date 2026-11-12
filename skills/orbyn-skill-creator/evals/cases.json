@@ -14003,6 +14003,101 @@
         "message"
       ],
       "excluded": "Do not replace the project's own tokens or invert light into dark; design dark elevation on purpose."
+    },
+    {
+      "id": "seo-launch-audit",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our marketing site launches next week. Check that search engines can crawl and index it and that pricing gets found.",
+      "expected_skills": [
+        "orbyn-seo"
+      ],
+      "forbidden_skills": [
+        "social-content"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not change DNS, hosting or search-console settings or submit the site anywhere."
+    },
+    {
+      "id": "seo-domain-rebrand",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "We're moving from oldname.io to newname.com. Plan the redirects so we keep our rankings.",
+      "expected_skills": [
+        "orbyn-seo"
+      ],
+      "forbidden_skills": [
+        "orbyn-data-migration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not redirect every old URL to the new home page."
+    },
+    {
+      "id": "seo-orphan-money-pages",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our blog gets traffic but nobody reaches the pricing page. Fix the internal links.",
+      "expected_skills": [
+        "orbyn-seo"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not mark internal links nofollow or rewrite whole posts."
+    },
+    {
+      "id": "seo-vs-competitor-page",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Write a page comparing us with our main competitor that can rank and get quoted by ChatGPT.",
+      "expected_skills": [
+        "orbyn-seo"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not publish unsourced claims about the competitor or use their logo."
+    },
+    {
+      "id": "page-metadata-not-seo",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add Open Graph tags, a canonical and a favicon to our docs pages.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-seo"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not start a site-wide SEO audit for a head-tag change."
     }
   ]
 }

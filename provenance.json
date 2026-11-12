@@ -1483,6 +1483,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Two development routing cases for screen decisions and the tactile theme"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Routing cases for orbyn-seo: three development, one holdout"
         }
       ],
       "reviewed_inspiration": [
@@ -2062,6 +2069,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Screen decisions and optional tactile theme adapted from tactile-design (MIT, 30495a2), with the source pinned as a tracked upstream"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Page metadata: title rules and image rules, with a pointer to orbyn-seo"
         }
       ]
     },
@@ -4215,6 +4229,32 @@
           "effort": "medium",
           "date": "2026-11-11",
           "scope": "New skill bringing affectUI's free components to every host, pinned for upstream review"
+        }
+      ]
+    },
+    "orbyn-seo": {
+      "relationship": "original",
+      "credit": "Anh Dang and Orbyn contributors",
+      "copyright": "Copyright (c) 2026 Anh Dang and Orbyn contributors",
+      "license": "MIT",
+      "source": "https://github.com/orbyn-dev/orbyn-fullstack-skills/tree/main/skills/orbyn-seo",
+      "changes": "Orbyn skill for search and answer-engine visibility of sites we build: audit order, internal link graph, URL migration with a redirect checker, answer-ready structure, honest comparison pages and crawler policy. Written in Orbyn's words with original scripts; no upstream text or code copied. Vendor tools, outreach, directory submission and link buying are out of scope.",
+      "reviewed_inspiration": [
+        {
+          "credit": "Ilias Ism",
+          "source": "https://github.com/Illyism/seo-skills/tree/805c9c8261e60716e17efe6b834b0be7248d9ebb",
+          "revision": "805c9c8261e60716e17efe6b834b0be7248d9ebb",
+          "license": "MIT (stated in README and plugin.json; the repository has no LICENSE file)",
+          "relationship": "reviewed-inspiration; no upstream text or code imported"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead), claude-sonnet-5-5 (worker, scripts and tests)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "New skill: entry, six references, link_graph.py and verify_redirects.py with tests"
         }
       ]
     }

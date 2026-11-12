@@ -70,6 +70,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://www.scenario.com/explorations/kinetic-film/ | Scenario | See source | technical-illustration |
 | https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/ | Software Engineering Institute | See source | orbyn-research |
 | https://x.com/tobiadonadon_/status/2106430529113301163 | Tobi (@tobiadonadon_) | See source | orbyn-ui-design |
+| [Illyism/seo-skills](https://github.com/Illyism/seo-skills) | Ilias Ism | MIT (stated in README and plugin.json; the repository has no LICENSE file) | orbyn-seo |
 | [kevintngo/statechart-art](https://github.com/kevintngo/statechart-art) | Kevin Ngo | MIT | architect, technical-illustration |
 | [Lelekhoa1812/prompt-me](https://github.com/Lelekhoa1812/prompt-me) | Listed in provenance | See source | orbyn-plan |
 | [macro-inc/macro](https://github.com/macro-inc/macro) | Macro contributors | See source | architect, language-best-practices, orbyn-ai-application, orbyn-backend-design, orbyn-ci-design, orbyn-content-design, orbyn-ui-design, orbyn-workflow, tdd |

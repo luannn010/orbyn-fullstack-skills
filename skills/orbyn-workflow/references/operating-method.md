@@ -20,6 +20,22 @@ Do not call a missing upstream skill or silently install a collection to satisfy
 
 Before closing the task, reconcile source, artifacts and terminal check results with the requested outcome. Review the normal path and the relevant failure/recovery path. Keep unavailable runtime or independent review evidence visible. A successful helper or agreeing delegate does not establish the user's complete result.
 
+## Handoff index
+
+Where the workflow's handoffs go; the notes below say how each applies.
+
+- Plans: [orbyn-plan](../../orbyn-plan/SKILL.md).
+  External facts: [orbyn-research](../../orbyn-research/SKILL.md). Skill changes: [orbyn-skill-creator](../../orbyn-skill-creator/SKILL.md).
+- History [why](../../why/SKILL.md); larger task [figure-it-out](../../figure-it-out/SKILL.md).
+- Cross-layer: [Orbyn Engineering contract](fullstack-contract.md),
+  [orbyn-backend-design](../../orbyn-backend-design/SKILL.md), [orbyn-data-migration](../../orbyn-data-migration/SKILL.md),
+  [orbyn-ci-design](../../orbyn-ci-design/SKILL.md). Code: [language guidance](../../language-best-practices/SKILL.md);
+  technology choice: [stack selection](../../orbyn-stack-selection/SKILL.md).
+- Upstream freshness or updates: [orbyn-upstream-review](../../orbyn-upstream-review/SKILL.md).
+- [Mobile routing](mobile-engineering.md) (Expo/EAS), [engineering scope](engineering-scope.md)
+  (onboarding, review, levels), [artifact lifecycle](artifact-lifecycle.md) (prototypes, evidence, servers),
+  [method index](principles.md), [contribution feedback](../../orbyn-skill-creator/references/contribution-feedback.md) (general skill gap).
+
 ## Owner handoff notes
 
 Read the note for the handoff in use. The workflow lists when each one applies.

@@ -26,6 +26,6 @@ reclone it on that symptom alone.
 2. Verify any bundle prerequisites and the replacement beside the old checkout.
 3. Deliberately rebind task/host paths and reread instructions. Check the host
    binding itself; a successful explicit workdir does not show that it changed.
-4. Use [continuation readiness](../../orbyn-setup/SKILL.md#resume-after-a-workspace-or-runtime-change).
+4. Use [continuation readiness](../../orbyn-setup/references/setup-method.md#resume-after-a-workspace-or-runtime-change).
 
 Do not automatically copy credentials, move an active path or delete the old clone.

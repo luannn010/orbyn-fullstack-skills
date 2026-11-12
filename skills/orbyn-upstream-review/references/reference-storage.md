@@ -1,8 +1,23 @@
 # Reference storage, handling and caches
 
 Read the section that applies when extracting or licensing a source, or once the default layout in
-[Keep downloaded research outside Git](../SKILL.md#keep-downloaded-research-outside-git)
+[Keep downloaded research outside Git](../SKILL.md#keep-downloaded-research-outside-git) and the [default layout](#default-layout-and-ignore-rules) below
 no longer covers the source, the ignore state or a shared cache.
+
+## Default layout and ignore rules
+
+The default local workspace is a directory inside the consuming checkout;
+consumer-specific locations may override it:
+
+```text
+orbyn-references/
+  source-slug/
+    full-commit-sha/          downloaded source/reference files
+    full-commit-sha.json      repository, revision, scope, date, hashes, license
+    comparison.json         local comparison evidence
+```
+
+The ignore-rule steps for `/orbyn-references/` and `openSrc/` are in the entry skill.
 
 ## Non-Git sources and existing locations
 

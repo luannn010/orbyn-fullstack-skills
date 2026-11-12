@@ -1227,6 +1227,13 @@
           "effort": "medium",
           "date": "2026-11-06",
           "scope": "Rules beside the code they govern: one home per rule across root and subtree AGENTS.md, architecture map, package README and decision record"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ],
       "reviewed_inspiration": [
@@ -2595,6 +2602,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Lead contract: check which spawns started before relaunching, one writer per worktree, per-child scratchpad names; feature playbook orders API before UI"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ]
     },
@@ -3387,6 +3401,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "retire reads a nested target's repository from the worktree itself; closeout asks the user to empty the Trash on a low disk"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ],
       "reviewed_inspiration": [
@@ -3478,6 +3499,13 @@
           "effort": "medium",
           "date": "2026-11-06",
           "scope": "Library updates end in a gap table the human approves before any skill changes"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
         }
       ]
     },

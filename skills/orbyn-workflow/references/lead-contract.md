@@ -60,7 +60,9 @@ one child and stay within the resolved `max_children` and `max_depth` (a read-on
 child may use `read_only_children_extra` more, and one reviewer child the
 `reviewer_children` slot), without recursive delegation.
 Choose each child's tier from the resolved routing and pass the resolved settings
-in its brief. Split independent outputs
+in its brief: assigned implementation goes to the worker, bounded mechanical work
+to a scout, decisions and security to the lead. Escalate a failed or ambiguous
+worker one tier and record why. Split independent outputs
 only; serialize shared generated files and fixtures. Children return evidence to
 the lead, who owns integration and review.
 

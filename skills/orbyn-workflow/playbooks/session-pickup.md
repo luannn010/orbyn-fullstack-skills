@@ -4,7 +4,7 @@ Read the current handoff, request and actual git/process state. Recover the next
 
 Use the parent [workflow](../SKILL.md) and repository scope. For a moved checkout,
 stale session cwd or changed/failed runtime, apply setup's conditional
-[continuation readiness](../../orbyn-setup/SKILL.md#resume-after-a-workspace-or-runtime-change).
+[continuation readiness](../../orbyn-setup/references/setup-method.md#resume-after-a-workspace-or-runtime-change).
 Verify the next command's supported installed runner and distinguish actual
 checkout from saved host binding; explicit workdir success is not a rebind.
 Current matching readiness/check evidence remains reusable.

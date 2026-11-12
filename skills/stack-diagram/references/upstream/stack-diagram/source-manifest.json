@@ -22,7 +22,7 @@
       "relationship": "byte-identical-selected-source"
     },
     "SKILL.md": {
-      "sha256": "80f6812f1a04742a2345fb5efb6405af1fb98c64ca6da6c1410e35076053361b",
+      "sha256": "8dc726233d97c4ee24e8b857e0a2386470cd727f7790faee40eff67a8e329294",
       "source_path": "skills/stack-diagram/SKILL.md",
       "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
       "relationship": "maintained-adaptation"
@@ -113,6 +113,12 @@
     },
     "references/aws.md": {
       "sha256": "093ffc59a37a20022ddf319b6bd3fc135c21ec056eba58ec1a5093a1479b6f17",
+      "source_path": "skills/stack-diagram/SKILL.md",
+      "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
+      "relationship": "maintained-adaptation"
+    },
+    "references/build-and-render.md": {
+      "sha256": "cb38b5952b7fbb2de1106aa0152baf5da1a7b3aeefbc9b3fbcef1cfc2459606f",
       "source_path": "skills/stack-diagram/SKILL.md",
       "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
       "relationship": "maintained-adaptation"

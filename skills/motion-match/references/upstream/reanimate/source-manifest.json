@@ -13,7 +13,7 @@
       "relationship": "byte-identical-selected-source"
     },
     "SKILL.md": {
-      "sha256": "574570216ea25ed5ad58c881ecd286d799ac16cbec74184f013fd11b612d0207",
+      "sha256": "6bccdc80849206769b391bd57e43b792fa7bf57ff33ddd7caf85eb43ad49dbf5",
       "source_path": "skills/reanimate/SKILL.md",
       "original_sha256": "dec8499d220918750de9d5ca14162f7fe5bf96edda84dbf851355545e1adedc8",
       "relationship": "maintained-adaptation"
@@ -25,7 +25,7 @@
       "relationship": "maintained-adaptation"
     },
     "references/capture.md": {
-      "sha256": "a185cc84ed87c9cadf8bfb73fcc2eabce838f34169c702e491c6758d5d6dbf5a",
+      "sha256": "04a7c887a105046ccbf00d762987da7dae79d3f7c5cded905280e44bdd907acc",
       "source_path": "skills/reanimate/references/capture.md",
       "original_sha256": "9b2251a8c06a3fc240f472e079f6a4e35bcf603d0b78b2ad8ef4877e5814c3e7",
       "relationship": "maintained-adaptation"
@@ -37,7 +37,7 @@
       "relationship": "maintained-adaptation"
     },
     "references/verify.md": {
-      "sha256": "9c7240b6d1f76e15076dce0ef943e2776874d54fc03d02f9918631e91830ebe9",
+      "sha256": "bed177e6b3fd1d37497d4ef8f958b35354043ebba1c35da734b8bf7b10160920",
       "source_path": "skills/reanimate/references/verify.md",
       "original_sha256": "068a7bbea01f0ea3f76342a2ab632eae2fe336689c1236ad65baf2779e77e216",
       "relationship": "maintained-adaptation"

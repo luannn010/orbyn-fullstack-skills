@@ -56,6 +56,30 @@ Mixed work: the matched region passes with `--region`, and the additions appear 
 | only the last frames differ | fill mode or end state | hold the final state |
 | scroll trigger early or late | observer threshold differs | match the entry point from `track.json` |
 
+## Worked failure
+
+Round 1 of three cards fails:
+
+```
+.card-1 opacity  start +300 ms  end +300 ms  easing RMSE 0.0003  FAIL
+.card-2 opacity  start +300 ms  end +300 ms  easing RMSE 0.0055  FAIL
+gaps             116.7 against 116.7         pass
+```
+
+Every row is late by the same amount, and the curve and gaps are right, so the only cause is the base delay. Change that one number and re-film. Aligning the frames would make this row pass and ship a 300 ms late animation, which is why `compare.mjs` refuses `--auto-align` between two captures.
+
+## Pitfalls
+
+- Different viewport or crop between the two sides: fix the capture before touching code.
+- Judging from the first and last frames: read the middle ones.
+- Fonts: a fallback font changes every frame's pixels. At motion fidelity, read the timing rows and ignore text pixels.
+- Page already busy against a cold start: use the same `--wait-before` on both sides.
+- Scroll-driven motion follows scroll position, not time. Use the same `--scroll-steps` and `--scroll-ms`, and compare per `scrollY`.
+- Springs: `easing.mjs` reports overshoot and fitted stiffness and damping. Tune by overshoot and settle time.
+- Screen recordings carry a cursor, browser chrome and compression noise. Crop them out and raise `--activity-threshold` slightly.
+- Canvas content: use the virtual clock and the same `--seed` on both sides. Random content on the real clock measures the machine.
+- CSS animations report `linear` in `timing.easing`. The real easing sits on each keyframe.
+
 ## Stopping
 
 Stop when every row passes and the latest sheets show the same states. Say so with the numbers.

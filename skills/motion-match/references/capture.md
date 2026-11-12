@@ -18,6 +18,17 @@ A page that answers 200 with a soft wall, such as "Subscribe to read" or "Verify
 
 On any page, HTTP 400 and above stops the run, and so does leaving the requested site. A login wall, paywall or bot check stays closed. Ask the user for a screen recording instead, and never work around one with cookies, a changed user agent or a different browser.
 
+## Requirements
+
+Pass `--playwright` and `--chrome`, or set `PLAYWRIGHT_CORE` and `CHROME_PATH`.
+
+## The capture command
+
+```bash
+node <skill>/scripts/capture.mjs --url <page> --out <dir>/ref --rights third-party \
+  --selector .hero --track ".title, .cta" --duration 2000
+```
+
 ## A web page
 
 Check the site's terms before capturing someone else's page.

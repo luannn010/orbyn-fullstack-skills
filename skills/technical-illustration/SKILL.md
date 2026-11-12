@@ -22,30 +22,12 @@ starting a video, and only the user can lift it for a named item.
 
 ## Check the route
 
-Send these to their owners:
+Send these to their owners: ordinary app layout to UI design; social posters to social-preview; faux product UI, feature cards and cursor demos to product-illustration; architecture and stack diagrams to [stack-diagram](../stack-diagram/SKILL.md) (other simple flow diagrams to existing explanation methods); data-driven scientific plots to the project's plotting library; ordinary editing of existing video footage to the project media tools (this owner is not a general video editor).
 
-- Ordinary app layout: UI design.
-- Social posters: social-preview.
-- Faux product UI, feature cards and cursor demos: product-illustration.
-- Architecture and stack diagrams: [stack-diagram](../stack-diagram/SKILL.md). Other
-  simple flow diagrams: existing explanation methods.
-- Data-driven scientific plots: the project's plotting library.
-- Ordinary editing of existing video footage: the project media tools. This owner
-  does not act as a general video editor.
+Apply these contracts when the request matches ([route contracts](references/route-contracts.md)):
 
-Apply these contracts when the request matches:
-
-- Requested illustrated statecharts: follow architect's
-  [art contract](../architect/references/illustrated-statecharts.md). Draw from the
-  actual chart or trace records; architect retains state, guard, projection and
-  verification ownership. Keep exact numbered paths and the plain/text fallback.
-- Arbitrary code-authored layered compositions, sampled tracks, rational clocks,
-  vector/audio/media adapters or conditional 3D/simulation/effects: use the
-  [code-driven motion contract](../orbyn-ui-design/examples/spatial-review/motion/README.md).
-  Use the existing UI owner for live takeover and the existing review writer for
-  source-bound settings and decisions; no new authoring app or provider is required.
-  Its Lottie input, Three.js profile and packaged adapters fall under the
-  [code-only rule](references/code-only.md), so use them only when the user approves them.
+- Requested illustrated statecharts: architect's [art contract](../architect/references/illustrated-statecharts.md); architect retains state, guard, projection and verification ownership. Keep exact numbered paths and the plain/text fallback.
+- Arbitrary code-authored layered compositions, sampled tracks, rational clocks, vector/audio/media adapters or conditional 3D/simulation/effects: the [code-driven motion contract](../orbyn-ui-design/examples/spatial-review/motion/README.md). Its Lottie input, Three.js profile and packaged adapters fall under the [code-only rule](references/code-only.md), so use them only when the user approves them.
 
 ## Set the boundary
 
@@ -57,78 +39,46 @@ No browser bypass, publisher, auth edit, history capture or model call is implie
 ## Build one coherent artifact
 
 1. State the explanation, audience, inputs, meaningful states and smallest useful
-   output. Use [craft and model](references/craft-and-model.md) to define a pure
-   model and labelled limits. Do not invent measured product behavior.
+   output. Define a pure model and labelled limits ([craft and model](references/craft-and-model.md)). Do not invent measured product behavior.
 2. Make geometry, phase, caption, numeric readout and accessible description consume
    the same sampled state. Establish projection, actual drawn shape records,
-   clipping, depth and attachments using [geometry and lines](references/geometry-and-lines.md).
-3. Define takeover, reversal, readiness, timing and cleanup using
-   [motion and input](references/motion-and-input.md). Keep usable controls and
+   clipping, depth and attachments ([geometry and lines](references/geometry-and-lines.md)).
+3. Define takeover, reversal, readiness, timing and cleanup ([motion and input](references/motion-and-input.md)). Keep usable controls and
    meaningful updates with reduced motion and without advanced rendering. For
    timed UI, explainers/data, 3D choreography or kinetic films, use
-   [motion sequences](references/motion-sequences.md) for deterministic scenes,
-   interruption, text/media and actual delivery qualification.
+   [motion sequences](references/motion-sequences.md) (deterministic scenes, interruption, text/media and delivery qualification).
 4. Select only the required delivery path: standalone SVG/HTML core;
    [React/accessibility](references/react-and-accessibility.md);
    [print](references/print.md); [WebGL](references/webgl.md); or documented
    [beta 3D](references/3d.md). Advanced paths are conditional, not defaults.
 5. Run independent bad and legitimate controls; drive actual interaction and inspect
-   the resulting images using [capture and drive](references/capture-and-drive.md).
+   the images ([capture and drive](references/capture-and-drive.md)).
    Fix the model/source before recapturing. A saved image or green banner is not
    proof of geometry, accessibility, complete input coverage or a real GPU path.
-6. For MP4 delivery, use the original [motion-film exporter](../orbyn-ui-design/examples/spatial-review/motion-films.md).
-   Author a validated scene/beat specification and run the existing-tool pipeline;
-   inspect actual probe/decode/playback receipts and unsupported parity cells.
-   Run `python3 scripts/check-code-only.py <source>` before rendering, then
-   `python3 scripts/flash-check.py film.mp4` on the finished file; exit 1 means
-   more than three flashes in a second, so fix the source and render again. When it
-   carries words or a logo, also run `scripts/legibility-check.py` on a plate.
-   For audio-reactive frames, onsets and supplied lyrics, start with
-   `python3 scripts/audio-bake.py` as [music timing](references/music-timing.md) shows.
+6. For MP4 delivery, use the original [motion-film exporter](../orbyn-ui-design/examples/spatial-review/motion-films.md) via the [film pipeline](references/film-pipeline.md): validated scene/beat spec, `check-code-only.py` before rendering, `flash-check.py` on the finished file (exit 1: fix the source, render again), the legibility check when it carries words or a logo, and `audio-bake.py` for audio-reactive or lyric frames.
 7. Package the selected modules, artifact model/style/assets and reproducible checks
-   using [dependencies and update](references/dependencies-and-update.md). Preserve
+   ([dependencies and update](references/dependencies-and-update.md)). Preserve
    notices and original/adapted hashes. Deliver artifact, evidence and actual limits.
 
 ## Read when needed
 
-- For a full-length song, or any film over 120 seconds or 3,600 frames, read
-  [long-form streaming](../orbyn-ui-design/examples/spatial-review/motion-films.md#stream-a-full-length-film).
-- For a film or figure that uses WebGL framebuffers or `readPixels`, read
-  [full-screen pass orientation](references/fullscreen-pass-orientation.md).
-- For what a flash result covers and how to act on it, read
-  [motion sequences](references/motion-sequences.md#check-flashing-on-the-rendered-file).
-
-- For any video built from an image, read [animate an image](references/animate-an-image.md):
-  the character in it must move, and camera motion alone never counts. It also covers
-  holding a fixed crop, slow drawn blinks and keeping the beat in the light.
-- For a music video, lyric video, anime-style or ambient background, full animation,
-  motion graphics or a visualizer, read [video scenarios](references/video-scenarios.md)
-  first; it sets what each kind needs and how it fails.
-- To measure a reference's motion and prove a build matches it, use
-  [motion-match](../motion-match/SKILL.md).
-- For how a style's motion works and its timing, such as hit-pulse, word-stack or
-  kinetic-cut videos, read [video styles](references/video-styles.md).
-- For any character, body movement, walk, face, hair or acting, read
-  [character animation](references/character-animation.md).
-- For terrain, worlds, raymarching, cameras or a figure in 3D, read
-  [3D worlds](references/3d-worlds.md).
-- For individually timed lyric typography with artwork performance, read
-  [lyric performance](references/lyric-performance.md) for the representative preview,
-  local puppeting limits, blink integrity and rendered type checks.
-- For any logo, brand mark, intro, outro or end card, read
-  [logo and branding](references/logo-and-branding.md).
-- For relighting, parallax or echoes added to an animated image, and only when the user
-  approves OpenCV, read [still to layers](references/still-to-layers.md).
+- Full-length song, or any film over 120 seconds or 3,600 frames: [long-form streaming](../orbyn-ui-design/examples/spatial-review/motion-films.md#stream-a-full-length-film).
+- WebGL framebuffers or `readPixels`: [full-screen pass orientation](references/fullscreen-pass-orientation.md).
+- Flash result scope and action: [motion sequences](references/motion-sequences.md#check-flashing-on-the-rendered-file).
+- Any video built from an image: [animate an image](references/animate-an-image.md) (fixed crop, slow drawn blinks); the character in it must move, and camera motion alone never counts.
+- Music video, lyric video, anime-style or ambient background, full animation, motion graphics or visualizer: [video scenarios](references/video-scenarios.md) first.
+- Measuring a reference's motion and proving a build matches it: [motion-match](../motion-match/SKILL.md).
+- A style's motion and timing, such as hit-pulse, word-stack or kinetic-cut: [video styles](references/video-styles.md).
+- Character, body movement, walk, face, hair or acting: [character animation](references/character-animation.md).
+- Terrain, worlds, raymarching, cameras or a figure in 3D: [3D worlds](references/3d-worlds.md).
+- Individually timed lyric typography with artwork performance: [lyric performance](references/lyric-performance.md) (representative preview, local puppeting limits, blink integrity).
+- Logo, brand mark, intro, outro or end card: [logo and branding](references/logo-and-branding.md).
+- Relighting, parallax or echoes on an animated image, only if the user approves OpenCV: [still to layers](references/still-to-layers.md).
 
 ## Bundled support and evidence limits
 
-- The MIT support under `references/upstream/anatomy/` is a pinned maintained
-  adaptation, not an upstream installation or active skill. The source record and
-  snapshot describe exact scope. Read actual APIs before authoring a new model.
+- Bundled support under `references/upstream/anatomy/` is a pinned, maintained MIT adaptation, not an upstream installation or active skill; read actual APIs before authoring a new model ([bundled support](references/dependencies-and-update.md#bundled-support-and-audit-limits)).
 - Browser, React peers, PDF tools and GPU are conditional prerequisites, and OpenCV is one
   only when the user approves it; unavailable surfaces remain blocked. Core SVG does not qualify React, print, WebGL or beta 3D.
-- The source's full configured audits are finite sampled checks, not continuous
-  physical proof. Keep supported runtime/platform evidence separate from written
-  methods and model behavior.
-- Existing TDD, UI, performance and publication policies remain the owners of their
-  general contracts.
+- Keep supported runtime/platform evidence separate from written methods and model behavior (the full configured audits are finite sampled checks).
+- Existing TDD, UI, performance and publication policies own their general contracts.

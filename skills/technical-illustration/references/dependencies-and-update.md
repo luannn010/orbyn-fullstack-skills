@@ -63,3 +63,8 @@ and agent trial are separate evidence. Deliver exact scope, reproducible command
 owned output, verified controls and remaining blocks. No publisher, Git auth,
 force-push, automatic session extraction or external write follows from an
 illustration request.
+
+## Bundled support and audit limits
+
+- The MIT support under `references/upstream/anatomy/` is a pinned maintained adaptation, not an upstream installation or active skill. The source record and snapshot describe exact scope. Read actual APIs before authoring a new model.
+- The source's full configured audits are finite sampled checks, not continuous physical proof. Keep supported runtime/platform evidence separate from written methods and model behavior.

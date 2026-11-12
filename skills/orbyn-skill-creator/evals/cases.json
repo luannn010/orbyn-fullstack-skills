@@ -13965,6 +13965,44 @@
         "message"
       ],
       "excluded": "Do not have the UI write a guessed client before the routes exist; use fixture or sample data until then."
+    },
+    {
+      "id": "screen-too-busy-decision-order",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "This dashboard has six stat tiles, two black buttons and a pager inside the table card. Tidy its hierarchy.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "product-illustration"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not add decoration or a second primary; reduce to one next step and the least data that answers the question."
+    },
+    {
+      "id": "tactile-layered-restyle",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Make our settings page feel tactile and layered in both light and dark mode.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "social-preview"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not replace the project's own tokens or invert light into dark; design dark elevation on purpose."
     }
   ]
 }

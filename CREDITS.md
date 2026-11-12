@@ -22,6 +22,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [flohoeller/affectui](https://github.com/flohoeller/affectui) | flohoeller | MIT | orbyn-affectui |
 | [ibelick/ui-skills](https://github.com/ibelick/ui-skills) | 2026 Julien Thibeaut | MIT | orbyn-ui-design |
 | [jmanico/grim-prompter](https://github.com/jmanico/grim-prompter) | 2026 Jim Manico | MIT | orbyn-security-audit |
+| [kosta4a/tactile-design](https://github.com/kosta4a/tactile-design) | 2026 the tactile-design authors | MIT | orbyn-ui-design |
 | [meta/astryx](https://github.com/meta/astryx) | meta | MIT | orbyn-astryx |
 | [morluto/rea](https://github.com/morluto/rea) | 2026 morluto | MIT | rea-analysis-optimization, rea-changelog-update, rea-ci-tests-audit, rea-tool-design, reverse-engineer-anything |
 | [NiazMorshed2007/reanimate](https://github.com/NiazMorshed2007/reanimate) | 2026 Niaz Morshed | MIT | motion-match |

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/kosta4a/tactile-design",
+  "revision": "30495a2db7cb59a72bacea106118ffeab7af00d9",
+  "retrieved_on": "2026-11-12",
+  "license": "MIT",
+  "scope": "Unmodified tactile-design skill (SKILL.md stored as SOURCE.md) and its seven references, with the MIT license. The README is not bundled. Offline support for the optional tactile theme; never routed as an active skill.",
+  "files": {
+    "SOURCE.md": {
+      "source_path": "skills/tactile-design/SKILL.md",
+      "sha256": "cb4913a8c2d96da5eb508667848b1724e196cafc9292259ed2602c5cdac37fd8"
+    },
+    "references/buttons-and-controls.md": {
+      "source_path": "skills/tactile-design/references/buttons-and-controls.md",
+      "sha256": "c15db03da5bc6c4ff864c0a17dee52b62b27078aa6e99ddcffe425ba1c198b73"
+    },
+    "references/decisions.md": {
+      "source_path": "skills/tactile-design/references/decisions.md",
+      "sha256": "dcccead21d233166dff60f973504d0e3e6520f65428a9db5edd5b8a97d25396a"
+    },
+    "references/layout-and-hierarchy.md": {
+      "source_path": "skills/tactile-design/references/layout-and-hierarchy.md",
+      "sha256": "3cfaf91dd9d5cf3ff8ea85dda2bb979321cd67914f63959f41f722e52ba3a1f9"
+    },
+    "references/mobile.md": {
+      "source_path": "skills/tactile-design/references/mobile.md",
+      "sha256": "cfdbaf25cbc76b255cb67277ed929dd23162078c12c8530d3e6aae9528b16da9"
+    },
+    "references/motion.md": {
+      "source_path": "skills/tactile-design/references/motion.md",
+      "sha256": "01b0e39e0e48326963c5aba1863bd71332ffab524fa3b83e7de8cfc728532368"
+    },
+    "references/surfaces-and-layering.md": {
+      "source_path": "skills/tactile-design/references/surfaces-and-layering.md",
+      "sha256": "38d75eb2719cf40e20f86ec8e465ec399830b6e02279df94004dc4483681a4bb"
+    },
+    "references/tokens.md": {
+      "source_path": "skills/tactile-design/references/tokens.md",
+      "sha256": "5ff1ffe378731d327007d13006be89075477556b859b6d8b89686a30464bd844"
+    },
+    "LICENSE": {
+      "source_path": "LICENSE",
+      "sha256": "0da495ced97ec87d10505ed4fc334ad8114d327242abbd8f4c08c0143442a8be"
+    }
+  },
+  "license_files": [
+    "LICENSE"
+  ]
+}

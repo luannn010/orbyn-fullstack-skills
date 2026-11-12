@@ -1462,6 +1462,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Two development routing cases: partly failed spawn batch, UI before its API routes"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Two development routing cases for screen decisions and the tactile theme"
         }
       ],
       "reviewed_inspiration": [
@@ -1782,6 +1789,28 @@
           "relationship": "selected-method-adaptation; Orbyn-reworded",
           "local_path": "skills/orbyn-ui-design/references/design-md.md",
           "changes": "DESIGN.md creation method reworded; brand catalogue and tooling not imported."
+        },
+        {
+          "source": "https://github.com/kosta4a/tactile-design/tree/30495a2db7cb59a72bacea106118ffeab7af00d9",
+          "revision": "30495a2db7cb59a72bacea106118ffeab7af00d9",
+          "copyright": "Copyright (c) 2026 the tactile-design authors",
+          "license": "MIT",
+          "local_path": "skills/orbyn-ui-design/references/screen-decisions.md",
+          "license_file": "skills/orbyn-ui-design/references/upstream/tactile-design/LICENSE",
+          "license_sha256": "0da495ced97ec87d10505ed4fc334ad8114d327242abbd8f4c08c0143442a8be",
+          "relationship": "selected-method-adaptation",
+          "changes": "Close adaptation, reworded in places, of the decision order, working posture, review at zoom and a worked example; values kept as defaults behind project tokens. The unmodified source is pinned under references/upstream/tactile-design."
+        },
+        {
+          "source": "https://github.com/kosta4a/tactile-design/tree/30495a2db7cb59a72bacea106118ffeab7af00d9",
+          "revision": "30495a2db7cb59a72bacea106118ffeab7af00d9",
+          "copyright": "Copyright (c) 2026 the tactile-design authors",
+          "license": "MIT",
+          "local_path": "skills/orbyn-ui-design/references/tactile-theme.md",
+          "license_file": "skills/orbyn-ui-design/references/upstream/tactile-design/LICENSE",
+          "license_sha256": "0da495ced97ec87d10505ed4fc334ad8114d327242abbd8f4c08c0143442a8be",
+          "relationship": "selected-method-adaptation",
+          "changes": "Close adaptation, reworded in places, of the surface, control, motion and phone values and the never-ship list; values kept as defaults behind project tokens. The unmodified source is pinned under references/upstream/tactile-design."
         }
       ],
       "reviewed_sources": [
@@ -2012,6 +2041,13 @@
           "effort": "medium",
           "date": "2026-11-11",
           "scope": "Async-state: capped slow lane, priority, quiet re-reads and polls kept out of the lane; in-flight reuse scoped to reads started before a write, stale-data failure handling"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-12",
+          "scope": "Screen decisions and optional tactile theme adapted from tactile-design (MIT, 30495a2), with the source pinned as a tracked upstream"
         }
       ]
     },

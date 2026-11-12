@@ -98,6 +98,9 @@ inspector or handing a preview to a person.
   [DESIGN.md](references/design-md.md).
 - Read-only audit of an existing UI with plans for another agent:
   [evidence-backed audit](references/visual-review.md#audit-an-existing-surface-from-evidence).
+- Building, restyling or reviewing a screen's hierarchy, amount of data and placement:
+  [screen decisions](references/screen-decisions.md). A tactile, layered look when
+  asked for or adopted: [tactile theme](references/tactile-theme.md).
 - New visual direction, a requested redesign or a design-quality audit:
   [visual direction](references/visual-direction.md).
 - Changing an existing UI: [redesign contract](references/redesign-contract.md).

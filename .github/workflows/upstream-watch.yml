@@ -14,7 +14,9 @@ jobs:
   watch:
     name: Upstream watch
     if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    # Self-hosted only when CI_RUNNER is 'local' (keep it unset while this repository is
+    # public). Runs on main only. The local image also needs the GitHub CLI (gh).
+    runs-on: ${{ vars.CI_RUNNER == 'local' && fromJSON('["self-hosted","orbyn-local"]') || 'ubuntu-24.04' }}
     timeout-minutes: 15
     permissions:
       contents: read

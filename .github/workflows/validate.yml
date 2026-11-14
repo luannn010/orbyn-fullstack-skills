@@ -29,7 +29,15 @@ jobs:
         run: python -m unittest discover -s tests -p test_worktree_retire_windows.py -v
   validate:
     name: Validate (Python ${{ matrix.python }})
-    runs-on: ubuntu-latest
+    # Self-hosted only when the repository variable CI_RUNNER is 'local'. Keep CI_RUNNER
+    # unset while this repository is public. The boundary is the orbyn-local runner group,
+    # which serves private repositories only; the fork check below is a convenience, not a
+    # security boundary, because a fork's pull_request runs its own copy of this file. Once
+    # the repository is private, keep "Run workflows from fork pull requests" off.
+    # With CI_RUNNER set and no runner up, jobs wait in the queue; unset it to recover.
+    # Runner image: Ubuntu 22.04 or 24.04 based, non-root, git 2.18+, a C++ compiler, lsof,
+    # ffmpeg and a writable tool cache, so no test that runs on hosted runners skips locally.
+    runs-on: ${{ vars.CI_RUNNER == 'local' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && fromJSON('["self-hosted","orbyn-local"]') || 'ubuntu-24.04' }}
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -44,6 +52,9 @@ jobs:
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
       - name: Validate library, presets and evaluation cases
         run: python3 scripts/check-library.py
       - name: Install numpy for generated-audio contract tests

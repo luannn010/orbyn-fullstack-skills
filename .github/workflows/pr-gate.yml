@@ -15,7 +15,9 @@ concurrency:
 jobs:
   gate:
     name: PR gate
-    runs-on: ubuntu-latest
+    # Always hosted: it holds a write token and runs seconds, so it never shares a host with
+    # jobs that run PR code.
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
       contents: read

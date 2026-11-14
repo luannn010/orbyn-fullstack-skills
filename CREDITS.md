@@ -48,6 +48,9 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://aclanthology.org/2024.eacl-demo.16/ | RAGAs, EACL 2024 | See source | orbyn-ai-application |
 | https://dev.to/nark3d/a-three-tier-folder-structure-for-long-lived-codebases-3a3l | Adam Lewis (Three-Tier Hoisting) | See source | architect, language-best-practices |
 | https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage | MDN Web Docs and Playwright documentation | See source | orbyn-ui-design |
+| https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-stacked-pull-requests | GitHub documentation contributors | CC-BY-4.0 | orbyn-skill-creator, orbyn-workflow |
+| https://docs.github.com/en/rest/pulls/pulls | GitHub documentation contributors | CC-BY-4.0 | orbyn-skill-creator, orbyn-workflow |
+| https://docs.github.com/en/rest/pulls/stacks | GitHub documentation contributors | CC-BY-4.0 | orbyn-skill-creator, orbyn-workflow |
 | https://doi.org/10.6028/NIST.AI.600-1 | NIST AI 600-1, July 2024 | See source | orbyn-ai-application |
 | https://genai.owasp.org/llmrisk/llm01-prompt-injection/ | OWASP LLM01:2025 | See source | orbyn-ai-application |
 | https://genai.owasp.org/llmrisk/llm062025-excessive-agency/ | OWASP LLM06:2025 | See source | orbyn-ai-application |

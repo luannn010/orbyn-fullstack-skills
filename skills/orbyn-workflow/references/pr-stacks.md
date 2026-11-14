@@ -24,13 +24,12 @@ merged yet; independent work goes in its own PR from the trunk instead
    stack map, applies the trunk's required checks and branch rules to every layer,
    and retargets the remaining layers after a lower one merges; sync the local
    branches afterwards. All branches must be in the same repository. Use the
-   `gh stack` extension when it is already installed; installing it
-   (`gh extension install github/gh-stack`) is a tool install, so ask the person
-   first. Commands, exit codes and recovery are in the pinned
-   [gh-stack skill](upstream/gh-stack/SOURCE.md). Always use its non-interactive
-   forms (`view --json`, `submit --auto`, `merge <target> --yes`); never run
-   `modify` or `switch`, which wait for keyboard input. Exit code 9 means stacks are
-   not enabled for the repository: tell the person.
+   `gh stack` extension when already installed; never install it implicitly.
+   Commands, exit codes and recovery are in the pinned
+   [gh-stack skill](upstream/gh-stack/SOURCE.md). Use non-interactive forms; never
+   run `modify` or `switch`, which wait for keyboard input. Exit code 9 means stacks
+   are not enabled for the repository: tell the person. For merging, use the
+   extension only if it can enforce the expected-head guard described below.
 2. **Plain Git otherwise.** Cut each branch from the one below and open each PR with
    the branch below as its base; name the base PR in the description, since there is
    no stack map. When the trunk moves, run `git rebase --update-refs <trunk>` from the
@@ -48,10 +47,10 @@ merged yet; independent work goes in its own PR from the trunk instead
   for every branch, and drafts still count as opened PRs. Opening a stack needs the
   same PR authority as opening one PR.
 - **Native stacks: merging a layer merges every unmerged layer below it.** Check that
-  merge authority covers every PR that would land, and pass the repository's merge
-  method explicitly (`gh stack merge` otherwise reuses the last one). In this skill
+  authority covers every PR that would land. A request to merge one PR at a time does
+  not authorize merging an upper PR together with its lower layers. In this skill
   library, no PR an agent asked for may be merged by an agent, so a stack containing
-  one waits for a human.
+  one waits for a human. Follow the native merge procedure below.
 - **Plain Git: merging an upper PR merges it into the branch below,** not the trunk;
   that is not delivery.
 - Stack merges are asynchronous, and with a merge queue they queue: read back the
@@ -59,15 +58,54 @@ merged yet; independent work goes in its own PR from the trunk instead
 - `unstack` without `--local` removes the stack on GitHub too; it, and any rewrite of
   someone else's stack, needs that stack owner's agreement.
 
+## Merge a native stack safely
+
+Detect native stack metadata and resolve the actual lowest **open** downstack PR
+before each action; its original numeric position may be stale after a merge.
+Re-read its exact head, base, checks, reviews and repository rules. Apply the
+[current-head CI and review gates](../playbooks/pr-iteration.md#dependent-stacks-and-current-context)
+to each layer; do not use ordinary `gh pr merge` or the ordinary REST merge
+endpoint as the native stack merge path.
+
+If an installed `gh stack` can enforce the expected head, use it within authority.
+Otherwise use GitHub's supported async REST endpoint: `PUT
+/repos/{owner}/{repo}/pulls/{number}/merge-async`, pin `sha` to the verified head,
+and set `bypass_rules: false`. For a direct merge, specify the repository's intended
+`merge_method` explicitly. Respect a configured merge queue: use its supported
+default or queue action, never bypass it to force a direct merge. Recheck the
+repository's rules and API support before sending.
+
+A `202` supplies a pending result UUID; retrieve it with `GET
+/repos/{owner}/{repo}/pulls/{number}/merge-async/{uuid}`. On `409` for an already
+pending operation, identify the existing operation and validate its head and options
+before relying on it; do not send a duplicate. A pending result is not a merge.
+An `enqueued` final async result is also not a landing and will not later change to
+`merged`. For every result claiming a merge, including after a queue completes,
+independently read the PR's merged state, actual base, landing commit and tree.
+Stop on a changed head, unexpected content or an
+unverifiable pending operation and reassess before another effect. If a UUID expires
+or returns `404`, reconcile current PR state once before any newly authorized retry.
+
+GitHub references, observed 2026-11-14: [async merge](https://docs.github.com/en/rest/pulls/pulls#merge-a-pull-request-asynchronously),
+[async result](https://docs.github.com/en/rest/pulls/pulls#get-the-result-of-an-asynchronous-merge),
+[stack API](https://docs.github.com/en/rest/pulls/stacks), and
+[merging stacked pull requests](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/merging-stacked-pull-requests).
+
 ## Keep it current
 
-- Native: after the trunk moves or a lower layer merges, `gh stack sync`.
+- Native: wait for GitHub to retarget after a lower layer lands, then refresh source,
+  ancestry and context. Native sync or rebase can rewrite branches and update a
+  worktree: check authority and branch/worktree ownership first. If the CLI is
+  missing, GitHub's **Rebase stack** web action is an option when authorized. Do
+  not automatically use plain-Git update-branch or force-push on a native stack.
 - Plain Git, after a lower layer was squash-merged: from the top branch,
   `git rebase --update-refs --onto <trunk> <old parent head SHA>` (the SHA recorded
   when the child was cut), push with `--force-with-lease`, then retarget the child
   PR's base to the trunk within your authority.
-- Either way, repeat each moved layer's affected checks; earlier results no longer
-  apply ([dependent stacks](../playbooks/pr-iteration.md#dependent-stacks-and-current-context)).
+- Either way, require fresh-head CI for every changed head, even when its tree is
+  identical; earlier head results cannot gate the new head. Compare contents after
+  a rewrite and seek review of unexpected changes. Equal trees do not preserve all
+  review or other verdicts. Repeat affected checks ([dependent stacks](../playbooks/pr-iteration.md#dependent-stacks-and-current-context)).
   A fix that belongs to a lower layer goes on that layer.
 - Stack branches may live in separate worktrees; never steal another worktree's
   checkout ([orbyn-worktree](../../orbyn-worktree/SKILL.md)).

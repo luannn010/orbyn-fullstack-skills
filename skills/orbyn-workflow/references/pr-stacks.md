@@ -28,8 +28,9 @@ merged yet; independent work goes in its own PR from the trunk instead
    Commands, exit codes and recovery are in the pinned
    [gh-stack skill](upstream/gh-stack/SOURCE.md). Use non-interactive forms; never
    run `modify` or `switch`, which wait for keyboard input. Exit code 9 means stacks
-   are not enabled for the repository: tell the person. For merging, use the
-   extension only if it can enforce the expected-head guard described below.
+   are not enabled for the repository: tell the person. Do not merge with
+   `gh stack merge`: it cannot pin an expected head, and without a method flag it
+   reuses the last-used one. Merge as described below.
 2. **Plain Git otherwise.** Cut each branch from the one below and open each PR with
    the branch below as its base; name the base PR in the description, since there is
    no stack map. When the trunk moves, run `git rebase --update-refs <trunk>` from the
@@ -67,18 +68,21 @@ Re-read its exact head, base, checks, reviews and repository rules. Apply the
 to each layer; do not use ordinary `gh pr merge` or the ordinary REST merge
 endpoint as the native stack merge path.
 
-If an installed `gh stack` can enforce the expected head, use it within authority.
-Otherwise use GitHub's supported async REST endpoint: `PUT
-/repos/{owner}/{repo}/pulls/{number}/merge-async`, pin `sha` to the verified head,
-and set `bypass_rules: false`. For a direct merge, specify the repository's intended
+Merge only that lowest open PR, through GitHub's async REST endpoint: `PUT
+/repos/{owner}/{repo}/pulls/{number}/merge-async`, with `sha` pinned to its
+verified head. The pin covers the targeted PR only; targeting an upper PR would land
+the layers below it unpinned. Set `bypass_rules: false`, unless the
+[owner bypass](../playbooks/opening-a-pr.md) applies to this exact PR (a review rule
+on the user's own PR, never a failing or missing check). For a direct merge, specify the repository's intended
 `merge_method` explicitly. Respect a configured merge queue: use its supported
 default or queue action, never bypass it to force a direct merge. Recheck the
 repository's rules and API support before sending.
 
-A `202` supplies a pending result UUID; retrieve it with `GET
-/repos/{owner}/{repo}/pulls/{number}/merge-async/{uuid}`. On `409` for an already
-pending operation, identify the existing operation and validate its head and options
-before relying on it; do not send a duplicate. A pending result is not a merge.
+A `200` means the PR was already merged or is already queued: read its state, do
+not resend. A `202` supplies a pending result UUID; retrieve it with `GET
+/repos/{owner}/{repo}/pulls/{number}/merge-async/{uuid}`. A `409` means a merge
+request is already pending; its body carries that request's UUID and options. Check
+its expected head and options before relying on it, and do not send a duplicate. A pending result is not a merge.
 An `enqueued` final async result is also not a landing and will not later change to
 `merged`. For every result claiming a merge, including after a queue completes,
 independently read the PR's merged state, actual base, landing commit and tree.
@@ -94,7 +98,8 @@ GitHub references, observed 2026-11-14: [async merge](https://docs.github.com/en
 ## Keep it current
 
 - Native: wait for GitHub to retarget after a lower layer lands, then refresh source,
-  ancestry and context. Native sync or rebase can rewrite branches and update a
+  ancestry and context; `gh stack sync` updates the local branches when the extension
+  is installed. Native sync or rebase can rewrite branches and update a
   worktree: check authority and branch/worktree ownership first. If the CLI is
   missing, GitHub's **Rebase stack** web action is an option when authorized. Do
   not automatically use plain-Git update-branch or force-push on a native stack.

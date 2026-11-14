@@ -2729,6 +2729,13 @@
           "effort": "medium (author/scout); coordinator effort not exposed by host",
           "date": "2026-11-14",
           "scope": "Native GitHub stack async merge, expected-head and landing readback guidance; queue preservation and refreshed CI after native restacking."
+        },
+        {
+          "tool": "Claude Code desktop",
+          "model": "claude-opus-5-5",
+          "effort": "medium",
+          "date": "2026-11-14",
+          "scope": "Maintainer review fixes on PR 187: async merge targets only the lowest open layer, gh stack merge not used for merging, 200/409 handling, owner-bypass alignment, gh stack sync restored."
         }
       ]
     },

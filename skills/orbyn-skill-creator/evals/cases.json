@@ -14172,6 +14172,96 @@
         "message"
       ],
       "excluded": "Do not start a parallel build to hide a slow pipeline; shorten the required checks."
+    },
+    {
+      "id": "stack-schema-api-ui",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Split this feature into stacked PRs: the schema change, then the API, then the UI.",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not open more than two layers at once without the user raising the depth limit, and do not put the layers in one PR."
+    },
+    {
+      "id": "stack-after-squash",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "The bottom PR of my stack was squash-merged. Update the PRs above it.",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not merge the remaining layers; rebase them and rerun their checks."
+    },
+    {
+      "id": "stack-merge-middle",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Merge the middle PR of our gh stack now.",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "message"
+      ],
+      "excluded": "Do not merge without checking that merge authority covers every PR below it, which lands too."
+    },
+    {
+      "id": "stack-slow-ci-adjacent",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "CI on our stacked PRs takes 30 minutes per layer. Make the required checks faster.",
+      "expected_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-worktree"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not restructure the stack to hide slow checks."
+    },
+    {
+      "id": "independent-not-stacked",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "I have two unrelated fixes ready. Should I stack them as PRs?",
+      "expected_skills": [
+        "orbyn-workflow"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not stack independent work; open each as its own PR from the trunk."
     }
   ]
 }

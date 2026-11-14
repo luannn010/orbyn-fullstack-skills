@@ -20,6 +20,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | 2026 Emil Kowalski | MIT | language-best-practices, orbyn-ui-design, tdd |
 | [expo/skills](https://github.com/expo/skills) | 2025-present 650 Industries, Inc. (aka Expo) | MIT | architect, language-best-practices, orbyn-backend-design, orbyn-ci-design, orbyn-ui-design, orbyn-workflow, tdd |
 | [flohoeller/affectui](https://github.com/flohoeller/affectui) | flohoeller | MIT | orbyn-affectui |
+| [github/gh-stack](https://github.com/github/gh-stack) | github | MIT | orbyn-workflow |
 | [ibelick/ui-skills](https://github.com/ibelick/ui-skills) | 2026 Julien Thibeaut | MIT | orbyn-ui-design |
 | [jmanico/grim-prompter](https://github.com/jmanico/grim-prompter) | 2026 Jim Manico | MIT | orbyn-security-audit |
 | [kosta4a/tactile-design](https://github.com/kosta4a/tactile-design) | 2026 the tactile-design authors | MIT | orbyn-ui-design |

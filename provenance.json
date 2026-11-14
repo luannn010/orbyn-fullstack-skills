@@ -1497,6 +1497,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Routing cases for building while a PR waits: three development, one holdout, including an adjacent case where orbyn-ci-design wins"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-14",
+          "scope": "Routing cases for stacked PRs: four development (one adjacent where orbyn-ci-design wins), one holdout"
         }
       ],
       "reviewed_inspiration": [
@@ -2293,6 +2300,14 @@
           "source": "https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049",
           "revision": "2776ddd2355d6d6c8747d3964600f28daf62f049",
           "relationship": "reviewed; pstack tree unchanged since c742dd6, later commits outside pstack; no source text or code imported; not an advance of original import pins"
+        },
+        {
+          "credit": "GitHub, Inc., gh-stack",
+          "copyright": "Copyright GitHub, Inc.",
+          "source": "https://github.com/github/gh-stack/tree/b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db",
+          "revision": "b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db",
+          "license": "MIT",
+          "relationship": "bundled unmodified agent skill snapshot; see references/upstream/gh-stack/snapshot.json"
         }
       ],
       "authoring": [
@@ -2637,6 +2652,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Build-while-waiting playbook: next independent item in its own tree while a PR waits, stacks on the base PR head, depth and open-PR defaults, slot use, overlap stops; pointers from SKILL, lead contract, PR iteration and waiting"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-14",
+          "scope": "Stacked PRs reference (layer design, GitHub native stacks or plain Git, merge authority across layers, keeping stacks current, layer review); pinned gh-stack skill; pointers from SKILL, build-while-waiting and PR iteration"
         }
       ]
     },

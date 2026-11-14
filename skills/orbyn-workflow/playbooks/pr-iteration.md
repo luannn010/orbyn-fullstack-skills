@@ -175,6 +175,8 @@ call it again. Where the host already watches PRs (Claude desktop Auto-fix), use
 
 ## Dependent stacks and current context
 
+How to build and keep a stack (native or plain Git) is in [stacked PRs](../references/pr-stacks.md).
+
 Resolve the actual repository/fork identity and PR base graph; do not infer a
 stack from names or publication order. Only an authorized contiguous verified
 prefix may land. A green upper PR cannot carry an unverified middle/base into

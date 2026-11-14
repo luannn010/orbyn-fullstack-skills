@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/github/gh-stack",
+  "revision": "b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db",
+  "retrieved_on": "2026-11-14",
+  "license": "MIT",
+  "scope": "Unmodified gh-stack agent skill (SKILL.md stored as SOURCE.md) and its three references, with the MIT license. Offline command reference for GitHub stacked pull requests; the extension itself is not bundled.",
+  "files": {
+    "SOURCE.md": {
+      "source_path": "skills/gh-stack/SKILL.md",
+      "sha256": "909ca0dc20d644f8ce2d1a5e0c266d71aa93d2ecac366e505d14d1e8e45795dd"
+    },
+    "references/commands.md": {
+      "source_path": "skills/gh-stack/references/commands.md",
+      "sha256": "f10d076868780913dc5f1ea26333dbdfc91c1a3c41e45fbc6a24fd6cba0b6929"
+    },
+    "references/stack-design.md": {
+      "source_path": "skills/gh-stack/references/stack-design.md",
+      "sha256": "4a61e3065ce61a5d129a30f5dcbebe73bfde250e34c382277facdc31d2c4e5ce"
+    },
+    "references/troubleshooting.md": {
+      "source_path": "skills/gh-stack/references/troubleshooting.md",
+      "sha256": "1a85094e2398f0d28b4e861f2af6e5a81e0553a0f44ddb51eb3dc6585b48e7f3"
+    },
+    "LICENSE": {
+      "source_path": "LICENSE",
+      "sha256": "2510b446bc1f0cf9702453075d20cd88631e20e5642658edb7325d9c1eb534f7"
+    }
+  },
+  "license_files": [
+    "LICENSE"
+  ]
+}

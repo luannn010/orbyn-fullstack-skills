@@ -41,7 +41,9 @@ reviews N+1 before N+1's PR opens.
 ## Stack only what depends on N
 
 - Work that needs N's code is cut from N's reviewed, pushed head (record the SHA),
-  and its PR names N as its base. Never cut it from main and copy N's changes in.
+  and its PR names N as its base, as a GitHub native stack where available
+  ([stacked PRs](../references/pr-stacks.md)). Never cut it from main and copy N's
+  changes in.
 - When N merges (often as a squash), or N's head changes after the cut, rebase or
   retarget the child and repeat its affected checks
   ([dependent stacks](pr-iteration.md#dependent-stacks-and-current-context)).

@@ -12,7 +12,7 @@ import unittest
 from test_tools import ROOT
 
 # Classes run_tests.py runs as parallel processes; keep in step with the classes below.
-SHARDS = ["ReportTests", "AlertTests", "LicenceTests", "IssueLifecycleTests", "SafetyTests", "ShippedTests"]
+SHARDS = ["ReportTests", "RetryTests", "AlertTests", "LicenceTests", "IssueLifecycleTests", "SafetyTests", "ShippedTests"]
 
 SCRIPT = ROOT/'scripts/upstream_watch.py'
 PIN, HEAD, OTHER = 'a'*40, 'b'*40, 'c'*40
@@ -21,7 +21,7 @@ SLUG = 'acme/kit'
 # Serves canned API answers from a JSON file and logs every call with its stdin.
 FAKE_GH = textwrap.dedent(f'''\
     #!{sys.executable}
-    import json, os, sys
+    import hashlib, json, os, sys
     args = sys.argv[1:]
     state = json.load(open(os.environ['FAKE_GH_STATE']))
     with open(os.environ['FAKE_GH_LOG'], 'a') as log:
@@ -37,6 +37,14 @@ FAKE_GH = textwrap.dedent(f'''\
         if 'status' in answer:
             sys.stderr.write(f"gh: failed (HTTP {{answer['status']}})\\n")
             sys.exit(1)
+        if answer.get('fail'):
+            # Fail this many times first, counting calls in a file beside the state.
+            counter = os.environ['FAKE_GH_STATE'] + '.' + hashlib.sha256(args[1].encode()).hexdigest()[:12]
+            seen = int(open(counter).read()) if os.path.exists(counter) else 0
+            open(counter, 'w').write(str(seen + 1))
+            if seen < answer['fail']:
+                sys.stderr.write('gh: Server Error (HTTP 502)\\n')
+                sys.exit(1)
         print(json.dumps(answer['json']))
     ''')
 
@@ -83,6 +91,7 @@ class WatcherCase(unittest.TestCase):
         self.env = {**os.environ, 'PATH': f'{fake.parent}{os.pathsep}{os.environ["PATH"]}',
                     'FAKE_GH_STATE': str(self.state), 'FAKE_GH_LOG': str(self.log)}
         self.env.pop('GH_REPO', None)
+        self.env['ORBYN_UPSTREAM_RETRY_DELAY'] = '0'
         (self.root/'skills').mkdir(parents=True)
         self.provenance({'kit-skill': self.record()})
 
@@ -194,6 +203,48 @@ class ReportTests(WatcherCase):
         body, _ = self.created_body()
         self.assertIn(f'Reviewed without adopting, not pins: `{OTHER}`', body)
         self.assertNotIn(f'Pin `{OTHER}`', body)
+
+
+class RetryTests(WatcherCase):
+    REF = f'repos/{SLUG}/git/ref/heads/main'
+
+    def ref_calls(self):
+        return [call for call in self.calls() if call['args'][:2] == ['api', self.REF]]
+
+    def test_a_passing_server_error_is_retried_and_the_source_is_verified(self):
+        answers = api(**{self.REF: {'json': {'object': {'sha': HEAD}}, 'fail': 1}})
+        result = self.run_watch(answers)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertNotIn('UNVERIFIED', result.stdout)
+        self.assertEqual(len(self.ref_calls()), 2)
+
+    def test_a_lasting_server_error_names_the_status_after_three_tries(self):
+        answers = api(**{self.REF: {'json': {'object': {'sha': HEAD}}, 'fail': 9}})
+        result = self.run_watch(answers)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn('UNVERIFIED', result.stdout)
+        self.assertIn('(HTTP 502) after 3 tries', result.stdout)
+        self.assertEqual(len(self.ref_calls()), 3)
+
+    def test_retries_stop_when_the_run_budget_is_spent(self):
+        self.state.write_text(json.dumps({'api': api(**{self.REF: {'json': {}, 'fail': 99}}), 'issues': []}))
+        self.log.write_text('')
+        probe = (f'import sys; sys.path.insert(0, {str(SCRIPT.parent)!r}); import upstream_watch as u\n'
+                 'client = u.GitHub(); client.retries_left = 1\n'
+                 'for _ in range(2):\n'
+                 '    try: client.api(sys.argv[1])\n'
+                 '    except u.ApiError as error: print(error)\n')
+        result = subprocess.run([sys.executable, '-B', '-c', probe, self.REF], capture_output=True, text=True, env=self.env)
+        self.assertEqual(result.stdout.count('after 2 tries'), 1, result.stdout + result.stderr)
+        self.assertEqual(result.stdout.count('after 1 try'), 1, result.stdout)
+        self.assertEqual(len(self.ref_calls()), 3)
+
+    def test_a_not_found_is_an_answer_and_is_not_retried(self):
+        answers = api(**{self.REF: None})
+        result = self.run_watch(answers)
+        self.assertIn('HTTP 404', result.stdout)
+        self.assertIn('(HTTP 404) after 1 try', result.stdout)
+        self.assertEqual(len(self.ref_calls()), 1)
 
 
 class AlertTests(WatcherCase):

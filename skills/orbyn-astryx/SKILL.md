@@ -22,7 +22,7 @@ still owns the product decisions; this skill owns how they are built in Astryx.
 2. **Find the project's CLI.** Use the project's installed invocation: its package
    script (`pnpm astryx`, `npm run astryx --`) or local binary. That version's
    answers match the installed components. With no installed CLI, read the
-   [bundled docs](references/upstream/astryx-docs/docs/README.md) (CLI 0.7.12) and say
+   [bundled docs](references/upstream/astryx-docs/docs/README.md) (CLI 0.7.17) and say
    which version they describe; do not fetch a different CLI just to look something up.
 
 ## Build a page
@@ -85,8 +85,8 @@ component overrides flash on hydration.
 
 ## Source and updates
 
-The agent docs of [meta/astryx](https://github.com/meta/astryx/tree/c86484dc57847e7c4d1127810ff1422bc2174d4d/packages/cli/assets/docs)
-are bundled unmodified at `c86484d` (CLI 0.7.12), MIT, with the license and a
+The agent docs of [meta/astryx](https://github.com/meta/astryx/tree/af509ad9117efebbc92169facd3d3b497ad8f93c/packages/cli/assets/docs)
+are bundled unmodified at `af509ad` (CLI 0.7.17), MIT, with the license and a
 `snapshot.json` of file hashes. They are `.mjs` modules the CLI prints; read their
 `prose`, `list` and `code` entries, and prefer the project's installed CLI whenever
 they differ. Never edit or re-download them by hand: `scripts/upstream_watch.py`

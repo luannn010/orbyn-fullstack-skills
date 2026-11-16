@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/meta/astryx",
-  "revision": "c86484dc57847e7c4d1127810ff1422bc2174d4d",
-  "retrieved_on": "2026-11-09",
+  "revision": "af509ad9117efebbc92169facd3d3b497ad8f93c",
+  "retrieved_on": "2026-11-16",
   "license": "MIT",
-  "scope": "Unmodified agent-facing documentation of @astryxdesign/cli 0.7.12 (packages/cli/assets/docs: guides, topic tree, English, Chinese and dense agent variants) with the MIT license. These are the sources the installed CLI prints; the project's own CLI stays authoritative for its version. No component, CLI or build code is bundled.",
+  "scope": "Unmodified agent-facing documentation of @astryxdesign/cli 0.7.17 (packages/cli/assets/docs: guides, topic tree, English, Chinese and dense agent variants) with the MIT license. These are the sources the installed CLI prints; the project's own CLI stays authoritative for its version. No component, CLI or build code is bundled.",
   "files": {
     "docs/README.md": {
       "source_path": "packages/cli/assets/docs/README.md",
@@ -12,7 +12,7 @@
     },
     "docs/author-a-theme.doc.mjs": {
       "source_path": "packages/cli/assets/docs/author-a-theme.doc.mjs",
-      "sha256": "77e104f928101638d5b30a4359700452af6e8b976e078e8e5507f71eebc5b4b7"
+      "sha256": "87821079ddafb08ccc490b9b7b93403a4435977b0a8cd383f0ffc20769b420ce"
     },
     "docs/browser-support.doc.mjs": {
       "source_path": "packages/cli/assets/docs/browser-support.doc.mjs",
@@ -20,7 +20,7 @@
     },
     "docs/color.doc.mjs": {
       "source_path": "packages/cli/assets/docs/color.doc.mjs",
-      "sha256": "bf89f0f6cca737966787979b3d1aa7ce3328d02fd035b83b6ee26e397bad3df6"
+      "sha256": "f39db2fae8ca5fd6987e3ef7a689d56644fc4fe3ea3fd8422d76091fbe3cc092"
     },
     "docs/elevation.doc.mjs": {
       "source_path": "packages/cli/assets/docs/elevation.doc.mjs",
@@ -72,19 +72,19 @@
     },
     "docs/styling-overview.doc.mjs": {
       "source_path": "packages/cli/assets/docs/styling-overview.doc.mjs",
-      "sha256": "f56f88c91132bb4f06b867bb23242300ab67b8aec3101285f4cb0eb098986ff9"
+      "sha256": "c9fbfe0a751b13a0eccead606db0e23c051804da1f3507b3b655336505e38b9a"
     },
     "docs/theme.doc.dense.mjs": {
       "source_path": "packages/cli/assets/docs/theme.doc.dense.mjs",
-      "sha256": "dc9c6d0cd7fffb9c5a7281086a952b5b5dceabfab55b7d9fdb82e193564f79f9"
+      "sha256": "597871595c3c11abffeb6f7861cebbb89b6d859726cc00dc3a3932b585b6ba6a"
     },
     "docs/theme.doc.mjs": {
       "source_path": "packages/cli/assets/docs/theme.doc.mjs",
-      "sha256": "8a190f80fac62f39d80eb1e9686fd0ccda13ecf772ac88ad3ac59b19e7d7483a"
+      "sha256": "3dc1414269923420b81ad603e9f96f8631ffd1e41a76c9e161ba8043765c06f2"
     },
     "docs/theme.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/theme.doc.zh.mjs",
-      "sha256": "153456c99c6e62228a7a1e83f73d92a3f1ee053f0e9c4eed3a0f3af49429c0e6"
+      "sha256": "b15ddced10748dc39ddb8f9f4c2d6a72ce77e8270ef7c18587adb2fb5c1875b4"
     },
     "docs/tree/add-a-component.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/add-a-component.doc.mjs",
@@ -124,11 +124,11 @@
     },
     "docs/tree/calendar-systems.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/calendar-systems.doc.mjs",
-      "sha256": "7d55778c1110ef67c51aa62e557109a7e422eed2f8f0a4e5561ec2abb136a217"
+      "sha256": "3b25d8801e4ba019c294ba1bfa6f1f295868c7c512bbc29c29a5a85a77275922"
     },
     "docs/tree/calendars.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/calendars.doc.mjs",
-      "sha256": "e32bdc13e637d6ccf3fc70ca2156bae63e30cb64fedfe3c3f2f7f391cbdaa143"
+      "sha256": "4f872331bfd9ae56d30989ad7b07022186c7b421848067221cb91c44c64d6c8c"
     },
     "docs/tree/check-the-props.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/check-the-props.doc.mjs",
@@ -136,11 +136,11 @@
     },
     "docs/tree/check-your-docs.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/check-your-docs.doc.mjs",
-      "sha256": "e10b750ad0d86d8db877c2fc77ac8994c9c91f1a614cec6fee5cf36a4c0f4648"
+      "sha256": "d58a08bed36dbcd21ab043a046acb6beb6d6b6123b286cb2275e58771f62e7dd"
     },
     "docs/tree/checks.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/checks.doc.mjs",
-      "sha256": "844a526352e1955a5f067d16954f1467f62ab0d3de9610c9ccaf037590dc4767"
+      "sha256": "8a5cfcdf73079bc953a7985b5422ccc14abd9fa51d2aea97cb74bd967a3eb515"
     },
     "docs/tree/ci-and-containers.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/ci-and-containers.doc.mjs",
@@ -148,7 +148,7 @@
     },
     "docs/tree/cli-command.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/cli-command.doc.mjs",
-      "sha256": "ef5550b98c2ca8c8fa7dac3b77285b73746ff83a7e60cc3aa588cc650b9df82f"
+      "sha256": "972cfe32f03e82c35c6749603255293da7b1d3914be690bb800fbed8a722b73b"
     },
     "docs/tree/cli.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/cli.doc.mjs",
@@ -204,7 +204,7 @@
     },
     "docs/tree/define-the-theme.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/define-the-theme.doc.mjs",
-      "sha256": "8de7f1b29d038fb41d7b3395df640b460c2594d875b2e5fd142ef3af45a1ab90"
+      "sha256": "814987acdd35f84acaedf151e0cd7794c49ee1510e49e08adb3365f1dfd89b8a"
     },
     "docs/tree/describe-the-component.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/describe-the-component.doc.mjs",
@@ -224,7 +224,7 @@
     },
     "docs/tree/document-the-theme.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/document-the-theme.doc.mjs",
-      "sha256": "8edc70ecae67db841d6385a3d937e27f872eba979bdf963a6621e0fb7e6666bf"
+      "sha256": "c03dcc69f2782b3474e67aaa493ca906677bdd672f46fee454221bfb47c2821c"
     },
     "docs/tree/experimental.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/experimental.doc.mjs",
@@ -244,11 +244,11 @@
     },
     "docs/tree/font-setup.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/font-setup.doc.mjs",
-      "sha256": "f080a23e77b09537cb47a6e45d1e0867ccad5495dfa014dfc629bde88fbe6194"
+      "sha256": "b9a4be91b437dad45fdde0b886bcf33c6f5a0d16a96b4f2fb16a28afb1ef986c"
     },
     "docs/tree/fonts-and-assets.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/fonts-and-assets.doc.mjs",
-      "sha256": "ced11dde3901552b22940ae75c593d2f4039b8fab3459a8dfb2ccf4fa03f93a8"
+      "sha256": "ad93c0b7285c7634a2fe3bc8e4434eb71b2f391d2c8d2667a1628677227fdd67"
     },
     "docs/tree/generate-a-palette.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/generate-a-palette.doc.mjs",
@@ -280,7 +280,7 @@
     },
     "docs/tree/i18n-calendars.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/i18n-calendars.doc.mjs",
-      "sha256": "3d922fedcedc5ff96bb598fc95707569f5e47373a60edb88aabc45017e1727fc"
+      "sha256": "d69fa0d504ff1cd0c9ac878fd33cdff9012e2224b0c6a730e7f42df8c8d2b098"
     },
     "docs/tree/i18n-library-integration.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/i18n-library-integration.doc.mjs",
@@ -304,11 +304,11 @@
     },
     "docs/tree/icon-sets.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/icon-sets.doc.mjs",
-      "sha256": "8297db9bb84829420985f5856c78639e1b6bb66f49a4af94c968e6ef582cf61a"
+      "sha256": "4da456d57134224c597045efddea45526dfa411b1408fed021d85b66abeb33bb"
     },
     "docs/tree/install-once.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/install-once.doc.mjs",
-      "sha256": "06e33ad6942e5772489bf3d05bdd200afabb2b03ac05cdc7e7b86742a077e31c"
+      "sha256": "40b629f4367ed37bf15070bfab98d5f56130b193f60abcfd8c28e066d271340d"
     },
     "docs/tree/internationalization.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/internationalization.doc.mjs",
@@ -368,7 +368,7 @@
     },
     "docs/tree/publishing.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/publishing.doc.mjs",
-      "sha256": "9d806f0767caabb4e23bcec507bc97ee1d5f386af16c3a8a271829d03bfef821"
+      "sha256": "07feb2e0d55b52cc31530461159f9753b01ee4cdd3890300af4b7841df525951"
     },
     "docs/tree/quick-start.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/quick-start.doc.mjs",
@@ -380,7 +380,7 @@
     },
     "docs/tree/render-pages.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/render-pages.doc.mjs",
-      "sha256": "5d5d4250a86d01b699531d9d7b24cd4fcdb27f7114cd92272f9865842f2ca9c3"
+      "sha256": "49b5e48dff209d3780709c37afe09c2f5f41a6052d18b528a658ba14970e25cf"
     },
     "docs/tree/replace-a-core-component.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/replace-a-core-component.doc.mjs",
@@ -420,7 +420,7 @@
     },
     "docs/tree/single-component.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/single-component.doc.mjs",
-      "sha256": "4fb6739037448a0625c4849aa8f0e90271ce0c2f9a058b3cfb04185864c015f2"
+      "sha256": "a8b105465702afa3b47c107bf0f2d20e0266c3c800e9aba4092a9ff8fdc38123"
     },
     "docs/tree/start-a-template.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/start-a-template.doc.mjs",
@@ -452,7 +452,7 @@
     },
     "docs/tree/tailwind.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tailwind.doc.mjs",
-      "sha256": "677a3313a5e70bd72c13d06c78425138d7449abd5044ae5749547869686c2e89"
+      "sha256": "52aec383f79569f50b7004cd1b7a1fbd1d81622777a77ea704ebd2401c93780f"
     },
     "docs/tree/template-assets.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/template-assets.doc.mjs",
@@ -460,7 +460,7 @@
     },
     "docs/tree/template-doc-overview.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/template-doc-overview.doc.mjs",
-      "sha256": "d81d6934ef0b6e62834bf4774261e7c5e9a75eda092054334949ae257f6a7184"
+      "sha256": "64f828c90568601331f5df27ad8eb61e9dcecc91609dc121198aaa770d40232a"
     },
     "docs/tree/template-fonts.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/template-fonts.doc.mjs",
@@ -488,7 +488,7 @@
     },
     "docs/tree/test-in-an-app.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/test-in-an-app.doc.mjs",
-      "sha256": "5124679ccd524600bac7ec44cc8f47def30ff2d6fe15edee0590050df6145a25"
+      "sha256": "10b9d1a13e2ff76fc1e407136118e9b88980818956849816118ac26e186819e1"
     },
     "docs/tree/test-template-in-app.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/test-template-in-app.doc.mjs",
@@ -500,11 +500,11 @@
     },
     "docs/tree/tokens-and-setup.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-and-setup.doc.mjs",
-      "sha256": "92cb207263c2c3a94eb19922b0e6b2e52b5b691fb1362b8d5b0a202fbb398edb"
+      "sha256": "23144be66248e4c0dd945ec15c4386010d923e9f58e4d8d6a0ba93550bb226fd"
     },
     "docs/tree/tokens-border.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-border.doc.mjs",
-      "sha256": "0668aeba48df9ccbfa2d269ef40116d5894c15b7fd8bc9b41c826cdfb2235ebd"
+      "sha256": "15561ef2ff6ba5463cbabba99c27e9a48fc5a7cf134ba4eed8664fc74b034127"
     },
     "docs/tree/tokens-color.doc.dense.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-color.doc.dense.mjs",
@@ -512,7 +512,7 @@
     },
     "docs/tree/tokens-color.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-color.doc.mjs",
-      "sha256": "5fc1c0bcd15929123742b454279d12814c8a16fee0a78117b1831fe1f0308b09"
+      "sha256": "4ea4981e1a857268052f7d5a24d11ff57df7f243df54ed3136832040908861cd"
     },
     "docs/tree/tokens-color.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-color.doc.zh.mjs",
@@ -520,23 +520,23 @@
     },
     "docs/tree/tokens-data.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-data.doc.mjs",
-      "sha256": "de6ce7a0caa44a51defbb44d9a473a60a1979a0b617acf0adc6411dddd25cd2b"
+      "sha256": "4a1d2b037d5489aab473f1b29ea136b26615fcf913dcd13d41f50a62f414231b"
     },
     "docs/tree/tokens-duration.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-duration.doc.mjs",
-      "sha256": "f02a4e38eaaff6c1552537ce2d13a12e6db521aca623274172060f151f1bb77c"
+      "sha256": "f4d26683dc30a2fc416120fc12743c99c539f3693fdebd179a056b56d238aaad"
     },
     "docs/tree/tokens-ease.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-ease.doc.mjs",
-      "sha256": "e09409e2f569ded971745e35d63b21481419724a9217c0fca6de5035facf0d01"
+      "sha256": "cbb868906b8a13b22fea06fd607effe42a37443d33b90c24294de7d4bfc0f6e7"
     },
     "docs/tree/tokens-focus.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-focus.doc.mjs",
-      "sha256": "212e644f0239b64a1256f3d87388b4277cc780de08739f08376a1efa99a70cb3"
+      "sha256": "5b824e124388d4c652d5607b84bed734a2e8a9b3d8db78d65e05a536d8b5b061"
     },
     "docs/tree/tokens-font-weight.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-font-weight.doc.mjs",
-      "sha256": "950c8bb18cf9f2a458191935c54d3081e5bb968281ad630c7b7983c4de201744"
+      "sha256": "b6981c0e76cfbcb8440df62cd85dbe107dd52edb195586185a2c616671d084ba"
     },
     "docs/tree/tokens-radius.doc.dense.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-radius.doc.dense.mjs",
@@ -544,7 +544,7 @@
     },
     "docs/tree/tokens-radius.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-radius.doc.mjs",
-      "sha256": "cae225b50a968290005a4eabc38adca751daa1562386c3c69e17b5824f959630"
+      "sha256": "513af9d8b152df504ec7bf759779beee9c6f75bac36712f8934774b99dd325d7"
     },
     "docs/tree/tokens-radius.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-radius.doc.zh.mjs",
@@ -556,7 +556,7 @@
     },
     "docs/tree/tokens-shadow.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-shadow.doc.mjs",
-      "sha256": "e34ec8dcea58eda2d99a74cc5fd4b90ca64154739f66d0c1a718a46a5aafc30d"
+      "sha256": "b9b210a6fbcc2bf380bf37b366cf08a6eeeecec70d224494b2bc9039ba3af843"
     },
     "docs/tree/tokens-shadow.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-shadow.doc.zh.mjs",
@@ -568,7 +568,7 @@
     },
     "docs/tree/tokens-size.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-size.doc.mjs",
-      "sha256": "3d0fce3157285cf1d3178f9df6701e338b1063e7db22b1af956d59e4a0d8e5b6"
+      "sha256": "f1b96fbde06f4bd021da159cb2f1b6e659b0cc79e79c340259420aa938bc4f5c"
     },
     "docs/tree/tokens-size.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-size.doc.zh.mjs",
@@ -580,7 +580,7 @@
     },
     "docs/tree/tokens-spacing.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-spacing.doc.mjs",
-      "sha256": "062187b0ba07be2094488a4142ecf7d9dcac707f3a7e8c431dcd4be9ec85ffea"
+      "sha256": "d87209f7b46dd24d7429870d8b52c5b9a485758eab983b868495150f64337b58"
     },
     "docs/tree/tokens-spacing.doc.zh.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-spacing.doc.zh.mjs",
@@ -588,19 +588,19 @@
     },
     "docs/tree/tokens-syntax.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-syntax.doc.mjs",
-      "sha256": "fedfb74d3a241b84b6c7a69b7399dea01b294ae9bc6d914cfc6c2626b0998d33"
+      "sha256": "791774b38c467328ef63dfd863eef498c8dd546586ad473fa66b0488795a64b4"
     },
     "docs/tree/tokens-text-size.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-text-size.doc.mjs",
-      "sha256": "c3644e586c074971724dcbe0829fc60c7b979f71140424c94df26df135ac1bfc"
+      "sha256": "105928eb2335bc878053b7b778618dad59c3f54096706f64db1386cf516bd4c5"
     },
     "docs/tree/tokens-type-scale.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-type-scale.doc.mjs",
-      "sha256": "7a857295771681d296337708419eb9ffe32a57bc1d106727bb6ab5d1e585e591"
+      "sha256": "f45a6cffa5a03c933003488941aa145960c9d0d1aac36ec65a46bb6a3149774e"
     },
     "docs/tree/tokens-typography.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-typography.doc.mjs",
-      "sha256": "3cdf5db63bd03f90e9ef0506a5ee1aff3b80610097651c9f071216a185ad03c1"
+      "sha256": "f51665c99a8883e5747837c57a56807a1c1dc130d55694810ad91864717240cb"
     },
     "docs/tree/tokens-usage.doc.dense.mjs": {
       "source_path": "packages/cli/assets/docs/tree/tokens-usage.doc.dense.mjs",
@@ -624,7 +624,7 @@
     },
     "docs/tree/type-scale.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/type-scale.doc.mjs",
-      "sha256": "2ef3f075031ca4742a7ad64d638f1bd56099c2a896f722afd429dc20be5466a6"
+      "sha256": "49f6c859b41223c299b01d354648a0886abc40f9a57e613b9529733b92d2ab8d"
     },
     "docs/tree/typography-best-practices.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/typography-best-practices.doc.mjs",
@@ -664,7 +664,7 @@
     },
     "docs/tree/write-good-templates.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/write-good-templates.doc.mjs",
-      "sha256": "4377f809e31f93f4fecc58398307a07f064d27dd81f28d29db3da2491c25909c"
+      "sha256": "cdee2e6d196e2abf66174cc92c54d0f9b781a731d21152ef6bf2eb5fda3b4ff6"
     },
     "docs/tree/write-the-template-file.doc.mjs": {
       "source_path": "packages/cli/assets/docs/tree/write-the-template-file.doc.mjs",
@@ -672,7 +672,7 @@
     },
     "docs/use-a-theme.doc.mjs": {
       "source_path": "packages/cli/assets/docs/use-a-theme.doc.mjs",
-      "sha256": "2a17f51767efa8887fe63f931fbd7e841ff5642c403346e183b06673684d8fae"
+      "sha256": "3c8870b5764fc3ebfbd52153094dc6779cbc3348625d5f3fd2551e63801feb4f"
     },
     "docs/use-integrations.doc.mjs": {
       "source_path": "packages/cli/assets/docs/use-integrations.doc.mjs",

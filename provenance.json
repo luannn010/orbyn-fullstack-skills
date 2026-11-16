@@ -242,7 +242,7 @@
       ],
       "bundled_compiler": {
         "repository": "https://github.com/cursor/plugins",
-        "revision": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+        "revision": "bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7",
         "source_path": "pstack/skills/statechart/scripts",
         "snapshot": "skills/architect/references/upstream/pstack-statechart/snapshot.json",
         "scope": "26 unmodified runtime .ts files and original MIT notice; no bootstrap, runtime binaries, upstream skill aliases or test corpus"
@@ -372,6 +372,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-sonnet-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Advanced the bundled pstack statechart compiler snapshot to bf0c7cd (run.ts, mermaid.ts) with adapter checks"
         }
       ]
     },
@@ -3261,6 +3268,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "Advance emilkowalski/skills pin c8a7962 -> 5206a95: adapted files unchanged, LICENSE unchanged, the only new skill (gestures) reviewed and written into motion.md"
+        },
+        {
+          "tool": "Claude Code desktop",
+          "model": "claude-opus-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Dated note that the bundled pstack statechart compiler pin advanced to bf0c7cd."
         }
       ]
     },
@@ -4229,26 +4243,26 @@
       "reviewed_sources": [
         {
           "credit": "Anthropic, PBC (anthropics/skills)",
-          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/docx",
-          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "source": "https://github.com/anthropics/skills/tree/1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064/skills/docx",
+          "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
           "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
         },
         {
           "credit": "Anthropic, PBC (anthropics/skills)",
-          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pdf",
-          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "source": "https://github.com/anthropics/skills/tree/1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064/skills/pdf",
+          "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
           "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
         },
         {
           "credit": "Anthropic, PBC (anthropics/skills)",
-          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/pptx",
-          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "source": "https://github.com/anthropics/skills/tree/1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064/skills/pptx",
+          "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
           "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
         },
         {
           "credit": "Anthropic, PBC (anthropics/skills)",
-          "source": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills/xlsx",
-          "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+          "source": "https://github.com/anthropics/skills/tree/1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064/skills/xlsx",
+          "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
           "relationship": "bundled unmodified snapshot; Apache-2.0; see snapshot.json"
         }
       ],
@@ -4259,6 +4273,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "New skill wrapping pinned Anthropic sources for every host"
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-sonnet-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Advanced the bundled Anthropic docx, pptx, xlsx and pdf snapshots to 1780c5e; pdf renames, pptx slide_text.py and apply_theme.js"
         }
       ]
     },
@@ -4322,10 +4343,10 @@
       "reviewed_sources": [
         {
           "credit": "Meta Platforms, Inc. (meta/astryx)",
-          "source": "https://github.com/meta/astryx/tree/c86484dc57847e7c4d1127810ff1422bc2174d4d/packages/cli/assets/docs",
-          "revision": "c86484dc57847e7c4d1127810ff1422bc2174d4d",
+          "source": "https://github.com/meta/astryx/tree/af509ad9117efebbc92169facd3d3b497ad8f93c/packages/cli/assets/docs",
+          "revision": "af509ad9117efebbc92169facd3d3b497ad8f93c",
           "license": "MIT",
-          "relationship": "bundled unmodified snapshot of @astryxdesign/cli 0.7.12 agent docs; see snapshot.json",
+          "relationship": "bundled unmodified snapshot of @astryxdesign/cli 0.7.17 agent docs; see snapshot.json",
           "copyright": "Copyright (c) 2026 Meta Platforms, Inc."
         }
       ],
@@ -4336,6 +4357,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "New skill bringing Astryx to every host, compatible with Orbyn authority and design rules"
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-sonnet-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Advanced the bundled Astryx agent docs snapshot to af509ad (CLI 0.7.17), 43 changed docs"
         }
       ]
     },

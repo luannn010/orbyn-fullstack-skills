@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/anthropics/skills",
-  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
-  "retrieved_on": "2026-11-09",
+  "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
+  "retrieved_on": "2026-11-16",
   "license": "Apache-2.0",
   "scope": "Unmodified anthropics/skills pptx files with its Apache-2.0 license. The upstream SKILL.md is stored as SOURCE.md so it is not discovered as a second active skill; bytes are unchanged. The 39 OOXML schema files under scripts/office/schemas/ are not bundled because they carry no license notice; schema validation needs them from the pinned upstream.",
   "files": {
@@ -12,7 +12,7 @@
     },
     "SOURCE.md": {
       "source_path": "skills/pptx/SKILL.md",
-      "sha256": "b60bd282c6e01297f0eefe71594d1756dbf60a584f524c04a803ec6950b7fba2"
+      "sha256": "1b54d26d78bcb35e3c6a2c723615c4a33c29732de2e5b29c9ecf10b34fb1a2e5"
     },
     "scripts/__init__.py": {
       "source_path": "skills/pptx/scripts/__init__.py",
@@ -20,7 +20,11 @@
     },
     "scripts/add_slide.py": {
       "source_path": "skills/pptx/scripts/add_slide.py",
-      "sha256": "3922f819ee1f6b8bdc6aa146d1a86de70640f5f919321fe3f01a764482ff69c9"
+      "sha256": "23a4c66a9f43e651189cbc9f82ba0a8271d19dc8d44cf0c426dda66f7eb6a93a"
+    },
+    "scripts/apply_theme.js": {
+      "source_path": "skills/pptx/scripts/apply_theme.js",
+      "sha256": "e440b33c43f2e707076cb64b57ca926ce886564b115c19ee23ac487bdb1a6259"
     },
     "scripts/clean.py": {
       "source_path": "skills/pptx/scripts/clean.py",
@@ -28,15 +32,15 @@
     },
     "scripts/office/helpers/__init__.py": {
       "source_path": "skills/pptx/scripts/office/helpers/__init__.py",
-      "sha256": "678e42456d9e10923c8b9a93691cdd993de3433448a184fa72a0c31f4ae086d5"
+      "sha256": "5c456ffc522900399b5f9402f92d66aaf2d9f87655d236c69f60bf07f4fd7c9b"
     },
     "scripts/office/helpers/pptx_chart.py": {
       "source_path": "skills/pptx/scripts/office/helpers/pptx_chart.py",
-      "sha256": "47ac266f7d39d11ede6bb0d1f3a19d801394fd2964636f1b48beb701f1832964"
+      "sha256": "aed734e9a6c743ae712fc228c868bf0f6abcfb6a53549eefb19081b15d240fda"
     },
     "scripts/office/helpers/pptx_slide.py": {
       "source_path": "skills/pptx/scripts/office/helpers/pptx_slide.py",
-      "sha256": "7b9f69b4a5bd6a2d9eabf9e0e3e796d7a421373145f6a8cd11f60b7ba2d6a5d0"
+      "sha256": "06fe06953bf038826b85ecc142f4dc9299a37fa0c4e4dd9b00b10486df33524d"
     },
     "scripts/office/helpers/pptx_theme.py": {
       "source_path": "skills/pptx/scripts/office/helpers/pptx_theme.py",
@@ -44,11 +48,11 @@
     },
     "scripts/office/soffice.py": {
       "source_path": "skills/pptx/scripts/office/soffice.py",
-      "sha256": "df2c8d7249c132a4512d744482e4b5ed0ecbe885f0bcfb1295e7e6a7ced0432c"
+      "sha256": "c1b83a67bf7e784ce6255d7b3a58999445f3dad19809845821f1293ab4cbf43e"
     },
     "scripts/office/validate.py": {
       "source_path": "skills/pptx/scripts/office/validate.py",
-      "sha256": "346a4c89d92fff55e610f11efda48c30228815b29bdb10b987e48f7af70acf1e"
+      "sha256": "21d48e4e86df93e889a01e7d03e7ca63816da3278c9cc4353b89d43246e02364"
     },
     "scripts/office/validators/__init__.py": {
       "source_path": "skills/pptx/scripts/office/validators/__init__.py",
@@ -56,19 +60,23 @@
     },
     "scripts/office/validators/base.py": {
       "source_path": "skills/pptx/scripts/office/validators/base.py",
-      "sha256": "f818ea28c793ba42960fa4498265e2632a62c86f7b5d6aff6fa89dacc02d59ea"
+      "sha256": "6129ec6a4fc0a4aa78af1434f9baa73994cc24d3261afda4e680e00f215cbf3b"
     },
     "scripts/office/validators/docx.py": {
       "source_path": "skills/pptx/scripts/office/validators/docx.py",
-      "sha256": "93d3444c0ef3f043d21a2285c46d2cda478426b930dc33dcf3b11265935517b5"
+      "sha256": "7b0f1a23c9cd9ff07187d9d7d359f62317f94a5e389d63fd19766e1688a195a2"
     },
     "scripts/office/validators/pptx.py": {
       "source_path": "skills/pptx/scripts/office/validators/pptx.py",
-      "sha256": "17eadad2b7a8374ccbe4cda45693bcd6a36f9d61a7d60f9c9ceef9464dec8299"
+      "sha256": "3a100ec5f00ae183bca67f4aaa8e3e902caee60254e141b8120f32c53d85cee7"
     },
     "scripts/office/validators/redlining.py": {
       "source_path": "skills/pptx/scripts/office/validators/redlining.py",
-      "sha256": "ed50d0885eee4b9c387f546b059bcaed64086815880a5167336244f93e305123"
+      "sha256": "f9c4455adc32b3890d5203d6c25d868d98d7e970bbad76b686f502950737599a"
+    },
+    "scripts/slide_text.py": {
+      "source_path": "skills/pptx/scripts/slide_text.py",
+      "sha256": "0deab09d4ae494411ee893f9c69fffc19fe264a6053990a2f066334c0d88d422"
     },
     "scripts/thumbnail.py": {
       "source_path": "skills/pptx/scripts/thumbnail.py",

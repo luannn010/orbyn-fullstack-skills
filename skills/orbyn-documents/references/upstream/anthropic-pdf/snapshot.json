@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/anthropics/skills",
-  "revision": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
-  "retrieved_on": "2026-11-09",
+  "revision": "1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064",
+  "retrieved_on": "2026-11-16",
   "license": "Apache-2.0",
   "scope": "Unmodified anthropics/skills pdf files with its Apache-2.0 license. The upstream SKILL.md is stored as SOURCE.md so it is not discovered as a second active skill; bytes are unchanged.",
   "files": {
+    "FORMS.md": {
+      "source_path": "skills/pdf/FORMS.md",
+      "sha256": "d5df5757e23634cd8a1a37e092af6c3b3b63afb3fd3ce86337fce9017cc3ee9f"
+    },
     "LICENSE.txt": {
       "source_path": "skills/pdf/LICENSE.txt",
       "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
     },
+    "REFERENCE.md": {
+      "source_path": "skills/pdf/REFERENCE.md",
+      "sha256": "07af9a8f59e77e88fe9b238a403348244f38a4771c54911c412716d8f88f0ea9"
+    },
     "SOURCE.md": {
       "source_path": "skills/pdf/SKILL.md",
       "sha256": "d1c7caf5f35eb7d37877dd7fc33a095037be2b34fb5d2f7f4d43bde3165bb4ee"
-    },
-    "forms.md": {
-      "source_path": "skills/pdf/forms.md",
-      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44"
-    },
-    "reference.md": {
-      "source_path": "skills/pdf/reference.md",
-      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95"
     },
     "scripts/check_bounding_boxes.py": {
       "source_path": "skills/pdf/scripts/check_bounding_boxes.py",

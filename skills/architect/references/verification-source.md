@@ -55,6 +55,9 @@ pstack 0.15.36. The three reviewed skill subtrees are unchanged from the prior
 519d36aa review; this does not refresh old environment qualification. Historical
 import/review pins above remain separate.
 
+16 November 2026: the compiler pin advanced to `bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7`
+(pstack 0.15.42); only `run.ts` and `backends/mermaid.ts` changed.
+
 Architect now deliberately redistributes the unmodified 26-file TypeScript
 runtime closure with the original MIT notice in its
 [offline snapshot](../../architect/references/upstream/pstack-statechart/snapshot.json).

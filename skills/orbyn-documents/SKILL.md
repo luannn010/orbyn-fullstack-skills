@@ -28,7 +28,7 @@ The sources were written for Claude's own sandbox. On any host:
 
 1. **Nothing is preinstalled.** Where a source says a package is preinstalled
    (`docx`, `pptxgenjs`, `openpyxl`, `pandas`, `markitdown`, `pypdf`), check whether
-   it is available. Ask the user before installing a package or LibreOffice, and
+   it is available; `slide_text.py` also needs `python-pptx`. Ask the user before installing a package or LibreOffice, and
    prefer the project's own environment. If something is missing and the user
    declines, say which step cannot run. Sentences about "this sandbox" (a bare
    `soffice` hanging, LibreOffice being auto-configured) describe Claude's sandbox;
@@ -56,8 +56,8 @@ fit better; use this skill when the deliverable is the file itself.
 
 ## Source and updates
 
-Bundled from [anthropics/skills](https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579/skills)
-at `2c5958e`, Apache-2.0, with each folder's `LICENSE.txt` and a `snapshot.json` of
+Bundled from [anthropics/skills](https://github.com/anthropics/skills/tree/1780c5e5a552fd4d1c9d6a7b0cab26b0c2bef064/skills)
+at `1780c5e`, Apache-2.0, with each folder's `LICENSE.txt` and a `snapshot.json` of
 file hashes. Refresh it with [upstream review](../orbyn-upstream-review/SKILL.md):
 compare the new revision, replace the folder, regenerate the hashes, and keep these
 overrides.

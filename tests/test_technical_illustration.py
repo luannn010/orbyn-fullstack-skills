@@ -40,7 +40,7 @@ class PinnedIllustrationAssets(unittest.TestCase):
         return target
 
     def test_declared_canonical_types_are_allowed(self):
-        for suffix in ['ts', 'tsx', 'css', 'png']:
+        for suffix in ['ts', 'tsx', 'js', 'css', 'png', 'xml']:
             target = self.asset('skills/unit/references/upstream/sample/view.'+suffix, 'skills/unit/references/upstream/sample')
             self.assertTrue(inventory.pinned_support_asset(target, self.root))
 

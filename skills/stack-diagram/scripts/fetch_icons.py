@@ -15,12 +15,16 @@ Spec forms (add ~KIND to any of them to choose the fallback pictogram, default b
   name:aws/Service   AWS's own icon                lambda:aws/lambda
   name:gcp/Product   Google Cloud's own icon       run:gcp/cloud-run
   name:azure/Name    Azure's own icon              vault:azure/key-vault
+  name:k8s/Resource  Kubernetes community icon      pod:k8s/pod
   name:lucide/icon   Lucide pictogram              cron:lucide/clock
   name:generic/kind  bundled pictogram, no fetch   client:generic/user
 
 aws/, gcp/ and azure/ specs (and the slugs aws-*, gcp-*, google-cloud-* and azure-*) read the
 vendor's own icon package at run time, held in memory, and never fall back to a third-party copy.
 The slugs gcp, google-cloud and azure alone are the vendor's mark, from the usual chain or package.
+k8s/ specs read the official Kubernetes community icons from one pinned commit of
+kubernetes/community (raw.githubusercontent.com, path icons/svg/ only, names from a fixed table).
+The slugs k8s and kubernetes alone are the Kubernetes mark through the usual chain.
 
 Sources tried for a slug: svgl, devicon, gilbarbara/logos. svgl must match the title
 exactly, because its search is fuzzy and a loose hit would ship another brand's logo.
@@ -168,6 +172,40 @@ AZURE_ALIASES = {
     'datafactory': 'Data-Factories', 'synapse': 'Azure-Synapse-Analytics', 'resourcegroup': 'Resource-Groups',
     'rg': 'Resource-Groups', 'managedidentity': 'Managed-Identities',
 }
+# Adapted from caru-ini/stack-diagram (MIT), commit 9175bde8449cc8f5390d6eb72ecc2e1f5bfe21f3. A k8s/ spec can
+# read only the pinned kubernetes/community commit below, and only the paths this table produces.
+K8S_REVISION = '307ae50e8e4246de172f195c73e3f026b4f0c7ff'
+K8S_ICON_BASE = f'https://raw.githubusercontent.com/kubernetes/community/{K8S_REVISION}/icons/svg/'
+K8S_RESOURCES = ('c-role', 'cm', 'crb', 'crd', 'cronjob', 'deploy', 'ds', 'ep', 'group', 'hpa', 'ing', 'job',
+                 'limits', 'netpol', 'ns', 'pod', 'psp', 'pv', 'pvc', 'quota', 'rb', 'role', 'rs', 'sa', 'sc',
+                 'secret', 'sts', 'svc', 'user', 'vol')
+K8S_INFRASTRUCTURE = ('control-plane', 'etcd', 'node')
+K8S_CONTROL_PLANE = {
+    'api': 'api', 'apiserver': 'api', 'kubeapiserver': 'api',
+    'controllermanager': 'c-m', 'kubecontrollermanager': 'c-m',
+    'cloudcontrollermanager': 'c-c-m', 'ccm': 'c-c-m',
+    'kubeproxy': 'k-proxy', 'kproxy': 'k-proxy', 'proxy': 'k-proxy',
+    'kubelet': 'kubelet',
+    'sched': 'sched', 'scheduler': 'sched', 'kubescheduler': 'sched',
+}
+K8S_ALIASES = {
+    'service': 'svc', 'services': 'svc', 'ingress': 'ing', 'ingresses': 'ing',
+    'deployment': 'deploy', 'deployments': 'deploy', 'configmap': 'cm', 'configmaps': 'cm',
+    'statefulset': 'sts', 'statefulsets': 'sts', 'daemonset': 'ds', 'daemonsets': 'ds',
+    'replicaset': 'rs', 'replicasets': 'rs', 'persistentvolume': 'pv', 'persistentvolumes': 'pv',
+    'persistentvolumeclaim': 'pvc', 'persistentvolumeclaims': 'pvc', 'namespace': 'ns', 'namespaces': 'ns',
+    'serviceaccount': 'sa', 'serviceaccounts': 'sa', 'storageclass': 'sc', 'storageclasses': 'sc',
+    'networkpolicy': 'netpol', 'networkpolicies': 'netpol',
+    'horizontalpodautoscaler': 'hpa', 'horizontalpodautoscalers': 'hpa',
+    'endpoints': 'ep', 'endpoint': 'ep', 'roles': 'role', 'rolebinding': 'rb', 'rolebindings': 'rb',
+    'clusterrole': 'crole', 'clusterroles': 'crole', 'clusterrolebinding': 'crb', 'clusterrolebindings': 'crb',
+    'customresourcedefinition': 'crd', 'customresourcedefinitions': 'crd', 'crds': 'crd',
+    'resourcequota': 'quota', 'resourcequotas': 'quota', 'quotas': 'quota',
+    'limitrange': 'limits', 'limitranges': 'limits', 'limit': 'limits', 'volume': 'vol', 'volumes': 'vol',
+    'podsecuritypolicy': 'psp', 'podsecuritypolicies': 'psp', 'secrets': 'secret',
+    'pods': 'pod', 'po': 'pod', 'jobs': 'job', 'cronjobs': 'cronjob', 'cj': 'cronjob',
+    'nodes': 'node', 'no': 'node', 'users': 'user', 'groups': 'group', 'master': 'controlplane',
+}
 
 
 class FetchRefused(ValueError):
@@ -242,6 +280,8 @@ class HttpsRedirects(urllib.request.HTTPRedirectHandler):
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         require_https(newurl)
+        if req.full_url.startswith(K8S_ICON_BASE) and not newurl.startswith(K8S_ICON_BASE):
+            raise FetchRefused(f'refused redirect away from the pinned Kubernetes icons: {newurl}')
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
@@ -553,7 +593,37 @@ GCP = GcpPackages()
 AZURE = AzurePackage()
 
 
+def k8s_index():
+    """Normalised name -> path under K8S_ICON_BASE, for exactly the icons the table names."""
+    index = {norm(name): f'resources/unlabeled/{name}.svg' for name in K8S_RESOURCES}
+    index.update({norm(name): f'infrastructure_components/unlabeled/{name}.svg' for name in K8S_INFRASTRUCTURE})
+    index.update({key: f'control_plane_components/labeled/{name}.svg' for key, name in K8S_CONTROL_PLANE.items()})
+    return index
+
+
+def k8s_sources(query):
+    """Exact table name or alias. A miss lists every name and never falls back to a third-party copy."""
+    key = norm(query or '')
+    if key in ('k8s', 'kubernetes'):
+        return sources('kubernetes')
+    index = k8s_index()
+    hit = index.get(norm(K8S_ALIASES.get(key, key)))
+    if hit:
+        return [('k8s', f'k8s:{hit}', None)]
+    print(f"Kubernetes {query!r} is not an icon name. Names: {', '.join(sorted({*index, *K8S_ALIASES}))}")
+    return []
+
+
+def k8s_url(path):
+    """The one URL a k8s icon may be read from: the pinned commit, a path from the table, nothing else."""
+    if path not in set(k8s_index().values()):
+        raise FetchRefused(f'refused Kubernetes icon path: {path}')
+    return K8S_ICON_BASE + path
+
+
 def read(url):
+    if url.startswith('k8s:'):
+        return get(k8s_url(url[4:]))
     if url.startswith('aws:'):
         return AWS.read(url[4:])
     if url.startswith('gcp:'):
@@ -576,6 +646,10 @@ def sources(slug):
         return GCP.sources(slug[4:])
     if slug.startswith('azure/'):
         return AZURE.sources(slug[6:])
+    if slug.startswith(('k8s/', 'kubernetes/')):
+        return k8s_sources(slug.partition('/')[2])
+    if norm(slug) == 'k8s':
+        slug = 'kubernetes'  # The Kubernetes mark through the usual chain.
     if norm(slug) in ('azure', 'microsoftazure'):
         return AZURE.sources('Azure-A')
     if norm(slug) in ('gcp', 'googlecloudplatform'):

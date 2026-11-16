@@ -22,7 +22,7 @@
       "relationship": "byte-identical-selected-source"
     },
     "SKILL.md": {
-      "sha256": "8dc726233d97c4ee24e8b857e0a2386470cd727f7790faee40eff67a8e329294",
+      "sha256": "1066178b7c1655c620dc5da6ef709ca239fb2795afd97f9ec94bfc8045122c63",
       "source_path": "skills/stack-diagram/SKILL.md",
       "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
       "relationship": "maintained-adaptation"
@@ -136,7 +136,13 @@
       "relationship": "maintained-adaptation"
     },
     "references/icons.md": {
-      "sha256": "26ff8588e02bfa571dc1c5fe104b9fb9410cf8d0cfd8c4c7a39dacc8556b2447",
+      "sha256": "98db026a6babaa4f889d72449a1da085b39736cde9e78120d9b2cad0bceac081",
+      "source_path": "skills/stack-diagram/SKILL.md",
+      "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
+      "relationship": "maintained-adaptation"
+    },
+    "references/kubernetes.md": {
+      "sha256": "23914b565b385bc61e5f25fc7ba3eb78b06b99d99ca84ec4afa51d17802aaa25",
       "source_path": "skills/stack-diagram/SKILL.md",
       "original_sha256": "b32b05b7eeb0f93fcc297fa1e1d8e56a7306b6b7c989c4ed4f8522a996a9086e",
       "relationship": "maintained-adaptation"
@@ -160,19 +166,19 @@
       "relationship": "original-helper-or-record"
     },
     "references/upstream/stack-diagram/SOURCE.md": {
-      "sha256": "40d4986a20b44b7bd4a869a29103a91ba464cadb5c6021af2462a1dfb56d408c",
+      "sha256": "34c439fb42378f49129c0dde584d03d0e75ba4cb73f4279d8d53e10b7b066d30",
       "source_path": "Orbyn-authored maintained support record/helper",
       "original_sha256": null,
       "relationship": "original-helper-or-record"
     },
     "scripts/build.py": {
-      "sha256": "d98893e4a3b345f6d1e740f2904bf5fb0c1ad6b097f82cab7a0c827e774984e2",
+      "sha256": "153dd668595d156017d983081d4540d45896f3b32ac5365a8be67dabee3701c9",
       "source_path": "skills/stack-diagram/scripts/build.py",
       "original_sha256": "28049a14bbec3a1264a9b61a7d6abe435f1932393ba9b991068ea5690e83d3a7",
       "relationship": "maintained-adaptation"
     },
     "scripts/fetch_icons.py": {
-      "sha256": "5d2208761e2b23715b332be7823663f12f7d8d9d2ec8eef20728fc9c8ac13ffc",
+      "sha256": "015d7cad5c96bf597652c4a7ceeb2211de731b2fa19b4331bd0fc665be202255",
       "source_path": "skills/stack-diagram/scripts/fetch_icons.py",
       "original_sha256": "7d33945bd80aebef01d601295347021a2b74dc3c6772b86be0cf2fb0da74730a",
       "relationship": "maintained-adaptation"

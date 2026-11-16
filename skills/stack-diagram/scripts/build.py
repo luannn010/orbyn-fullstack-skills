@@ -40,7 +40,7 @@ CSS_LOAD = re.compile(r"""@import\b|image-set\s*\(|url\(\s*(?!["']?\s*(?:#|data:
 LOGO_MARKER = '<meta name="stack-diagram-logos" content="fetched">'
 LABELS = {'svgl': 'svgl', 'devicon': 'devicon', 'gilbarbara': 'gilbarbara/logos', 'lucide': 'Lucide',
           'aws': 'AWS Architecture Icons', 'gcp': 'Google Cloud icons',
-          'azure': 'Azure icons', 'generic': 'neutral pictograms',
+          'azure': 'Azure icons', 'k8s': 'Kubernetes icons', 'generic': 'neutral pictograms',
           'supplied': 'files supplied for this diagram'}
 NOT_LOGOS = {'lucide', 'generic'}
 

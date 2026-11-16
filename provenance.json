@@ -4201,6 +4201,17 @@
           "copyright": "Copyright (c) 2026 caru-ini",
           "license_sha256": "7b153fc3f5f1ccce2b9ac98a35301c666c025db85d6c44565e13304774d144a9",
           "changes": "Google Cloud and Azure icon support: gcp/ and azure/ spec forms with product and name tables, group gcp and group azure template styles, and vendor drawing rules, rewritten into this skill's package class, limits, fallback and manifest rules. Gallery sharing (share.py and the publish step) not adopted."
+        },
+        {
+          "source": "https://github.com/caru-ini/stack-diagram/tree/9175bde8449cc8f5390d6eb72ecc2e1f5bfe21f3/skills/stack-diagram",
+          "revision": "9175bde8449cc8f5390d6eb72ecc2e1f5bfe21f3",
+          "license": "MIT",
+          "local_path": "skills/stack-diagram/references/upstream/stack-diagram/SOURCE.md",
+          "license_file": "skills/stack-diagram/references/upstream/stack-diagram/LICENSE",
+          "relationship": "adapted-selected-changes",
+          "copyright": "Copyright (c) 2026 caru-ini",
+          "license_sha256": "7b153fc3f5f1ccce2b9ac98a35301c666c025db85d6c44565e13304774d144a9",
+          "changes": "Kubernetes icon support: k8s/ spec form with the icon table and aliases and the kubernetes/community commit upstream pins, rewritten into this skill's package class, limits, fallback and manifest rules; reads, including redirects, are restricted to raw.githubusercontent.com, that pinned commit and table-derived icons/svg paths. Guidance in references/kubernetes.md and references/icons.md. Gallery sharing (share.py) and the 12px tile radius not adopted; k8s-* and kubernetes-* slug forms not adopted."
         }
       ],
       "authoring": [
@@ -4245,6 +4256,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-sonnet-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Kubernetes icon support (k8s/ specs, pinned kubernetes/community icons, allowlist and tests) and accurate source records"
         }
       ],
       "reviewed_sources": [
@@ -4254,6 +4272,13 @@
           "revision": "1ed53e3e9525364ae5d82e0430f2bb3f7ef4c838",
           "license": "MIT",
           "relationship": "reviewed; public gallery share step not adopted (publishing option excluded); Google Cloud and Azure icon support adapted in Orbyn (see incorporated_material); not an advance of the pin; rechecked 2026-11-09: tile radius change and public gallery sharing (share.py) not adopted"
+        },
+        {
+          "credit": "caru-ini",
+          "source": "https://github.com/caru-ini/stack-diagram/tree/f333b47160442dc28f10b6e3c026ecbdac181ff8/skills/stack-diagram",
+          "revision": "f333b47160442dc28f10b6e3c026ecbdac181ff8",
+          "license": "MIT",
+          "relationship": "reviewed 2026-11-16; tile radius 12px and redrawn examples not adopted, this template keeps its 8px radius"
         }
       ]
     },

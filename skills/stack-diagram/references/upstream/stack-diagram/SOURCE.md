@@ -1,8 +1,10 @@
 # stack-diagram source record
 
 This is an inactive provenance record, not an agent entrypoint. The skill derives from
-stack-diagram by caru-ini (MIT) at
+stack-diagram by caru-ini (MIT). The pin, `75dbd3e3c6fe28844322e6064d3a947b870a6c61`, is the
+revision the original hashes in `source-manifest.json` were taken from:
 <https://github.com/caru-ini/stack-diagram/tree/75dbd3e3c6fe28844322e6064d3a947b870a6c61/skills/stack-diagram>.
+Later upstream changes were adapted selectively, without moving the pin; see "Later incorporation".
 `LICENSE` is the upstream root notice, unchanged. It is used in place of the skill-level
 copy, which differs only by a note about the font files left out here. `LICENSE-Orbyn.txt`
 covers Orbyn adaptations and additions. Use the maintained `stack-diagram` skill.
@@ -46,12 +48,23 @@ and `references/aws.md`.
 
 ## Later incorporation
 
-Google Cloud and Azure icon support was adapted from the same upstream at
-`1ed53e3e9525364ae5d82e0430f2bb3f7ef4c838` (MIT, caru-ini): the `gcp/` and `azure/`
-spec forms and name tables in `scripts/fetch_icons.py`, the `group gcp` and `group azure`
-styles in `assets/template.html`, and the vendor rules in `references/gcp-azure.md`.
-The fetch code follows this skill's package class, limits and fallback rules, not
-upstream's structure. Upstream's gallery sharing (`share.py` and the publish step) posts
-to a third-party site and stays excluded. The pin above is unchanged.
+The pin above did not move. Two later upstream changes were adapted selectively:
+
+- `1ed53e3e9525364ae5d82e0430f2bb3f7ef4c838` (MIT, caru-ini): Google Cloud and Azure icon
+  support. The `gcp/` and `azure/` spec forms and name tables in `scripts/fetch_icons.py`,
+  the `group gcp` and `group azure` styles in `assets/template.html`, and the vendor rules
+  in `references/gcp-azure.md`.
+- `9175bde8449cc8f5390d6eb72ecc2e1f5bfe21f3` (MIT, caru-ini, "k8s icon support"): Kubernetes
+  icon support. The `k8s/` spec form, the icon table and aliases in `scripts/fetch_icons.py`,
+  and the pinned kubernetes/community commit `307ae50e8e4246de172f195c73e3f026b4f0c7ff` that
+  upstream uses. The icons (Apache-2.0 or CC-BY-4.0) are read at run time from `raw.githubusercontent.com`
+  and are never copied here. Guidance is in `references/kubernetes.md` and `references/icons.md`.
+  The `k8s-*` and `kubernetes-*` slug forms are not adopted, so a product such as
+  `kubernetes-dashboard` stays on the usual chain.
+
+The fetch code follows this skill's package class, limits and fallback rules, not upstream's
+structure. Not adopted from either: gallery sharing (`share.py` and the publish step), which
+posts to a third-party site, and the tile radius change of `f333b4716…` (`--radius-tile`
+8px to 12px with redrawn examples), because this template keeps its own 8px styling.
 
 Source identity is not runtime proof.

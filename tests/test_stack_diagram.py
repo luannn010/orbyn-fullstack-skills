@@ -22,13 +22,14 @@ import time
 import unittest
 from unittest import mock
 import urllib.error
+import urllib.parse
 import urllib.request
 import urllib.response
 import zipfile
 from email.message import Message
 
 # Classes run_tests.py runs as parallel processes; keep in step with the classes below.
-SHARDS = ["Sanitiser", "FetchLimits", "FetchRun", "CloudIcons", "Build", "Library", "BrowserLookup", "BrowserRender", "GuardFailsClosed", "InlineSafety", "SvgPolicy", "ManifestShape", "RenderWritesLast"]
+SHARDS = ["Sanitiser", "FetchLimits", "FetchRun", "CloudIcons", "KubernetesIcons", "Build", "Library", "BrowserLookup", "BrowserRender", "GuardFailsClosed", "InlineSafety", "SvgPolicy", "ManifestShape", "RenderWritesLast"]
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT/'skills/stack-diagram'
@@ -676,6 +677,111 @@ class CloudIcons(unittest.TestCase):
                          '.group.azure.zone'):
             self.assertIn(selector, template)
         self.assertFalse((SCRIPTS/'share.py').exists())
+
+
+class KubernetesIcons(unittest.TestCase):
+    PIN = '307ae50e8e4246de172f195c73e3f026b4f0c7ff'
+    POD = f'https://raw.githubusercontent.com/kubernetes/community/{PIN}/icons/svg/resources/unlabeled/pod.svg'
+
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.out = Path(self.directory.name)/'icons'
+
+    def test_the_spec_parses_like_the_other_vendor_forms(self):
+        self.assertEqual(fetch.parse_spec('pod:k8s/pod'), ('pod', 'slug', 'k8s/pod', 'box'))
+        self.assertEqual(fetch.parse_spec('ing:k8s/ingress~link'), ('ing', 'slug', 'k8s/ingress', 'link'))
+        with self.assertRaises(ValueError):
+            fetch.parse_spec('x:k8s/a/b')
+
+    def test_names_aliases_and_plurals_resolve_to_one_icon(self):
+        wanted = {'k8s/pod': 'resources/unlabeled/pod.svg', 'k8s/Pods': 'resources/unlabeled/pod.svg',
+                  'k8s/po': 'resources/unlabeled/pod.svg', 'k8s/Deployment': 'resources/unlabeled/deploy.svg',
+                  'k8s/svc': 'resources/unlabeled/svc.svg', 'k8s/ClusterRole': 'resources/unlabeled/c-role.svg',
+                  'k8s/node': 'infrastructure_components/unlabeled/node.svg',
+                  'k8s/master': 'infrastructure_components/unlabeled/control-plane.svg',
+                  'kubernetes/kube-apiserver': 'control_plane_components/labeled/api.svg',
+                  'k8s/scheduler': 'control_plane_components/labeled/sched.svg'}
+        for slug, path in wanted.items():
+            self.assertEqual(fetch.sources(slug), [('k8s', f'k8s:{path}', None)], slug)
+
+    def test_a_redirect_away_from_the_pinned_icons_is_refused(self):
+        elsewhere = 'https://cdn.example/pod.svg'
+        with stub({self.POD: (302, {'Location': elsewhere}, b''), elsewhere: (200, {}, LOGO)}) as handler, \
+                self.assertRaises(fetch.FetchRefused):
+            fetch.get(self.POD)
+        self.assertNotIn(elsewhere, handler.requested)
+
+    def test_every_table_entry_maps_to_a_path_under_the_pinned_folders(self):
+        paths = set(fetch.k8s_index().values())
+        self.assertEqual(len(paths), len(fetch.K8S_RESOURCES) + len(fetch.K8S_INFRASTRUCTURE) + 6)
+        for path in paths:
+            self.assertRegex(path, r'(?:resources|infrastructure_components)/unlabeled/[a-z-]+\.svg'
+                                   r'|control_plane_components/labeled/[a-z-]+\.svg')
+        self.assertEqual(set(fetch.K8S_ALIASES.values()) - {'crole', 'controlplane'} - set(fetch.k8s_index()), set())
+
+    def test_the_source_is_pinned_to_a_commit_not_a_branch(self):
+        self.assertEqual(fetch.K8S_REVISION, self.PIN)
+        self.assertRegex(fetch.K8S_REVISION, r'[0-9a-f]{40}')
+        self.assertEqual(fetch.K8S_ICON_BASE,
+                         f'https://raw.githubusercontent.com/kubernetes/community/{self.PIN}/icons/svg/')
+
+    def test_the_bare_slug_is_the_kubernetes_mark_through_the_usual_chain(self):
+        with mock.patch.object(fetch, 'svgl_lookup', return_value=None):
+            for slug in ('k8s', 'kubernetes', 'k8s/k8s', 'k8s/kubernetes'):
+                urls = [url for _, url, _ in fetch.sources(slug)]
+                self.assertTrue(urls and not any(url.startswith('k8s:') for url in urls), slug)
+                self.assertTrue(all('kubernetes' in url for url in urls), urls)
+            urls = [url for _, url, _ in fetch.sources('kubernetes-dashboard')]
+            self.assertTrue(urls and not any(url.startswith('k8s:') for url in urls))
+
+    def test_a_miss_lists_names_and_falls_back_with_no_request(self):
+        with mock.patch.object(fetch, 'require_ignored'), stub({}) as handler:
+            code, output = quiet(fetch.main, [str(self.out), 'x:k8s/nothing', '--allow-network'])
+        self.assertEqual(code, 0)
+        self.assertIn('Names: ', output)
+        self.assertEqual(output.count('FALLBACK'), 1)
+        self.assertEqual(handler.requested, [])
+
+    def test_offline_runs_never_touch_the_network(self):
+        with stub({}) as handler:
+            code, output = quiet(fetch.main, [str(self.out), 'pod:k8s/pod'])
+        self.assertEqual(code, 0)
+        self.assertEqual(handler.requested, [])
+        self.assertEqual(output.count('FALLBACK'), 1)
+
+    def test_a_fetch_reads_only_the_pinned_url_and_lands_in_the_manifest(self):
+        with mock.patch.object(fetch, 'require_ignored'), stub({self.POD: (200, {}, mark('326ce5'))}) as handler:
+            code, output = quiet(fetch.main, [str(self.out), 'pod:k8s/pods', '--allow-network'])
+        manifest = json.loads((self.out/'manifest.json').read_text())
+        self.assertEqual(code, 0)
+        self.assertEqual(handler.requested, [self.POD])
+        self.assertEqual(manifest['pod']['source'], 'k8s')
+        self.assertFalse(manifest['pod'].get('fallback'))
+        self.assertTrue((self.out/'pod.svg').read_bytes().startswith(b'<svg'))
+        self.assertNotIn('FALLBACK', output)
+
+    def test_the_allowlist_refuses_other_hosts_paths_and_traversal(self):
+        for ref in ('resources/unlabeled/../../../../../evil.svg', '../../other/repo/icons/svg/pod.svg',
+                    'resources/labeled/pod.svg', 'resources/unlabeled/pod.svg?x=1', 'resources/unlabeled/pod.png',
+                    'https://evil.example/pod.svg', '//evil.example/pod.svg', '/resources/unlabeled/pod.svg', '',
+                    'icons/svg/resources/unlabeled/pod.svg', 'resources/unlabeled/unknown.svg'):
+            with stub({}) as handler:
+                with self.assertRaises(fetch.FetchRefused, msg=ref):
+                    fetch.read(f'k8s:{ref}')
+            self.assertEqual(handler.requested, [], ref)
+        self.assertEqual(fetch.k8s_url('resources/unlabeled/pod.svg'), self.POD)
+        self.assertEqual(urllib.parse.urlsplit(self.POD).hostname, 'raw.githubusercontent.com')
+
+    def test_a_k8s_spec_cannot_reach_a_branch_or_another_repository(self):
+        for slug in ('k8s/../../x', 'k8s/master/x'):
+            with self.assertRaises(ValueError):
+                fetch.parse_spec(f'x:{slug}')
+        for _, url, _ in fetch.sources('k8s/pod'):
+            self.assertIn(f'/{self.PIN}/', fetch.k8s_url(url[4:]))
+
+    def test_credits_name_the_kubernetes_icons(self):
+        self.assertEqual(build.label_for({'source': 'k8s'}), 'Kubernetes icons')
 
 
 class Build(unittest.TestCase):

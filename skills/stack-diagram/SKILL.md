@@ -66,7 +66,7 @@ An API node's tile top is 120 and a database sits below it at 350. The first dra
 - **PNG** always comes from `render_png.py`. Never draw a separate image with another library, because the HTML is the single source of truth. Deliver both themes unless the user asked for one.
 - **TSX:** convert the built HTML per [TSX output](references/tsx.md).
 
-Build the HTML once and derive the rest. Keep the footer credit. It names the sources this diagram uses (`aws`, `gcp` and `azure` read as the vendor's icons) and states that logos remain the trademarks of their owners. Report any fallbacks.
+Build the HTML once and derive the rest. Keep the footer credit. It names the sources this diagram uses (`aws`, `gcp`, `azure` and `k8s` read as the vendor's icons) and states that logos remain the trademarks of their owners. Report any fallbacks.
 
 ## Boundaries
 
@@ -79,5 +79,5 @@ Build the HTML once and derive the rest. Keep the footer credit. It names the so
 - Build and render steps, the worked failure: [build and render](references/build-and-render.md).
 - Coordinates, spacing, edge classes and a worked layout: [geometry](references/geometry.md).
 - Spec forms, missed logos, fetch limits and placing marks: [icons](references/icons.md).
-- A stack on AWS: [AWS diagrams](references/aws.md); on Google Cloud or Azure: [Google Cloud and Azure](references/gcp-azure.md) (spec forms, network hosts, group rules).
+- A stack on AWS: [AWS diagrams](references/aws.md); on Google Cloud or Azure: [Google Cloud and Azure](references/gcp-azure.md) (spec forms, network hosts, group rules); on Kubernetes: [Kubernetes diagrams](references/kubernetes.md) (`k8s/` specs, pinned source, normal tile style).
 - A React component: [TSX output](references/tsx.md).

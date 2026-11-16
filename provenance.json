@@ -1706,8 +1706,8 @@
           "changes": "Orbyn-owned conditional guidance and synthetic examples; no upstream active skill collection, host, cloud helper or evaluation runner imported."
         },
         {
-          "source": "https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e",
-          "revision": "5206a950b715e0cabe7043ea0b2304332b91494e",
+          "source": "https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+          "revision": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
           "copyright": "Copyright (c) 2026 Emil Kowalski",
           "license": "MIT",
           "local_path": "skills/orbyn-ui-design/references/motion.md",
@@ -1717,8 +1717,8 @@
           "changes": "Orbyn-owned conditional guidance and synthetic examples; no upstream active skill collection, host, cloud helper or evaluation runner imported."
         },
         {
-          "source": "https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e",
-          "revision": "5206a950b715e0cabe7043ea0b2304332b91494e",
+          "source": "https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
+          "revision": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
           "copyright": "Copyright (c) 2026 Emil Kowalski",
           "license": "MIT",
           "local_path": "skills/orbyn-ui-design/references/animation-performance.md",
@@ -2125,6 +2125,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Page metadata: title rules and image rules, with a pointer to orbyn-seo"
+        },
+        {
+          "tool": "Claude Code desktop",
+          "model": "claude-opus-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Reviewed emilkowalski/skills 5206a95..64eb3de: motion tokens over literal curves, modal/drawer/sheet/toast duration exception, CSS-on-compositor under load, compositor-only limited to transform/opacity. Pins for motion.md and animation-performance.md advanced."
         }
       ]
     },

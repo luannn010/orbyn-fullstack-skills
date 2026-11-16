@@ -37,6 +37,13 @@ exceptions.
 
 - Never interleave layout reads and writes in one frame (read `getBoundingClientRect`,
   write style, read again). Batch every read, then every write.
+- Predetermined motion that must stay smooth while the page loads or scripts run
+  belongs in CSS on `transform`/`opacity`, which the compositor keeps running.
+  `requestAnimationFrame` and JS-driven layout animation drop frames under that
+  load; keep JS for dynamic or interruptible motion.
+- Only `transform` and `opacity` are reliably compositor-only. `filter`,
+  `clip-path` and `background-color` are composited in some engines and repaint in
+  others: measure on each target before relying on them.
 - Measure once, then animate with `transform`/`opacity`. For layout-like effects
   use FLIP: record first, apply the final state, record last, play the inverse
   transform back to identity.

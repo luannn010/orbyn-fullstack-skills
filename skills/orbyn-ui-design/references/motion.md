@@ -4,7 +4,9 @@ Use for ordinary product motion, not only illustration. State purpose (feedback,
 continuity, hierarchy or explanation), trigger, frequency, actual driver, affected
 properties, current pose/velocity, completion and cancellation. A frequent task
 may need immediate spatial feedback; no fixed timing/easing/frequency rule fits
-all products. Keep project tokens and accessible no-motion completion.
+all products. Keep accessible no-motion completion, and take every curve, duration
+and spring from the project's existing motion tokens; never invent a literal
+`cubic-bezier` because it looks familiar.
 
 ## Construction and interruption
 
@@ -141,7 +143,8 @@ For two or more things moving on one event, cast and relate them before timing.
    collapses the group to one appearance rather than shortening it; scrub a
    recording, since a wave and a queue sound alike in the head.
 
-Product groups are usually under about 300 ms in total; first-run or marketing
+Product groups are usually under about 300 ms in total. Modals, drawers, sheets and
+toasts are the usual exceptions (up to about 500 ms), and first-run or marketing
 moments may take longer. These are starting values, not laws.
 
 ## Library note

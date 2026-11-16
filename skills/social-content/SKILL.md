@@ -44,6 +44,13 @@ post, deliver one. Adapt the substance for each platform instead of mechanically
 shortening the same text. Preserve useful paragraph breaks. Use hashtags, emoji
 and calls to action only when they suit the author and purpose.
 
+## Post what shipped
+
+For a build-in-public or release post written from a commit log, merged PR or
+deploy, follow [ship posts](references/ship-post.md): one change, the author's
+one-sentence answer as the source of truth, and no number the commits or the author
+did not supply.
+
 ## Plan a carousel
 
 Choose a narrative suited to the evidence: problem → explanation → example →

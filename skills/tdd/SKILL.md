@@ -45,7 +45,7 @@ fails at once.
 ## When the ideal test is out of reach
 
 - Baseline execution unavailable: record that limit. A passing new test without a demonstrated baseline failure is weaker regression evidence, so state that distinction and do not call it failing-before evidence.
-- The practical test requires unrelated harness churn or unrealistic mocks: explain the limitation and use the closest authorized evidence.
+- The practical test requires unrelated harness churn or unrealistic mocks: explain the limitation and use the closest authorized executable check: a targeted script, a reproduction command, browser automation, a snapshot comparison, a log assertion or a focused integration check. Keep it on the bug, without broad fixture churn.
 - No production databases or unapproved live-provider calls. Production databases and paid providers require their own applicable authority. Read [development](../orbyn-workflow/references/project-policy.md#development-resources) for guarded database and package prerequisites.
 
 ## Read when needed

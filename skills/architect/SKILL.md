@@ -46,6 +46,7 @@ For durable transitions, put the migration owner's concrete writer/admission con
 - Where code belongs, cross-feature imports or shared-code extraction: [vertical code organization](references/vertical-codebase.md). Explaining an existing import path belongs to `how`.
 - Statecharts, lifecycle races or behavior a human must inspect: [statecharts](references/statecharts.md); domain artwork over one: [illustrated statecharts](references/illustrated-statecharts.md).
 - Deployed services and how they connect, not states over time: [stack-diagram](../stack-diagram/SKILL.md).
+- Choosing between candidate shapes: [red-flag screen](references/design-review.md#screen-for-red-flags).
 - Caller burden, shallow wrappers, cycles or API longevity: [maintainable modules](references/maintainable-modules.md); across languages: [polyglot example](examples/polyglot-contract.md).
 - Unresolved language, framework or storage choice: [stack selection](../orbyn-stack-selection/SKILL.md) first, then own interfaces and lifecycle here. An established project's bounded feature usually keeps its stack.
 - Implementation: the relevant [language reference](../language-best-practices/SKILL.md), preserving FFI/transport encoding, ownership and failure contracts.

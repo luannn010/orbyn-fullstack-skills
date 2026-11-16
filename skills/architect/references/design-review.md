@@ -63,6 +63,32 @@ edits, re-run that stage once. If blockers remain, put them to the user, who acc
 each as a trade-off (recorded in the document) or sends it back; never accept one
 silently. The three-round cap below still bounds the whole review.
 
+## Screen for red flags
+
+Before choosing between candidate shapes, check each one for these. Read it as the
+next contributor will: an agent that sees only the files it opened, copies the
+nearest example and takes the shortest path that compiles. Prefer the shape where an
+edit that looks right from one file is right for the whole repository.
+
+- **Shallow module:** see [maintainable modules](maintainable-modules.md).
+- **Information leakage:** a representation, policy or wire format appears in more
+  than one module, so changing it needs coordinated edits. Parse external data into
+  domain types at the boundary and keep transport types private.
+- **Temporal decomposition:** load, validate, transform and save as separate modules
+  that each repeat one representation. Group by the knowledge owned, not run order.
+- **Split ownership:** two modules write the same state or keep their own copy.
+  Give the state one owner that others ask.
+- **Two ways to do one task:** each keeps gaining callers. Keep one, move callers,
+  delete the other in the same change.
+- **Importable internals:** what an outside caller can import becomes interface.
+  Make it unreachable from outside so the build fails.
+- **Hand-synced lists:** adding an item means editing several lists. Derive them from
+  one, or fail the build when they disagree.
+
+A flag is a reason to revise or reject the shape, not a style note. For example, a
+sync design with a client cache and a server table that both decide conflict rules
+fails split ownership: the next fix lands in whichever file the agent opened.
+
 ## Resolve, then build
 
 Reply to every finding with a fix or a contest backed by evidence the reviewer can
@@ -76,6 +102,10 @@ duplicate event, so that section is a blocker. Zoom out finds the existing job q
 already gives retries with backoff. Implementation readiness asks which owner records
 the delivered event ID. The revised design reuses the queue, names the dedupe owner
 and states the retry limit before any code exists.
+
+Red-flag screen adapted from Lauren Tan's pstack
+[design red flags](https://github.com/cursor/plugins/blob/bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7/pstack/skills/architect/references/design-red-flags.md)
+(MIT), revision `bf0c7cd`; see the [MIT notice](principles/LICENSE.txt).
 
 Reviewed inspiration, observed 9 November 2026:
 [Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model/tree/e9e1f06aa4e26e95cd4ed37210a0632202c429e9)

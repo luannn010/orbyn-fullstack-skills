@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/jmanico/grim-prompter",
-  "revision": "3642a31aa67efdc22ae2bd30444537ceefb7424a",
+  "revision": "2a94457c7bc63ffbc4a44ea50ae645ab8cee26bf",
   "license": "MIT",
   "license_files": [
     "LICENSE",
@@ -10,16 +10,16 @@
   "relationship": "maintained selected adaptation; the adapted files live in the skill, and source-manifest.json holds original and maintained fingerprints",
   "files": {
     "LICENSE": {
-      "sha256": "e12b09de9f3d07a057e95b07681ed0f1bf29d156148156b02fc4ef945b677f2a"
+      "sha256": "4e34094caee63d43009a2e2c611f59f9b349407f1afe392b82cb0e6908ee9cbc"
     },
     "LICENSE-Orbyn.txt": {
       "sha256": "b960a8c01d83aa48ed709780a5c9940f8e2861f2fdcdc8f931fbe3ece90a5e04"
     },
     "SOURCE.md": {
-      "sha256": "eb380e901d0ce0c0aa71f3caf586bd0fca1a0dad2db12b46474e8de472a46232"
+      "sha256": "0a2d272a5f84bab0a3ad110801114e678aaa308b19d4de53f54a1cf6d184b0fa"
     },
     "source-manifest.json": {
-      "sha256": "4da36a3152b8f6f10a26d7ee3b6142f08bc81b1deaf45980b3c305bb2e2621d1"
+      "sha256": "382793e92123b1754d7e52f4c71b3f63d4b74a710179a35e20cc00082e9400cc"
     }
   }
 }

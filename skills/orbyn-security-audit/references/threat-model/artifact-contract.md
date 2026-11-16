@@ -7,7 +7,7 @@ One run writes these files to its [run folder](../threat-model.md#run-folder), a
 | `SYSTEM_UNDER_REVIEW.md` | evidence step | Evidence and gaps, per the [evidence guide](evidence-guide.md) |
 | `selection.md` | selection steps | Architecture and method choices and the omitted alternatives |
 | `threat-model.json` | analysis | The model. The authoritative record |
-| `report.md` | report step | A readable view derived from the JSON, with coverage taken from `SYSTEM_UNDER_REVIEW.md`. Say first that it is a quick or a deep run and what was not done, then an **Inspection coverage** section before the threats: what was read and how far, consequential omissions with reasons, unmapped boundaries, and whether evidence was read in this run or carried from an earlier one |
+| `report.md` | report step | A readable view derived from the JSON, with coverage taken from `SYSTEM_UNDER_REVIEW.md`. Say first that it is a quick or a deep run and what was not done, then an **Inspection coverage** section before the threats: what was read and how far, consequential omissions with reasons, unmapped boundaries, and whether evidence was read in this run or carried from an earlier one. A privacy review adds the processing inventory and profile coverage from [privacy review](privacy.md#record-it-in-the-existing-model) |
 | `challenge.md` | challenge step | What the fresh pass tried and found |
 | `change-review.md` | change mode | Changed scenarios against a baseline |
 
@@ -98,6 +98,34 @@ The script reads only. It checks structure, id references, the evidence rules be
 - Every verification is `not_run`, with `pass`, `fail` and `inconclusive` text that differs beyond letter case and spacing. Planned is not passed.
 - `retired`, when present, is an object with a `reason` and at least one `evidence_refs` entry. See [revisions](#revisions).
 - Redact before writing. List each redaction in `redactions` as kind, location and placeholder, never the value.
+
+## Privacy records
+
+A [privacy review](privacy.md) uses the same records and adds one top-level object. Without it the model is a security model.
+
+```json
+"privacy": {
+  "review_scope": "privacy",
+  "security_analysis": "not_run",
+  "profiles": ["gdpr"],
+  "coverage": [
+    {"lens": "privacy:gdpr:applicability", "target": null, "status": "partial", "evidence_refs": ["E3"],
+     "reason": "Applicability: unknown; Basis: E3 caller claim of EU users; Follow-up: G2, roles and Member States from the owner"},
+    {"lens": "privacy:gdpr:rights", "target": "A2", "status": "partial", "evidence_refs": ["E1", "E3"],
+     "reason": "Applicability: unknown; Basis: E1 soft delete, E3 caller claim; Source: GDPR Art. 17, not read in this run; Timing: not checked; Assessment: erasure misses the export (T1); Follow-up: G2, owner's counsel"}
+  ]
+}
+```
+
+Processing activities and personal data are `assets` with a `kind` of `processing_activity` or `personal_data`; affected people and recipients are `actors`. The checker enforces:
+
+- `review_scope` is `privacy` or `security-and-privacy`; `profiles` lists only `gdpr` and `ccpa-cpra`, each at most once.
+- Every coverage `lens` is `privacy:<profile>:<topic>` for a selected profile and a topic from that profile's table.
+- Every selected profile has a `privacy:<profile>:applicability` row whose `evidence_refs` include a `caller_claim` or `documentation` record: the statement that put the profile in scope.
+- `status` is `assessed`, `partial`, `not_assessed` or `not_applicable`, and `reason` is non-empty. Every status except `not_assessed` cites `evidence_refs`. A `target` names an asset.
+- A privacy-only model sets `"security_analysis": "not_run"`.
+
+`assessed` records that a question was examined, never that the system complies. Coverage rows carry no rating.
 
 ## Handoff
 

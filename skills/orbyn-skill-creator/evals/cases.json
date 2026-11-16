@@ -14311,6 +14311,52 @@
         "boundary": "Report pending as pending, preserve status-only scope and do not initiate a merge, queue, retarget, update or installation.",
         "route": "Use ordinary current-head CI evidence; do not assume native stack metadata or treat a pending check as success."
       }
+    },
+    {
+      "id": "privacy-review-gdpr-profile",
+      "kind": "outcome",
+      "split": "development",
+      "prompt": "Before we ship account deletion, do a privacy review of how user data moves through signup, analytics export and deletion. Our customers are in Germany and France. Read the code only and keep the results on this machine.",
+      "expected_skills": [
+        "orbyn-security-audit"
+      ],
+      "forbidden_skills": [
+        "orbyn-security-remediation"
+      ],
+      "forbidden_actions": [
+        "write_product",
+        "test",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Synthetic request. A privacy threat model is read-only and local; do not fix code, run the target, contact vendors or state that the system complies.",
+      "rubric": {
+        "scope": "Use the threat-model privacy scope (privacy or security-and-privacy) with the real architecture, and say no security analysis ran when the scope is privacy only.",
+        "profile": "Load the GDPR profile from the stated EU users and record that statement as evidence; do not load CCPA/CPRA or other regimes without a basis.",
+        "records": "Record processing activities, affected people, recipients and deletion paths in threat-model.json with a privacy object, coverage rows that stay partial where owner facts are missing, and gaps for unread stores.",
+        "boundary": "Present profile results as evidence for the owner's counsel, never as legal advice or a compliance verdict, and keep verification not_run."
+      }
+    },
+    {
+      "id": "privacy-adjacent-consent-banner-copy",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Rewrite our cookie consent banner text so it is shorter and clearer. Keep the same two buttons and do not change what they do.",
+      "expected_skills": [
+        "orbyn-content-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-security-audit"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "A copy edit is not a privacy review; do not threat-model the consent flow or add a legal assessment."
     }
   ]
 }

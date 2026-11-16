@@ -29,12 +29,13 @@ RECORDS = REFS/'upstream/grim-prompter'
 AUDIT_RECORDS = REFS/'upstream/audit-records'
 CONVERTER = AUDIT/'scripts/threats_to_ledger.py'
 NODE = shutil.which('node')
-REVISION = '3642a31aa67efdc22ae2bd30444537ceefb7424a'
+REVISION = '2a94457c7bc63ffbc4a44ea50ae645ab8cee26bf'
 PINNED = ROOT/'orbyn-references/grim-prompter'/REVISION
 ARCHITECTURES = ['web', 'api', 'multi-tenant-saas', 'agentic-ai', 'rag', 'cicd-supply-chain',
                  'cli-developer-tools', 'desktop', 'mobile', 'serverless', 'microservices', 'data-platform']
 HELPERS = ['architecture-selector', 'method-selector', 'evidence-guide', 'model-challenger',
-           'change-reviewer', 'tool-credential-boundaries', 'artifact-contract', 'method-notes']
+           'change-reviewer', 'tool-credential-boundaries', 'artifact-contract', 'method-notes',
+           'privacy', 'privacy-gdpr', 'privacy-ccpa-cpra']
 
 # Advice that belongs to the upstream host, not to this library.
 INSTALL_ADVICE = re.compile(
@@ -218,6 +219,19 @@ class BundleTests(unittest.TestCase):
                      'CVSS', 'MAESTRO', 'trademark', 'CC BY 4.0', 'CC BY 3.0'):
             self.assertIn(term, notes)
 
+    def test_privacy_review_stays_engineering_evidence(self):
+        privacy = (BUNDLE/'privacy.md').read_text()
+        for term in ('`privacy`', '`security-and-privacy`', 'never legal advice', "owner's counsel",
+                     'caller_claim', 'A hosting region', '## Worked failure'):
+            self.assertIn(term, privacy)
+        for name, profile in (('privacy-gdpr', 'gdpr'), ('privacy-ccpa-cpra', 'ccpa-cpra')):
+            text = (BUNDLE/f'{name}.md').read_text()
+            self.assertIn(f'`privacy:{profile}:<topic>`', text, name)
+            self.assertIn('not legal advice', text, name)
+            self.assertIn("owner's counsel", text, name)
+            self.assertIn('`applicability`', text, name)
+        self.assertIn("never legal advice", (AUDIT/'SKILL.md').read_text())
+
     def test_agent_threats_are_covered(self):
         agentic = (BUNDLE/'architectures/agentic-ai.md').read_text()
         for term in ('Memory', 'Delegation', 'Approval binding', 'tool-credential-boundaries'):
@@ -231,7 +245,7 @@ class BundleTests(unittest.TestCase):
 
 class RecordTests(unittest.TestCase):
     def test_licence_and_records_pin_real_bytes(self):
-        self.assertIn('Copyright (c) 2026 Jim Manico', (RECORDS/'LICENSE').read_text())
+        self.assertIn('Copyright (c) 2026 Manicode Security', (RECORDS/'LICENSE').read_text())
         self.assertIn('Copyright (c) 2026 Anh Dang and Orbyn contributors', (RECORDS/'LICENSE-Orbyn.txt').read_text())
         snapshot = json.loads((RECORDS/'snapshot.json').read_text())
         self.assertEqual(snapshot['revision'], REVISION)
@@ -278,7 +292,7 @@ class RecordTests(unittest.TestCase):
     def test_source_record_states_what_was_excluded(self):
         source = (RECORDS/'SOURCE.md').read_text()
         for term in ('Excluded, never copied', 'six-stage deep chains', 'method prompts', 'MITRE', 'Lockheed Martin',
-                     'not imported or activated', 'Jim Manico'):
+                     'not imported or activated', 'Manicode Security'):
             self.assertIn(term, source)
 
 
@@ -364,6 +378,71 @@ class CheckerTests(unittest.TestCase):
         for label, change in plants.items():
             with self.subTest(label):
                 self.assertNotEqual(self.faults(mutate(change)), [], label)
+
+    def privacy_model(self):
+        model = json.loads(json.dumps(self.example))
+        model['evidence'].append({'id': 'E3', 'kind': 'caller_claim', 'locator': 'session:chat',
+                                  'summary': 'The owner says the customers are in the EU.'})
+        model['privacy'] = {'review_scope': 'privacy', 'security_analysis': 'not_run', 'profiles': ['gdpr'], 'coverage': [
+            {'lens': 'privacy:gdpr:applicability', 'target': None, 'status': 'partial', 'evidence_refs': ['E3'],
+             'reason': 'Applicability: unknown; Basis: E3'},
+            {'lens': 'privacy:gdpr:rights', 'target': 'A1', 'status': 'partial', 'evidence_refs': ['E1'],
+             'reason': 'Applicability: unknown; Follow-up: G1'}]}
+        return model
+
+    def test_a_privacy_model_is_valid(self):
+        self.assertEqual(self.faults(self.privacy_model()), [])
+        combined = self.privacy_model()
+        combined['privacy'] = {'review_scope': 'security-and-privacy', 'profiles': [], 'coverage': []}
+        self.assertEqual(self.faults(combined), [])
+
+    def test_privacy_faults_are_caught(self):
+        plants = {
+            'not an object': lambda m: m.update(privacy=['gdpr']),
+            'unknown scope': lambda m: m['privacy'].update(review_scope='legal'),
+            'unknown profile': lambda m: m['privacy'].update(profiles=['gdpr', 'lgpd']),
+            'profile twice': lambda m: m['privacy'].update(profiles=['gdpr', 'gdpr']),
+            'unselected profile row': lambda m: m['privacy']['coverage'][1].update(lens='privacy:ccpa-cpra:notice'),
+            'malformed lens': lambda m: m['privacy']['coverage'][1].update(lens='gdpr-rights'),
+            'unknown topic': lambda m: m['privacy']['coverage'][1].update(lens='privacy:gdpr:compliance'),
+            'topic from the other profile': lambda m: m['privacy']['coverage'][1].update(lens='privacy:gdpr:sale-sharing'),
+            'partial without evidence': lambda m: m['privacy']['coverage'][1].pop('evidence_refs'),
+            'assessed without evidence': lambda m: m['privacy']['coverage'][1].update(status='assessed', evidence_refs=[]),
+            'no applicability row': lambda m: m['privacy']['coverage'].pop(0),
+            'applicability on code alone': lambda m: m['privacy']['coverage'][0].update(evidence_refs=['E1']),
+            'selected profile without rows': lambda m: m['privacy'].update(coverage=[]),
+            'compliance status': lambda m: m['privacy']['coverage'][0].update(status='compliant'),
+            'no reason': lambda m: m['privacy']['coverage'][0].update(reason=''),
+            'target is not an asset': lambda m: m['privacy']['coverage'][0].update(target='P1'),
+            'not applicable without evidence': lambda m: m['privacy']['coverage'][1].update(status='not_applicable', evidence_refs=[]),
+            'dangling evidence': lambda m: m['privacy']['coverage'][0].update(evidence_refs=['E9']),
+            'rated coverage': lambda m: m['privacy']['coverage'][0].update(Severity='high'),
+            'privacy only without security_analysis': lambda m: m['privacy'].pop('security_analysis'),
+            'privacy only claiming security ran': lambda m: m['privacy'].update(security_analysis='done'),
+        }
+        for label, change in plants.items():
+            with self.subTest(label):
+                model = self.privacy_model()
+                change(model)
+                self.assertNotEqual(self.faults(model), [], label)
+
+    def test_not_applicable_with_evidence_passes(self):
+        model = self.privacy_model()
+        model['privacy']['coverage'][1].update(status='not_applicable', evidence_refs=['E3'])
+        self.assertEqual(self.faults(model), [])
+
+    def test_unexamined_topics_need_no_evidence(self):
+        model = self.privacy_model()
+        model['privacy']['coverage'].append({'lens': 'privacy:gdpr:transfers', 'target': None, 'status': 'not_assessed',
+                                             'reason': 'Not examined in this quick run.'})
+        self.assertEqual(self.faults(model), [])
+
+    def test_topic_table_matches_the_profile_files(self):
+        for profile in ('gdpr', 'ccpa-cpra'):
+            text = (BUNDLE/f'privacy-{profile}.md').read_text()
+            listed = set(re.findall(r'^\| `([a-z0-9-]+)`(?:, `([a-z0-9-]+)`)?', text, re.M))
+            topics = {name for pair in listed for name in pair if name}
+            self.assertEqual(topics, self.checker.TOPICS[profile], profile)
 
     def test_rating_is_allowed_only_with_a_supplied_rubric(self):
         self.model['threats'][0]['severity'] = 'high'

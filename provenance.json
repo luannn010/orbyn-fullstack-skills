@@ -1511,6 +1511,13 @@
           "effort": "medium (author/scout); coordinator effort not exposed by host",
           "date": "2026-11-14",
           "scope": "Two additive synthetic development cases for native-stack stale-head async decisions and ordinary status-only scope; frozen holdouts unchanged."
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-opus-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Eval cases: privacy review routes to orbyn-security-audit with a profile; consent-banner copy edit routes to orbyn-content-design"
         }
       ],
       "reviewed_inspiration": [
@@ -3350,22 +3357,22 @@
     },
     "orbyn-security-audit": {
       "relationship": "adapted",
-      "credit": "Cloudflare, Inc. (audit record tooling); Jim Manico (Grim Prompter threat-model adaptation); Orbyn adaptations by Anh Dang and contributors",
+      "credit": "Cloudflare, Inc. (audit record tooling); Manicode Security (Grim Prompter threat-model adaptation); Orbyn adaptations by Anh Dang and contributors",
       "copyright": "Copyright (c) 2025-2026 Cloudflare, Inc.",
       "license": "MIT",
       "source": "https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit",
       "revision": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
-      "changes": "Orbyn-owned audit workflow, protocol and threat-boundary guide. Only the licensed record schema, validators and synthetic fixtures are retained as support files from the Cloudflare source. Threat-model mode adapts selected MIT Grim Prompter material: the read-only operating boundary, evidence guide, architecture and method selection, challenger, change reviewer, artifact contract, tool and shared-credential boundaries, and twelve architecture checks, condensed into references/threat-model with per-file original and maintained hashes under references/upstream/grim-prompter. The 36 deep chains, 24 other quick prompts, 29 method prompts and all install or host-specific steps are excluded. Original additions: the threat-model checker, the threat-to-ledger converter, the join with the boundary guide, status words, run-folder and no-publication rules, the threat model, audit, remediation and verification workflow, and the verification protocol section.",
+      "changes": "Orbyn-owned audit workflow, protocol and threat-boundary guide. Only the licensed record schema, validators and synthetic fixtures are retained as support files from the Cloudflare source. Threat-model mode adapts selected MIT Grim Prompter material: the read-only operating boundary, evidence guide, architecture and method selection, challenger, change reviewer, artifact contract, tool and shared-credential boundaries, twelve architecture checks, and the privacy review scope with condensed GDPR and CCPA/CPRA profiles, condensed into references/threat-model with per-file original and maintained hashes under references/upstream/grim-prompter. The 36 deep chains, the six privacy deep stages, the other-regimes screening profile, the data-inventory companion, 24 other quick prompts, 29 method prompts and all install or host-specific steps are excluded. Original additions: the threat-model checker and its privacy-object checks, the profile-loading rule, the threat-to-ledger converter, the join with the boundary guide, status words, run-folder and no-publication rules, the threat model, audit, remediation and verification workflow, and the verification protocol section.",
       "incorporated_material": [
         {
-          "source": "https://github.com/jmanico/grim-prompter/tree/3642a31aa67efdc22ae2bd30444537ceefb7424a",
-          "revision": "3642a31aa67efdc22ae2bd30444537ceefb7424a",
+          "source": "https://github.com/jmanico/grim-prompter/tree/2a94457c7bc63ffbc4a44ea50ae645ab8cee26bf",
+          "revision": "2a94457c7bc63ffbc4a44ea50ae645ab8cee26bf",
           "license": "MIT",
           "local_path": "skills/orbyn-security-audit/references/upstream/grim-prompter/SOURCE.md",
           "license_file": "skills/orbyn-security-audit/references/upstream/grim-prompter/LICENSE",
           "relationship": "selected-maintained-adaptation",
-          "copyright": "Copyright (c) 2026 Jim Manico",
-          "license_sha256": "e12b09de9f3d07a057e95b07681ed0f1bf29d156148156b02fc4ef945b677f2a"
+          "copyright": "Copyright (c) 2026 Manicode Security",
+          "license_sha256": "4e34094caee63d43009a2e2c611f59f9b349407f1afe392b82cb0e6908ee9cbc"
         },
         {
           "relationship": "adapted",
@@ -3421,6 +3428,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Slimmed SKILL.md entry: detail moved to references, no rule changed"
+        },
+        {
+          "tool": "Claude Code desktop (subagent)",
+          "model": "claude-opus-5-5",
+          "effort": "medium",
+          "date": "2026-11-16",
+          "scope": "Grim Prompter 3642a31 to 2a94457: copyright holder now Manicode Security; privacy review scope, GDPR and CCPA/CPRA profiles, privacy records and checker rules; pin advanced"
         }
       ]
     },

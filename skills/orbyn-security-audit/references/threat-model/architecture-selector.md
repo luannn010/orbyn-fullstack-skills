@@ -12,6 +12,8 @@ Pick one primary architecture for the decision the model supports, and a seconda
 
 Bundled architecture checks: [web](architectures/web.md), [API](architectures/api.md), [multi-tenant SaaS](architectures/multi-tenant-saas.md), [agentic AI](architectures/agentic-ai.md), [RAG](architectures/rag.md), [CI/CD and supply chain](architectures/cicd-supply-chain.md), [CLI and developer tools](architectures/cli-developer-tools.md), [desktop](architectures/desktop.md), [mobile](architectures/mobile.md), [serverless](architectures/serverless.md), [microservices](architectures/microservices.md), [data platform](architectures/data-platform.md). For anything else (event streaming, firmware, payments, identity federation) use the neutral baseline in the [method reference](../threat-model.md#baseline-questions), say no architecture file exists, and record the missing boundary checks as a gap.
 
+Privacy is a review scope, not an architecture. For a [privacy review](privacy.md), still choose the real architecture for topology and boundary ownership, and do not claim its security checks ran.
+
 For MCP servers and tool connectors, route by the decision. Planning and delegation authority points to agentic AI; the receiving service's authorization points to API or another service architecture. Either way, add [tool and shared credential boundaries](tool-credential-boundaries.md).
 
 ## Composition

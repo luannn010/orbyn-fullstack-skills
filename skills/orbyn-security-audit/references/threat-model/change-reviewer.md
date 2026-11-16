@@ -10,6 +10,7 @@ Use when code or design changes after a model exists: a branch, a pull request, 
 4. Keep a threat's id while its scenario persists. Modify it when premises or confidence change; add a new id for a distinct scenario; retire only with evidence it no longer applies; reopen the same id when evidence returns. A proposed fix is not resolution: `resolved` needs an observation that the control now holds.
 5. List every addition, modification, retirement and reopening once, with evidence.
 6. For a changed tool, grant or credential, check whether existing consumers gained authority, and whether earlier approvals still apply. Apply [tool and shared credential boundaries](tool-credential-boundaries.md).
-7. Propose treatments and `not_run` checks for new or materially changed open threats. Leave risks unrated unless a rubric was supplied.
+7. With a `privacy` object in the baseline, keep its scope, profiles and coverage rows, and compare processing records too: new or changed data categories, recipients, flows and the data they carry, purposes, retention or deletion paths, and log or telemetry sinks. A new recipient for existing data matters even when sign-in is unchanged. Trace soft deletion only into stores you can read; the rest stays a gap. Mark coverage rows the change made stale.
+8. Propose treatments and `not_run` checks for new or materially changed open threats. Leave risks unrated unless a rubric was supplied.
 
 Report separately: changed scenarios, carried findings, conflicts, proposed treatment, unrun checks, and the code not examined.

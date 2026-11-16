@@ -1,6 +1,6 @@
 ---
 name: orbyn-security-audit
-description: "Threat-model a design or sensitive feature, or run an explicitly requested local source audit, read-only, with path:line evidence and independent validation; also verify a patched finding. Use orbyn-security-remediation to fix saved findings, architect for non-security design."
+description: "Threat-model a design or sensitive feature, privacy included, or run an explicitly requested local source audit, read-only, with path:line evidence and independent validation; also verify a patched finding. Use orbyn-security-remediation to fix saved findings, architect for non-security design."
 ---
 
 # Threat model and local security audit
@@ -30,7 +30,7 @@ Read [the threat-model method](references/threat-model.md) first. In short:
 
 1. **Scope.** Record the decision the model supports, the target and revision, what is out, and the run folder `output/threat-model/<date>-<mode>-<slug>/`. Check Git ignores it before writing.
 2. **Evidence.** Read the target read-only, cite `path:start-end` for each observation, and keep gaps. Never run the target's own scripts.
-3. **Choose.** Walk the [boundary guide](references/threat-boundaries.md) rows, then one primary architecture and its checks file, which add to those rows. Name a guide row on every model boundary. Add a method only if a question needs one.
+3. **Choose.** Walk the [boundary guide](references/threat-boundaries.md) rows, then one primary architecture and its checks file, which add to those rows. Name a guide row on every model boundary. Add a method only if a question needs one. For a privacy review, read [privacy review](references/threat-model/privacy.md): scope `privacy` or `security-and-privacy`, and a GDPR or CCPA/CPRA profile only when the person names it or the system processes personal data of people there. Profile output is evidence for the owner's counsel, never legal advice.
 4. **Analyse** each supported scenario: asset, actor capability, reachable path, prerequisites, existing control, what argues against it, and the observation that would decide it.
 5. **Challenge.** A short self-check for quick depth; a fresh context for deep.
 6. **Check and hand off.** Run `python3 scripts/check_threat_model.py <run>/threat-model.json --root <target>`, then write `report.md` and list handoffs.
@@ -38,6 +38,8 @@ Read [the threat-model method](references/threat-model.md) first. In short:
 ### Worked failure
 
 For "expiring share links, before we build", a first draft listing "token guessing, XSS, CSRF" with no file, actor capability or deciding observation fails the checker. The corrected pass reads the code: revoke deletes the row (`src/share/revoke.ts:40-58`) but the stream reads the link once at connect (`src/share/stream.ts:12-30`), so a connected recipient keeps receiving. It records the deciding question and a `not_run` check, and hands `tm:T1` to audit; audit confirms it, remediation rechecks per frame, and a fresh verifier runs the check. (Synthetic paths.)
+
+For "privacy review of account deletion, we serve EU users", a draft marks GDPR `rights` assessed because delete removes the user row. The corrected pass finds the soft-deleted user still in the analytics export, records `tm:T1`, a gap for the unread search index and `privacy:gdpr:rights` as `partial`, and sends erasure to the owner's counsel.
 
 ## Method: audit mode
 
@@ -61,4 +63,5 @@ Use local source and bundled references offline. Without isolation, keep inspect
 - For which boundaries to question, and the row names a model must use, read [threat boundaries](references/threat-boundaries.md), including how to classify package selectors in tool configuration.
 - For depth, modes, the read-only rules, the run folder and the baseline questions, read [the threat-model method](references/threat-model.md).
 - For the artifact files and the JSON the checker enforces, read [the artifact contract](references/threat-model/artifact-contract.md).
+- For GDPR or CCPA/CPRA questions, once [privacy review](references/threat-model/privacy.md#choose-profiles) selects one, read [GDPR](references/threat-model/privacy-gdpr.md) or [CCPA/CPRA](references/threat-model/privacy-ccpa-cpra.md).
 - For agents, RAG, tools or supply chain, read the matching file in `references/threat-model/architectures/` and [tool credential boundaries](references/threat-model/tool-credential-boundaries.md).

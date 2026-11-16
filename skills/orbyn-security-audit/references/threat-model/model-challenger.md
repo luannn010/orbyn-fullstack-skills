@@ -16,4 +16,5 @@ A fresh pass, not the author, tries to disprove an existing threat model. Run it
 - Do not merge two threats on a similar label. A different actor, prerequisite, element or boundary means they stay distinct; link them.
 - Resolve a conflict only with an observation. Keep a threat open when no resolution evidence exists.
 - Do not alter a control, risk or method merely to fit a narrative.
+- With a `privacy` object, keep its scope, profiles and coverage rows. Also test applicability claims, missing lifecycle paths and harms from authorized use, per [privacy review](privacy.md#deep-challenge-and-change).
 - With tools or shared credentials in scope, apply [tool and shared credential boundaries](tool-credential-boundaries.md). A check inside the runtime does not constrain an attacker who controls that runtime.

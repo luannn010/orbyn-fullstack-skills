@@ -16,7 +16,7 @@ The default is the baseline in the [method reference](../threat-model.md#baselin
 | What can go wrong per component or per directional flow? | STRIDE per element, STRIDE per interaction | Elements, flows, boundaries, protections. Choose one variant, not both. |
 | How could an adversary reach one goal, and by which routes? | Attack trees | A grounded goal and its prerequisites. |
 | How could a legitimate workflow be abused? | Misuse and abuse cases | The normal workflow, assets, actor assumptions. |
-| What personal-data harms arise? | LINDDUN | Data subjects, purposes, flows. A security pass does not complete it. |
+| What personal-data harms arise? | The [privacy review](privacy.md) scope first; LINDDUN GO or PRO only on request | Data subjects, purposes, flows; for LINDDUN, lawful deck or tutorial material. A security pass does not complete it, and neither method supplies a GDPR or CCPA/CPRA review. |
 | What can go wrong in an agent's layers and interactions? | CSA MAESTRO | Agent goals, tools, autonomy, data. Do not force an ordinary system into seven layers. |
 | Which known technique or pattern names a grounded scenario? | ATT&CK, CAPEC, ATLAS | A scenario already grounded in evidence. These label a scenario; they are not evidence of one. |
 | How severe is a technical weakness? | CVSS | Supported metrics and an official calculator. Severity is not business risk. |

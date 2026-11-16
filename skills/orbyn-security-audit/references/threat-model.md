@@ -39,12 +39,13 @@ A threat model of a private target describes how to attack it. Treat the folder 
 | "Gather the evidence first" | evidence | `SYSTEM_UNDER_REVIEW.md` only |
 | "Is this model still right?" | challenge | `challenge.md` |
 | A branch or range against an existing model | change | `change-review.md`, new revision |
+| "Privacy review", personal-data harms, GDPR or CCPA/CPRA coverage | quick or deep, with a privacy scope | the same files; see [privacy review](threat-model/privacy.md) |
 
 Quick is one pass and must say that no separate challenge ran. Choose depth by the decision, not by effort available.
 
 ## Steps
 
-1. **Scope.** Write the decision the model supports, the target and revision, what is in and out, and the run folder. Ask only when you cannot proceed safely, such as an ambiguous target.
+1. **Scope.** Write the decision the model supports, the target and revision, what is in and out, and the run folder. For privacy, also the review scope and any profile, chosen by the [privacy review](threat-model/privacy.md) rules. Ask only when you cannot proceed safely, such as an ambiguous target.
 2. **Evidence.** Follow the [evidence guide](threat-model/evidence-guide.md). Cite `path:start-end` for every observation. Keep gaps.
 3. **Boundaries, then architecture.** Walk the rows of the [boundary guide](threat-boundaries.md) first and write each as applicable, inapplicable or unknown in `selection.md`, with the evidence for it. Then follow the [architecture selector](threat-model/architecture-selector.md) and read the matching file under `threat-model/architectures/` in full. It adds checks to the rows it is listed against; do not ask again what a row already settled. With MCP servers, tools or connectors, read [tool and shared credential boundaries](threat-model/tool-credential-boundaries.md) too.
 4. **Method.** Default to the baseline below. Use the [method selector](threat-model/method-selector.md) only when a question needs a named method, and read the [third-party notes](threat-model/method-notes.md) before citing one.
@@ -55,7 +56,7 @@ Quick is one pass and must say that no separate challenge ran. Choose depth by t
 
 ## Baseline questions
 
-For every element, flow and boundary crossing the evidence supports, ask six things: can someone pretend to be another actor, change what should not change, deny an action that should be attributable, read what they should not, block a needed service, or gain authority beyond their level? Add privacy, safety or abuse questions only where the system gives them a concrete subject. Generic possibilities with no tie to the system belong in `gaps`, not in the threat list.
+For every element, flow and boundary crossing the evidence supports, ask six things: can someone pretend to be another actor, change what should not change, deny an action that should be attributable, read what they should not, block a needed service, or gain authority beyond their level? Add safety or abuse questions only where the system gives them a concrete subject. A privacy scope uses the questions in [privacy review](threat-model/privacy.md#ask-the-privacy-questions). Generic possibilities with no tie to the system belong in `gaps`, not in the threat list.
 
 Each candidate needs an asset or objective, an actor with a stated capability, a reachable entry point, prerequisites, affected elements, the protection already present, a possible harm and the evidence that would argue against it.
 

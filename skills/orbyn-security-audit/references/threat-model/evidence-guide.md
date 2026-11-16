@@ -12,6 +12,8 @@ Build `SYSTEM_UNDER_REVIEW.md` in the run folder before any analysis. Collect ev
 6. Deployment, infrastructure and CI/CD definitions, and dependency manifests.
 7. Tests and their results, only if already in the repository.
 
+For a privacy scope, add the targets in [privacy review](privacy.md#gather-privacy-evidence) during this step: logs, telemetry, third-party calls, retention and deletion, collected fields, identifiers and labeled sensitive data. Record categories, never values, and still name no threats here.
+
 Do not blanket-read dependency or vendor trees, build output, generated files or Git objects. Do not read earlier runs unless the person names them, and then label their claims as carried analysis.
 
 ## File layout

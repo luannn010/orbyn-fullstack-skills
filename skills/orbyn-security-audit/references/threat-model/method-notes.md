@@ -5,7 +5,7 @@ The bundled files describe how to apply a method's questions in this library's o
 | Name | Owner and terms to respect |
 | --- | --- |
 | STRIDE | Microsoft; the per-element variant is described in the 2006 MSDN Magazine article by Hernan, Lambert, Ostwald and Shostack |
-| LINDDUN | KU Leuven DistriNet; the GO card deck is CC BY 4.0. Do not paste deck text. If you quote supplied deck text, keep its credit, title, source and licence |
+| LINDDUN | KU Leuven DistriNet; the GO card deck is CC BY 4.0. Do not paste deck text. If you quote supplied deck text, keep its credit, title, source and licence. The PRO tutorial reserves reproduction rights: do not copy its tables, trees or figures |
 | Elevation of Privilege | Microsoft and Adam Shostack; deck material is CC BY 3.0 US |
 | PASTA, OCTAVE Allegro, CORAS, Trike, hTMM, STPA | Their authors and institutions. Trike's methodology text carries its own permission notice |
 | MITRE ATT&CK, CAPEC, ATLAS | MITRE Corporation trademarks and terms of use. Verify technique and pattern ids and the version against the official catalog; a guessed id is a defect |

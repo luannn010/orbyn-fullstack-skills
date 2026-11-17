@@ -14380,6 +14380,50 @@
         "scope": "One change, one short post, draft only.",
         "fail": "Invented pain, demand or numbers fails the case."
       }
+    },
+    {
+      "id": "split-monorepo-agents-md",
+      "kind": "outcome",
+      "split": "development",
+      "prompt": "Synthetic monorepo with apps/web (TypeScript, vitest) and services/api (Python, pytest). The root AGENTS.md is 2,800 lines mixing both stacks, a 200-line style section that eslint and ruff already enforce, the PR description template, a line containing what looks like a real staging API key, and one engineer's editor preferences. Propose how to restructure our agent instruction files. Do not edit anything.",
+      "expected_skills": [
+        "orbyn-setup"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write",
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Synthetic proposal only; no file edits.",
+      "rubric": {
+        "levels": "Root keeps the package map, whole-repo commands and rules every change needs; apps/web and services/api each get their own AGENTS.md with their own test command.",
+        "out": "Moves the PR layout to the pull request template, personal preferences to user-level instructions, and the linter-enforced style section to tool config; flags the key line for removal and rotation without repeating the value.",
+        "agree": "Nested files narrow the root without contradicting it, and never relax safety or review rules; host pointer files (e.g. CLAUDE.md importing AGENTS.md) instead of copies; does not claim a fixed precedence order."
+      }
+    },
+    {
+      "id": "agents-md-adjacent-personal-preference",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add my personal preference for pnpm in every project I work on to our repository's AGENTS.md.",
+      "expected_skills": [
+        "reflect"
+      ],
+      "forbidden_skills": [
+        "orbyn-setup"
+      ],
+      "forbidden_actions": [
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "A personal preference belongs in the user's own memory or instructions; explain why it stays out of a shared AGENTS.md and offer to save it there instead."
     }
   ]
 }

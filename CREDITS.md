@@ -73,6 +73,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works | GOV.UK Agile delivery community | See source | orbyn-research |
 | https://www.scenario.com/explorations/kinetic-film/ | Scenario | See source | technical-illustration |
 | https://www.sei.cmu.edu/library/architecture-tradeoff-analysis-method-collection/ | Software Engineering Institute | See source | orbyn-research |
+| https://www.ssw.com.au/rules/write-agents-md | SSW Rules (Eddie Kranz, Daniel MacKay, Gordon Beeming, Michael Qiu) | See source | orbyn-setup |
 | https://x.com/tobiadonadon_/status/2106430529113301163 | Tobi (@tobiadonadon_) | See source | orbyn-ui-design |
 | [Illyism/seo-skills](https://github.com/Illyism/seo-skills) | Ilias Ism | MIT (stated in README and plugin.json; the repository has no LICENSE file) | orbyn-seo |
 | [kevintngo/statechart-art](https://github.com/kevintngo/statechart-art) | Kevin Ngo | MIT | architect, technical-illustration |

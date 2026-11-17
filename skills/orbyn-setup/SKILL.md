@@ -1,6 +1,6 @@
 ---
 name: orbyn-setup
-description: "Prepare the nested Orbyn Engineering workspace, inspect target instructions and skills in place, and verify isolation without installing shared skills into target repositories."
+description: "Prepare the nested Orbyn Engineering workspace, inspect target instructions and skills in place, and verify isolation without installing shared skills into target repositories. Also lays out a project's root and nested AGENTS.md files."
 ---
 
 # Nested workspace setup
@@ -49,5 +49,6 @@ After migration, a failed working directory or a runtime mismatch, reconcile the
 
 ## Read when needed
 
+- Writing, splitting or tidying a project's root and nested `AGENTS.md` files, as that project's own task: [agent instructions](references/agent-instructions.md).
 - Shared memory is on by default and manual-only; `prepare` and `check --target` register it idempotently, and `--no-memory` or `ORBYN_MEMORY=off` skips it. The store is local and unencrypted, outside Git. Report the root and state from the setup output ([reflect's memory contract](../reflect/references/memory.md)).
 - Isolation: [orbyn-worktree](../orbyn-worktree/SKILL.md) and sibling `repo/<project-slug>-wt/<purpose>/`; assign ports, databases and output separately.

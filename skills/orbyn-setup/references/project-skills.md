@@ -42,4 +42,5 @@ Give each rule one home and link to it from everywhere else:
 | A decision record | Why something was chosen and what was given up | Current behaviour, which lives in the README |
 
 Nesting alone does not prove a host loads a subtree file, so read the subtree's
-`AGENTS.md` explicitly before editing there.
+`AGENTS.md` explicitly before editing there. To write or split these files, follow
+[agent instructions](agent-instructions.md).

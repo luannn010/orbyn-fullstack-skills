@@ -14424,6 +14424,23 @@
         "message"
       ],
       "excluded": "A personal preference belongs in the user's own memory or instructions; explain why it stays out of a shared AGENTS.md and offer to save it there instead."
+    },
+    {
+      "id": "port-untested-module-record-replay",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "We're authorised to move our whole untested Python CLI, about forty modules, to Rust module by module while it stays in use. Run the migration and prove every step behaves exactly like the old tool.",
+      "expected_skills": [
+        "figure-it-out"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "forbidden_skills": [],
+      "excluded": "Records the original's behaviour, deliberate failures included, before porting and treats a replay mismatch as a port bug, never editing the recording; installs no porting tool without approval."
     }
   ]
 }

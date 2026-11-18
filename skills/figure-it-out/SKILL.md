@@ -22,6 +22,9 @@ and [stack ownership](../orbyn-workflow/references/project-policy.md#stack-and-o
 
 A service or API extraction unit includes shared schema, consumers, routing, contract, persisted state, the old handler and its retirement condition. Close it when all of those are done; a new handler alone leaves it open. Keep unfinished operator/deployment work visible in the report instead of moving it to a future-work paragraph and calling the migration complete.
 
+A rewrite or port, in the same language or another, closes a unit only when it replays
+the original's recorded behaviour: follow [rewrite parity](references/rewrite-parity.md).
+
 ## Delegation and records
 
 Follow the [workflow lead contract](../orbyn-workflow/SKILL.md). Keep coupled contract/caller edits with one owner, isolate genuinely independent output paths, and stay within the resolved harness `max_children`. Route corrections to the same owner. A child executes its owned unit directly without delegation.

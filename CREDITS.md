@@ -18,6 +18,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | 2025 Corey Haines | MIT | orbyn-research, social-content |
 | [cursor/plugins](https://github.com/cursor/plugins) | 2026 Lauren Tan | MIT | architect, arena, automate-me, figure-it-out, how, interrogate, language-best-practices, orbyn-backend-design, orbyn-plan, orbyn-setup, orbyn-skill-creator, orbyn-ui-design, orbyn-workflow, reflect, show-me-your-work, tdd, unslop, why |
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | 2026 Emil Kowalski | MIT | language-best-practices, orbyn-ui-design, tdd |
+| [erkamyaman/rust-anything](https://github.com/erkamyaman/rust-anything) | Erkam Yaman (erkamyaman, rust-anything); Orbyn adaptations by Anh Dang and contributors | MIT | figure-it-out, language-best-practices |
 | [expo/skills](https://github.com/expo/skills) | 2025-present 650 Industries, Inc. (aka Expo) | MIT | architect, language-best-practices, orbyn-backend-design, orbyn-ci-design, orbyn-ui-design, orbyn-workflow, tdd |
 | [flohoeller/affectui](https://github.com/flohoeller/affectui) | flohoeller | MIT | orbyn-affectui |
 | [github/gh-stack](https://github.com/github/gh-stack) | github | MIT | orbyn-workflow |

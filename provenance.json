@@ -491,6 +491,27 @@
           "effort": "medium",
           "date": "2026-11-02",
           "scope": "Harness and security workflow revision"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-18",
+          "scope": "Rewrite parity reference adapted from rust-anything (MIT)"
+        }
+      ],
+      "incorporated_material": [
+        {
+          "relationship": "adapted",
+          "credit": "Erkam Yaman (erkamyaman, rust-anything); Orbyn adaptations by Anh Dang and contributors",
+          "copyright": "Copyright (c) 2026 Erkam Yaman (erkamyaman)",
+          "license": "MIT",
+          "source": "https://github.com/erkamyaman/rust-anything/tree/94a9f2d012c68cd1ad8067f21037357cdd6bcf5f/skills/rust-anything",
+          "revision": "94a9f2d012c68cd1ad8067f21037357cdd6bcf5f",
+          "local_path": "skills/figure-it-out/references/rewrite-parity.md",
+          "license_file": "skills/figure-it-out/references/rust-anything-LICENSE.txt",
+          "license_sha256": "f7c6d76768cf5bdcd8fbc9f4df6b040789ed9802707e49987dd8357a6bd92759",
+          "changes": "Record-and-replay method (equivalence bar, outside recording, two runs to separate noise, front door with falling fallback rate, mismatch is a port bug) rewritten for any language pair with the CLI optional; no tool code or command reference copied, nothing run from the source."
         }
       ]
     },
@@ -1571,6 +1592,13 @@
           "effort": "medium",
           "date": "2026-11-17",
           "scope": "Two development cases for splitting a monorepo AGENTS.md (orbyn-setup) and an adjacent personal-preference case."
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-18",
+          "scope": "Eval case port-untested-module-record-replay"
         }
       ],
       "reviewed_inspiration": [
@@ -3356,6 +3384,13 @@
           "effort": "medium",
           "date": "2026-11-16",
           "scope": "Dated note that the bundled pstack statechart compiler pin advanced to bf0c7cd."
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-18",
+          "scope": "Characterization pointer to rewrite parity"
         }
       ]
     },
@@ -3839,6 +3874,18 @@
           "license_file": "skills/language-best-practices/references/ecc-LICENSE.txt",
           "license_sha256": "326146379f01bb137c0a5d3c54770c1aa31076705c8b88a7f6b26a460f6221b2",
           "changes": "Empty catches, swallowed errors and dangerous fallbacks as a review list with a synthetic example; agent prompt and its baseline block not copied. Reviewed at the pinned ECC revision only; written in Orbyn voice with synthetic examples, nothing run from the source."
+        },
+        {
+          "relationship": "adapted",
+          "credit": "Erkam Yaman (erkamyaman, rust-anything); Orbyn adaptations by Anh Dang and contributors",
+          "copyright": "Copyright (c) 2026 Erkam Yaman (erkamyaman)",
+          "license": "MIT",
+          "source": "https://github.com/erkamyaman/rust-anything/blob/94a9f2d012c68cd1ad8067f21037357cdd6bcf5f/skills/rust-anything/SKILL.md",
+          "revision": "94a9f2d012c68cd1ad8067f21037357cdd6bcf5f",
+          "local_path": "skills/language-best-practices/references/rust.md",
+          "license_file": "skills/language-best-practices/references/rust-anything-LICENSE.txt",
+          "license_sha256": "f7c6d76768cf5bdcd8fbc9f4df6b040789ed9802707e49987dd8357a6bd92759",
+          "changes": "Porting-into-Rust traps (FFI call cost and batching, UTF-16 offsets, regex Unicode classes, int and float handling, map order, errors versus panics) as a short checklist in Orbyn voice."
         }
       ],
       "reviewed_sources": [
@@ -3902,6 +3949,13 @@
           "effort": "medium",
           "date": "2026-11-09",
           "scope": "TypeScript one-way imports through product and generic tiers, enforced by lint"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-18",
+          "scope": "Rust porting traps adapted from rust-anything (MIT)"
         }
       ],
       "reviewed_inspiration": [

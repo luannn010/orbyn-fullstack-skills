@@ -53,6 +53,41 @@ against allocation.
 - `Vec` capacity is not initialized length. Prefer push/extend/resize; unsafe `set_len(n)` requires n within capacity and every newly exposed element initialized.
 - Keep public types and dependency exposure intentional, and avoid generic layers without real callers. Debug output must not reveal secrets.
 
+## Porting into Rust
+
+When code moves into Rust from another language, prove each unit against the
+original's recorded behaviour ([rewrite parity](../../figure-it-out/references/rewrite-parity.md)),
+and check these first:
+
+- **Profile before porting for speed.** Crossing FFI has a fixed cost per call, often
+  larger than a small function's whole body, and V8, the JVM and Go already make small
+  functions cheap. Port the loop together with its callers, or hand Rust the whole
+  item list in one call. Python already compiled by numba or Cython has little left
+  to gain.
+- **String offsets.** JavaScript, Java and C# count UTF-16 code units, Python counts
+  code points, Rust counts UTF-8 bytes. Convert wherever an offset or length crosses
+  the boundary; slicing a `&str` inside a character panics.
+- **Regex classes.** The `regex` crate makes `\w`, `\d` and `\b` Unicode-aware by
+  default. In JavaScript they stay ASCII with or without the `u` flag, and Java's are
+  ASCII unless `UNICODE_CHARACTER_CLASS` is set. Write `[A-Za-z0-9_]` or disable
+  Unicode in the pattern where the original was ASCII. Case-insensitive JavaScript
+  without `u` also skips folds such as the Kelvin sign to `k`. Record non-ASCII inputs
+  (Turkish dotless i, Kelvin sign, non-ASCII digits). Lookaround and backreferences
+  need `fancy-regex`.
+- **Integers.** A Python or Ruby int that passes through comes back an int, not a
+  float. Unbounded integers need `i128` or `num-bigint`; checked arithmetic only
+  reports the overflow. JavaScript numbers are f64, exact only up to 2^53. Python's
+  `//` and `%` floor while Rust's truncate, and `rem_euclid` still differs from Python
+  when the divisor is negative.
+- **Floats.** Expect last-bit differences once code is ported: evaluation order, fused
+  multiply-add and each platform's math library all move them. Agree a tolerance with
+  the user rather than chasing identical bits.
+- **Map order.** Use `indexmap` wherever insertion order reaches output.
+  `serde_json::Map` sorts its keys unless the `preserve_order` feature is on.
+- **Errors.** Where the original throws or returns an error, return `Err` that maps
+  back to the same error type; `unwrap` or `panic!` there replaces a catchable error
+  with a crash.
+
 ## Evidence to report
 
 Use configured cargo check/test, formatting and Clippy within authorized scope. Compilation proves neither unsafe-code soundness nor transactional cancellation safety. Test in release mode when overflow behavior matters.

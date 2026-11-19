@@ -1599,6 +1599,13 @@
           "effort": "medium",
           "date": "2026-11-18",
           "scope": "Eval case port-untested-module-record-replay"
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker) under claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-19",
+          "scope": "Routing cases for orbyn-scripted-motion"
         }
       ],
       "reviewed_inspiration": [
@@ -2220,6 +2227,13 @@
           "effort": "medium",
           "date": "2026-11-16",
           "scope": "Reviewed emilkowalski/skills 5206a95..64eb3de: motion tokens over literal curves, modal/drawer/sheet/toast duration exception, CSS-on-compositor under load, compositor-only limited to transform/opacity. Pins for motion.md and animation-performance.md advanced."
+        },
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker) under claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-19",
+          "scope": "Pointer from the motion reference to orbyn-scripted-motion"
         }
       ]
     },
@@ -4577,6 +4591,38 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "New skill: entry, six references, link_graph.py and verify_redirects.py with tests"
+        }
+      ]
+    },
+    "orbyn-scripted-motion": {
+      "relationship": "adapted",
+      "credit": "GreenSock (gsap-skills); Orbyn adaptations by Anh Dang and contributors",
+      "copyright": "Copyright (c) 2026 GreenSock",
+      "license": "MIT",
+      "source": "https://github.com/greensock/gsap-skills/tree/aed9cfd3277740755f6bfc1155c7aa645403b760/skills",
+      "revision": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+      "changes": "Eight upstream skills (core, timeline, scrolltrigger, react, frameworks, plugins, utils, performance) consolidated into one Orbyn skill with conditional references. Rewritten in Orbyn's own structure and examples; the default-recommend stance is replaced by CSS-first routing, a licence boundary, project motion tokens, reduced motion and handoffs. No library code is copied.",
+      "authoring": [
+        {
+          "tool": "Claude Code",
+          "model": "claude-sonnet-5-5 (worker) under claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-19",
+          "scope": "New skill for scripted timeline and scroll-linked web motion, adapted from GreenSock's MIT gsap-skills"
+        }
+      ],
+      "incorporated_material": [
+        {
+          "relationship": "adapted",
+          "credit": "GreenSock (gsap-skills); Orbyn adaptations by Anh Dang and contributors",
+          "copyright": "Copyright (c) 2026 GreenSock",
+          "license": "MIT",
+          "source": "https://github.com/greensock/gsap-skills/tree/aed9cfd3277740755f6bfc1155c7aa645403b760/skills",
+          "revision": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+          "changes": "Eight upstream skills (core, timeline, scrolltrigger, react, frameworks, plugins, utils, performance) consolidated into one Orbyn skill with conditional references. Rewritten in Orbyn's own structure and examples; the default-recommend stance is replaced by CSS-first routing, a licence boundary, project motion tokens, reduced motion and handoffs. No library code is copied.",
+          "local_path": "skills/orbyn-scripted-motion/SKILL.md",
+          "license_file": "skills/orbyn-scripted-motion/references/gsap-skills-LICENSE.txt",
+          "license_sha256": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90"
         }
       ]
     }

@@ -160,3 +160,5 @@ For code-driven UI motion and an editable preview, use the existing
 Keep live gesture velocity, interrupted presence, keyboard takeover and reduced
 motion separate from deterministic export seeks. Keep optional graphics/audio
 backends out of ordinary product UI prerequisites.
+
+Read when the task needs script-driven timelines, scroll scenes or drag physics: [orbyn-scripted-motion](../../orbyn-scripted-motion/SKILL.md).

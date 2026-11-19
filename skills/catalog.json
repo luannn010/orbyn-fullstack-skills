@@ -483,6 +483,17 @@
         "orbyn-ci-design",
         "social-content"
       ]
+    },
+    {
+      "name": "orbyn-scripted-motion",
+      "category": "Product design",
+      "related": [
+        "orbyn-ui-design",
+        "motion-match",
+        "technical-illustration",
+        "product-illustration",
+        "orbyn-affectui"
+      ]
     }
   ],
   "retired_skills": {

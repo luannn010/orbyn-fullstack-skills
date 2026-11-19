@@ -408,6 +408,7 @@ to their owner instead of duplicating a complete workflow.
 | [orbyn-astryx](../skills/orbyn-astryx/SKILL.md) | New; bundled pinned Astryx agent docs | Astryx project, page or theme request → Template-based page, token theme and render check | Live CLI runs need an installed project; no host trial |
 | [orbyn-affectui](../skills/orbyn-affectui/SKILL.md) | New; bundled pinned affectUI free items | React agent UI need → Reviewed component copied, restyled to tokens, fed real state | No live render trial; Pro items not available |
 | [orbyn-seo](../skills/orbyn-seo/SKILL.md) | New; original method with reviewed seo-skills ideas | Site, money pages and the visibility question → Audit with evidence, link graph, redirect check and fixes | No live crawl or search-console trial; rankings unverified |
+| [orbyn-scripted-motion](../skills/orbyn-scripted-motion/SKILL.md) | New; adapted from GreenSock's MIT gsap-skills | Scripted timeline, scroll scene or Flip need → CSS-first decision, licence boundary, tokens, reduced motion and cleanup | No live browser trial; licence terms of the engine unverified offline |
 
 The consumer integration check also caught two new links to a public-only root
 synchronization guide. Move the essential release procedure into the managed

@@ -14441,6 +14441,112 @@
       ],
       "forbidden_skills": [],
       "excluded": "Records the original's behaviour, deliberate failures included, before porting and treats a replay mismatch as a port bug, never editing the recording; installs no porting tool without approval."
+    },
+    {
+      "id": "scripted-motion-pinned-scrub",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our React page already uses GSAP. Build a pinned scroll scene where three product screenshots crossfade as the user scrolls, scrubbed to scroll position.",
+      "expected_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not add a second animation library or vendor library code."
+    },
+    {
+      "id": "scripted-motion-css-hover-adjacent",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Add a subtle hover fade to our secondary button. The project has no animation library.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Use CSS and project motion tokens; do not add an animation dependency."
+    },
+    {
+      "id": "scripted-motion-flip-grid",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Switching our gallery between grid and list view should animate tiles to their new positions. We use GSAP already.",
+      "expected_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not animate width, height or top/left, and do not skip cleanup on unmount."
+    },
+    {
+      "id": "scripted-motion-holdout-timeline",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Our Vue onboarding sequence uses a GSAP timeline with a ScrollTrigger; make it clean up on route change and respect reduced motion.",
+      "expected_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not rewrite the sequence or add dependencies."
+    },
+    {
+      "id": "scroll-reveal-no-library-native",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our marketing page has no animation library. Fade each section in as it scrolls into view.",
+      "expected_skills": [
+        "orbyn-ui-design"
+      ],
+      "forbidden_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "A simple scroll-linked reveal uses CSS scroll-driven timelines or an IntersectionObserver class toggle; no new animation dependency."
+    },
+    {
+      "id": "scrubbed-pin-no-library-asks-first",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Build a pinned product tour that scrubs through five steps as the user scrolls. The project has no animation library yet.",
+      "expected_skills": [
+        "orbyn-scripted-motion"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Proposes the dependency and waits for install approval before adding it, mentioning the licence's ban on visual no-code animation builders; never installs it silently."
     }
   ]
 }

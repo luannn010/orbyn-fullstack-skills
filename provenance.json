@@ -2845,6 +2845,13 @@
           "effort": "medium",
           "date": "2026-11-14",
           "scope": "Maintainer review fixes on PR 187: async merge targets only the lowest open layer, gh stack merge not used for merging, 200/409 handling, owner-bypass alignment, gh stack sync restored."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Lead contract: brief writers so a lost child costs little (absolute paths, background long gates, commit before the gate), recover a child that dies mid-task from its worktree, and re-check the host's allowed child models before a batch"
         }
       ]
     },

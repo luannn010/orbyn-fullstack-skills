@@ -51,7 +51,9 @@ Follow the [consumer host and coordination boundary](project-policy.md#delegatio
 Use configured named roles and preserve the required model, effort and processing
 mode. Where the host has no such model, follow [delegate on any host](#delegate-on-any-host).
 Never silently substitute a model, launch a hidden inference process or install a
-provider. Library model presets are optional; consumer-owned policy wins.
+provider. Library model presets are optional; consumer-owned policy wins. The models
+a host allows for children can change during a session: check the host's list before
+a batch, and when the model the user named is gone, ask before using another.
 
 Give each child its role, outcome, source/candidate, owned files, allowed effects,
 exclusions, relevant pointers and stopping condition. Reuse matching children;
@@ -71,6 +73,34 @@ an early call can start while a later one fails. Before relaunching anything, ch
 which children actually started, from the host's agent list or activity in their
 worktrees, and relaunch only the ones that did not. Never relaunch a writer into a
 worktree where its first copy may still be running.
+
+### Brief a writer so a lost child costs little
+
+- **Paths that cannot land elsewhere.** Give absolute paths, or `git -C <clone>`
+  commands. A relative `../<repo>-wt/<purpose>` run from the wrong directory
+  creates the worktree under another repository's root.
+- **Long gates in the background.** A build or test gate likely to pass the host's
+  foreground limit runs in the background with its output in a log
+  ([wait without polling](waiting.md)). Time spent queued behind a shared build
+  lock counts against that limit: a gate that takes one minute alone can take ten
+  behind three siblings, and the call that waits on it is what times out.
+- **Commit before the long gate.** A work-in-progress commit on the task branch
+  survives a lost child; it can be squashed before the PR.
+
+### When a child dies mid-task
+
+A child that ends with no closing message may have left most of its work on disk.
+Before relaunching, read its worktree: `git -C <worktree> status --short`,
+`git -C <worktree> log --oneline <base>..HEAD` and `git -C <worktree> stash list`.
+Resume that child, or start one into the same worktree, with what is there and the
+next step. Never start a fresh copy from the base over uncommitted work. The same
+child dying at the same step twice is the [loop guard](#loop-guard): change the
+approach once (smaller steps, a shorter gate), then stop and report.
+
+Synthetic example: three builders share one build lock. One ends silently at its
+gate with eleven changed files and no commit. Its worktree shows the work, so the
+lead resumes it with "commit what is there, then run the gate in the background
+and report the log", and nothing is redone.
 
 On a shared scratchpad, each child prefixes its file names with a short slug of its
 role and number (for example `worker-2-pr-body.md`), so another child or session

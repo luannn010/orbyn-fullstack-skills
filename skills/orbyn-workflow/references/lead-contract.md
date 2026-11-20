@@ -252,6 +252,14 @@ diff. The lead writes the final assessment.
   not your own verdict. It reads and reports; it never edits, posts or merges. Run it
   in the foreground when its verdict is your next step. With `reviewer_children` 0
   or `max_children` 0, the lead reviews and the PR says so.
+- **Read the branch, not a checkout.** Another agent can switch or rebase a shared
+  worktree while the review runs, so the files on disk may belong to another branch.
+  Give the reviewer the branch and base names, and have it read from Git:
+  `git diff <base>...<branch>` and `git show <branch>:<path>`. When a reviewer
+  reports that a worktree is on the wrong branch, it read the disk: check the branch
+  ref before acting on the warning. Synthetic example: the reviewer of `fix/limits`
+  warns that the worktree is detached at another PR's commit; `git rev-parse
+  fix/limits` still names the reviewed commit, so the review stands.
 - **Not a session.** A reviewer session costs another full context and a hand-off
   for every PR. Start one only when the user asks for it, and confirm with them
   first that a reviewer child would not do.

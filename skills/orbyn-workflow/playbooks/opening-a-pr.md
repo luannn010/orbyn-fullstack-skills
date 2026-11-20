@@ -56,6 +56,11 @@ never use broad staging or commit unrelated files to obtain a clean status.
 After pushing, verify the remote ref matches that intended commit before opening
 the PR or accepting CI evidence. A pushed baseline is not a delivered fix.
 
+Every published commit builds and passes its own checks, so a bisect never lands on
+a broken tree. When work in progress was committed in steps that do not build alone,
+squash them before the PR (`git reset --soft <base>`, then one commit) and rerun the
+checks on the result.
+
 A transient hook or transport failure needs an identified cause and bounded
 permitted retry. Do not skip hooks, change the Git index/metadata location,
 disable controls or use an alternate execution path to bypass a host denial.

@@ -17,6 +17,10 @@ merged yet; independent work goes in its own PR from the trunk instead
   the user raises the limit.
 - Stacks are linear. Two pieces that both depend on the same base but not on each
   other are two stacks, or one waits.
+- Two PRs that edit the same line or table row of a shared file depend on each other
+  even when their code does not. Stack the later one on the earlier, or let it wait.
+  Opened side by side, they conflict, and whichever merges second undoes the other's
+  wording.
 
 ## Choose the mechanism
 
@@ -114,6 +118,18 @@ GitHub references, observed 2026-11-14: [async merge](https://docs.github.com/en
   A fix that belongs to a lower layer goes on that layer.
 - Stack branches may live in separate worktrees; never steal another worktree's
   checkout ([orbyn-worktree](../../orbyn-worktree/SKILL.md)).
+- Resolve a conflict in a shared table or generated file from the base side: take
+  the lower branch's version of the file, reapply only your own change, then run the
+  file's own validator (its row counter, schema or generator check) and confirm the
+  diff touches only your lines. Never replace a whole conflict hunk with your side; a
+  hunk can hold rows that other PRs changed. Synthetic example: a status table has
+  one row per method; a rebase conflicts on seven rows of which one is yours; taking
+  your side of the hunk deletes six other rows, which the row counter catches
+  (713 rows became 707).
+- Edit very long lines with a script. A file reader can cut a line (for example at
+  2,000 characters) and silently drop its end, such as a trailing status field. Read
+  the exact bytes with `git show <ref>:<path>`, change the row in a script, and
+  check the row still ends as it did.
 
 ## Review
 

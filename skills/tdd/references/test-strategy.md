@@ -28,7 +28,7 @@ A test is a claim about what the code does for its users: return values, errors,
 - **Break the behavior** (wrong value, skipped effect, effect done twice). If the test still passes, it proves nothing. Usual causes: an assertion looser than the contract, an expected value computed by the code under test, a restated constant that never runs the code that reads it, data the test built itself.
 - **Change the internals** with every observable result unchanged. If the test fails, it is pinned to the implementation and will need rewriting at each refactor while catching no bug.
 
-Keep a test that fails on the first edit and survives the second; rewrite or delete the rest. Drive the real interface with a concrete input and take the expected value from the requirement. The contract decides, not the assertion's shape: "an empty cart never charges" is behavior when the payment client sees no call, paired with a case where the charge happens so the test shows it can see a call. The payload a mocked external service receives is behavior; a call to an internal helper is not. Assert the error type callers branch on, not wording nobody reads. An invariant such as a key present in two tables is behavior too.
+Keep a test that fails on the first edit and survives the second; rewrite or delete the rest. Drive the real interface with a concrete input and take the expected value from the requirement. The contract decides, not the assertion's shape: "an empty cart never charges" is behavior when the payment client sees no call, paired with a case where the charge happens so the test shows it can see a call. The payload a mocked external service receives is behavior; a call to an internal helper is not. Assert the error type callers branch on, not wording nobody reads. A bare "throws" check also passes when setup breaks and throws a `TypeError` before the behavior runs, so name the type or code and confirm setup reaches the behavior. An invariant such as a key present in two tables is behavior too.
 
 ## Justify the added coverage
 
@@ -45,6 +45,30 @@ maintainer-requested regression can justify coverage without a new approval ritu
 If the premise is already covered or intentional, report that evidence; a no-change
 result is valid. Contribution value and delivery boundaries remain with
 [contribution intake](../../orbyn-workflow/playbooks/contribution-intake.md#establish-value-separately-from-correctness).
+
+## Keep fakes faithful
+
+A fake or mock is a claim about how its dependency behaves, and the test is only as
+good as that claim. Check it against the real dependency for the behavior the test
+relies on. Typical mismatches: an HTTP client that resolves with an error status (only
+a network failure rejects), a store fake that ignores filters, a storage fake that
+never fails, a payment fake that always succeeds, a tool list that ignores which server
+was asked. Make the fake return what the real dependency returns, or check it once
+against the real one (a recorded response, a contract test or a disposable instance),
+and say when the real one was not run.
+
+Synthetic example: a fake engine's tool list pins the filter that picks the right
+server's entry, and a wrong entry is refused. That proves our filter. It does not show
+that the shipped engine honours the server-name field in the request, so name that as
+untested rather than closed.
+
+## Do not couple a test to shared fixtures
+
+A test that depends on the order, count or neighbours of shared fixture data fails when
+someone adds a fixture, while the feature still works. Synthetic example: a keyboard
+test hardcodes that Arrow Down from row B lands on row C; a new fixture adds a row
+between them and the test fails. Derive the expectation from the drawn order or the
+fixture itself, or use data the test builds.
 
 ## Cover each behavior once
 

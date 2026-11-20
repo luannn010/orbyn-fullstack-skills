@@ -12,6 +12,11 @@ Report the required check's wall time, the PR's time to green and the main
 branch's time separately, and what each change costs, such as runner minutes added
 to PRs that used to skip a platform.
 
+Over 30 or more recent runs, split each job into waiting (created to started), setup
+and running, at the median and at the 95th percentile, and fix the biggest bucket
+first. In one project waiting was about zero and the test run and its compile were the
+whole bill, so faster runners would have bought nothing.
+
 The time is often not where you guess. In one project a Windows test job was slow
 because its runner starts a process per test, and process creation is expensive on
 Windows; compiling was not the limiter.
@@ -58,6 +63,11 @@ after, not just the work per job, and drop the split if the critical path got lo
   key or profile is cold on every PR until a main-branch job builds it. Use a key
   that does not embed the job id (for example rust-cache `shared-key`). Without a
   warm job, one project's first PR run went from 8 to 13 min.
+- **Let PRs read caches but not save them.** Save only from the default branch
+  (for Actions, `save-if` on the main ref). A PR cache is read only by that PR, and
+  each copy of a large build cache counts against the quota. In one project 3.7 GB of
+  PR copies pushed the repository over its 10 GB limit and put the main-branch caches
+  at risk of eviction.
 - **Test-only settings get their own key.** In Cargo, flags that change only for
   test jobs (`RUSTFLAGS` such as a different linker, or the profile's debug level) change the
   build fingerprint and would thrash a shared cache. Each key adds pressure on the
@@ -71,12 +81,34 @@ after, not just the work per job, and drop the split if the critical path got lo
 - **Cache downloaded build tools** (installers, bundler helpers), keyed on the
   tool's version. This also removes a flaky download from the path.
 
+## Self-hosted runners
+
+Moving jobs to your own machine adds capacity, and speed only when it is measured.
+Run the job alone on a throwaway branch first, with nothing else local, and compare it
+with the hosted run. In one project a local runner ran the tests 27% faster (100 s
+against 138 s) but found no cache (probably because the cache key includes the
+runner's OS; not confirmed), so the compile took 2 minutes longer and the job lost overall. With two runners on one
+machine and both busy, the job took 648 s and a UI suite failed on timeouts.
+
+- **Check what is shared.** Two runners on one machine share cores, memory and, often,
+  the workspace, cargo home and package caches. Count machines, not runners.
+- **Gate it on a variable** and say in the workflow that a job with no available local
+  runner waits in the queue; it does not fall back to hosted. Unset the variable when the
+  machine is down. Keep fork and bot runs on hosted runners.
+- **Expect a persistent disk to mask failures.** A kept build or install folder can hide
+  a clean-build failure; wipe or key it deliberately.
+- **Start a new run to test a variable.** In one project a run created seconds before the
+  variable was set stayed on hosted runners, so it proved nothing.
+
 ## Job selection
 
 Select jobs from the [manifest](pipeline-structure.md#one-manifest-owns-the-routing),
 not top-level workflow path filters, and let a path no job owns select every job.
 A test in one job that reads another job's sources breaks when that job is not
-selected: add those paths to its selection or remove the dependency.
+selected: add those paths to its selection or remove the dependency. Prove the selector
+with a planted change: alter a file only one job reads, hide the change from the selector
+on purpose, and confirm the run goes red. A selector that is never shown to miss a change
+is only assumed to work.
 
 ## Merging on green
 

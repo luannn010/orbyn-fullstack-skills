@@ -14584,6 +14584,23 @@
         "message"
       ],
       "excluded": "Do not edit tests."
+    },
+    {
+      "id": "ci-main-red-visibility",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our main branch CI has been red for a day and nobody noticed because pull requests only run a light set. Design how we find out quickly when main goes red, without adding a merge gate or making required checks slower.",
+      "expected_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not change branch protection or run the full suite on every pull request."
     }
   ]
 }

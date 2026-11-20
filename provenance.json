@@ -992,6 +992,13 @@
           "effort": "medium",
           "date": "2026-11-12",
           "scope": "Change scope: real-service end-to-end specs a change touches are gates run before the PR"
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "CI design: keep main visible (alert on a red main run, merge-queue cost), retry-policy and time-budget wording, p50/p95 phase audit, save caches only from the default branch, self-hosted runner measurement, planted-change selector proof, opt-in pre-push hook. Evidence from one project's CI work; all examples measured there, none copied."
         }
       ]
     },
@@ -1620,6 +1627,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Two routing eval cases for the new tdd suite-audit reference (an audit request that must select tdd, and an adjacent CI-scope request that must not); evaluation data only."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "One routing eval case for the new CI main-visibility guidance; evaluation data only."
         }
       ],
       "reviewed_inspiration": [

@@ -33,6 +33,13 @@ the body running. Cancel, await/join termination and close owned connections
 before removing fixture files. Keep an uncooperative worker's resource and blocker
 visible rather than delete its state while it can still write.
 
+Pin the time zone where an assertion depends on it. A developer machine and CI
+often differ (CI commonly runs in UTC), so a test of a local date or zone offset
+can pass locally and fail there. In JavaScript, `-new Date().getTimezoneOffset()`
+is `-0` in UTC and JSON writes `0`, which a strict deep-equality check rejects.
+Derive the expected value the way the code does, and run the test under `TZ=UTC`
+and one zone with a non-zero offset before calling it green.
+
 Example: a delayed writer should check the injected abort signal before commit.
 The timeout test aborts and joins it, then removes the directory and checks no late
 file appears. The negative control omits signal propagation and must demonstrate

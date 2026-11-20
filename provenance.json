@@ -1613,6 +1613,13 @@
           "effort": "medium",
           "date": "2026-11-19",
           "scope": "Routing cases for orbyn-scripted-motion"
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Two routing eval cases for the new tdd suite-audit reference (an audit request that must select tdd, and an adjacent CI-scope request that must not); evaluation data only."
         }
       ],
       "reviewed_inspiration": [
@@ -3454,6 +3461,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Test strategy: keep fakes faithful to the real dependency, avoid coupling a test to shared fixture order or count, and name the error type so a setup failure cannot satisfy a broad throws check. Reviewed inspiration only: the blog post 'I deleted half our backend tests' (avilag.dev, observed 2026-11-21); no text or code copied, all examples synthetic."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "New suite-audit reference for reviewing and pruning an existing test suite (weak-test patterns, keep-by-risk rule, coverage ledger); routing eval cases. Reviewed inspiration only: the blog post 'I deleted half our backend tests' (avilag.dev, observed 2026-11-21); no text or code copied, all examples synthetic."
         }
       ]
     },

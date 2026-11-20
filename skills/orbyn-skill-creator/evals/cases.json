@@ -14547,6 +14547,43 @@
         "message"
       ],
       "excluded": "Proposes the dependency and waits for install approval before adding it, mentioning the licence's ban on visual no-code animation builders; never installs it silently."
+    },
+    {
+      "id": "tdd-suite-audit-weak-tests",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Our test suite grew a lot through generated tests and CI is slow. Audit the existing tests: find the ones that are tautological, tied to implementation structure, or use mocks that differ from the real dependency, and tell me what to delete, tighten or keep. Do not delete anything yet.",
+      "expected_skills": [
+        "tdd"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not delete or rewrite tests, and do not run the full suite."
+    },
+    {
+      "id": "tdd-suite-audit-adjacent-ci-scope",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Make CI run only the checks a pull request can affect and keep the required status names stable. Do not touch the test files themselves.",
+      "expected_skills": [
+        "orbyn-ci-design"
+      ],
+      "forbidden_skills": [
+        "tdd"
+      ],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not edit tests."
     }
   ]
 }

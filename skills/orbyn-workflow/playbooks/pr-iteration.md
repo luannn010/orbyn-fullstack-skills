@@ -100,6 +100,15 @@ the required rules, report that limit; absence of visible checks is not proof of
 merge readiness. Source tests, hosted CI, rendered/native evidence and deployment
 remain distinct claims.
 
+Read each check by name at the current head, latest run first. A check can keep an
+older failed run in the rollup after a newer run of the same name passed; the latest
+run on the head is the result, and a list of every run's conclusion overstates the
+failures. Re-running a failed workflow replays its original event, so a check that
+reads the PR title or body re-reads the old text: after editing them, trigger a fresh
+event (edit the PR again or push) instead of re-running. Synthetic example: a title
+check fails on a 78-character title; the title is shortened, and a re-run fails again
+with the old title in its log; editing the title starts a new run, which passes.
+
 ## Bound the loop and preserve progress
 
 When failures span many suites or instances, use
@@ -200,5 +209,7 @@ confidence and do-not-dismiss conditions; recheck the current trigger, especiall
 security, data and race effects. No bot-name blanket skip or automatic resolution.
 
 A PR status request needs one current snapshot; feedback review, drive-to-ready
-and authorized landing have distinct endpoints. None automatically starts a
+and authorized landing have distinct endpoints. A list command that pages its results
+returns only its first page by default (`gh pr list` returns 30): pass an explicit
+limit, compare the count with the total, and say so when a list was cut short. None automatically starts a
 monitor or inherits comment/merge permission from PR creation.

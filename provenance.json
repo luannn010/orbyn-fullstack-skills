@@ -2859,6 +2859,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Review before the PR: the reviewer reads the branch from Git refs rather than a shared checkout that may have moved"
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "PR iteration: judge the latest run per check on the head, re-trigger a title/body check with a fresh event instead of a re-run, and pass explicit limits to paged list commands"
         }
       ]
     },

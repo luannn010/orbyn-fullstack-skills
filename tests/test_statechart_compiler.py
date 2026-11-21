@@ -35,11 +35,46 @@ class AdapterContracts(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'hash mismatch'):
                     adapter.compiler_identity()
 
-    def test_windows_is_blocked_without_launch(self):
-        with patch.object(adapter.sys, 'platform', 'win32'), patch.object(adapter.subprocess, 'run') as launch:
-            with self.assertRaisesRegex(ValueError, 'Windows is unsupported'):
+    def test_closure_check_compares_posix_style_names_on_every_platform(self):
+        receipt = adapter.compiler_identity()
+        self.assertTrue(all('\\' not in name for name in receipt['files']))
+        self.assertIn('compiler/backends/cfg.ts', receipt['files'])
+
+    def test_unqualified_platform_is_blocked_without_launch(self):
+        with patch.object(adapter.sys, 'platform', 'freebsd14'), patch.object(adapter.subprocess, 'run') as launch:
+            with self.assertRaisesRegex(ValueError, 'not qualified'):
                 adapter.doctor(SimpleNamespace())
             launch.assert_not_called()
+
+    def test_windows_is_not_blocked_by_the_platform_check(self):
+        missing = SimpleNamespace(node='/missing/node.exe', java='/missing/java.exe', tlc='/missing/tla2tools.jar')
+        with patch.object(adapter.sys, 'platform', 'win32'), patch.object(adapter.subprocess, 'run') as launch:
+            with self.assertRaises(OSError):  # past the platform check, stopped by the tool that does not exist
+                adapter.doctor(missing)
+            launch.assert_not_called()
+
+    def test_windows_process_rows_keep_birth_and_ignore_noise(self):
+        rows = adapter.windows_rows('0 0 0\r\n4 0 0\r\n812 4 639000000000000001\r\nnot a row\r\n9 x 1\r\n\r\n')
+        self.assertEqual(rows[812], (4, 0, '639000000000000001'))
+        self.assertEqual(sorted(rows), [0, 4, 812])
+
+    def test_windows_lists_processes_with_powershell_not_ps(self):
+        done = subprocess.CompletedProcess([], 0, stdout='7 1 5\n', stderr='')
+        with patch.object(adapter.sys, 'platform', 'win32'), patch.object(adapter.subprocess, 'run', return_value=done) as launch:
+            self.assertEqual(adapter.process_rows(), {7: (1, 0, '5')})
+        self.assertEqual(launch.call_args.args[0][0], 'powershell')
+
+    def test_last_resort_kills_the_tree_on_windows_and_the_group_elsewhere(self):
+        child = Mock(pid=4321)
+        with patch.object(adapter.sys, 'platform', 'win32'), patch.object(adapter.subprocess, 'run') as launch, patch.object(adapter.os, 'killpg', create=True) as group:
+            adapter.kill_tree(child)
+        launch.assert_called_once()
+        self.assertEqual(launch.call_args.args[0], ['taskkill', '/pid', '4321', '/t', '/f'])
+        group.assert_not_called()
+        with patch.object(adapter.sys, 'platform', 'linux'), patch.object(adapter.subprocess, 'run') as launch, patch.object(adapter.os, 'killpg', create=True) as group, patch.object(adapter.signal, 'SIGKILL', 9, create=True):
+            adapter.kill_tree(child)
+        launch.assert_not_called()
+        group.assert_called_once_with(4321, 9)
 
     def test_existing_output_is_never_overwritten(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -62,6 +97,7 @@ class AdapterContracts(unittest.TestCase):
             self.assertTrue((record / 'stderr.txt').read_text())
             self.assertFalse(out.exists())
 
+    @unittest.skipIf(sys.platform == 'win32', 'creating symlinks needs a privilege the runner may not grant')
     def test_tool_symlink_loop_is_an_ordinary_refusal(self):
         with tempfile.TemporaryDirectory() as temp:
             loop = Path(temp) / 'loop'
@@ -203,26 +239,35 @@ Goal == <> (x = 2)"""
         self.assertEqual(receipt['remaining_observed_processes'], [])
         self.assertFalse((case/'result').exists())
 
-    def test_real_sigterm_retains_cancel_receipt(self):
+    def cancel_case(self, stop, **popen):
         case = self.base/'cancel'; case.mkdir()
         model = case/'Fixture.tla'; model.write_text('---- MODULE Fixture ----\nEXTENDS Naturals\n'+self.BODY+'\n====\n')
         cfg = case/'Fixture.cfg'; cfg.write_text('SPECIFICATION Spec\nINVARIANT Safe\n')
         view = case/'view.mjs'; view.write_text("import fs from 'node:fs'; fs.writeFileSync(new URL('./entered', import.meta.url), 'ready'); await new Promise(() => setInterval(() => {}, 1000)); export const state = v => String(v.x);")
         command = [sys.executable, str(ADAPTER), 'check', str(model), '--view', str(view), '--out', str(case/'result'), *self.tool_args]
-        child = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        child = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, **popen)
         try:
             import time
-            deadline = time.monotonic()+10
+            deadline = time.monotonic()+20
             while not (case/'entered').exists() and time.monotonic()<deadline and child.poll() is None:
                 time.sleep(.05)
             self.assertTrue((case/'entered').exists())
-            child.terminate(); child.communicate(timeout=15)
+            stop(child); child.communicate(timeout=30)
             self.assertEqual(child.returncode, 143)
             receipt = json.loads((case/'result.run/receipt.json').read_text())
             self.assertEqual(receipt['status'], 'cancelled'); self.assertEqual(receipt['remaining_observed_processes'], [])
         finally:
             if child.poll() is None:
                 child.kill(); child.communicate(timeout=5)
+
+    @unittest.skipIf(sys.platform == 'win32', 'SIGTERM cannot be delivered to a Windows process; see the Ctrl-Break test')
+    def test_real_sigterm_retains_cancel_receipt(self):
+        self.cancel_case(lambda child: child.terminate())
+
+    @unittest.skipUnless(sys.platform == 'win32', 'Ctrl-Break is how a Windows console process group is asked to stop')
+    def test_real_ctrl_break_retains_cancel_receipt(self):
+        self.cancel_case(lambda child: child.send_signal(adapter.signal.CTRL_BREAK_EVENT),
+                         creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
 
     def test_cold_commonjs_ancestor_uses_local_esm_boundary(self):
         parent = self.base/'commonjs'; parent.mkdir()

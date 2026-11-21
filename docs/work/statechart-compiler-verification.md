@@ -23,7 +23,7 @@ are checked by the existing offline source validator. Orbyn authors the Python
 adapter, view guard, local ESM boundary, sample and tests separately.
 
 The adapter verifies all runtime bytes, module boundary and the supported TLC jar
-before launch; requires explicit tool paths; blocks Windows; uses fresh output
+before launch; requires explicit tool paths; blocked Windows when this was written (see the 2026-11-21 addendum); uses fresh output
 plus a sibling command/log receipt directory; and retains timeout/cancel/error
 status. Exceptions after spawn still settle the owned parent. Unavailable process
 inspection does not establish complete descendant cleanup. Doctor is read-only;
@@ -102,7 +102,7 @@ print or assistive-technology qualification is claimed.
   no chart (500-state display budget). Independent 100005-state fixture reports
   BreakEarly's one-step failure, then keeps Safe/NoDeadlock **not checked** when
   the 100000-state rerun cap is reached. An exit 1 is not full verification.
-- Missing tools, unsupported Windows, unknown jar identity, changed runtime byte,
+- Missing tools, an unqualified platform, unknown jar identity, changed runtime byte,
   existing output sentinel, malformed model, projection error, real deadline and
   SIGTERM controls are covered. Observed owned processes settle for the real
   interruption fixtures. A mocked process-observation denial tests the exception
@@ -154,3 +154,14 @@ frozen 55-file candidate passed all 192 tests with zero skips under Python 3.13.
 in 62.755 seconds, all nine Node tests, and the library/discovery/source checks.
 No publication, merge, Orbyn edit, global setup, REA upgrade or deletion of other
 work is included in these qualification results.
+
+## Addendum, 2026-11-21: Windows and Linux
+
+The compiler snapshot was refreshed to pstack `d42aff08`, whose newest change removes the `/bin/sh` dependency, and the adapter was made
+cross-platform (platform check without `/bin/sh`, PowerShell process listing, `taskkill`, a new process group, Ctrl-Break, `TEMP`/`TMP`). A first
+Windows run found one adapter bug (the closure check compared backslash paths with the snapshot's forward-slash names); it was fixed and the job
+passed. Result on one runner image each, with Node 22.23.5, Java 17 and the pinned jar: **Windows 22 tests, 20 ran, 2 skipped** (symlink loop needs a
+privilege; SIGTERM cannot be sent to a Windows process), including the real TLC runs, the timeout test with no process left behind, and a real
+Ctrl-Break cancel receipt; **Linux 22 tests, 21 ran, 1 skipped** (the Windows-only Ctrl-Break test), including the real SIGTERM cancel. macOS
+was run locally with Node 23.11. Not established: other Node, Java or OS versions, arm64 on Windows or Linux, or the symlink-loop refusal on
+Windows.

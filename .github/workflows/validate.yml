@@ -27,6 +27,43 @@ jobs:
         env:
           ORBYN_TEST_RECYCLE: '1'
         run: python -m unittest discover -s tests -p test_worktree_retire_windows.py -v
+  statechart-compiler:
+    name: Statechart compiler (${{ matrix.os }})
+    # Runs the opt-in adapter contracts and the real compiler against the pinned TLC jar on Windows and Linux. Advisory:
+    # not a required check. The jar is fetched once per run and verified against the adapter's pinned SHA-256 before use.
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Pinned TLC jar and explicit tool paths
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, os, shutil, urllib.request
+          jar = os.path.join(os.environ['RUNNER_TEMP'], 'tla2tools.jar')
+          data = urllib.request.urlopen('https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar', timeout=120).read()
+          assert hashlib.sha256(data).hexdigest() == '936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88', 'unexpected TLC jar'
+          open(jar, 'wb').write(data)
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'ORBYN_STATECHART_TLC={jar}\nORBYN_STATECHART_NODE={shutil.which("node")}\nORBYN_STATECHART_JAVA={shutil.which("java")}\n')
+          PY
+          node --version
+          java -version
+      - name: Adapter contracts and the real compiler
+        shell: bash
+        run: python -m unittest discover -s tests -p test_statechart_compiler.py -v
   validate:
     name: Validate (Python ${{ matrix.python }})
     # Self-hosted only when the repository variable CI_RUNNER is 'local'. Keep CI_RUNNER

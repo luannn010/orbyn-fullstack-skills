@@ -37,7 +37,7 @@ def compiler_identity():
         if not Path(item['path']).is_relative_to(root.resolve()) or item['sha256'] != record['sha256']:
             raise ValueError(f'Bundled compiler hash mismatch: {name}')
         verified[name] = item['sha256']
-    actual = {str(p.relative_to(root)) for p in (root / 'compiler').rglob('*') if p.is_file()}
+    actual = {p.relative_to(root).as_posix() for p in (root / 'compiler').rglob('*') if p.is_file()}
     if actual != {name for name in verified if name.startswith('compiler/')}:
         raise ValueError('Unmapped compiler runtime file')
     boundary = Path(__file__).resolve().parents[1] / 'package.json'
@@ -56,8 +56,8 @@ def capture(command):
 
 
 def doctor(args):
-    if sys.platform not in ('darwin', 'linux') or not Path('/bin/sh').is_file():
-        raise ValueError('Blocked: pinned compiler requires POSIX /bin/sh, process groups and signals; Windows is unsupported.')
+    if sys.platform not in ('darwin', 'linux', 'win32'):
+        raise ValueError('Blocked: this platform is not qualified; macOS, Linux and Windows are the supported targets.')
     node, java, tlc = (identity(getattr(args, name)) for name in ['node', 'java', 'tlc'])
     compiler = compiler_identity()
     if tlc['sha256'] != TLC_SHA256:
@@ -83,7 +83,25 @@ def doctor(args):
             'qualification': 'Prerequisites observed; no model or platform compatibility claim.'}
 
 
+WINDOWS_ROWS = ("Get-CimInstance Win32_Process | ForEach-Object { '{0} {1} {2}' -f "
+                "$_.ProcessId, $_.ParentProcessId, ([datetime]$_.CreationDate).Ticks }")
+
+
+def windows_rows(text):
+    """pid -> (ppid, 0, birth ticks) from the three-field lines of the PowerShell listing."""
+    rows = {}
+    for line in text.splitlines():
+        fields = line.split()
+        if len(fields) == 3 and all(field.isdigit() for field in fields):
+            rows[int(fields[0])] = (int(fields[1]), 0, fields[2])
+    return rows
+
+
 def process_rows():
+    if sys.platform == 'win32':
+        result = subprocess.run(['powershell', '-NoProfile', '-NonInteractive', '-Command', WINDOWS_ROWS],
+                                capture_output=True, text=True, check=True, timeout=60)
+        return windows_rows(result.stdout)
     result = subprocess.run(['/bin/ps', '-axo', 'pid=,ppid=,pgid=,lstart='], capture_output=True, text=True, check=True)
     rows = {}
     for line in result.stdout.splitlines():
@@ -101,6 +119,14 @@ def descendants(pid):
         if more <= owned:
             return {p: rows[p][2] for p in owned if p in rows}
         owned |= more
+
+
+def kill_tree(child):
+    """Last resort after a polite stop: the whole tree on Windows, the process group elsewhere."""
+    if sys.platform == 'win32':
+        subprocess.run(['taskkill', '/pid', str(child.pid), '/t', '/f'], capture_output=True, timeout=30)
+    else:
+        os.killpg(child.pid, signal.SIGKILL)
 
 
 def interpret(out, status):
@@ -151,11 +177,14 @@ def run(args):
         env = dict(os.environ, JAVA=tools['java']['path'], TLA2TOOLS=tools['tlc']['path'])
         scratch = records / 'tmp'
         scratch.mkdir()
-        env['TMPDIR'] = str(scratch)
-        for sig in (signal.SIGTERM, signal.SIGINT):
+        env['TMPDIR'] = env['TEMP'] = env['TMP'] = str(scratch)
+        signals = [signal.SIGTERM, signal.SIGINT] + ([signal.SIGBREAK] if sys.platform == 'win32' else [])
+        for sig in signals:
             old_handlers[sig] = signal.signal(sig, lambda number, frame: interrupted.append(number))
         with (records / 'stdout.txt').open('w') as stdout, (records / 'stderr.txt').open('w') as stderr:
-            child = subprocess.Popen(command, env=env, stdout=stdout, stderr=stderr, start_new_session=True)
+            own_group = ({'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if sys.platform == 'win32'
+                         else {'start_new_session': True})
+            child = subprocess.Popen(command, env=env, stdout=stdout, stderr=stderr, **own_group)
             receipt['pid'] = child.pid
             receipt['status'] = 'running'
             deadline = time.monotonic() + args.timeout
@@ -167,7 +196,7 @@ def run(args):
                     try:
                         child.wait(timeout=5)
                     except subprocess.TimeoutExpired:
-                        os.killpg(child.pid, signal.SIGKILL)
+                        kill_tree(child)
                         child.wait(timeout=5)
                     end = time.monotonic() + 5
                     while True:
@@ -199,7 +228,7 @@ def run(args):
                 try:
                     child.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    os.killpg(child.pid, signal.SIGKILL)
+                    kill_tree(child)
                     child.wait(timeout=5)
                 receipt['exception_cleanup'] = 'owned parent settled; descendant cleanup not independently established'
             except (OSError, subprocess.SubprocessError) as error:

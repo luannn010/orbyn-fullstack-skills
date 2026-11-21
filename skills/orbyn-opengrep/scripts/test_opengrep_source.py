@@ -16,7 +16,7 @@ import opengrep_source as og  # noqa: E402
 SHA = "a" * 40
 PIN = {"schema_version": 1, "sources": [{
     "slug": "o/r", "url": "https://example.invalid/o/r", "tag": "v1", "revision": SHA, "license": "LGPL-2.1",
-    "build": {"ocaml": "5.5.0", "tools": ["opam", "dune", "make", "git", "cc"], "libraries": ["pcre", "gmp"],
+    "build": {"ocaml": "5.5.1", "tools": ["opam", "dune", "make", "git", "cc"], "libraries": ["pcre2", "gmp"], "bash_min": 5,
               "steps": [["make", "setup"], ["make", "core"]], "binary": "bin/opengrep"}}]}
 
 
@@ -229,7 +229,7 @@ class BuildTests(Base):
             steps.append((cmd, str(kwargs.get("cwd"))))
             return subprocess.CompletedProcess(cmd, 0)
 
-        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"):
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 5):
             binary = og.build("o/r", self.dir / "refs", True, pin, url=str(up), run=run, out=lambda s: None)
         self.assertEqual([c for c, _ in steps], [["make", "setup"], ["make", "core"]])
         self.assertTrue(steps[0][1].endswith(rev))
@@ -238,7 +238,7 @@ class BuildTests(Base):
 
     def test_refuses_when_the_pinned_commit_does_not_exist_upstream(self):
         up, _ = self.upstream()
-        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"):
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 5):
             with self.assertRaises(subprocess.CalledProcessError):
                 og.build("o/r", self.dir / "refs", True, self.pin, url=str(up),
                          run=lambda cmd, **k: subprocess.run(cmd, **k), out=lambda s: None)
@@ -248,7 +248,7 @@ class BuildGuardTests(BuildTests):
     def test_build_refuses_a_folder_git_does_not_ignore(self):
         repo = self.repo_with_ignore(ignored=False)
         calls = []
-        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"):
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 5):
             with self.assertRaises(og.Refused) as caught:
                 og.build("o/r", repo / "orbyn-references", True, self.pin, run=lambda *a, **k: calls.append(a))
         self.assertIn("not ignored", str(caught.exception))
@@ -268,7 +268,7 @@ class BuildGuardTests(BuildTests):
             steps.append(cmd)
             return subprocess.CompletedProcess(cmd, 0)
 
-        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"):
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 5):
             with self.assertRaises(og.Refused) as caught:
                 og.build("o/r", self.dir / "refs", True, pin, url=str(up), run=run, out=lambda s: None)
         self.assertIn("not the pinned", str(caught.exception))
@@ -279,7 +279,7 @@ class BuildGuardTests(BuildTests):
         pin = self.pin_for(rev)
         work = self.dir / "refs" / "o-r" / "build" / rev
         work.mkdir(parents=True)
-        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"):
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 5):
             with self.assertRaises(og.Refused):
                 og.build("o/r", self.dir / "refs", True, pin, url=str(up), run=lambda *a, **k: None, out=lambda s: None)
             work.rmdir()
@@ -289,6 +289,23 @@ class BuildGuardTests(BuildTests):
             with self.assertRaises(og.Refused) as caught:
                 og.build("o/r", self.dir / "refs", True, pin, url=str(up), run=lambda *a, **k: None, out=lambda s: None)
         self.assertIn("clean checkout", str(caught.exception))
+
+
+class BashTests(Base):
+    def test_an_old_bash_is_named_as_missing(self):
+        calls = []
+        with mock.patch.object(og.shutil, "which", lambda name: "/bin/true"), mock.patch.object(og, "bash_major", lambda: 3):
+            with self.assertRaises(og.Refused) as caught:
+                og.build("o/r", self.dir / "refs", True, self.pin, run=lambda *a, **k: calls.append(a))
+        self.assertIn("bash>=5", str(caught.exception))
+        self.assertEqual(calls, [])
+
+    def test_bash_major_reads_the_version_line(self):
+        fake = subprocess.CompletedProcess([], 0, stdout="GNU bash, version 5.3.20(1)-release\n")
+        with mock.patch.object(og.subprocess, "run", lambda *a, **k: fake):
+            self.assertEqual(og.bash_major(), 5)
+        with mock.patch.object(og.subprocess, "run", lambda *a, **k: subprocess.CompletedProcess([], 0, stdout="garbled")):
+            self.assertEqual(og.bash_major(), 0)
 
 
 class StatusTests(Base):

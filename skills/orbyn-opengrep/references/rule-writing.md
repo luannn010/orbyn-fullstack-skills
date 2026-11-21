@@ -103,8 +103,10 @@ def safe():
     cursor.execute("SELECT * FROM users WHERE id = " + user_id)
 ```
 
-Run `opengrep validate rule.yaml` (the rule is a positional argument) and
-`opengrep test --config rule.yaml test_file.py`. For interfile rules add `--enable-interfile` and pass every
+Run `opengrep test --config rule.yaml test_file.py`: it runs with no network and fails on a broken rule or a
+missed `ruleid` line. `opengrep validate rule.yaml` (the rule is a positional argument) also lints the rule, but
+it downloads the `p/semgrep-rule-lints` ruleset from the registry to do so, so it needs the same yes as any remote
+ruleset; on the pinned build it crashed with a bus error after that download. For interfile rules add `--enable-interfile` and pass every
 file. If an expected finding is missing, `opengrep scan --dataflow-traces -f rule.yaml file.py` shows the flow
 and `opengrep show dump-interfile-graph python .` shows the call graph.
 

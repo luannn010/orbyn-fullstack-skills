@@ -138,9 +138,22 @@ def reference(slug, root, pin_file=PIN_FILE, opener=urllib.request.urlopen, out=
     return dest
 
 
+def bash_major():
+    """The major version of the bash that make will find, or 0 when it cannot be read."""
+    try:
+        out = subprocess.run(["bash", "--version"], capture_output=True, text=True).stdout
+    except OSError:
+        return 0
+    match = re.search(r"version (\d+)", out)
+    return int(match.group(1)) if match else 0
+
+
 def missing_tools(pin):
     names = [t for t in pin["build"]["tools"] if t != "cc"]
     gone = [t for t in names if shutil.which(t) is None]
+    need = pin["build"].get("bash_min")
+    if need and bash_major() < need:
+        gone.append(f"bash>={need}")
     if shutil.which("cc") is None and shutil.which("gcc") is None and shutil.which("clang") is None:
         gone.append("cc")
     return gone

@@ -4767,6 +4767,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "New skill adapted from the MIT opengrep/skills (pinned bfbc2419) and checked against the engine source at v2.0.0: authority rules, rule writing, a CI gate that compares scanners before replacing one, install from pinned source with a tested helper. The LGPL engine is reviewed inspiration only; nothing copied."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Verified the skill by building the pinned engine from source and running it (flags, offline sandbox, a trial on a real project): install recipe corrected (OCaml 5.5.1, pcre2, libev, coreutils, gettext, Bash 5), validate documented as networked, parse-coverage and scanner-comparison lessons added, Bash 5 check added to the helper, verification record added."
         }
       ]
     }

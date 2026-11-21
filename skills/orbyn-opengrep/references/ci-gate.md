@@ -14,7 +14,15 @@ see less. Before turning the old one off:
    the two tools do not support the same set, and interfile taint depth is a limit (`--interfile-depth`).
 2. Run both on the same pull requests for a stretch you choose in advance (for example two weeks), and
    record every finding one reports and the other misses.
-3. Write down what the new scanner does not cover and who accepted that. Only then disable the old one.
+3. Count what the new scanner could not read. `--json` lists unparsed files under `errors`. In one trial the Rust
+   parser rejected six of a project's files (`&raw const`, async closures), among them process-spawning and sandbox
+   code: a clean result for them would mean nothing. Report every such file as uncovered.
+4. Write down what the new scanner does not cover and who accepted that. Only then disable the old one.
+
+A first trial showed why the comparison matters: the other scanner's open alerts were in test, tooling and script
+files and were about cleartext logging, cleartext transmission, reflected XSS and incomplete sanitization, which
+starter pattern rules for process spawning, SQL built with `format!` and TLS settings did not touch. Cover each
+alert class with a taint rule and a test before retiring the old scanner.
 
 ## Placement
 

@@ -10,7 +10,8 @@
       "observed": "2026-11-21",
       "use": "The engine. Built from this pinned source; reviewed for ideas only, no text copied (copyleft).",
       "build": {
-        "ocaml": "5.5.0",
+        "ocaml": "5.5.1",
+        "ocaml_note": "the opam file requires >= 5.2.1; the engine's own release scripts and Makefile use 5.5.1; its INSTALL.md says 5.5.0",
         "tools": [
           "opam",
           "dune",
@@ -18,9 +19,13 @@
           "git",
           "cc"
         ],
+        "bash_min": 5,
         "libraries": [
-          "pcre",
-          "gmp"
+          "pcre2",
+          "gmp",
+          "libev",
+          "coreutils",
+          "gettext"
         ],
         "steps": [
           [

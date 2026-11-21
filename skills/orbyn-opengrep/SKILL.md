@@ -30,7 +30,7 @@ against the engine at the pin in [source-pin.json](references/source-pin.json).
 ## Method
 
 1. **Ask the smallest question.** One line: `opengrep scan -e '$OBJ.execute(...)' -l python .`
-2. **For a vulnerability class, write a rule and its tests.** Put `# ruleid: <id>` before the line that must match and `# ok: <id>` before a safe look-alike; run `opengrep validate rule.yaml` and `opengrep test --config rule.yaml file.py`. A rule with no `ok` case is unproven: it may match everything ([suite audit](../tdd/references/suite-audit.md)). Rule syntax, taint mode and pitfalls: [rule writing](references/rule-writing.md).
+2. **For a vulnerability class, write a rule and its tests.** Put `# ruleid: <id>` before the line that must match and `# ok: <id>` before a safe look-alike; run `opengrep test --config rule.yaml file.py` (it works offline and fails on a broken rule). `opengrep validate` is not local: it downloads the `p/semgrep-rule-lints` ruleset from the registry to lint your rule, so it needs the same yes as any remote ruleset. A rule with no `ok` case is unproven: it may match everything ([suite audit](../tdd/references/suite-audit.md)). Rule syntax, taint mode and pitfalls: [rule writing](references/rule-writing.md).
 3. **Run it on the target** with the flags below. Pin the engine version in the report.
 4. **Report** the exact command, the engine version, rule ids, `path:line` per finding, what you confirmed by reading and what you did not, and the coverage limits above.
 
@@ -38,8 +38,8 @@ Flags checked in the pinned source: `--config` (also `-c`, `-f`), `--json`, `--s
 
 ## Install from the pinned source
 
-This library builds Opengrep from source rather than installing a package: [install from source](references/install-from-source.md), with the helper `scripts/opengrep_source.py` (`reference` downloads the pinned source for reading, `build --yes` builds it, `status` shows what is missing). Do not pipe an installer into a shell or install it through npm, and do not advance the pin without the [upstream review](../orbyn-upstream-review/SKILL.md) method.
+This library builds Opengrep from source rather than installing a package: [install from source](references/install-from-source.md), with the helper `scripts/opengrep_source.py` (`reference` downloads the pinned source for reading, `build --yes` builds it, `status` shows what is missing). Do not pipe an installer into a shell or install it through npm, install the Homebrew packages only with a yes, and do not advance the pin without the [upstream review](../orbyn-upstream-review/SKILL.md) method.
 
 ## Limits
 
-The skill's authors have not built or run the engine; its flags were read from source at the pinned release, not exercised. Telemetry behaviour is unverified: the scan CLI has no metrics flag, but run offline with local rules when egress matters. Windows and macOS builds are as unverified as the Linux one.
+Built and run once from the pinned source on macOS (see the [verification record](references/verification-2026-11-21.md)): 31 of the flag checks ran in a sandbox that kills the process on any network attempt, and none was killed. Linux and Windows are untested. The Rust parser could not read six security-relevant files of a real project (`&raw const`, async closures): the JSON `errors` list names such files, and a clean scan says nothing about them. `opengrep validate` crashed with a bus error on this build after its download.

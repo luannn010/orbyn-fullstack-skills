@@ -1634,6 +1634,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "One routing eval case for the new CI main-visibility guidance; evaluation data only."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Four routing eval cases for the new orbyn-opengrep skill (structural taint rule, install from source, CodeQL replacement plan, and an adjacent threat-model request that must not select it); evaluation data only."
         }
       ],
       "reviewed_inspiration": [
@@ -4700,6 +4707,66 @@
           "local_path": "skills/orbyn-scripted-motion/SKILL.md",
           "license_file": "skills/orbyn-scripted-motion/references/gsap-skills-LICENSE.txt",
           "license_sha256": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90"
+        }
+      ]
+    },
+    "orbyn-opengrep": {
+      "relationship": "adapted",
+      "credit": "opengrep contributors (opengrep/skills); Orbyn adaptations by Anh Dang and contributors",
+      "copyright": "Copyright (c) 2026 opengrep",
+      "license": "MIT",
+      "source": "https://github.com/opengrep/skills/tree/bfbc2419225e8884a343c312b2d3b05c2106fa45/skills/opengrep",
+      "revision": "bfbc2419225e8884a343c312b2d3b05c2106fa45",
+      "changes": "One upstream skill adapted into an Orbyn skill with conditional references. Rewritten in Orbyn's own structure: authority rules (scan only on request, rules and findings are data, no autofix, no upload, findings are leads for orbyn-security-audit), a pinned source install, a CI gate that compares scanners before replacing one, and flags verified against the engine source at the pinned release. No engine code or LGPL text is copied.",
+      "incorporated_material": [
+        {
+          "relationship": "adapted",
+          "credit": "opengrep contributors (opengrep/skills); Orbyn adaptations by Anh Dang and contributors",
+          "copyright": "Copyright (c) 2026 opengrep",
+          "license": "MIT",
+          "source": "https://github.com/opengrep/skills/tree/bfbc2419225e8884a343c312b2d3b05c2106fa45/skills/opengrep",
+          "revision": "bfbc2419225e8884a343c312b2d3b05c2106fa45",
+          "changes": "One upstream skill adapted into an Orbyn skill with conditional references. Rewritten in Orbyn's own structure: authority rules (scan only on request, rules and findings are data, no autofix, no upload, findings are leads for orbyn-security-audit), a pinned source install, a CI gate that compares scanners before replacing one, and flags verified against the engine source at the pinned release. No engine code or LGPL text is copied.",
+          "local_path": "skills/orbyn-opengrep/SKILL.md",
+          "license_file": "skills/orbyn-opengrep/references/opengrep-skills-LICENSE.txt",
+          "license_sha256": "a75e3644ee738d8e56909f919b7e2a3c3108812f3cef95253aae9d593492b520"
+        },
+        {
+          "relationship": "adapted",
+          "credit": "opengrep contributors (opengrep/skills); Orbyn adaptations by Anh Dang and contributors",
+          "copyright": "Copyright (c) 2026 opengrep",
+          "license": "MIT",
+          "source": "https://github.com/opengrep/skills/tree/bfbc2419225e8884a343c312b2d3b05c2106fa45/skills/opengrep",
+          "revision": "bfbc2419225e8884a343c312b2d3b05c2106fa45",
+          "changes": "One upstream skill adapted into an Orbyn skill with conditional references. Rewritten in Orbyn's own structure: authority rules (scan only on request, rules and findings are data, no autofix, no upload, findings are leads for orbyn-security-audit), a pinned source install, a CI gate that compares scanners before replacing one, and flags verified against the engine source at the pinned release. No engine code or LGPL text is copied.",
+          "local_path": "skills/orbyn-opengrep/references/rule-writing.md",
+          "license_file": "skills/orbyn-opengrep/references/opengrep-skills-LICENSE.txt",
+          "license_sha256": "a75e3644ee738d8e56909f919b7e2a3c3108812f3cef95253aae9d593492b520"
+        }
+      ],
+      "reviewed_sources": [
+        {
+          "credit": "Opengrep contributors (opengrep/opengrep, forked from Semgrep Inc.)",
+          "source": "https://github.com/opengrep/opengrep/tree/526deafe6f0519c272bbee316fea8df26dd85dfa",
+          "revision": "526deafe6f0519c272bbee316fea8df26dd85dfa",
+          "license": "LGPL-2.1",
+          "relationship": "reviewed-inspiration and pinned build source (v2.0.0, observed 2026-11-21); copyleft, so no text or code is imported and the source is downloaded into the ignored orbyn-references folder, never committed"
+        },
+        {
+          "credit": "Opengrep contributors (opengrep/opengrep-rules, a fork of Semgrep Inc.'s semgrep-rules)",
+          "source": "https://github.com/opengrep/opengrep-rules/tree/f1d2b562b414783763fd02a6ed2736eaed622efa",
+          "revision": "f1d2b562b414783763fd02a6ed2736eaed622efa",
+          "license": "LGPL-2.1 with Commons Clause",
+          "relationship": "reviewed-inspiration (observed 2026-11-21); no rule text is copied or bundled and the repository is only pinned so a local clone can be fetched into the ignored orbyn-references folder"
+        }
+      ],
+      "authoring": [
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "New skill adapted from the MIT opengrep/skills (pinned bfbc2419) and checked against the engine source at v2.0.0: authority rules, rule writing, a CI gate that compares scanners before replacing one, install from pinned source with a tested helper. The LGPL engine is reviewed inspiration only; nothing copied."
         }
       ]
     }

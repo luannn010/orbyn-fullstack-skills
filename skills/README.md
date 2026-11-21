@@ -54,6 +54,7 @@ This index is generated in the full library from `catalog.json` and frontmatter 
 - [orbyn-security-remediation](orbyn-security-remediation/SKILL.md) — Resolve existing security findings from a threat model, audit or scanner record: classify, fix at the owning boundary, add a preventive check and hand back for verification, without starting a scan. Use orbyn-security-audit to find new ones.
 - [orbyn-mcp-builder](orbyn-mcp-builder/SKILL.md) — Design, build and evaluate a Model Context Protocol (MCP) server in TypeScript or Python with Anthropic's bundled guide and evaluation harness. Use when creating or reworking an MCP server or its tools; for model-powered app behavior use orbyn-ai-application.
 - [orbyn-seo](orbyn-seo/SKILL.md) — Make a site findable in search and AI answers: audit crawl and index blockers, internal links, URL migrations with checked redirects, answer-ready page structure, honest comparison pages and crawler policy. Use orbyn-ui-design for head tags, orbyn-content-design for copy.
+- [orbyn-opengrep](orbyn-opengrep/SKILL.md) — Search code by structure and run static-analysis rules with Opengrep: structural queries, taint rules, rule tests, a CI gate and a build from pinned source. Findings are leads for orbyn-security-audit; not threat modelling or fixing; no scan without a request.
 
 ## Product design
 

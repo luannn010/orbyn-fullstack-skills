@@ -14601,6 +14601,97 @@
         "message"
       ],
       "excluded": "Do not change branch protection or run the full suite on every pull request."
+    },
+    {
+      "id": "opengrep-structural-taint-rule",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Find every place in this codebase where a shell command is built from request input. Use structural analysis with a custom taint rule and write tests for the rule. Do not fix or change anything.",
+      "expected_skills": [
+        "orbyn-opengrep"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not run an autofix, fetch a remote ruleset or upload findings."
+    },
+    {
+      "id": "opengrep-install-from-source",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Set up Opengrep for this workspace. Build it from source at the pinned commit rather than installing it from npm or with a curl installer.",
+      "expected_skills": [
+        "orbyn-opengrep"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not pipe an installer into a shell or install a toolchain without being asked."
+    },
+    {
+      "id": "opengrep-replace-codeql-plan",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "We are disabling CodeQL in CI soon and want Opengrep instead. Plan the replacement so we do not silently lose coverage. Plan only.",
+      "expected_skills": [
+        "orbyn-opengrep",
+        "orbyn-ci-design"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not change branch protection or edit workflows."
+    },
+    {
+      "id": "opengrep-adjacent-threat-model",
+      "kind": "routing",
+      "split": "development",
+      "prompt": "Threat-model the new file-upload feature and list the abuse cases and the controls that stop them. Do not run any scanner.",
+      "expected_skills": [
+        "orbyn-security-audit"
+      ],
+      "forbidden_skills": [
+        "orbyn-opengrep"
+      ],
+      "forbidden_actions": [
+        "write_product",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not run a scan."
+    },
+    {
+      "id": "opengrep-error-flag-and-baseline",
+      "kind": "routing",
+      "split": "holdout",
+      "prompt": "Which Opengrep options make a scan exit non-zero when it finds something, and show only findings that are new since a base commit?",
+      "expected_skills": [
+        "orbyn-opengrep"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Do not run a scan."
     }
   ]
 }

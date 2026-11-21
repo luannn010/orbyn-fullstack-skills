@@ -494,6 +494,17 @@
         "product-illustration",
         "orbyn-affectui"
       ]
+    },
+    {
+      "name": "orbyn-opengrep",
+      "category": "Fullstack contracts and delivery",
+      "related": [
+        "orbyn-security-audit",
+        "orbyn-security-remediation",
+        "orbyn-ci-design",
+        "orbyn-upstream-review",
+        "tdd"
+      ]
     }
   ],
   "retired_skills": {

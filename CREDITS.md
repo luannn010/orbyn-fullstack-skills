@@ -30,6 +30,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [morluto/rea](https://github.com/morluto/rea) | 2026 morluto | MIT | rea-analysis-optimization, rea-changelog-update, rea-ci-tests-audit, rea-tool-design, reverse-engineer-anything |
 | [NiazMorshed2007/reanimate](https://github.com/NiazMorshed2007/reanimate) | 2026 Niaz Morshed | MIT | motion-match |
 | [nutlope/hallmark](https://github.com/nutlope/hallmark) | Hallmark contributors; Orbyn adaptations by Anh Dang and contributors | MIT | orbyn-ui-design |
+| [opengrep/skills](https://github.com/opengrep/skills) | 2026 opengrep | MIT | orbyn-opengrep |
 | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | 2026 Ryan | MIT | technical-illustration |
 
 ## Reviewed for ideas, no text bundled
@@ -85,3 +86,5 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | [microsoft/TokenEconomizer](https://github.com/microsoft/TokenEconomizer) | Microsoft Research and UC Berkeley (TokenEconomizer) | Apache-2.0 | orbyn-workflow, reflect |
 | [microsoft/vscode](https://github.com/microsoft/vscode) | Microsoft and VS Code contributors | See source | orbyn-ui-design |
 | [obra/superpowers](https://github.com/obra/superpowers) | Jesse Vincent (obra/superpowers) | MIT | how, orbyn-workflow, tdd |
+| [opengrep/opengrep](https://github.com/opengrep/opengrep) | Opengrep contributors (opengrep/opengrep, forked from Semgrep Inc.) | LGPL-2.1 | orbyn-opengrep |
+| [opengrep/opengrep-rules](https://github.com/opengrep/opengrep-rules) | Opengrep contributors (opengrep/opengrep-rules, a fork of Semgrep Inc.'s semgrep-rules) | LGPL-2.1 with Commons Clause | orbyn-opengrep |

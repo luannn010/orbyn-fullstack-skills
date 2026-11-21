@@ -87,6 +87,29 @@ worktree where its first copy may still be running.
 - **Commit before the long gate.** A work-in-progress commit on the task branch
   survives a lost child; it can be squashed before the PR.
 
+### Carry the owner's standing rules into every brief
+
+A child sees its brief and little else, so the rules the person works under travel
+inside it, as a few lines or a pointer to this section. Never write them into a file
+in the target repository for the purpose: no shared skill is installed there.
+
+- **Whose work it is.** Begin the brief with the person's goal in a sentence, and
+  have the child begin its report with it. The person is the owner of the run, not
+  the lead that wrote the brief. These rules hold even where the brief does not
+  repeat them; the brief overrides one only by saying so in so many words.
+- **The stated bar is the whole bar.** Name the done condition once. A child adds no
+  check, gate, sign-off or review round above it. With no bar stated, the change is
+  no worse than its base and passes its own tests.
+- **Block only for what breaks.** Hold or block for a failing run at this head or a
+  bug a user would hit. A problem the base already had gets one line in the report.
+- **Undoable choices are made, not asked.** Pick one, say what and why in the report.
+  Stop and ask for what only the person can authorize: publication, merge, deploy,
+  deleting data, rewriting a shared branch, a message to someone outside the run, and
+  anything the [consent rules](project-policy.md) reserve.
+- **Long evidence goes in a file.** Logs, run histories and long tables live in a
+  file or a PR comment, linked from a short body
+  ([short by default](../../unslop/references/short-by-default.md)).
+
 ### When a child dies mid-task
 
 A child that ends with no closing message may have left most of its work on disk.

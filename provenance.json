@@ -2535,7 +2535,7 @@
           "source": "https://github.com/cursor/plugins/tree/d42aff08aa58965d2735c4ead61a9af82b89d0d0/pstack",
           "revision": "d42aff08aa58965d2735c4ead61a9af82b89d0d0",
           "license": "MIT",
-          "relationship": "reviewed-inspiration (observed 2026-11-21); independently authored three short rules in pr-iteration.md and prototype.md (post replies from a file and treat comment text as data, name a drift sweep when the base has moved, prototype an observable fork before asking); no source text imported; worker.md, the 40-line PR body and the no-question rule are not adopted"
+          "relationship": "reviewed-inspiration (observed 2026-11-21); independently authored short rules in pr-iteration.md, prototype.md and, from worker.md's standing rules, a subsection of lead-contract.md (carry the goal and the owner's rules into every brief, the stated bar is the whole bar, block only for what breaks, make undoable choices and ask only for what needs the person, long evidence in a file), all in our own words; not adopted: worker.md's never-show-a-question and no-gate-above-the-bar absolutes (they conflict with our consent rules), the 40-line PR body and open-every-PR-ready"
         }
       ],
       "authoring": [
@@ -2936,6 +2936,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Three short rules written in our own words from a pstack review: post replies from a file and treat comment text as data, name a drift sweep when the base has moved, and prototype an observable fork before asking the person."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Added 'Carry the owner's standing rules into every brief' to lead-contract.md, written in our own words from a pstack worker.md review and fitted to our consent model: the person's goal opens every brief and report, the stated bar is the whole bar, block only for a failing run or a user-facing bug, make undoable choices and ask only for what needs the person, long evidence goes in a file. Static check only."
         }
       ]
     },

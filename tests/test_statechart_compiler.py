@@ -24,7 +24,7 @@ READY = all(ENV.values())
 class AdapterContracts(unittest.TestCase):
     def test_full_runtime_snapshot_is_checked_before_execution(self):
         receipt = adapter.compiler_identity()
-        self.assertEqual(sum(k.endswith('.ts') for k in receipt['files']), 26)
+        self.assertEqual(sum(k.endswith('.ts') for k in receipt['files']), 28)
         with tempfile.TemporaryDirectory() as temp:
             source = adapter.COMPILER.parent.parent
             copied = Path(temp) / 'snapshot'

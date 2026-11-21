@@ -18,9 +18,9 @@ offline attribution pointer. The source-to-local mapping is preserved in [skill-
 Orbyn's decision examples, authority boundaries and integration changes do not
 remove the original author's credit. Full upstream source is not bundled here.
 
-The optional statechart compiler additionally redistributes 26 unmodified runtime
-TypeScript files from revision `bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7`
-(pstack 0.15.42), with the [exact source/hash map and original notice](../skills/architect/references/upstream/pstack-statechart/snapshot.json).
+The optional statechart compiler additionally redistributes 28 unmodified runtime
+TypeScript files from revision `d42aff08aa58965d2735c4ead61a9af82b89d0d0`
+(pstack 0.15.46), with the [exact source/hash map and original notice](../skills/architect/references/upstream/pstack-statechart/snapshot.json).
 The adapter, ESM boundary, conservative visibility guard and synthetic sample are
 Orbyn-authored. No bootstrap wrapper, upstream active skill, test corpus or external
 runtime binary is bundled. Historical adaptation pins above remain unchanged.

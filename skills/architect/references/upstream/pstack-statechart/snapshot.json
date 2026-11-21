@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/cursor/plugins",
-  "revision": "bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7",
+  "revision": "d42aff08aa58965d2735c4ead61a9af82b89d0d0",
   "source_root": "pstack",
   "license": "MIT",
   "license_files": [
@@ -9,6 +9,10 @@
   ],
   "scope": "Unmodified runtime TypeScript compiler source only; excludes bootstrap shell, active skills, tests, Java/TLC and renderer. Explicit opt-in through Orbyn adapter, never automatic bootstrap. All original imports remain local.",
   "files": {
+    "LICENSE": {
+      "source_path": "LICENSE",
+      "sha256": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e"
+    },
     "compiler/backends/cfg.ts": {
       "source_path": "skills/statechart/scripts/backends/cfg.ts",
       "sha256": "aea4d8766d214e7fa08f4881f1037319655e75eb56652e1b6d5d4f13a162e3e1"
@@ -31,7 +35,7 @@
     },
     "compiler/frontends/dot.ts": {
       "source_path": "skills/statechart/scripts/frontends/dot.ts",
-      "sha256": "4eef9ec848557dcd01ca8dbbec75b71c0653c1b73583108bafbb6f559f6d677b"
+      "sha256": "cd2e681ff58c759ddeaa17c2f3d4af1f0c3e71273566be555187b5d0e7767dac"
     },
     "compiler/frontends/marks.ts": {
       "source_path": "skills/statechart/scripts/frontends/marks.ts",
@@ -64,6 +68,14 @@
     "compiler/ir.ts": {
       "source_path": "skills/statechart/scripts/ir.ts",
       "sha256": "5602beca4e4ac08421cfa07e4da989f0e75439f1d136cc923226909e771dc7ff"
+    },
+    "compiler/janitor.ts": {
+      "source_path": "skills/statechart/scripts/janitor.ts",
+      "sha256": "defac41e4cbfca3044c5078c544a0667f857a610c500c5ec96cb3bfaeec7120b"
+    },
+    "compiler/kill.ts": {
+      "source_path": "skills/statechart/scripts/kill.ts",
+      "sha256": "058df69d1184029e55d7e81b4fd37a6dc8557c9208979fb7032482d5ab0db448"
     },
     "compiler/passes/annotate.ts": {
       "source_path": "skills/statechart/scripts/passes/annotate.ts",
@@ -103,19 +115,15 @@
     },
     "compiler/run.ts": {
       "source_path": "skills/statechart/scripts/run.ts",
-      "sha256": "751d97cfde3c241bfeed8913fc74a7a7cbc6acd3829e37a441016af3eb78f0e0"
+      "sha256": "fb6ec4a1835a15e6e72df28bb932b8df5a4c04c5de6f9c270fd63ff5cd148dc7"
     },
     "compiler/statechart.ts": {
       "source_path": "skills/statechart/scripts/statechart.ts",
-      "sha256": "1c653f05d0cd0f3298455701f36e3d7d1f837f93e6e642f7c20afb5d613c2d12"
+      "sha256": "5d5feff7d78204c828a8e30d531d23419234a81a7149dc3e48efb08dd770d6c1"
     },
     "compiler/worker.ts": {
       "source_path": "skills/statechart/scripts/worker.ts",
       "sha256": "1f18ed5ef806982e05e8a40fc217e88257700b28b63cb4acbd647872f85f782b"
-    },
-    "LICENSE": {
-      "source_path": "LICENSE",
-      "sha256": "bc957ca6bee02792566a1a028d105e02e247c6e77cf057061674273da77b200e"
     }
   }
 }

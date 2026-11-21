@@ -4,6 +4,11 @@ Use the parent [workflow](../SKILL.md). Freeze one empirical question, its hard
 constraints and the observation that will select or reject an approach. First
 check whether current source or primary documentation already settles it.
 
+Before asking the person which approach to take, sort the question. If the answer is
+a fact you can observe by running something (behavior, timing, layout, output, size),
+prototype it and recommend the option you saw win. Product choices, preferences,
+consequential or irreversible decisions still go to the person with the evidence.
+
 Build only the uncertain seam with disposable data and a separate output path.
 Keep the reference/default candidate and relevant environment comparable. For a
 storage choice, measure the actual access pattern and failure/recovery need;

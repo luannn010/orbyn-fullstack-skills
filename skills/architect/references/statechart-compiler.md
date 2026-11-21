@@ -2,7 +2,7 @@
 
 Select this path for a source-linked finite TLA+ check and a generated diagram,
 not for an ordinary design sketch. The bundled compiler is unmodified pstack
-runtime source at `bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7` (plugin 0.15.42),
+runtime source at `d42aff08aa58965d2735c4ead61a9af82b89d0d0` (plugin 0.15.46),
 with exact [hashes and license](upstream/pstack-statechart/snapshot.json).
 There is no bootstrap, active imported skill, network lookup or package install.
 The independently authored adapter and view guard live under `../scripts/`.
@@ -26,11 +26,15 @@ python3 "$library/skills/architect/scripts/check-statechart.py" doctor \
   --node "$node_bin" --java "$java_bin" --tlc "$tlc_jar"
 ```
 
-Doctor reads/hashes the complete 26-file runtime closure, its notice, the local
+Doctor reads/hashes the complete 28-file runtime closure, its notice, the local
 ESM package boundary and the exact jar; it probes tool versions without writing
 outputs or installing anything. It establishes readiness, not model correctness.
-The pinned lifecycle uses POSIX shell/process-group signals: Windows is blocked.
-macOS is locally qualified; Linux has the required execution primitives but
+The adapter still blocks Windows. Upstream's compiler now runs on native Windows
+(it no longer calls `/bin/sh`, reads TLC's `\r\n` line ends, and stops its worker
+with `taskkill`), and its notes say to run the script with Node 22.18 to 22.x or
+23.6 and later through `node --disable-warning=ExperimentalWarning <script>`; no
+run of it on Windows has been done here, so the block stays until a Windows job
+runs the doctor and a sample. macOS is locally qualified; Linux has the required execution primitives but
 needs its own runtime and interruption qualification. Never edit a home/global
 `package.json` to make TypeScript imports work.
 

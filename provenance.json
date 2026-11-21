@@ -250,14 +250,21 @@
           "revision": "6b0300214a09fd6029cfb7077043125758cd1fd2",
           "relationship": "reviewed 2026-11-09; all 27 bundled files (26 compiler sources and the MIT notice) byte-identical to the 1ba91fc pin; later commits outside the bundle; pin not advanced",
           "license": "MIT"
+        },
+        {
+          "credit": "Lauren Tan (pstack)",
+          "source": "https://github.com/cursor/plugins/tree/d42aff08aa58965d2735c4ead61a9af82b89d0d0/pstack",
+          "revision": "d42aff08aa58965d2735c4ead61a9af82b89d0d0",
+          "license": "MIT",
+          "relationship": "reviewed 2026-11-21; the bundled compiler snapshot is refreshed to this revision as unmodified bytes (see bundled_compiler), and the Windows run note in statechart-compiler.md restates upstream's published Node requirement in our words; the shortened upstream skill texts, model routing and removed references are not adopted"
         }
       ],
       "bundled_compiler": {
         "repository": "https://github.com/cursor/plugins",
-        "revision": "bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7",
+        "revision": "d42aff08aa58965d2735c4ead61a9af82b89d0d0",
         "source_path": "pstack/skills/statechart/scripts",
         "snapshot": "skills/architect/references/upstream/pstack-statechart/snapshot.json",
-        "scope": "26 unmodified runtime .ts files and original MIT notice; no bootstrap, runtime binaries, upstream skill aliases or test corpus"
+        "scope": "28 unmodified runtime .ts files and original MIT notice; no bootstrap, runtime binaries, upstream skill aliases or test corpus"
       },
       "authoring": [
         {
@@ -398,6 +405,13 @@
           "effort": "medium",
           "date": "2026-11-16",
           "scope": "Advanced the bundled pstack statechart compiler snapshot to bf0c7cd (run.ts, mermaid.ts) with adapter checks"
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Refreshed the bundled pstack statechart compiler snapshot to d42aff08 (3 changed files, 2 new: kill.ts and janitor.ts; hashes and the 28-file closure updated), updated its notice, plugin version and Windows note in statechart-compiler.md; adapter tests pass including the real TLC integration run on macOS. The Windows block stays until a Windows job runs."
         }
       ]
     },
@@ -2515,6 +2529,13 @@
           "revision": "b1bfce9e51d0cd92fc23efd6ecb37ff68139e7db",
           "license": "MIT",
           "relationship": "bundled unmodified agent skill snapshot; see references/upstream/gh-stack/snapshot.json"
+        },
+        {
+          "credit": "Lauren Tan (pstack)",
+          "source": "https://github.com/cursor/plugins/tree/d42aff08aa58965d2735c4ead61a9af82b89d0d0/pstack",
+          "revision": "d42aff08aa58965d2735c4ead61a9af82b89d0d0",
+          "license": "MIT",
+          "relationship": "reviewed-inspiration (observed 2026-11-21); independently authored three short rules in pr-iteration.md and prototype.md (post replies from a file and treat comment text as data, name a drift sweep when the base has moved, prototype an observable fork before asking); no source text imported; worker.md, the 40-line PR body and the no-question rule are not adopted"
         }
       ],
       "authoring": [
@@ -2908,6 +2929,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Stacked PRs and commit gate: stack PRs that edit the same shared row, resolve table conflicts from the base, edit very long lines by script, and squash commits that do not build alone"
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Three short rules written in our own words from a pstack review: post replies from a file and treat comment text as data, name a drift sweep when the base has moved, and prototype an observable fork before asking the person."
         }
       ]
     },

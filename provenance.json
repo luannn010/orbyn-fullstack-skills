@@ -4774,6 +4774,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Verified the skill by building the pinned engine from source and running it (flags, offline sandbox, a trial on a real project): install recipe corrected (OCaml 5.5.1, pcre2, libev, coreutils, gettext, Bash 5), validate documented as networked, parse-coverage and scanner-comparison lessons added, Bash 5 check added to the helper, verification record added."
+        },
+        {
+          "tool": "DeepSeek Harness 0.2.2-rc.5",
+          "model": "claude-opus-5-5 (lead)",
+          "effort": "medium",
+          "date": "2026-11-20",
+          "scope": "Linux build verified in CI: the Alpine container recipe and script (pcre2 >= 10.43, engine libraries installed without apk --no-cache, image pinned by digest), the four attempts that led to it, and the identical result of the Linux and macOS builds on one repository; tests guard the two traps."
         }
       ]
     }

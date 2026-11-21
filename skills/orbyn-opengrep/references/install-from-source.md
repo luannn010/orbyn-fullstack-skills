@@ -34,6 +34,35 @@ If Homebrew cannot write its cache folder (it was root-owned on one machine), po
 `HOMEBREW_LOGS` at the ignored folder rather than changing ownership. On that run the opam root was about 1.1 GB and
 the build tree about 3.0 GB.
 
+## Linux: build in an Alpine container (verified in CI)
+
+Do not build on Ubuntu 24.04: its `libpcre2-dev` is 10.42 and the engine needs 10.43 or newer (the link step fails with
+`libpcre2 >= 10.43 is required`). The engine's own Linux release is built inside an Alpine container with static pcre2 and
+gmp, and that is what worked:
+
+- **Image:** `alpine:3.22`, pinned by digest (`sha256:49340b34…e898f` when this was written) so a moved tag cannot change the
+  build.
+- **Script:** [scripts/build_linux_in_alpine.sh](../scripts/build_linux_in_alpine.sh) runs inside the container with the
+  pinned checkout mounted at `/workspace`: it installs the base packages and `opam`, then the engine's own library list with
+  `make install-deps-ALPINE-for-semgrep-core`, builds the tree-sitter runtime, creates the OCaml 5.5.1 switch, installs
+  `dune` and the opam dependencies, runs `make core` and writes `artifacts/opengrep` (a static binary that runs on Ubuntu).
+- **Install the engine's libraries without `--no-cache`.** The engine's Makefile warns that `apk add --no-cache` hides
+  `pkgconf` from opam and the dependency solve fails (opam issue 5186); a script that used it failed exactly that way.
+- **Do not use the `setup-ocaml` action** for this build: it leaves no opam switch for `make setup` to find.
+- **Time:** about 13 minutes on a hosted runner (OCaml and the opam packages compile from source), then a few seconds per
+  scan. Cache the binary by the pinned commit.
+
+Check out the commit first (`opengrep_source.py reference` downloads it, or clone and check out the exact commit with its
+submodules), then:
+
+```sh
+docker run --rm --volume "$PWD/src:/workspace" --workdir /workspace --env OCAML_VERSION=5.5.1 \
+  alpine:3.22@sha256:<digest> sh /workspace/build_linux_in_alpine.sh
+```
+
+(Copy the script next to the checkout first.) The app's advisory workflow does exactly this; it needs Docker, which was
+not running on the maintainer's Mac, so the container recipe was verified on a hosted Linux runner, not locally.
+
 ## What the helper does
 
 1. **`status`** lists the pin, whether a reference copy exists and which tools are missing, including an old Bash. It
@@ -64,6 +93,6 @@ one reviewed change. The pin file is the single place the commit is named.
 
 ## Limits
 
-Built and run once, on macOS 27 (Apple Silicon): see the [verification record](verification-2026-11-21.md).
-Linux and Windows source builds are not covered here (the upstream project ships Windows binaries). The built binary
+Built and run on macOS 27 (Apple Silicon) and, separately, on a hosted Ubuntu runner through the Alpine container above: see the [verification record](verification-2026-11-21.md). The helper's `build` is the macOS path and does not cover Linux (it stops on Ubuntu's old pcre2 at the link step).
+A Windows source build is not covered here (the upstream project ships Windows binaries). The built binary
 was not signed: the build's own strip step prints that it invalidates the code signature.

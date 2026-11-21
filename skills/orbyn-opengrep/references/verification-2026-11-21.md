@@ -52,7 +52,23 @@ transmission, reflected XSS, incomplete sanitization) and 7 dismissed. The two s
 do not target those classes and the scan excluded test files. This is a one-time snapshot, not the side-by-side run
 [the CI gate](ci-gate.md) asks for.
 
+## Linux, same day: hosted Ubuntu runner, four attempts
+
+The advisory workflow of the project was built from the same pinned commit on a GitHub-hosted runner. Three attempts failed and each
+taught one thing; the fourth passed.
+
+| Attempt | Failure | Cause and fix |
+| --- | --- | --- |
+| 1 | `No switch is currently set` | The `setup-ocaml` action leaves no opam switch for the build: create a named switch |
+| 2 | `libpcre2 >= 10.43 is required, found 10.42`, after about 9 minutes of compiling | Ubuntu 24.04 ships 10.42: build in an Alpine container as upstream does |
+| 3 | `depends on the unavailable system package 'pkgconf'` in `make install-opam-deps` | `apk add --no-cache` hides pkgconf from opam (the engine's Makefile warns of this): run the engine's own `make install-deps-ALPINE-for-semgrep-core` |
+| 4 | none | Alpine 3.22 pinned by digest, OCaml 5.5.1: build 787 s, rule tests pass, scan 10 s |
+
+The Linux binary and the macOS binary gave **identical scans of one repository** (a 1,857-file checkout): the same 109 findings, the same count
+for every rule, 0 findings differing in rule, file or line, and the same 6 files that did not parse. That is one repository at one commit, not
+a general equivalence. A local Docker run was not done (the daemon was not running).
+
 ## Not established
 
-Linux and Windows builds; telemetry beyond "no network attempt in these runs"; whether the findings are real; the
+A Windows build; a Linux build on arm64; telemetry beyond "no network attempt in these runs"; whether the findings are real; the
 release binary's behaviour; any live routing of the skill.

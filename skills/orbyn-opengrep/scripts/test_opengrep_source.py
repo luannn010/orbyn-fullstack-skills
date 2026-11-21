@@ -308,6 +308,35 @@ class BashTests(Base):
             self.assertEqual(og.bash_major(), 0)
 
 
+class LinuxScriptTests(unittest.TestCase):
+    SCRIPT = Path(__file__).resolve().parent / "build_linux_in_alpine.sh"
+
+    def text(self):
+        return self.SCRIPT.read_text(encoding="utf-8")
+
+    def test_the_script_is_valid_shell(self):
+        result = subprocess.run(["sh", "-n", str(self.SCRIPT)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_the_engines_libraries_come_from_its_own_target_without_no_cache(self):
+        text = self.text()
+        self.assertIn("make install-deps-ALPINE-for-semgrep-core", text)
+        for line in text.splitlines():
+            if line.lstrip().startswith("#"):
+                continue
+            if "--no-cache" in line:
+                for library in ("pcre2", "pkgconf", "gmp", "libev"):
+                    self.assertNotIn(library, line, f"{library} must not be installed with --no-cache")
+
+    def test_it_checks_nothing_in_unpinned_and_reads_the_ocaml_version_from_the_pin(self):
+        text = self.text()
+        pin = json.loads((Path(__file__).resolve().parent.parent / "references" / "source-pin.json").read_text(encoding="utf-8"))
+        engine = next(s for s in pin["sources"] if s["slug"] == "opengrep/opengrep")
+        self.assertIn(f'OCAML_VERSION:-{engine["build"]["ocaml"]}', text)
+        self.assertNotIn("curl | ", text)
+        self.assertNotIn("| sh", text)
+
+
 class StatusTests(Base):
     def test_status_reports_pin_reference_and_missing_tools(self):
         lines = []

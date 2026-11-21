@@ -43,6 +43,10 @@ or guarantee that a header is C rather than C++.
 
 ## Carry the behavior through its callers
 
+For JavaScript dependency setup, toolchain pins or an authorized npm/pnpm migration,
+read [package managers and reuse](references/javascript-packages.md). Keep the
+project's selected manager and valid installations unless its inputs require preparation.
+
 Identify who owns memory/resources, cancellation, mutable state and the committed
 effect. Preserve input validation, authority, error meaning and cleanup across
 language/FFI/process boundaries. Static annotations, deserialization and a successful

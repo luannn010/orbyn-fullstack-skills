@@ -1323,6 +1323,13 @@
           "effort": "medium",
           "date": "2026-11-17",
           "scope": "New agent-instructions reference: root and nested AGENTS.md layering, what stays out, hard-won facts, non-conflicting levels and host pointer files; routing line in the description."
+        },
+        {
+          "tool": "Codex desktop / CLI 0.160.0",
+          "model": "GPT-6 (lead; exact runtime model ID not exposed)",
+          "effort": "not exposed",
+          "date": "2026-11-22",
+          "scope": "Link JavaScript manager/version inspection during target setup without automatic installation or migration."
         }
       ],
       "reviewed_inspiration": [
@@ -1338,6 +1345,11 @@
           "source": "https://www.ssw.com.au/rules/write-agents-md",
           "revision": "observed 2026-11-17 (page updated 2026-11-16)",
           "relationship": "reviewed-inspiration; ideas adapted for references/agent-instructions.md (subtree files, what stays out, multi-attempt facts, pointer files); wording, structure and examples are our own; no text copied"
+        },
+        {
+          "credit": "pnpm contributors",
+          "source": "https://pnpm.io/10.x/settings",
+          "relationship": "reviewed-inspiration observed 2026-11-22; pnpm MIT; independently written guidance; no documentation or source text copied"
         }
       ]
     },
@@ -1662,6 +1674,13 @@
           "effort": "medium",
           "date": "2026-11-20",
           "scope": "Four routing eval cases for the new orbyn-opengrep skill (structural taint rule, install from source, CodeQL replacement plan, and an adjacent threat-model request that must not select it); evaluation data only."
+        },
+        {
+          "tool": "Codex desktop / CLI 0.160.0",
+          "model": "GPT-6 (lead; exact runtime model ID not exposed)",
+          "effort": "not exposed",
+          "date": "2026-11-22",
+          "scope": "Add two synthetic development cases for npm preservation and optional pnpm reuse/version policy."
         }
       ],
       "reviewed_inspiration": [
@@ -4096,6 +4115,13 @@
           "effort": "medium",
           "date": "2026-11-18",
           "scope": "Rust porting traps adapted from rust-anything (MIT)"
+        },
+        {
+          "tool": "Codex desktop / CLI 0.160.0",
+          "model": "GPT-6 (lead; exact runtime model ID not exposed)",
+          "effort": "not exposed",
+          "date": "2026-11-22",
+          "scope": "Add optional npm/pnpm setup, toolchain pinning and dependency reuse policy; npm behavior preserved."
         }
       ],
       "reviewed_inspiration": [
@@ -4103,6 +4129,11 @@
           "credit": "Adam Lewis (Three-Tier Hoisting)",
           "source": "https://dev.to/nark3d/a-three-tier-folder-structure-for-long-lived-codebases-3a3l",
           "relationship": "reviewed-inspiration observed 2026-11-09; independently written, no text imported"
+        },
+        {
+          "credit": "pnpm contributors",
+          "source": "https://pnpm.io/10.x/settings",
+          "relationship": "reviewed-inspiration observed 2026-11-22; pnpm MIT; independently written guidance; no documentation or source text copied"
         }
       ]
     },

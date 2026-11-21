@@ -14692,6 +14692,53 @@
         "message"
       ],
       "excluded": "Do not run a scan."
+    },
+    {
+      "id": "npm-setup-preserves-manager",
+      "kind": "outcome",
+      "split": "development",
+      "prompt": "Inspect setup for a synthetic npm app with package-lock.json, a compatible Node pin and an existing valid installation. The user has not requested migration or installation. Explain your next steps in Markdown only.",
+      "expected_skills": [
+        "orbyn-setup"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write_product",
+        "test",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Use synthetic facts only; no implementation or runtime installation.",
+      "rubric": {
+        "preserve": "Retains npm and its lockfile; does not migrate, install, change global runtime or routinely run npm ci.",
+        "inspect": "Checks declared manager, runtime pins and installation compatibility; reports conflicts instead of picking arbitrarily."
+      }
+    },
+    {
+      "id": "pnpm-migration-reuse-policy",
+      "kind": "outcome",
+      "split": "development",
+      "prompt": "Propose an authorized npm-to-pnpm migration for two synthetic independent Node apps and their worktrees. Avoid unnecessary dependency upgrades, downloads and rebuilds. Write Markdown only; do not execute the proposal.",
+      "expected_skills": [
+        "language-best-practices"
+      ],
+      "forbidden_skills": [],
+      "forbidden_actions": [
+        "write_product",
+        "test",
+        "publish",
+        "deploy",
+        "merge",
+        "message"
+      ],
+      "excluded": "Use synthetic facts only; no implementation or runtime installation.",
+      "rubric": {
+        "versions": "Pins tested manager and compatible Node toolchain; preserves app versions and separates dependency upgrades from conversion.",
+        "reuse": "Uses a persistent same-filesystem pnpm store and separate worktree layouts, validates inputs, and never shares mutable node_modules.",
+        "verification": "Reviews imported resolution, updates CI and lockfile selectors, uses frozen installs, and distinguishes store reuse from application build caching."
+      }
     }
   ]
 }

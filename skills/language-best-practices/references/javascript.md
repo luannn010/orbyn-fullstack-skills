@@ -4,6 +4,10 @@
 
 Inspect package.json, lockfile, module type, engines and the actual browser/Node/worker target. Preserve CommonJS/ESM boundaries and supported syntax.
 
+For dependency setup, version pins or an authorized package-manager migration, use
+[package managers and reuse](javascript-packages.md). Preserve npm in npm projects;
+pnpm is an explicit project choice, not a library-wide default.
+
 ## Apply at the affected boundary
 
 - Return or await every promise that belongs to the operation. A rejected Promise.all does not cancel sibling work; pass an AbortSignal to APIs that support it and settle owned work before releasing its resources.

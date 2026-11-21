@@ -67,6 +67,7 @@ bundled, and they may carry other licences. Generated from `provenance.json` by
 | https://learn.microsoft.com/en-us/windows/win32/fileio/creating-and-opening-files | Microsoft Learn (Windows API documentation) | CC-BY-4.0 | orbyn-worktree |
 | https://pair.withgoogle.com/chapter/feedback-controls/ | Google PAIR feedback/control | See source | orbyn-ai-application |
 | https://pair.withgoogle.com/chapter/user-needs/ | Google PAIR user needs | See source | orbyn-ai-application |
+| https://pnpm.io/10.x/settings | pnpm contributors | See source | language-best-practices, orbyn-setup |
 | https://research.google/pubs/how-developers-search-for-code-a-case-study/ | Google Research, Caitlin Sadowski, Kathryn T. Stolee and Sebastian Elbaum | See source | orbyn-research |
 | https://research.swtch.com/deps | Russ Cox | See source | orbyn-research |
 | https://www.anthropic.com/research/building-effective-agents | Anthropic — effective agents | See source | orbyn-ai-application |
